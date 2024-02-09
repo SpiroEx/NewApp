@@ -18,28 +18,23 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-
-        // required
-        light_primary: "#018BCC",
-        darker_primary: "#143761",
-        darkest_primary: "#0F2A4B",
+        // constant - do not change
         link: "#15233D",
 
-        // custom
-        bg: "#F6F6F6",
+        // required - change as needed
+        light_primary: "#479EAA",
+        darker_primary: "#19989E",
+        darkest_primary: "#146266",
+
+        // custom - from Figma
+        bg: "#434343",
+        gray: "#434343",
         white: "#FFFFFF",
-        red: "#EB1C36",
-        red_bg: "#EC354B",
-        red_light: "#F99394",
-        blue: "#143761",
-        blue_light: "#018BCC",
-        black: "#000000",
-        gray: "#262626",
-        bluegreen: "#2AB6B5",
-        yellow: "#e6c510",
-        gcash_bg: "#ECEBF0",
-        gcash_loading_bg: "#FEFEFE",
-        gcash_blue: "#0056E4",
+        green: "#CCEDCD",
+        violet: "#ECDCFE",
+        yellow: "#FFEEC0",
+        blue: "#B5E0FA",
+        red: "#FDC1C1",
       },
     },
     

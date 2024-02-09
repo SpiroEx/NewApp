@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
-import MainPage from "../pages/MainPage";
-import ProfilePage from "../pages/ProfilePage";
-import AboutPage from "../pages/AboutPage";
+import MainPage from "../custom/MainPage";
+import ProfilePage from "../custom/ProfilePage";
+import AboutPage from "../custom/AboutPage";
 
 //? ----------------------
 //? PAGES

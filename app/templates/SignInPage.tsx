@@ -1,9 +1,9 @@
-import Logo from "@/components/custom/Logo";
-import Title from "@/components/custom/Title";
 import VisibilityIcon from "@/components/svg/icon_animated/visibility/VisibilityIcon";
+import Logo from "@/components/templates/Logo";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
 import SizedBox from "@/components/templates/SizedBox";
+import Title from "@/components/templates/Title";
 import useSignInPage, { SignInType } from "@/hooks/useSignIn";
 import { interFont } from "@/styles/fonts";
 import { useState } from "react";

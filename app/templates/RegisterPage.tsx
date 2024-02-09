@@ -1,7 +1,5 @@
 import FH from "@/classes/FH";
 import { MyUser } from "@/classes/MyUser";
-import Logo from "@/components/custom/Logo";
-import Title from "@/components/custom/Title";
 import EditableAvatar from "@/components/templates/EditableAvatar";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
@@ -11,6 +9,7 @@ import { User } from "firebase/auth";
 import { FormEventHandler, useContext, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { TokenContext } from "../wrappers/FHWrapper";
+import Title from "@/components/templates/Title";
 
 interface RegisterPageProps {
   user: User;

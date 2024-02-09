@@ -1,4 +1,10 @@
-import { Inter, Julius_Sans_One, Outfit, Lekton } from "next/font/google";
+import {
+  Inter,
+  Julius_Sans_One,
+  Outfit,
+  Lekton,
+  Poppins,
+} from "next/font/google";
 
 const juliusSansOneFont = Julius_Sans_One({
   weight: "400",
@@ -13,3 +19,6 @@ export const outfitFont = outfitFontClass.className;
 
 const lektonFontClass = Lekton({ weight: "400", subsets: ["latin"] });
 export const lektonFont = lektonFontClass.className;
+
+const poppinsFontClass = Poppins({ weight: "400", subsets: ["latin"] });
+export const poppinsFont = poppinsFontClass.className;

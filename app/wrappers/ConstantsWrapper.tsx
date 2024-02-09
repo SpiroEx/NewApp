@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import LoadingPage from "../pages_outer/LoadingPage";
+import LoadingPage from "../templates/LoadingPage";
 import FHWrapper from "./FHWrapper";
 
 //? ----------------------

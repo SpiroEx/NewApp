@@ -1,4 +1,4 @@
-export interface Token {
+export interface FCMToken {
   id: string;
   userId: string;
   email: string;

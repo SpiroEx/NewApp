@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import MainPage from "../custom/MainPage";
-import ProfilePage from "../custom/ProfilePage";
-import AboutPage from "../custom/AboutPage";
 
 //? ----------------------
 //? PAGES
@@ -10,8 +8,6 @@ import AboutPage from "../custom/AboutPage";
 
 export const enum Pages {
   Main,
-  Profile,
-  About,
 }
 
 export const PageWrapperContext = createContext({
@@ -38,11 +34,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         setHowMuch,
       }}
     >
-      <div className="w-full h-full">
-        {page === Pages.Main && <MainPage />}
-        {page === Pages.Profile && <ProfilePage />}
-        {page === Pages.About && <AboutPage />}
-      </div>
+      <div className="w-full h-full">{page === Pages.Main && <MainPage />}</div>
     </PageWrapperContext.Provider>
   );
 };

@@ -2,7 +2,6 @@ import { auth } from "@/app/firebase";
 import isValidEmail from "@/myfunctions/is_valid_email";
 import notify from "@/myfunctions/notify";
 import {
-  User,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -10,19 +9,15 @@ import {
 import {
   FormEventHandler,
   MouseEventHandler,
-  useContext,
   useEffect,
-  useRef,
   useState,
 } from "react";
 import { useInputField } from "./useInputField";
 import useLocalStorage from "./useLocalStorage";
-import { Token } from "@/classes/Token";
-import { TokenContext } from "@/app/wrappers/FHWrapper";
-import FH from "@/classes/FH";
+import { FCMTokenHelper } from "./useFCM";
+import { Config } from "@/classes/Constants";
 
 function useSignInPage() {
-  const { notifToken } = useContext(TokenContext);
   const [type, setType] = useState(SignInType.signUp);
   const emailInput = useInputField((email) => [
     [!email, "Please Enter your full name"],
@@ -51,21 +46,6 @@ function useSignInPage() {
     setType(type === SignInType.signUp ? SignInType.logIn : SignInType.signUp);
   }
 
-  async function createToken(user: User) {
-    //! Create AllToken
-    const allToken: Token = {
-      id: notifToken,
-      email: user.email!,
-      userId: user.uid,
-    };
-
-    console.log(`AllToken: ${notifToken}`);
-
-    if (notifToken) {
-      await FH.AllToken.create(allToken);
-    }
-  }
-
   const login: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
@@ -81,7 +61,7 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
 
-        createToken(user);
+        FCMTokenHelper.createToken(user);
         // ...
         updateSignedInBefore(true);
       })
@@ -121,7 +101,7 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
         updateSignedInBefore(true);
-        createToken(user);
+        FCMTokenHelper.createToken(user);
       })
       .catch((error) => {
         const errorCode = error.code;

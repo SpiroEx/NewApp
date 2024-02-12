@@ -1,12 +1,9 @@
 "use client";
 
-import "react-toastify/dist/ReactToastify.css";
-import ConstantsWrapper from "./wrappers/ConstantsWrapper";
-import { twMerge } from "tailwind-merge";
 import { outfitFont } from "@/styles/fonts";
-import { useEffect } from "react";
-import { onMessageListener, requestForToken } from "./firebase";
-import notify from "@/myfunctions/notify";
+import "react-toastify/dist/ReactToastify.css";
+import { twMerge } from "tailwind-merge";
+import ConstantsWrapper from "./templates/Constants_Wrapper";
 
 export default function Home() {
   return (

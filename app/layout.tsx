@@ -6,8 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Electricity Reader",
-  description:
-    "A web-app-interface for the Arduino-powered Current and Voltage Reading System",
+  description: "A web-app-interface",
 };
 
 export default function RootLayout({

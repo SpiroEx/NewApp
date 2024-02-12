@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useInputField } from "@/hooks/useInputField";
 import MyInput from "./MyInput";
 import SearchIcon from "../svg/icon/SearchIcon";
-import { Pages } from "@/app/wrappers/PageWrapper";
+import { Pages } from "@/app/helpers/PageWrapper";
 import { useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -18,8 +18,9 @@ interface MySearchBarProps {
 const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
   const inputField = useInputField((_) => []);
   const [showResults, setShowResults] = useState(false);
-  const [filteredFields, setFilteredFields] =
-    useState<MySearchBarField[]>(fields);
+  const [filteredFields, setFilteredFields] = useState<MySearchBarField[]>(
+    fields
+  );
 
   const updateFilteredFields = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;

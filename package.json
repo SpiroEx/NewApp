@@ -1,5 +1,5 @@
 {
-  "name": "aquakit_website",
+  "name": "main_website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "svgconvert": "python utils/svg_to_component.py"
+    "initialize": "npm install && npm run install_requirements",
+    "svgconvert": "python utils/svg_to_component.py",
+    "get_colors": "call utils/venv/Scripts/activate && python utils/import_colors.py",
+    "update_requirements": "cd utils && call venv/Scripts/activate && pip freeze > requirements.txt",
+    "install_requirements": "cd utils && call venv/Scripts/activate && pip install -r requirements.txt"
   },
   "dependencies": {
     "@types/node": "20.4.5",
@@ -28,6 +32,7 @@
     "next-optimized-images": "^2.6.2",
     "next-pwa": "^5.6.0",
     "postcss": "8.4.27",
+    "prettier": "^3.2.5",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-csv-importer": "^0.8.1",

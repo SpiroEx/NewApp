@@ -2,7 +2,7 @@ import { Device } from "./Device";
 import { MyUser } from "./MyUser";
 import FHT, { FHPicture } from "./templates/FHT";
 import { AdminSettings } from "./templates/AdminSettings";
-import { Token } from "./Token";
+import { FCMToken } from "./Token";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -17,13 +17,13 @@ class AdminSettingsFHT extends FHT<AdminSettings> {
   collectionName = "admin";
 }
 
-class AllTokenFHT extends FHT<Token> {
-  collectionName = "all_tokens";
+class FCMTokenFHT extends FHT<FCMToken> {
+  collectionName = "fcm_token";
 }
 
 export default abstract class FH {
   static AdminSettings = new AdminSettingsFHT();
   static MyUser = new MyUserFHT();
   static Device = new DeviceFHT();
-  static AllToken = new AllTokenFHT();
+  static FCMToken = new FCMTokenFHT();
 }

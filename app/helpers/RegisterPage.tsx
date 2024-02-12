@@ -1,15 +1,15 @@
+import { Config } from "@/classes/Constants";
 import FH from "@/classes/FH";
 import { MyUser } from "@/classes/MyUser";
 import EditableAvatar from "@/components/templates/EditableAvatar";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
+import Title from "@/components/templates/Title";
 import { useCheckboxField, useInputField } from "@/hooks/useInputField";
 import notify from "@/myfunctions/notify";
 import { User } from "firebase/auth";
-import { FormEventHandler, useContext, useState } from "react";
+import { FormEventHandler, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { TokenContext } from "../wrappers/FHWrapper";
-import Title from "@/components/templates/Title";
 
 interface RegisterPageProps {
   user: User;
@@ -122,10 +122,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
       <p className="text-slate-500">
         I agree to the{" "}
         <span className="text-black font-semibold">
-          <a
-            target="_blank"
-            href="https://www.termsandconditionsgenerator.com/live.php?token=G8aMDV0PD8lLHWKS8I1KJmtSD5TBulEi"
-          >
+          <a target="_blank" href={Config.terms_link}>
             Terms & Conditions
           </a>
         </span>

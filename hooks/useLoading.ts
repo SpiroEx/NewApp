@@ -1,4 +1,4 @@
-import { LoadingContext } from "@/app/wrappers/ConstantsWrapper";
+import { LoadingContext } from "@/app/templates/Constants_Wrapper";
 import { useContext, useEffect } from "react";
 
 export const useLoading = (...loadingConditions: boolean[]) => {

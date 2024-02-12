@@ -38,6 +38,8 @@ next-env.d.ts
 **/.firebase
 **/.firebaserc
 
-
+# Personal
 desktop.ini
 folderico-*.ico
+venv/
+__pycache__/

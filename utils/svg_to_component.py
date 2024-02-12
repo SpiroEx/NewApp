@@ -63,13 +63,13 @@ def convert_to_motion_svg(react_svg_content):
     #! REPLACE WIDTH
     width_replacement_string = "width={size}"
     modified_string = re.sub(
-        width_wild_pattern, width_replacement_string, modified_string
+        width_wild_pattern, width_replacement_string, modified_string, count=1
     )
 
     height_wild_pattern = r'height="(\d+)"'
     height_replacement_string = ""
     modified_string = re.sub(
-        height_wild_pattern, height_replacement_string, modified_string
+        height_wild_pattern, height_replacement_string, modified_string, count=1
     )
 
     return modified_string

@@ -1,4 +1,4 @@
-from developer import developers
+from .developer import developers
 
 
 class Constants:

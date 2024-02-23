@@ -3,12 +3,9 @@ import json
 from typing import NamedTuple, Optional, Dict, List
 from src.append_lines_in_file import append_lines_in_file
 from src.constants import Constants
-from set_figma_key import set_figma_key
 
 
 def import_colors():
-    #! Set Figma Key
-    set_figma_key()
 
     styles = get_colors(Constants.FIGMA_KEY, Constants.FIGMA_TOKEN)
 

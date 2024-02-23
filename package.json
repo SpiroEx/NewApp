@@ -9,7 +9,7 @@
     "lint": "next lint",
     "initialize": "npm install && npm run install_requirements",
     "svgconvert": "python utils/svg_to_component.py",
-    "get_colors": "call utils/venv/Scripts/activate && python utils/import_colors.py",
+    "get_colors": "call utils/venv/Scripts/activate && python utils/set_figma_key.py && python utils/import_colors.py",
     "update_requirements": "cd utils && call venv/Scripts/activate && pip freeze > requirements.txt",
     "install_requirements": "cd utils && python -m venv venv && call venv/Scripts/activate && pip install -r requirements.txt"
   },

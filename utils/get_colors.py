@@ -2,13 +2,23 @@ import requests
 import json
 from typing import NamedTuple, Optional, Dict, List
 from src.append_lines_in_file import append_lines_in_file
+from src.replace_substring_in_file import replace_substring_in_file
 from src.constants import Constants
+import re
 
 
-def import_colors():
+def get_colors():
+    #! DELETE OLD CUSTOM COLORS
+    replace_substring_in_file(
+        "tailwind.config.js",
+        r"        // custom - from Figma((?!\}).|\n)*},",
+        r"        // custom - from Figma\n\n      },",
+    )
 
-    styles = get_colors(Constants.FIGMA_KEY, Constants.FIGMA_TOKEN)
+    #! GET NEW CUSTOM COLORS
+    styles = _get_colors(Constants.FIGMA_KEY, Constants.FIGMA_TOKEN)
 
+    #! APPEND NEW CUSTOM COLORS
     color_lines: List[str] = []
 
     for ids in styles.keys():
@@ -48,7 +58,7 @@ def get_rgba(key: str, token: str, ids: str) -> FigmaColor:
         raise Exception(f"Error getting color {ids} in figma: {response.status_code}")
 
 
-def get_colors(key: str, token: str) -> Dict:
+def _get_colors(key: str, token: str) -> Dict:
     url = f"https://api.figma.com/v1/files/{key}"
     headers = {
         "X-Figma-Token": token,
@@ -87,4 +97,4 @@ def rgb_to_hex_rgba(color: FigmaColor) -> str:
 
 
 if __name__ == "__main__":
-    import_colors()
+    get_colors()

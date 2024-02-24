@@ -2,6 +2,7 @@ import re
 import sys
 import os
 import glob
+from src.autoformat_file import autoformat_file
 
 width_value = 0
 
@@ -42,11 +43,20 @@ export default {component_name};
 """
 
 
-def convert_to_motion_svg(react_svg_content):
+def convert_to_motion_svg(react_svg_content: str, clickable: bool):
     global width_value
+
+    motion_str = "<motion.svg onClick={onClick}"
+    if clickable:
+        motion_str += (
+            " className='select-none cursor-pointer' whileTap={{ scale: 0.8 }}"
+        )
+    else:
+        motion_str += " className='select-none'"
+
     modified_string = react_svg_content.replace(
         "<svg",
-        "<motion.svg onClick={onClick} className='cursor-pointer' whileTap={{ scale: 0.8 }}",
+        motion_str,
     ).replace("</svg>", "</motion.svg>")
 
     #! GET WIDTH
@@ -75,6 +85,40 @@ def convert_to_motion_svg(react_svg_content):
     return modified_string
 
 
+def convert_style_to_jsx(html_string):
+    # Define a regular expression pattern to match style attributes
+    pattern = r'style="(.*?)"'
+
+    # Find all occurrences of style attributes in the HTML string
+    matches = re.findall(pattern, html_string)
+
+    # Replace each style attribute with JSX-compatible style
+    for match in matches:
+        jsx_style = match_to_jsx(match)
+        html_string = html_string.replace(
+            f'style="{match}"', f"style={{{{ {jsx_style} }}}}"
+        )
+
+    return html_string
+
+
+def match_to_jsx(match):
+    # Split the style attribute into key-value pairs
+    styles = match.split(";")
+    jsx_style = []
+    for style in styles:
+        if ":" in style:
+            key, value = style.split(":")
+            # Convert key to camelCase
+            key = re.sub(r"-([a-z])", lambda m: m.group(1).upper(), key.strip())
+            key = key[0].lower() + key[1:]  # Make the first character lowercase
+            value = value.strip()
+            jsx_style.append(f'"{key}": "{value}"')
+
+    # Join the JSX-compatible style properties
+    return ", ".join(jsx_style)
+
+
 def svg_to_component():
     # if len(sys.argv) < 2:
     #     print("Please provide the SVG file name as an argument.")
@@ -94,6 +138,12 @@ def svg_to_component():
             continue
 
         component_name, _ = os.path.splitext(os.path.basename(svg_full_dir))
+
+        clickable = False
+        if component_name.startswith("!"):
+            component_name = component_name[1:]
+            clickable = True
+
         component_full_dir = f"components/custom/{component_name}.tsx"
 
         with open(svg_full_dir, "r") as file:
@@ -102,11 +152,14 @@ def svg_to_component():
         react_svg_content = convert_svg_to_react(svg_content, "-")
         react_svg_content = convert_svg_to_react(svg_content, "-")
         react_svg_content = convert_svg_to_react(react_svg_content, ":")
-        react_svg_content = convert_to_motion_svg(react_svg_content)
+        react_svg_content = convert_to_motion_svg(react_svg_content, clickable)
+        react_svg_content = convert_style_to_jsx(react_svg_content)
         react_component = create_react_component(react_svg_content, component_name)
 
         with open(component_full_dir, "w") as file:
             file.write(react_component)
+
+        autoformat_file(component_full_dir)
 
         try:
             os.remove(svg_full_dir)

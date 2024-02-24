@@ -15,6 +15,7 @@ interface MyInputProps {
   onFocus?: () => void;
   onBlur?: () => void;
   maxLength?: number;
+  label?: string;
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -28,31 +29,35 @@ const MyInput: React.FC<MyInputProps> = ({
   onFocus,
   onBlur,
   maxLength,
+  label,
 }) => {
   return (
-    <div className={twMerge("flex justify-center", divClassName)}>
-      <input
-        ref={inputField.ref}
-        step="any"
-        maxLength={maxLength}
-        className={twMerge(
-          "w-full max-w-sm border rounded-lg bg-light_primary p-4",
-          interFont,
-          inputField.error ? "border-red" : "border-zinc-600",
-          className
-        )}
-        type={type}
-        onChange={(e) => {
-          if (onChange) {
-            onChange(e);
-          }
-          inputField.setError(false);
-        }}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-      ></input>
+    <div className={twMerge("flex flex-col", divClassName)}>
+      {label && <p className="">{label}</p>}
+      <div className="flex justify-center">
+        <input
+          ref={inputField.ref}
+          step="any"
+          maxLength={maxLength}
+          className={twMerge(
+            "w-full max-w-sm rounded-lg bg-light_primary p-4",
+            interFont,
+            inputField.error ? "border-red" : "border-zinc-600",
+            className
+          )}
+          type={type}
+          onChange={(e) => {
+            if (onChange) {
+              onChange(e);
+            }
+            inputField.setError(false);
+          }}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        />
+      </div>
     </div>
   );
 };

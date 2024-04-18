@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
 import { TailwindContext } from "./Tailwind_Wrapper";
-// import { TailwindContext } from "../page";
 
 interface LoadingPageProps {
   hideIcon?: boolean;

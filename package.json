@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "initialize": "npm install && npm run install_requirements",
+    "initialize": "git remote remove origin && npm install && npm run install_requirements",
     "update_requirements": "cd utils && call venv/Scripts/activate && pip freeze > requirements.txt",
     "install_requirements": "cd utils && python -m venv venv && call venv/Scripts/activate && pip install -r requirements.txt",
     "import_figma": "npm run set_figma_key && npm run get_colors && npm run get_svg",

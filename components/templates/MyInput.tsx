@@ -16,6 +16,7 @@ interface MyInputProps {
   onBlur?: () => void;
   maxLength?: number;
   label?: string;
+  disabled?: boolean;
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -30,14 +31,22 @@ const MyInput: React.FC<MyInputProps> = ({
   onBlur,
   maxLength,
   label,
+  disabled = false,
 }) => {
   return (
-    <div className={twMerge("flex flex-col", divClassName)}>
+    <div
+      className={twMerge(
+        "flex flex-col",
+        disabled && "opacity-50",
+        divClassName
+      )}
+    >
       {label && <p className="">{label}</p>}
       <div className="flex justify-center">
         <input
           ref={inputField.ref as RefObject<HTMLInputElement>}
           step="any"
+          disabled={disabled}
           maxLength={maxLength}
           className={twMerge(
             "w-full max-w-sm rounded-lg border p-4",

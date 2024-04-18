@@ -3,7 +3,15 @@ import { MyUser } from "./MyUser";
 import FHT, { FHPicture } from "./templates/FHT";
 import { AdminSettings } from "./templates/AdminSettings";
 import { FCMToken } from "./Token";
-import { FieldValue } from "firebase/firestore";
+import {
+  FieldValue,
+  runTransaction,
+  Transaction,
+  WriteBatch,
+  writeBatch,
+} from "firebase/firestore";
+import { db } from "@/app/firebase";
+import notify from "@/myfunctions/notify";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -27,6 +35,52 @@ export default abstract class FH {
   static MyUser = new MyUserFHT();
   static Device = new DeviceFHT();
   static FCMToken = new FCMTokenFHT();
+
+  static async Batch(
+    name: string,
+    functions: (batch: WriteBatch) => Promise<void>,
+    fhOptions?: FHOptions
+  ) {
+    try {
+      const batch = writeBatch(db);
+      await functions(batch);
+      await batch.commit();
+
+      if (fhOptions?.onSuccess) {
+        fhOptions.onSuccess(name);
+      }
+    } catch (e) {
+      console.log(`Failed to ${name}: ${e}`);
+      notify(`Failed to ${name}`);
+
+      if (fhOptions?.onError) {
+        fhOptions.onError(e);
+      }
+    }
+  }
+
+  static async Transaction(
+    name: string,
+    functions: (transaction: Transaction) => Promise<void>,
+    fhOptions?: FHOptions
+  ) {
+    try {
+      await runTransaction(db, async (transaction) => {
+        await functions(transaction);
+      });
+
+      if (fhOptions?.onSuccess) {
+        fhOptions.onSuccess(name);
+      }
+    } catch (e) {
+      console.log(`Failed to ${name}: ${e}`);
+      notify(`Failed to ${name}`);
+
+      if (fhOptions?.onError) {
+        fhOptions.onError(e);
+      }
+    }
+  }
 }
 
 export type FHType<T> = {
@@ -35,4 +89,9 @@ export type FHType<T> = {
     : T[K] extends number
     ? FieldValue | number
     : T[K];
+};
+
+export type FHOptions = {
+  onSuccess?: (id: string) => void;
+  onError?: (e: any) => void;
 };

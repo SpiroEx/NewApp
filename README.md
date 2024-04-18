@@ -7,6 +7,8 @@
 
    - Update firebase.ts
 
+   - `firebase use {{projec_id}}`
+
    - Update Constants::useFirebase = true
 
    - Check if will use Hosting

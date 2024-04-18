@@ -124,7 +124,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
       <p className="text-slate-500">
         I agree to the{" "}
         <span className="text-black font-semibold">
-          <a target="_blank" href={Config.terms_link}>
+          <a target="_blank" href={Config.termsLink}>
             Terms & Conditions
           </a>
         </span>

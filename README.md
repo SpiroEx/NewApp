@@ -35,7 +35,9 @@
 
 7. `npm run initialize`.
 
-8. Remove this part when done
+8. Change loading icon randomly
+
+9. Remove this part when done
 
 # {{Title}}
 

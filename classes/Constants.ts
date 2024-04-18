@@ -1,6 +1,9 @@
 export abstract class StorageNames {}
 
 export const Constants = {
+  Title: "{{Title}}",
+  Title1: "{{Title1}}",
+  Title2: "{{Title2}}",
   About: "{{About}}",
 };
 

@@ -2,18 +2,21 @@ import notify from "@/myfunctions/notify";
 import { useRef, useState } from "react";
 
 export type InputField = {
-  ref: React.RefObject<HTMLInputElement>;
+  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   verify: () => boolean;
   setValue: (value: string | undefined) => void;
   getValue: () => string | undefined;
+  clear: () => void;
+  focus: () => void;
+  blur: () => void;
 };
 
 export const useInputField = (
   verifier: (name: string | undefined) => [boolean, string][]
 ): InputField => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const [error, setError] = useState(false);
   const verify = () => {
     const tests = verifier(inputRef.current?.value);
@@ -34,7 +37,32 @@ export const useInputField = (
     inputRef.current.value = value;
   };
 
-  return { ref: inputRef, error, setError, verify, getValue, setValue };
+  const clear = () => {
+    if (inputRef.current == null) return;
+    inputRef.current.value = "";
+  };
+
+  const focus = () => {
+    if (inputRef.current == null) return;
+    inputRef.current.focus();
+  };
+
+  const blur = () => {
+    if (inputRef.current == null) return;
+    inputRef.current.blur();
+  };
+
+  return {
+    ref: inputRef,
+    error,
+    setError,
+    verify,
+    getValue,
+    setValue,
+    clear,
+    focus,
+    blur,
+  };
 };
 
 export const useCheckboxField = (unCheckedMessage: string) => {

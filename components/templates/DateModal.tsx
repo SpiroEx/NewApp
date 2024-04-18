@@ -1,0 +1,318 @@
+import { FHContext } from "@/app/templates/FH_Wrapper";
+import useModal from "@/hooks/useModal";
+import { motion } from "framer-motion";
+import { useContext, useState } from "react";
+import { twMerge } from "tailwind-merge";
+import ChevronRight from "../svg/icon/ChevronRight";
+import ChevronLeft from "../svg/icon/ChevronLeft";
+import MyModal from "../templates/MyModal";
+import RightTriangle from "../templates/RightTriangle";
+
+interface DateModalProps {
+  dateModal: ReturnType<typeof useModal>;
+  selectedDate: Date;
+  setSelectedDate: (date: Date) => void;
+}
+
+const DateModal: React.FC<DateModalProps> = ({
+  dateModal,
+  selectedDate,
+  setSelectedDate,
+}) => {
+  // const { selectedDate, setSelectedDate } = useContext(FHContext);
+  const selectedMonth = months[selectedDate.getMonth()];
+  const selectedMYear = selectedDate.getFullYear().toString();
+
+  function setSelectedMonth(month: string) {
+    const monthIndex = months.indexOf(month);
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(monthIndex);
+    setSelectedDate(newDate);
+    ``;
+  }
+
+  function setSelectedYear(year: string) {
+    const newDate = new Date(selectedDate);
+    newDate.setFullYear(parseInt(year));
+    setSelectedDate(newDate);
+  }
+
+  function setNextMonth() {
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(newDate.getMonth() + 1);
+    setSelectedDate(newDate);
+  }
+
+  function setPrevMonth() {
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(newDate.getMonth() - 1);
+    setSelectedDate(newDate);
+  }
+
+  return (
+    <MyModal
+      useModal={dateModal}
+      title="Choose Date"
+      classNameContent="top-20 translate-y-0"
+    >
+      <div className="flex flex-col gap-4">
+        {/*//! HEADER */}
+        <div className="flex justify-between items-center">
+          <MyChevron direction="left" onClick={setPrevMonth} />
+          <div className="flex gap-1">
+            <MonthYearPicker
+              text={selectedMonth}
+              list={months}
+              setSelected={setSelectedMonth}
+            />
+            <MonthYearPicker
+              text={selectedMYear}
+              list={generateYearList(selectedDate)}
+              setSelected={setSelectedYear}
+            />
+          </div>
+          <MyChevron direction="right" onClick={setNextMonth} />
+        </div>
+
+        {/*//! WEEK DAYS */}
+        <div className="flex justify-around font-medium text-sm">
+          <p>Su</p>
+          <p>Mo</p>
+          <p>Tu</p>
+          <p>We</p>
+          <p>Th</p>
+          <p>Fr</p>
+          <p>Sa</p>
+        </div>
+
+        {/*//! DAYS */}
+        <div className="grid grid-cols-7 gap-2">
+          {generatePrevMonthDays(selectedDate).map((day, index) => (
+            <Day
+              key={index}
+              day={day}
+              dateModal={dateModal}
+              gray
+              prev
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+          ))}
+          {generateDays(selectedDate).map((day, index) => (
+            <Day
+              key={index}
+              day={day}
+              dateModal={dateModal}
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+          ))}
+          {generateNextMonthDays(selectedDate).map((day, index) => (
+            <Day
+              key={index}
+              day={day}
+              dateModal={dateModal}
+              gray
+              next
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
+          ))}
+        </div>
+      </div>
+    </MyModal>
+  );
+};
+
+export default DateModal;
+
+//! DAY
+interface DayProps {
+  day: number;
+  dateModal: ReturnType<typeof useModal>;
+  gray?: boolean;
+  prev?: boolean;
+  next?: boolean;
+  selectedDate: Date;
+  setSelectedDate: (date: Date) => void;
+}
+
+const Day: React.FC<DayProps> = ({
+  day,
+  dateModal,
+  gray = false,
+  prev = false,
+  next = false,
+  selectedDate,
+  setSelectedDate,
+}) => {
+  return (
+    <motion.div
+      className={twMerge(
+        "flex justify-center items-center rounded select-none cursor-pointer",
+        day === selectedDate.getDate() &&
+          !gray &&
+          "bg-darker_primary text-white",
+        gray && "opacity-50"
+      )}
+      whileTap={{ scale: 0.9 }}
+      onClick={() => {
+        const newDate = new Date(selectedDate);
+        if (prev) newDate.setMonth(newDate.getMonth() - 1);
+        if (next) newDate.setMonth(newDate.getMonth() + 1);
+        newDate.setDate(day);
+        setSelectedDate(newDate);
+        dateModal.close();
+      }}
+    >
+      <p className="m-0">{day}</p>
+    </motion.div>
+  );
+};
+
+//! MY CHEVRON
+interface MyChevronProps {
+  direction: "left" | "right";
+  onClick?: () => void;
+}
+
+const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
+  return (
+    <motion.div
+      className="rounded-full bg-gray w-7 h-7 flex justify-center items-center border border-darker_primary cursor-pointer select-none"
+      whileTap={{ scale: 0.8 }}
+      onClick={onClick}
+    >
+      {direction === "left" ? (
+        <ChevronLeft size={7} />
+      ) : (
+        <ChevronRight size={7} />
+      )}
+    </motion.div>
+  );
+};
+
+//! MONTH YEAR PICKER
+interface MonthYearPickerProps {
+  text: string;
+  list: string[];
+  setSelected: (month: string) => void;
+}
+
+const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
+  text,
+  list,
+  setSelected,
+}) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  return (
+    <motion.div
+      className="relative flex items-end justify-center gap-1 bg-gray px-2 rounded border border-darker_primary select-none cursor-pointer h-min"
+      whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
+      onClick={() => setDropdownOpen(!dropdownOpen)}
+    >
+      {/*//! BOX BUTTON */}
+      <p className="m-0 font-bold">{text}</p>
+      <div
+        style={{
+          transform: "translateY(-5px)",
+        }}
+      >
+        <RightTriangle size={7} />
+      </div>
+
+      {/*//! DROPDOWN  */}
+      {dropdownOpen && (
+        <div
+          className="absolute top-full left-full max-h-72 overflow-y-auto shadow-lg drop-shadow-lg z-10"
+          onClick={(e) => {
+            e.preventDefault();
+            const targetElement = e.target as HTMLInputElement;
+            const value = targetElement.textContent;
+            if (!value || !isValidMonthOrYear(value)) return;
+            setSelected(value);
+            setDropdownOpen(false);
+          }}
+        >
+          {list.map((item, index) => (
+            <p
+              key={index}
+              className={twMerge("bg-white p-2", item === text && "font-bold")}
+            >
+              {item}
+            </p>
+          ))}
+        </div>
+      )}
+    </motion.div>
+  );
+};
+
+//! GENERATE DAYS OF PREV MONTH
+const generatePrevMonthDays = (date: Date): number[] => {
+  const days = [];
+  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+  const lastMonth = new Date(date.getFullYear(), date.getMonth(), 0);
+  for (
+    let i = lastMonth.getDate() - firstDay.getDay() + 1;
+    i <= lastMonth.getDate();
+    i++
+  ) {
+    days.push(i);
+  }
+  return days;
+};
+
+//! GENERATE DAYS
+const generateDays = (date: Date): number[] => {
+  const days = [];
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  for (let i = 1; i <= lastDay.getDate(); i++) {
+    days.push(i);
+  }
+
+  return days;
+};
+
+//! GENERATE DAYS OF NEXT MONTH
+const generateNextMonthDays = (date: Date): number[] => {
+  const days = [];
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  for (let i = 1; i <= 6 - lastDay.getDay(); i++) {
+    days.push(i);
+  }
+  return days;
+};
+
+//! GENERATE MONTH LIST
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+//! GENERATE YEAR LIST
+const generateYearList = (date: Date, offset: number = 5): string[] => {
+  const year = date.getFullYear();
+  const yearList = [];
+  for (let i = year - offset; i <= year + offset; i++) {
+    yearList.push(i.toString());
+  }
+  return yearList;
+};
+
+//! IS VALID MONTH OR YEAR
+const isValidMonthOrYear = (text: string): boolean => {
+  const isValidMonth = months.includes(text);
+  const isValidYear = !isNaN(parseInt(text)) && text.length === 4;
+  return isValidMonth || isValidYear;
+};

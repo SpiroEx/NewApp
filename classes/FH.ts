@@ -2,7 +2,6 @@ import { Device } from "./Device";
 import { MyUser } from "./MyUser";
 import FHT, { FHPicture } from "./templates/FHT";
 import { AdminSettings } from "./templates/AdminSettings";
-import { FCMToken } from "./Token";
 import {
   FieldValue,
   runTransaction,
@@ -26,15 +25,10 @@ class AdminSettingsFHT extends FHT<AdminSettings> {
   collectionName = "admin";
 }
 
-class FCMTokenFHT extends FHT<FCMToken> {
-  collectionName = "fcm_token";
-}
-
 export default abstract class FH {
   static AdminSettings = new AdminSettingsFHT();
   static MyUser = new MyUserFHT();
   static Device = new DeviceFHT();
-  static FCMToken = new FCMTokenFHT();
 
   static async Batch(
     name: string,

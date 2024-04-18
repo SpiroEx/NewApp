@@ -14,7 +14,6 @@ import {
 } from "react";
 import { useInputField } from "./useInputField";
 import useLocalStorage from "./useLocalStorage";
-import { FCMTokenHelper } from "./useFCM";
 import { Config } from "@/classes/Constants";
 
 function useSignInPage() {
@@ -61,7 +60,6 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
 
-        FCMTokenHelper.createToken(user);
         // ...
         updateSignedInBefore(true);
       })
@@ -101,7 +99,6 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
         updateSignedInBefore(true);
-        FCMTokenHelper.createToken(user);
       })
       .catch((error) => {
         const errorCode = error.code;

@@ -1,16 +1,14 @@
 import { messaging } from "@/app/firebase";
 import FH from "@/classes/FH";
-import { FCMToken } from "@/classes/Token";
 import { User } from "firebase/auth";
 import { MessagePayload, getToken, onMessage } from "firebase/messaging";
 import { createContext, useContext, useEffect, useState } from "react";
-import { deleteToken } from "firebase/messaging";
 import { Config } from "@/classes/Constants";
 import { FCMTokenContext } from "@/app/templates/FCM_Wrapper";
 
 export function useFCM(
   user: User | null,
-  callback: (payload: MessagePayload) => any
+  foregroundCallaback: (payload: MessagePayload) => any
 ) {
   const [notifToken, setNotifToken] = useState("");
 
@@ -21,47 +19,11 @@ export function useFCM(
     requestForToken(setNotifToken);
     onMessageListenerForeground((payload) => {
       console.log("Message received. ", payload);
-      callback(payload);
+      foregroundCallaback(payload);
     });
   }, [user]);
 
   return notifToken;
-}
-
-export abstract class FCMTokenHelper {
-  static async createToken(user: User) {
-    if (!Config.useFCM) return;
-    const { notifToken } = useContext(FCMTokenContext);
-    if (!notifToken) return;
-
-    const fcm_token: FCMToken = {
-      id: notifToken,
-      email: user.email!,
-      userId: user.uid,
-    };
-
-    console.log(`NotifToken: ${notifToken}`);
-
-    if (notifToken) {
-      await FH.FCMToken.create(fcm_token);
-    }
-  }
-
-  static async deleteToken() {
-    if (!Config.useFCM) return;
-    const { notifToken } = useContext(FCMTokenContext);
-    if (!notifToken) return;
-    const m = await messaging;
-    if (!m) return;
-
-    await FH.FCMToken.delete({
-      id: notifToken,
-      userId: "",
-      email: "",
-    } as FCMToken);
-
-    await deleteToken(m);
-  }
 }
 
 const onMessageListenerForeground = async (
@@ -81,12 +43,12 @@ const onMessageListenerForeground = async (
 
 const requestForToken = async (callback: (token: string) => any) => {
   try {
+    if (!Config.useFCM) return;
     const messagingResolve = await messaging;
     if (!messagingResolve) return;
 
     const currentToken = await getToken(messagingResolve, {
-      vapidKey:
-        "BGEeizjq4M1kKGi8gVVb_tWJafknFGX_6JEgtkq2x3hjDqXXHwWRDMQHhOi5YOmnjBA5hix5Aakuhe1osnVLGXw",
+      vapidKey: Config.vapidKey,
     });
     if (currentToken) {
       console.log("Token: ", currentToken);
@@ -104,7 +66,12 @@ const requestForToken = async (callback: (token: string) => any) => {
 
 function requestPermission() {
   console.log("Requesting permission...");
-  Notification.requestPermission().then((permission) => {
+  if (!("Notification" in window)) {
+    console.log("This browser does not support notifications.");
+    return;
+  }
+
+  Notification?.requestPermission().then((permission) => {
     if (permission === "granted") {
       console.log("Notification permission granted.");
       // new Notification("Thanks for granting permission!");

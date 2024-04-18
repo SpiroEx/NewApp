@@ -1,4 +1,3 @@
-import { Colors } from "@/styles/styles";
 import React, { useContext } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
 import { TailwindContext } from "./Tailwind_Wrapper";

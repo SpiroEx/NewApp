@@ -36,7 +36,7 @@ const MyInput: React.FC<MyInputProps> = ({
       {label && <p className="">{label}</p>}
       <div className="flex justify-center">
         <input
-          ref={inputField.ref}
+          ref={inputField.ref as RefObject<HTMLInputElement>}
           step="any"
           maxLength={maxLength}
           className={twMerge(

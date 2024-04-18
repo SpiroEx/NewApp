@@ -19,11 +19,13 @@ module.exports = {
       },
       colors: {
         // template - change only the colors / recomplie to see changes
-        input_border: "#444444",
-        loading_icon: "#444444",
+        input_border: "#b9b9b9",
+        loading_icon: "#b9b9b9",
         button: "#0dbc73",
         header_modal: "#0dbc73",
-        link: "#15233D",
+        link: "#92b8ff",
+        bg: "#3E3E3E",
+        text: "#FFFFFF",
 
         // custom - from Figma
       },

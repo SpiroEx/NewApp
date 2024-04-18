@@ -1,12 +1,20 @@
 # For Devs
 
 1. Create GitHub project and push
-2. Check if will use
-   - Firebase
-     - Update firebase.ts
-   - FCM
-   - SignIn
+2. Check if will use Firebase
+
+   - Update firebase.ts
+
+   - Update Constants.txt::useFirebase
+
+   - Check if will use FCM
+
+     - Update Constants.txt::useFCM
+
+   - Check if will use SignIn
+
    - TermsAndConditions
+
 3. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
 4. If will use Terms and Conditions: update {{https://www.termsandconditionsgenerator.com}}
 5. `npm run initialize`.

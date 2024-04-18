@@ -66,7 +66,7 @@ const SignInPage: React.FC = () => {
         <div className="h-8 flex items-end">
           {type == SignInType.logIn && (
             <p
-              className={`${outfitFont} text-xs text-darkest_primary fit-content m-auto select-none cursor-pointer`}
+              className={`${outfitFont} text-xs text-link fit-content m-auto select-none cursor-pointer`}
               onClick={forgotPassword}
             >
               FORGOT PASSWORD&#63;
@@ -82,7 +82,7 @@ const SignInPage: React.FC = () => {
           <SizedBox width={10} />
           <p
             onClick={toggleType}
-            className={`${outfitFont} text-darkest_primary fit-content m-0 text-xs`}
+            className={`${outfitFont} text-link fit-content m-0 text-xs`}
           >
             {type == SignInType.logIn ? "CREATE ONE" : "LOGIN"}
           </p>

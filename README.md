@@ -2,7 +2,7 @@
 
 1. Run `npm run initialize`.
 
-1. Update Terms and Conditions
+1. If will use Terms and Conditions: update {{https://www.termsandconditionsgenerator.com}}
 
 1) Change colors in `tailwind.config.js`
 2) Update {{Title}}, {{Title1}}, {{Title2}}, and {{About}}.
@@ -22,7 +22,7 @@ The application is currently deployed at [{link}]({link})
 
 ## Screenshot
 
-![alt text]({screenshot_link})
+![alt text]({{screenshot_link}})
 
 ## About
 

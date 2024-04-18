@@ -18,16 +18,12 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        // template - change as needed / recomplie to see changes
+        // template - change only the colors / recomplie to see changes
         input_border: "#444444",
         loading_icon: "#444444",
         button: "#0dbc73",
         header_modal: "#0dbc73",
         link: "#15233D",
-
-        // required - change as needed
-        darkest_primary: "#146266",
-        bg: "#434343",
 
         // custom - from Figma
       },

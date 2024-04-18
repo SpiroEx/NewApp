@@ -32,7 +32,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
     e.preventDefault();
 
     if (!nameInput.verify()) return;
-    if (!termsInput.verify()) return;
+    if (Config.useTermsAndConditions && !termsInput.verify()) return;
 
     setCreatingMyUser(true);
     try {
@@ -40,7 +40,15 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
       let photoURL = "";
       if (selectedImage) {
         await FH.MyUser.Picture.create(user.uid, selectedImage);
-        photoURL = await FH.MyUser.Picture.get(user.uid);
+        const photoUrlFromFirebase = await FH.MyUser.Picture.get(user.uid);
+
+        if (!photoUrlFromFirebase) {
+          console.log("Error getting photo url from firebase");
+          notify("An error occured getting photo url from firebase");
+          return;
+        }
+
+        photoURL = photoUrlFromFirebase;
       }
 
       const myUser: MyUser = {
@@ -66,9 +74,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
       {/* //! TITLE */}
       <div className="h-28" />
       <Title />
-      <h1 className={`text text-darkest_primary text-center mt-2 mb-10`}>
-        Tell us about you..
-      </h1>
+      <h1 className={`text text-center mt-2 mb-10`}>Tell us about you..</h1>
       {/* <SizedBox height={80} /> */}
 
       {/* //! AVATAR */}
@@ -88,7 +94,9 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
           inputField={nameInput}
         />
         {/* //! TERMS AND CONDITIONS */}
-        <TermsAndConditions termsInput={termsInput} />
+        {Config.useTermsAndConditions && (
+          <TermsAndConditions termsInput={termsInput} />
+        )}
 
         {/* //! SUBMIT BUTTON */}
         <MyButton
@@ -112,13 +120,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-3 text-sm justify-center">
-      <input
-        ref={termsInput.ref}
-        type="checkbox"
-        name="terms"
-        className={twMerge("", true ? "border-red" : "border-darker_primary")}
-        id="checkbox-terms"
-      />
+      <input ref={termsInput.ref} type="checkbox" name="terms" />
       <p className="text-slate-500">
         I agree to the{" "}
         <span className="text-black font-semibold">

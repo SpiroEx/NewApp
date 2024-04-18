@@ -1,4 +1,4 @@
-import { jsoFont } from "@/styles/fonts";
+import { outfitFont } from "@/styles/fonts";
 import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
@@ -33,7 +33,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   return (
     <motion.div
       className={twMerge(
-        "text-center w-full max-w-sm rounded-lg bg-darker_primary m-auto shadow-none outline-none select-none",
+        "text-center w-full max-w-sm rounded-lg bg-button m-auto shadow-none outline-none select-none",
         outlined && "bg-transparent border border-zinc-600",
         dashed && "border-dashed",
         disabled && "cursor-default opacity-50",
@@ -56,7 +56,7 @@ const MyButton: React.FC<MyButtonProps> = ({
             "text-white font-light w-max m-auto",
             outlined && "text-black",
             classNameText,
-            jsoFont
+            outfitFont
           )}
           style={{ padding: `${pY}rem ${pX}rem` }}
         >

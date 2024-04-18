@@ -1,7 +1,6 @@
+import { fromTheme } from "tailwind-merge";
+
 export const Colors = {
-  // required
-  light_primary: "#018BCC",
-  darker_primary: "#143761",
   darkest_primary: "#0F2A4B",
   link: "#15233D",
 

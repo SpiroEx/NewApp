@@ -6,6 +6,9 @@ const withPWA = require("next-pwa")({
   disable: process.env.NODE_ENV === "development",
 });
 
+const createNextPluginPreval = require('next-plugin-preval/config');
+const withNextPluginPreval = createNextPluginPreval();
+
 const optimizedImages = require("next-optimized-images");
 
 module.exports = withPlugins([
@@ -20,4 +23,6 @@ module.exports = withPlugins([
     reactStrictMode: false,
     trailingSlash: true,
   }),
+
+  withNextPluginPreval(),
 ]);

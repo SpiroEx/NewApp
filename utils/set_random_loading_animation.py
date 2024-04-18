@@ -12,8 +12,8 @@ def set_random_loading_animation():
 
     replace_substring_in_file(
         "app/templates/LoadingPage.tsx",
-        r"{!hideIcon && \(\s*<([^>\s]+)\s*color={`\${Colors\.darker_primary}`}",
-        f"{{!hideIcon && (\n        <{loading_animation}\n          color={{`${{Colors.darker_primary}}`}}",
+        r'{!hideIcon && \(\s*<([^>\s]+)\s*color={`\${getColor\("loading_icon"\)}`}',
+        f'{{!hideIcon && (\n        <{loading_animation}\n          color={{`${{getColor\("loading_icon"\)}}`}}',
     )
 
 

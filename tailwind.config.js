@@ -18,12 +18,14 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        // constant - do not change
+        // template - change as needed / recomplie to see changes
+        input_border: "#444444",
+        loading_icon: "#444444",
+        button: "#0dbc73",
+        header_modal: "#0dbc73",
         link: "#15233D",
 
         // required - change as needed
-        light_primary: "#479EAA",
-        darker_primary: "#19989E",
         darkest_primary: "#146266",
         bg: "#434343",
 

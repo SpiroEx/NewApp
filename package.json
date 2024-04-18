@@ -10,9 +10,7 @@
     "initialize": "npm install && npm run install_requirements",
     "update_requirements": "cd utils && call venv/Scripts/activate && pip freeze > requirements.txt",
     "install_requirements": "cd utils && python -m venv venv && call venv/Scripts/activate && pip install -r requirements.txt",
-
     "import_figma": "npm run set_figma_key && npm run get_colors && npm run get_svg",
-
     "set_figma_key": "call utils/venv/Scripts/activate && python utils/set_figma_key.py",
     "get_colors": "call utils/venv/Scripts/activate && python utils/get_colors.py",
     "get_svg": "call utils/venv/Scripts/activate && python utils/get_svg.py && npm run svgconvert",
@@ -35,6 +33,7 @@
     "next": "^13.4.9",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^2.6.2",
+    "next-plugin-preval": "^1.2.6",
     "next-pwa": "^5.6.0",
     "postcss": "8.4.27",
     "prettier": "^3.2.5",

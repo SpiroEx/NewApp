@@ -1,5 +1,12 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 import MainPage from "../custom/MainPage";
+import Overlay from "@/components/templates/Overlay";
 
 //? ----------------------
 //? PAGES
@@ -13,15 +20,16 @@ export const enum Pages {
 export const PageWrapperContext = createContext({
   page: Pages.Main,
   setPage: {} as Dispatch<SetStateAction<Pages>>,
-  howMuch: 0,
-  setHowMuch: {} as Dispatch<SetStateAction<number>>,
+  overlay: null as ReactNode | null,
+  setOverlay: {} as Dispatch<SetStateAction<ReactNode | null>>,
 });
 
 interface PageWrapperProps {}
 
 const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
-  //! Gcash HOW MUCH
-  const [howMuch, setHowMuch] = useState(0);
+  //! OVERLAY
+  const [overlay, setOverlay] = useState<ReactNode | null>(null);
+
   //! Page
   const [page, setPage] = useState<Pages>(Pages.Main);
 
@@ -30,11 +38,12 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
       value={{
         page,
         setPage,
-        howMuch,
-        setHowMuch,
+        overlay,
+        setOverlay,
       }}
     >
       <div className="w-full h-full">{page === Pages.Main && <MainPage />}</div>
+      {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext.Provider>
   );
 };

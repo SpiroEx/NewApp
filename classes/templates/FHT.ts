@@ -1,25 +1,55 @@
 import { db, storage } from "@/app/firebase";
+import notify from "@/myfunctions/notify";
 import { DocumentData } from "firebase-admin/firestore";
 import {
+  QueryFieldFilterConstraint,
   deleteDoc,
   doc,
   getDoc,
+  query as firebaseQuery,
   onSnapshot,
   setDoc,
   updateDoc,
+  collection,
+  QueryCompositeFilterConstraint,
+  runTransaction,
+  writeBatch,
+  WriteBatch,
+  Transaction,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  listAll,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import { FHType } from "../FH";
 
+export type UpdateOption = {
+  success?: string;
+  onSuccess?: () => void;
+  batch?: WriteBatch;
+  transaction?: Transaction;
+};
 /**
  * Firebase Helper Template
  */
 export default abstract class FHT<T extends { id: string }> {
   abstract collectionName: string;
   //! Get
-  async get(id: string) {
+  async get(id: string, updateOption?: UpdateOption) {
     if (!id) return null;
     const docRef = doc(db, this.collectionName, id);
-    const docSnap = await getDoc(docRef);
+    let docSnap;
+    if (updateOption?.transaction) {
+      docSnap = await updateOption.transaction.get(docRef);
+    } else {
+      docSnap = await getDoc(docRef);
+    }
+    if (updateOption?.success)
+      notify(updateOption.success, { type: "success" });
+    if (updateOption?.onSuccess) updateOption.onSuccess();
     if (docSnap.exists()) {
       return docSnap.data() as T;
     } else {
@@ -44,26 +74,102 @@ export default abstract class FHT<T extends { id: string }> {
     });
   }
 
+  //! Watch Query
+  // query parameter could be many QueryFieldFilterConstraint,
+  watchQuery(
+    callback: (data: T[]) => void,
+    compoundQuery?: QueryCompositeFilterConstraint,
+    ...query: QueryFieldFilterConstraint[]
+  ) {
+    let q;
+    if (compoundQuery)
+      q = firebaseQuery(collection(db, this.collectionName), compoundQuery);
+    else q = firebaseQuery(collection(db, this.collectionName), ...query);
+    return onSnapshot(q, (querySnapshot) => {
+      const data: T[] = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data() as T);
+      });
+
+      callback(data);
+    });
+  }
+
   //! Update
-  async update(obj: T | null, new_fields: Partial<T>) {
+  async update(
+    obj: T | null,
+    new_fields: FHType<T>,
+    updateOption?: UpdateOption
+  ) {
     if (!obj) return;
-    const docRef = doc(db, this.collectionName, obj.id);
-    await updateDoc(docRef, { ...new_fields } as DocumentData);
+    try {
+      const docRef = doc(db, this.collectionName, obj.id);
+      if (updateOption?.batch) {
+        updateOption?.batch.update(docRef, { ...new_fields } as DocumentData);
+        return;
+      } else if (updateOption?.transaction) {
+        updateOption?.transaction.update(docRef, {
+          ...new_fields,
+        } as DocumentData);
+        return;
+      } else {
+        await updateDoc(docRef, { ...new_fields } as DocumentData);
+        if (updateOption?.success)
+          notify(updateOption?.success, { type: "success" });
+
+        if (updateOption?.onSuccess) updateOption.onSuccess();
+      }
+    } catch (e) {
+      console.log(`Error updating ${this.collectionName}: ${e}`);
+      notify(`Error updating ${this.collectionName}`);
+    }
   }
 
   //! Create
-  async create(device: T) {
-    console.log(this.collectionName);
-    console.log(device.id);
-    const docRef = doc(db, this.collectionName, device.id);
-    await setDoc(docRef, device);
+  async create(obj: T, updateOption?: UpdateOption) {
+    try {
+      const docRef = doc(db, this.collectionName, obj.id);
+      if (updateOption?.batch) {
+        updateOption?.batch.set(docRef, obj);
+      } else if (updateOption?.transaction) {
+        updateOption?.transaction.set(docRef, obj);
+      } else {
+        await setDoc(docRef, obj);
+        if (updateOption?.success)
+          notify(updateOption?.success, { type: "success" });
+        if (updateOption?.onSuccess) updateOption.onSuccess();
+      }
+    } catch (e) {
+      console.log(`Error adding ${this.collectionName}: ${e}`);
+      notify(`Error adding ${this.collectionName}`);
+    }
   }
 
   //! Delete
-  async delete(device: T) {
-    const docRef = doc(db, this.collectionName, device.id);
-    await deleteDoc(docRef);
+  async delete(obj: T, updateOption?: UpdateOption) {
+    try {
+      const docRef = doc(db, this.collectionName, obj.id);
+      if (updateOption?.batch) {
+        updateOption?.batch.delete(docRef);
+      } else if (updateOption?.transaction) {
+        updateOption?.transaction.delete(docRef);
+      } else {
+        await deleteDoc(docRef);
+        if (updateOption?.success)
+          notify(updateOption?.success, { type: "success" });
+        if (updateOption?.onSuccess) updateOption.onSuccess();
+      }
+    } catch (e) {
+      console.log(`Error removing ${this.collectionName}: ${e}`);
+      notify(`Error removing ${this.collectionName}`);
+    }
   }
+
+  //! Transaction
+  async transaction(
+    id: string,
+    callback: (data: T | null) => Promise<Partial<T>>
+  ) {}
 }
 
 export class FHPicture {
@@ -74,18 +180,67 @@ export class FHPicture {
   }
 
   //! Create
-  async create(id: string, imgFile: File) {
+  async create(id: string, imgFile: File, onSuccess?: () => void) {
     const storageRef = ref(storage, this.idToURL(id));
 
-    await uploadBytes(storageRef, imgFile, {
-      contentType: "image/jpeg",
-    });
+    try {
+      await uploadBytes(storageRef, imgFile, {
+        contentType: "image/jpeg",
+      });
+      onSuccess?.();
+    } catch (e) {
+      console.log(`Error uploading picture: ${e}`);
+      notify("Error uploading picture");
+    }
   }
 
   //! Get
   async get(id: string) {
     const storageRef = ref(storage, this.idToURL(id));
-    const url = await getDownloadURL(storageRef);
-    return url;
+    try {
+      const url = await getDownloadURL(storageRef);
+      return url;
+    } catch (e) {
+      console.log(`Error getting picture: ${e}`);
+      notify("Error getting picture");
+    }
+  }
+
+  //! Delete
+  async delete(id: string, onSuccess?: () => void) {
+    const storageRef = ref(storage, this.idToURL(id));
+    try {
+      await deleteObject(storageRef);
+      onSuccess?.();
+    } catch (e) {
+      console.log(`Error deleting picture: ${e}`);
+      notify("Error deleting picture");
+    }
+  }
+}
+
+export class FHPictures {
+  private idToURL: (id: string) => string;
+
+  constructor(idToURL: (id: string) => string) {
+    this.idToURL = idToURL;
+  }
+
+  //! Get
+  async get(id: string): Promise<[string, string][] | undefined> {
+    const listRef = ref(storage, this.idToURL(id));
+    try {
+      const listResult = await listAll(listRef);
+      const listItems = listResult.items;
+
+      const pictures: [string, string][] = [];
+      for (const item of listItems) {
+        pictures.push([item.name.split(".")[0], await getDownloadURL(item)]);
+      }
+      return pictures;
+    } catch (e) {
+      console.log(`Error getting pictures: ${e}`);
+      notify("Error getting pictures");
+    }
   }
 }

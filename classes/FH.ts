@@ -3,6 +3,7 @@ import { MyUser } from "./MyUser";
 import FHT, { FHPicture } from "./templates/FHT";
 import { AdminSettings } from "./templates/AdminSettings";
 import { FCMToken } from "./Token";
+import { FieldValue } from "firebase/firestore";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -27,3 +28,11 @@ export default abstract class FH {
   static Device = new DeviceFHT();
   static FCMToken = new FCMTokenFHT();
 }
+
+export type FHType<T> = {
+  [K in keyof T]?: T[K] extends any[]
+    ? FieldValue | T[K]
+    : T[K] extends number
+    ? FieldValue | number
+    : T[K];
+};

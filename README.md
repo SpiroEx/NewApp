@@ -1,19 +1,24 @@
 # For Devs
 
 1. Create GitHub project and push
-2. Run `npm run initialize`.
+2. Check if will use
+   - Firebase
+     - Update firebase.ts
+   - FCM
+   - SignIn
+   - TermsAndConditions
+3. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
+4. If will use Terms and Conditions: update {{https://www.termsandconditionsgenerator.com}}
+5. `npm run initialize`.
 
-3. If will use Terms and Conditions: update {{https://www.termsandconditionsgenerator.com}}
+4) `npm run import_figma`
 
-1) Change colors in `tailwind.config.js`
-2) Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
-
-3) Update main icon in `public/images/icon.png`. Must be 512 x 512.
-4) Generate maskable images in [https://maskable.app/editor](https://maskable.app/editor).
-5) Generate favicon and apple-touch-icons in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/).
-6) Delete tsx files under `components/custom`.
-7) Update layout.tsx (title)
-8) Remove this part when done
+5) Update main icon in `public/images/icon.png`. Must be 512 x 512.
+6) Generate maskable images in [https://maskable.app/editor](https://maskable.app/editor).
+7) Generate favicon and apple-touch-icons in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/).
+8) Delete tsx files under `components/custom`.
+9) Update layout.tsx (title)
+10) Remove this part when done
 
 #
 

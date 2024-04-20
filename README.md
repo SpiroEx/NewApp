@@ -29,17 +29,17 @@
 
 3. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
 
-4. `npm run import_figma`
+4. `npm run initialize`.
 
-5. Generate maskable images in [https://maskable.app/editor](https://maskable.app/editor). (or python only)
+5. `npm run import_figma`
 
-6. Generate favicon in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/). (or python only)
+6. Generate maskable images in [https://maskable.app/editor](https://maskable.app/editor). (or python only)
 
-7. `npm run initialize`.
+7. Generate favicon in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/). (or python only)
 
-8. Change loading icon randomly
+8) Change loading icon randomly
 
-9. Remove this part when done
+9) Remove this part when done
 
 # {{Title}}
 

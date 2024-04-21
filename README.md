@@ -1,7 +1,12 @@
 # For Devs
 
-1. Create GitHub project and push
-2. Check if will use Firebase
+1. `npm run initialize`.
+
+--
+
+2. Create GitHub project and push
+
+3. Check if will use Firebase
 
    - Create Firebase project
 
@@ -27,9 +32,7 @@
 
   - update Config::termsLink = true
 
-3. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
-
-4. `npm run initialize`.
+4. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
 
 5. `npm run import_figma`
 
@@ -37,9 +40,9 @@
 
 7. Generate favicon in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/). (or python only)
 
-8) Change loading icon randomly
+8. Change loading icon randomly
 
-9) Remove this part when done
+9. Remove this part when done
 
 # {{Title}}
 

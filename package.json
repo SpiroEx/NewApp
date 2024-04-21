@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "initialize": "git remote remove origin && npm install && npm run install_requirements",
-    "update_requirements": "cd utils && call venv/Scripts/activate && pip freeze > requirements.txt",
-    "install_requirements": "cd utils && python -m venv venv && call venv/Scripts/activate && pip install -r requirements.txt",
-    "import_figma": "npm run set_figma_key && npm run get_colors && npm run get_svg",
-    "set_figma_key": "call utils/venv/Scripts/activate && python utils/set_figma_key.py",
-    "get_colors": "call utils/venv/Scripts/activate && python utils/get_colors.py",
-    "get_svg": "call utils/venv/Scripts/activate && python utils/get_svg.py && npm run svgconvert",
-    "svgconvert": "python utils/svg_to_component.py"
+    "initialize": "npm install && npm run install_requirements",
+    "update_requirements": "npm run activate && pip freeze > utils/requirements.txt",
+    "install_requirements": "cd utils && python -m venv venv && cd .. && call utils/venv/Scripts/activate && pip install -r utils/requirements.txt",
+    "import_figma": "npm run activate && npm run set_figma_key && npm run get_colors && npm run get_svg",
+    "set_figma_key": "npm run activate && python utils/set_figma_key.py",
+    "get_colors": "npm run activate && python utils/get_colors.py",
+    "get_svg": "npm run activate && python utils/get_svg.py && npm run svgconvert",
+    "svgconvert": "python utils/svg_to_component.py",
+    "activate": "call utils/venv/Scripts/activate"
   },
   "dependencies": {
     "@types/node": "20.4.5",

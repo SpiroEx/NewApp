@@ -16,6 +16,14 @@ import {
   writeBatch,
   WriteBatch,
   Transaction,
+  QueryDocumentSnapshot,
+  QueryConstraint,
+  orderBy,
+  endBefore,
+  limitToLast,
+  startAfter,
+  limit,
+  getDocs,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -92,6 +100,67 @@ export default abstract class FHT<T extends { id: string }> {
       });
 
       callback(data);
+    });
+  }
+
+  //! Watch Pagination
+  watchPagination(
+    callback: (
+      data: T[],
+      firstDoc: QueryDocumentSnapshot<T> | null,
+      lastDoc: QueryDocumentSnapshot<T> | null,
+      hasPrev: boolean,
+      hasNext: boolean
+    ) => void,
+    orderKey: keyof T,
+    direction: "asc" | "desc",
+    ...queries: QueryConstraint[]
+  ) {
+    const q = firebaseQuery(
+      collection(db, this.collectionName),
+      orderBy(String(orderKey), direction),
+      ...queries
+    );
+
+    return onSnapshot(q, async (querySnapshot) => {
+      const data: T[] = [];
+      querySnapshot.forEach((doc) => {
+        data.push(doc.data() as T);
+      });
+
+      if (data.length === 0) {
+        callback([], null, null, false, false);
+        return;
+      }
+
+      const firstDoc = querySnapshot.docs[0] as QueryDocumentSnapshot<T>;
+      const lastDoc = querySnapshot.docs[
+        querySnapshot.docs.length - 1
+      ] as QueryDocumentSnapshot<T>;
+
+      //! HAS PREV
+      const prevQ = firebaseQuery(
+        collection(db, this.collectionName),
+        orderBy(String(orderKey), direction),
+        endBefore(firstDoc),
+        limitToLast(1)
+      );
+
+      const docSnapshot = await getDocs(prevQ);
+      const hasPrev = docSnapshot.docs.length > 0;
+
+      //! HAS NEXT
+      const nextQ = firebaseQuery(
+        collection(db, this.collectionName),
+        orderBy(String(orderKey), direction),
+        startAfter(lastDoc),
+        limit(1)
+      );
+
+      const docSnapshot2 = await getDocs(nextQ);
+      const hasNext = docSnapshot2.docs.length > 0;
+
+      callback(data, firstDoc, lastDoc, hasPrev, hasNext);
     });
   }
 

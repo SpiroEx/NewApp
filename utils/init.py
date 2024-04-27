@@ -1,19 +1,6 @@
+from classes.rich import Rich
+from classes.automate import Automate
 import click
-from rich import print
-from rich.console import Console
-from rich.theme import Theme
-import subprocess
-
-custom_theme = Theme(
-    {
-        "info": "medium_turquoise",
-        "warning": "yellow",
-        "danger": "red",
-        "success": "bold green",
-    }
-)
-
-console = Console(theme=custom_theme)
 
 
 @click.group(invoke_without_command=True)
@@ -23,15 +10,6 @@ def cli(ctx: click.Context):
         init()
     else:
         pass
-        # click.echo(f"I am about to invoke {ctx.invoked_subcommand}")
-
-
-# --------------
-
-
-# console.print("Please tell me your name: ", style="info")
-
-# name = input()
 
 
 @cli.command()
@@ -39,23 +17,20 @@ def cli(ctx: click.Context):
 # @click.option("--name", prompt="Your name", help="The person to greet.")
 def init():
     """Automate creation of website"""
-    # run npm run initialize
-    console.print(":rocket: Installing npm dependencies...", style="info")
-    subprocess.run(["npm", "install"], shell=True)
-    console.print("---   ⭐ Success!   ---", style="success", justify="center")
+    Automate.init()
 
 
 @cli.command()
-def dropdb():
-    """drop the beat"""
-    click.echo("Dropped the database")
+def npm_install():
+    """Run npm install"""
+    Automate.npm_install()
+
+
+@cli.command()
+def pip_install():
+    """Run pip install"""
+    Automate.pip_install()
 
 
 if __name__ == "__main__":
-    console.print(
-        "---   Website Automation   ---",
-        style="warning",
-        justify="center",
-    )
-
     cli()

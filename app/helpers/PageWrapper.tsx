@@ -7,6 +7,7 @@ import {
 } from "react";
 import MainPage from "../custom/MainPage";
 import Overlay from "@/components/templates/Overlay";
+import Footer from "@/components/templates/Footer";
 
 //? ----------------------
 //? PAGES
@@ -42,6 +43,14 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         setOverlay,
       }}
     >
+      <Footer
+        className="bg-black"
+        // pages={{
+        //   [Pages.Main]: <DashboardIcon />,
+        //   [Pages.History]: <PaperIcon />,
+        // }}
+      />
+
       <div className="w-full h-full">{page === Pages.Main && <MainPage />}</div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext.Provider>

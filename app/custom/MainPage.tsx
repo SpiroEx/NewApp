@@ -1,10 +1,12 @@
+import PageContainer from "@/components/templates/PageContainer";
+
 interface MainPageProps {}
 
 const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
-    <div>
+    <PageContainer>
       <p>MainPage</p>
-    </div>
+    </PageContainer>
   );
 };
 

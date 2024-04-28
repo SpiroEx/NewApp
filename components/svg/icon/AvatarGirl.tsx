@@ -2,13 +2,15 @@ import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
 
 interface AvatarGirlProps {
+  size?: number;
   onClick?: MouseEventHandler<SVGSVGElement>;
 }
 
-const AvatarGirl: React.FC<AvatarGirlProps> = ({ onClick }) => (
+const AvatarGirl: React.FC<AvatarGirlProps> = ({ size, onClick }) => (
   <motion.svg
     onClick={onClick}
     className="cursor-pointer"
+    width={size}
     viewBox="0 0 1024 1024"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"

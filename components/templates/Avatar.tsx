@@ -17,7 +17,11 @@ const Avatar: React.FC<AvatarProps> = ({ src, size = 75, onClick }) => {
       }}
       onClick={onClick}
     >
-      {src ? <img alt="not found" width={"250px"} src={src} /> : <AvatarGirl />}
+      {src ? (
+        <img alt="not found" width={"250px"} src={src} />
+      ) : (
+        <AvatarGirl size={size} />
+      )}
     </div>
   );
 };

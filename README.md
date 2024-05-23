@@ -24,9 +24,16 @@
 
        - Update Constants::useSignIn = true
 
+     - Check if will use Register
+
+       - Update Constants::useRegister = true
+
      - Check if will use FCM
        - Update Config::vapidKey
        - Update Constants::useFCM = true
+
+   - Check if will use Storage / Functions
+     - Update firebase.json
 
 - Check if will use TermsAndConditions
 

@@ -12,6 +12,7 @@ export const Config = {
   useFirebase: false,
   useFCM: false,
   useSignIn: false,
+  useRegister: false,
   useTermsAndConditions: false,
   termsLink: "{{https://www.termsandconditionsgenerator.com}}",
   vapidKey: "",

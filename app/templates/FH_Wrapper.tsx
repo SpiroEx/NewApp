@@ -53,7 +53,9 @@ const FHWrapper: React.FC<FHWrapperProps> = () => {
   if (adminSettings?.quasar) return <QuasarPage />;
   if (Config.useSignIn) {
     if (user === null) return <SignInPage />;
-    if (myUser === null) return <RegisterPage user={user} />;
+    if (Config.useRegister) {
+      if (myUser === null) return <RegisterPage user={user} />;
+    }
   }
 
   return (

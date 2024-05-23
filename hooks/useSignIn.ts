@@ -73,6 +73,12 @@ function useSignInPage() {
           passwordInput.setError(true);
           return;
         }
+
+        if (errorCode === "auth/invalid-login-credentials") {
+          signup(e);
+          return;
+        }
+
         notify("Invalid Email or Password");
         emailInput.setError(true);
         passwordInput.setError(true);

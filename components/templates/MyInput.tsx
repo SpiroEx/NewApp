@@ -51,7 +51,7 @@ const MyInput: React.FC<MyInputProps> = ({
           className={twMerge(
             "w-full max-w-sm rounded-lg border p-4",
             outfitFont,
-            inputField.error ? "border-red" : "border-input_border",
+            inputField.error ? "border-red-500" : "border-input_border",
             className
           )}
           type={type}

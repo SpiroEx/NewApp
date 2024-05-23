@@ -1,6 +1,7 @@
 import FHT from "@/classes/templates/FHT";
 import {
   QueryCompositeFilterConstraint,
+  QueryConstraint,
   QueryFieldFilterConstraint,
 } from "firebase/firestore";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
@@ -12,7 +13,7 @@ export const useFHWatchQuery = <T extends { id: string }>(
   fht: FHT<T>,
   dependency: any[],
   // compoundQuery?: QueryCompositeFilterConstraint,
-  ...query: QueryFieldFilterConstraint[]
+  ...query: QueryConstraint[]
 ): [T[], boolean, Dispatch<SetStateAction<boolean>>] => {
   const [obj, setObj] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);

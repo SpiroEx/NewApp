@@ -33,7 +33,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   return (
     <motion.div
       className={twMerge(
-        "text-center w-full max-w-sm rounded-lg bg-button m-auto shadow-none outline-none select-none",
+        "text-center w-full max-w-sm rounded-full bg-button m-auto shadow-none outline-none select-none",
         outlined && "bg-transparent border border-zinc-600",
         dashed && "border-dashed",
         disabled && "cursor-default opacity-50",

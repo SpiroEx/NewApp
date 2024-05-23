@@ -87,7 +87,7 @@ export default abstract class FHT<T extends { id: string }> {
   watchQuery(
     callback: (data: T[]) => void,
     compoundQuery?: QueryCompositeFilterConstraint,
-    ...query: QueryFieldFilterConstraint[]
+    ...query: QueryConstraint[]
   ) {
     let q;
     if (compoundQuery)

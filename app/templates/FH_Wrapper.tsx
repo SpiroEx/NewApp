@@ -48,7 +48,7 @@ const FHWrapper: React.FC<FHWrapperProps> = () => {
   );
 
   //! PAGES
-  if (loading) return <div className="bg-red w-screen h-screen"></div>;
+  if (loading) return <div className="w-screen h-screen"></div>;
   if (adminSettings === null) return <QuasarPage />;
   if (adminSettings?.quasar) return <QuasarPage />;
   if (Config.useSignIn) {

@@ -1,30 +1,39 @@
-const myFetch = async (
+export type ReturnType = "json" | "text";
+
+const myFetch = async <T>(
   base_url: string,
   url_path: string,
   queryParams = "",
   method = "GET",
-  body_data = {}
+  body_data = {},
+  return_type: ReturnType = "json",
+
+  is_blob = false
 ) => {
   try {
     const url = `${base_url}/${url_path}?${queryParams}`;
     const headers = {
-      "Content-Type": "application/json", // Set the content type to JSON
+      "Content-Type":
+        return_type === "json" ? "application/json" : "text/plain",
     };
 
     const res = await fetch(url, {
-      method: "POST", // Use POST request method
+      method,
       headers,
-      body: JSON.stringify(body_data), // Convert data to JSON string and send it in the request body
+      body: method !== "GET" ? JSON.stringify(body_data) : undefined,
     });
-    // console.log("res");
-    // console.log(res);
-    const data = await res.json();
+
+    const data = (is_blob
+      ? await res.blob()
+      : return_type === "json"
+      ? await res.json()
+      : await res.text()) as T;
     // console.log(`FETCHED ${base_url}: ${JSON.stringify(data)}`);
     return data;
   } catch (_e) {
     console.log("ERROR FETCHING");
     console.log(_e);
-    return {};
+    return null;
   }
 };
 

@@ -5,6 +5,7 @@ export const Constants = {
   Title1: "{{Title1}}",
   Title2: "{{Title2}}",
   About: "{{About}}",
+  NodeMCUIP: "http://192.168.4.1",
 };
 
 export const Config = {

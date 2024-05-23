@@ -32,7 +32,7 @@
 
   - update Config::termsLink = true
 
-4. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, and {{Repo_Name}}.
+4. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, {{Repo_Name}}, {{manifest_bg}}.
 
 5. `npm run import_figma`
 

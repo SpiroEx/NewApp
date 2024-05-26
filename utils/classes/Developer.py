@@ -25,6 +25,6 @@ class Developer:
 
 
 developers = {
-    "Tim": Developer("Tim", "figd_fJPzLo-pDYO8xKht6za5rjqba6sLWkh8VuGA-dS5"),
-    "Job": Developer("Job", "TODO---"),
+    "Tim": Developer("Tim"),
+    "Job": Developer("Job"),
 }

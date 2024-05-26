@@ -2,8 +2,11 @@ import os
 import subprocess
 from dataclasses import dataclass
 
+from classes.Constants import Constants
 from classes.FigmaHelper import FigmaHelper
+from classes.GithubHelper import GithubHelper
 from classes.LoadingHelper import LoadingHelper
+from classes.MetadataHelper import MetadataHelper
 from classes.PageHelper import PageHelper
 from classes.Rich import Rich
 from classes.SVGConverter import SVGConverter
@@ -48,13 +51,23 @@ class Automate:
         FigmaHelper.get_icons()
 
     @Rich.info(":rocket: Adding page...")
-    def add_page(name: str):
-        PageHelper.add_page(name)
+    def add_page():
+        PageHelper.add_page()
 
     @Rich.info(":rocket: Removing page...")
-    def remove_page(name: str):
-        PageHelper.remove_page(name)
+    def remove_page():
+        PageHelper.remove_page()
 
     @Rich.info(":rocket: Randomizing loading animation...")
     def randomize_loading():
         LoadingHelper.randomize()
+
+    @Rich.info(":rocket: Creating GitHub repo...")
+    def create_repo():
+        if Constants.TITLE == "":
+            Automate.set_title()
+        GithubHelper.create_repo()
+
+    @Rich.info(":rocket: Setting title...")
+    def set_title():
+        MetadataHelper.set_title()

@@ -54,23 +54,33 @@ def figma():
 
 
 @cli.command()
-@click.argument("name", type=str)
-def add_page(name):
+def add_page():
     """Add Website Page"""
-    Automate.add_page(name)
+    Automate.add_page()
 
 
 @cli.command()
-@click.argument("name", type=str)
-def remove_page(name):
+def remove_page():
     """Remove Website Page"""
-    Automate.remove_page(name)
+    Automate.remove_page()
 
 
 @cli.command()
 def randomize_loading():
     """Randomize Loading Animation"""
     Automate.randomize_loading()
+
+
+@cli.command()
+def create_repo():
+    """Create Github Repo"""
+    Automate.create_repo()
+
+
+@cli.command()
+def set_title():
+    """Set Website Title"""
+    Automate.set_title()
 
 
 if __name__ == "__main__":

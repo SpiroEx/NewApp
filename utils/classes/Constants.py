@@ -4,6 +4,7 @@ from classes.Developer import Developer
 class Constants:
     DEVELOPER = Developer.get("Tim")
     FIGMA_KEY = "fW4DoJuSg3qiY6ttPZZ8jz"
+    TITLE = "HelloWorld"
 
     SVG_TEMP_DIR = "svg_temp/"
 

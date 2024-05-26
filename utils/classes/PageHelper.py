@@ -1,8 +1,12 @@
 from classes.FileHelper import FileHelper
+from classes.Rich import Rich
 
 
 class PageHelper:
-    def add_page(name: str):
+    def add_page():
+        #! Get Page Name
+        name = Rich.ask("Enter page name")
+
         #! Create Page File
         FileHelper.copy_file(rf"app\custom\MainPage.tsx", rf"app\custom\{name}Page.tsx")
         FileHelper.replace_substring(rf"app\custom\{name}Page.tsx", "Main", name)
@@ -26,7 +30,10 @@ class PageHelper:
             rf"{{/*//! Add Page Mapping Here */}}\n        {{page === Pages.{name} && <{name}Page />}}",
         )
 
-    def remove_page(name: str):
+    def remove_page():
+        #! Get Page Name
+        name = Rich.ask("Enter page name")
+
         #! Remove Page File
         FileHelper.remove_file(rf"app\custom\{name}Page.tsx")
 

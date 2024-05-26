@@ -1,4 +1,4 @@
-# For Devs
+# yai
 
 1. `automate init`
 2. `automate start`
@@ -44,7 +44,7 @@
 
 5. Remove this part when done
 
-# {{Title}}
+# Title: HelloWorld
 
 The application is currently deployed at [{link}]({link})
 

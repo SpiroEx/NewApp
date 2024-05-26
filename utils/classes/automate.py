@@ -23,6 +23,8 @@ class Automate:
     def start():
         Automate.randomize_loading()
         Automate.import_figma()
+        Automate.set_title()
+        Automate.create_repo()
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():

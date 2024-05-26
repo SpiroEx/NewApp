@@ -5,6 +5,7 @@ import requests
 
 from classes.Constants import Constants
 from classes.MetadataHelper import MetadataHelper
+from classes.Rich import Rich
 
 
 class GithubHelper:
@@ -39,7 +40,6 @@ class GithubHelper:
             print(f"Error creating repo {repo_name}: {response.status_code}")
 
         repo_url = response.json()["html_url"]
-        print(f"Repo: {repo_url}")
 
         #! Git
         subprocess.run(["git", "remote", "remove", "origin"], shell=True)
@@ -50,3 +50,5 @@ class GithubHelper:
         subprocess.run(["git", "add", "."], shell=True)
         subprocess.run(["git", "commit", "-m", "Initial Commit"], shell=True)
         subprocess.run(["git", "push", "-u", "origin", "main"], shell=True)
+
+        Rich.success(f"Repo created: {repo_url}")

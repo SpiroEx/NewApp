@@ -1,8 +1,8 @@
 export abstract class StorageNames {}
 
 export const Constants = {
-  ProjTitle: "HelloWorld",
-  ProjTitle1: "HelloWorld",
+  ProjTitle: "Title",
+  ProjTitle1: "Title",
   ProjTitle2: "",
   About: "{{About}}",
   NodeMCUIP: "http://192.168.4.1",

@@ -1,4 +1,4 @@
-# yai
+# TODO
 
 1. `automate init`
 2. `automate start`
@@ -44,7 +44,7 @@
 
 5. Remove this part when done
 
-# Title: HelloWorld
+# Title: Title
 
 The application is currently deployed at [{link}]({link})
 

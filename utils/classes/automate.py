@@ -1,6 +1,8 @@
 import subprocess
 from dataclasses import dataclass
-from .rich import Rich
+
+from classes.Rich import Rich
+from classes.SVGConverter import SVGConverter
 
 
 @dataclass
@@ -16,5 +18,10 @@ class Automate:
     @Rich.info(":rocket: Installing pip requirements")
     def pip_install():
         subprocess.run(["python", "-m", "venv", "utils/venv"], shell=True)
+        #! TODO: Fix this
         # python -m venv utils/venv
         # cd utils &&  && cd .. && call utils/venv/Scripts/activate && pip install -r utils/requirements.txt
+
+    @Rich.info(":rocket: Converting SVG files to React components...")
+    def svg_convert():
+        SVGConverter.convert()

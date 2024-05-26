@@ -1,5 +1,6 @@
+# TODO
 import re
-from src.replace_substring_in_file import replace_substring_in_file
+from classes.FileHelper import FileHelper
 from src.autoformat_file import autoformat_file
 from src.yn_prompt import yn_prompt
 import subprocess
@@ -17,7 +18,7 @@ def set_firebase():
         print("\nError: Invalid link\n")
         config = get_config()
 
-    replace_substring_in_file(
+    FileHelper.replace_substring(
         "app/firebase.ts",
         r"const firebaseConfig = {\s*apiKey:\s([^}]+)};",
         f"{config}",

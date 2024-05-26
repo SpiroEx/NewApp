@@ -1,6 +1,6 @@
-from classes.rich import Rich
-from classes.automate import Automate
 import click
+
+from classes.Automate import Automate
 
 
 @click.group(invoke_without_command=True)
@@ -30,6 +30,12 @@ def npm_install():
 def pip_install():
     """Run pip install"""
     Automate.pip_install()
+
+
+@cli.command()
+def svg_convert():
+    """Convert SVG files to React components"""
+    Automate.svg_convert()
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ import subprocess
 import requests
 
 from classes.Constants import Constants
+from classes.FileHelper import FileHelper
 from classes.MetadataHelper import MetadataHelper
 from classes.Rich import Rich
 
@@ -52,3 +53,10 @@ class GithubHelper:
         subprocess.run(["git", "push", "-u", "origin", "main"], shell=True)
 
         Rich.success(f"Repo created: {repo_url}")
+
+        #! Update README.md
+        FileHelper.replace_substring(
+            "README.md",
+            r"!\[alt text\]\(https:\/\/github.com\/Manila-Arduino\/([^\/]*)\/",
+            f"![alt text](https://github.com/Manila-Arduino/{repo_name}/",
+        )

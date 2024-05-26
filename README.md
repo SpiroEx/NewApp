@@ -5,8 +5,6 @@
 
 --
 
-2. Create GitHub project and push
-
 3. Check if will use Firebase
 
    - Create Firebase project
@@ -40,7 +38,7 @@
 
   - update Config::termsLink = true
 
-4. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, {{Repo_Name}}, {{manifest_bg}}.
+4. Update {{About}}, {{Repo_Name}}, {{manifest_bg}}.
 
 5. Remove this part when done
 

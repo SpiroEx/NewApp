@@ -1,5 +1,5 @@
 import re
-from typing import Dict, List, NamedTuple, Optional
+from typing import Callable, Dict, List, NamedTuple, Optional
 from classes.Constants import Constants
 from classes.FileHelper import FileHelper
 import requests
@@ -18,6 +18,7 @@ class FigmaColor(NamedTuple):
 
 class FigmaHelper:
     key = Constants.FIGMA_KEY
+    headers = {"X-Figma-Token": Constants.FIGMA_TOKEN}
 
     def clickable(name: str):
         return name.startswith("!")
@@ -121,47 +122,52 @@ class FigmaHelper:
         )
         FigmaHelper.key = key
 
-    def _find_objects_with_tilde(dictionary) -> List[Dict]:
-        objects_with_tilde = []
+    def _find_component(
+        dictionary: Dict, condition: Callable[[str], bool]
+    ) -> List[Dict]:
+        components = []
 
         if isinstance(dictionary, dict):
-            if "name" in dictionary and dictionary["name"].startswith("~"):
-                objects_with_tilde.append(dictionary)
+            if "name" in dictionary and condition(dictionary["name"]):
+                components.append(dictionary)
 
             if "children" in dictionary:
                 for child in dictionary["children"]:
-                    objects_with_tilde.extend(
-                        FigmaHelper._find_objects_with_tilde(child)
-                    )
+                    components.extend(FigmaHelper._find_component(child, condition))
 
-        return objects_with_tilde
+        return components
 
-    def get_svg():
-        #! GET NODE SVGs
+    def _id_name_mapping(svgs: List[Dict]) -> Dict:
+        return [svg["id"] for svg in svgs], {svg["id"]: svg["name"][1:] for svg in svgs}
+
+    def _get_dictionary():
         url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
-        headers = {
-            "X-Figma-Token": Constants.FIGMA_TOKEN,
-        }
-        response = requests.get(url, headers=headers)
+
+        response = requests.get(url, headers=FigmaHelper.headers)
 
         if response.status_code != 200:
-            print(f"Error getting svgs in figma: {response.status_code}")
             raise Exception(f"Error getting svgs in figma: {response.status_code}")
 
         json_data = response.json()
-        svgs = FigmaHelper._find_objects_with_tilde(json_data["document"])
+        dictionary: Dict = json_data["document"]
+        return dictionary
+
+    def get_svg():
+        #! GET NODE SVGs
+        dictionary = FigmaHelper._get_dictionary()
+
+        svgs = FigmaHelper._find_component(
+            dictionary, lambda name: name.startswith("!")
+        )
 
         #! GET IDs
-        ids = [svg["id"] for svg in svgs]
-        id_name_mapping = {svg["id"]: svg["name"][1:] for svg in svgs}
-        print(id_name_mapping)
+        ids, id_name_mapping = FigmaHelper._id_name_mapping(svgs)
 
         #! GET SVG IMAGES
         url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={','.join(ids)}&format=svg&svg_outline_text=false"
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=FigmaHelper.headers)
 
         if response.status_code != 200:
-            print(f"Error getting svg images in figma: {response.status_code}")
             raise Exception(
                 f"Error getting svg images in figma: {response.status_code}"
             )
@@ -172,3 +178,65 @@ class FigmaHelper:
         for id, url in images.items():
             name = id_name_mapping[id]
             ImageHelper.download(url, f"svg_temp/{name}.svg")
+
+    def get_icons():
+        dictionary = FigmaHelper._get_dictionary()
+
+        #! GET ICONS
+        circle_icon = FigmaHelper._find_component(
+            dictionary, lambda name: name == "icon-circle"
+        )[0]
+
+        square_icon = FigmaHelper._find_component(
+            dictionary, lambda name: name == "icon-square"
+        )[0]
+
+        screenshot = FigmaHelper._find_component(
+            dictionary, lambda name: name == "Main"
+        )[0]
+
+        circle_icon_id = circle_icon["id"]
+        square_icon_id = square_icon["id"]
+        screenshot_id = screenshot["id"]
+
+        #! GET ICON PNG IMAGES
+        url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={circle_icon_id},{square_icon_id},{screenshot_id}&format=png"
+        response = requests.get(url, headers=FigmaHelper.headers)
+
+        if response.status_code != 200:
+            raise Exception(
+                f"Error getting icon images in figma: {response.status_code}"
+            )
+
+        json_data = response.json()
+        images = json_data["images"]
+
+        ImageHelper.download(images[circle_icon_id], f"public/images/icons/icon.png")
+
+        ImageHelper.download(images[screenshot_id], f"public/images/screenshot.png")
+
+        ImageHelper.download(
+            images[square_icon_id], f"public/images/icons/maskable_icon_x512.png"
+        )
+
+        other_sizes = [48, 72, 96, 128, 192, 384]
+
+        for size in other_sizes:
+            ImageHelper.resize(
+                "public/images/icons/maskable_icon_x512.png",
+                f"public/images/icons/maskable_icon_x{size}.png",
+                (size, size),
+            )
+
+        #! Apple touch icon
+        ImageHelper.resize(
+            "public/images/icons/maskable_icon_x512.png",
+            "public/images/icons/apple-touch-icon.png",
+            (180, 180),
+        )
+
+        #! Favicon
+        ImageHelper.png_to_favicon(
+            "public/images/icons/icon.png",
+            "public/images/favicon.ico",
+        )

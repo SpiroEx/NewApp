@@ -2,6 +2,7 @@ import subprocess
 from dataclasses import dataclass
 
 from classes.FigmaHelper import FigmaHelper
+from classes.PageHelper import PageHelper
 from classes.Rich import Rich
 from classes.SVGConverter import SVGConverter
 
@@ -29,7 +30,16 @@ class Automate:
 
     @Rich.info(":rocket: Importing Figma...")
     def import_figma():
-        FigmaHelper.set_key()
-        FigmaHelper.get_colors()
-        FigmaHelper.get_svg()
-        SVGConverter.convert()
+        # FigmaHelper.set_key()
+        # FigmaHelper.get_colors()
+        # FigmaHelper.get_svg()
+        # SVGConverter.convert()
+        FigmaHelper.get_icons()
+
+    @Rich.info(":rocket: Adding page...")
+    def add_page(name: str):
+        PageHelper.add_page(name)
+
+    @Rich.info(":rocket: Removing page...")
+    def remove_page(name: str):
+        PageHelper.remove_page(name)

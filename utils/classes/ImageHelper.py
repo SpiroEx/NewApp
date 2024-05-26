@@ -2,6 +2,8 @@ import os
 
 import requests
 
+from PIL import Image
+
 
 class ImageHelper:
     def download(url: str, file_path: str):
@@ -20,3 +22,12 @@ class ImageHelper:
                 )
         except Exception as e:
             print(f"Failed to download image '{file_name}'. Error:", e)
+
+    def resize(input_image: str, output_image: str, size: tuple):
+        original_image = Image.open(input_image)
+        resized_image = original_image.resize(size)
+        resized_image.save(output_image)
+
+    def png_to_favicon(input_image: str, output_image: str, size=48):
+        original_image = Image.open(input_image)
+        original_image.save(output_image, format="ICO", sizes=[(size, size)])

@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import MainPage from "../custom/MainPage";
+//! /* Add Pages Here */
 import Overlay from "@/components/templates/Overlay";
 import Footer from "@/components/templates/Footer";
 
@@ -51,7 +52,10 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         // }}
       />
 
-      <div className="w-full h-full">{page === Pages.Main && <MainPage />}</div>
+      <div className="w-full h-full">
+        {page === Pages.Main && <MainPage />}
+        {/*//! Add Page Mapping Here */}
+      </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext.Provider>
   );

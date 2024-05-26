@@ -44,5 +44,19 @@ def figma():
     Automate.import_figma()
 
 
+@cli.command()
+@click.argument("name", type=str)
+def add_page(name):
+    """Add Website Page"""
+    Automate.add_page(name)
+
+
+@cli.command()
+@click.argument("name", type=str)
+def remove_page(name):
+    """Remove Website Page"""
+    Automate.remove_page(name)
+
+
 if __name__ == "__main__":
     cli()

@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 from typing import List
 
 
@@ -50,3 +51,9 @@ class FileHelper:
 
         with open(filename, "w") as file:
             file.writelines(lines)
+
+    def copy_file(src: str, dest: str) -> None:
+        shutil.copyfile(src, dest)
+
+    def remove_file(file_path: str) -> None:
+        os.remove(file_path)

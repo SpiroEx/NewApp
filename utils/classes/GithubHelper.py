@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 import requests
 
@@ -21,8 +22,8 @@ class GithubHelper:
         repo_name = Constants.TITLE.lower().replace(" ", "-")
 
         data = {
-            "name": "Hello-World",
-            "description": "This is your first repository",
+            "name": repo_name,
+            "description": "",
             "homepage": "https://cielo.com",
             "private": True,
             "has_issues": True,
@@ -34,8 +35,18 @@ class GithubHelper:
             GithubHelper.url, headers=GithubHelper.headers, json=data
         )
 
-        if response.status_code == 201:
-            repo_url = response.json()["html_url"]
-            print(f"Repo: {repo_url}")
-        else:
+        if response.status_code != 201:
             print(f"Error creating repo {repo_name}: {response.status_code}")
+
+        repo_url = response.json()["html_url"]
+        print(f"Repo: {repo_url}")
+
+        #! Git
+        subprocess.run(["git", "remote", "remove", "origin"], shell=True)
+        subprocess.run(
+            ["git", "remote", "add", "origin", f"{repo_url}.git"], shell=True
+        )
+        subprocess.run(["git", "branch", "-M", "main"], shell=True)
+        subprocess.run(["git", "add", "."], shell=True)
+        subprocess.run(["git", "commit", "-m", "Initial Commit"], shell=True)
+        subprocess.run(["git", "push", "-u", "origin", "main"], shell=True)

@@ -82,6 +82,8 @@ class FigmaHelper:
         #! APPEND NEW CUSTOM COLORS
         color_lines: List[str] = []
 
+        manifest_bg = "#ffffff"
+
         for ids in styles.keys():
             figma_color = FigmaHelper._get_rgba(FigmaHelper.key, ids)
             name = figma_color.name
@@ -89,8 +91,23 @@ class FigmaHelper:
             print(f"{name}: {color}")
             color_lines.append(f"        {name}: '{color}',")
 
+            if name == Constants.BG_ICON:
+                manifest_bg = color
+
         FileHelper.append_in(
             "tailwind.config.js", "        // custom - from Figma\n", color_lines
+        )
+
+        #! manifest.json
+        FileHelper.replace_substring(
+            "public/manifest.json",
+            r'"theme_color": "(.*)"',
+            f'"theme_color": "{manifest_bg}"',
+        )
+        FileHelper.replace_substring(
+            "public/manifest.json",
+            r'"background_color": "(.*)"',
+            f'"background_color": "{manifest_bg}"',
         )
 
     def set_key():

@@ -1,6 +1,7 @@
 # For Devs
 
-1. `npm run initialize`.
+1. `automate init`
+2. `automate start`
 
 --
 
@@ -41,15 +42,7 @@
 
 4. Update {{Title}}, {{Title1}}, {{Title2}}, {{About}}, {{Repo_Name}}, {{manifest_bg}}.
 
-5. `npm run import_figma`
-
-6. Generate maskable images in [https://maskable.app/editor](https://maskable.app/editor). (or python only)
-
-7. Generate favicon in [https://favicon.io/favicon-converter/](https://favicon.io/favicon-converter/). (or python only)
-
-8. Change loading icon randomly
-
-9. Remove this part when done
+5. Remove this part when done
 
 # {{Title}}
 

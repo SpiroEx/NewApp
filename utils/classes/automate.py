@@ -1,7 +1,9 @@
+import os
 import subprocess
 from dataclasses import dataclass
 
 from classes.FigmaHelper import FigmaHelper
+from classes.LoadingHelper import LoadingHelper
 from classes.PageHelper import PageHelper
 from classes.Rich import Rich
 from classes.SVGConverter import SVGConverter
@@ -12,6 +14,12 @@ class Automate:
     @Rich.wrap
     def init():
         Automate.npm_install()
+        Automate.pip_install()
+
+    @Rich.wrap
+    def start():
+        Automate.randomize_loading()
+        Automate.import_figma()
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():
@@ -19,10 +27,13 @@ class Automate:
 
     @Rich.info(":rocket: Installing pip requirements")
     def pip_install():
-        subprocess.run(["python", "-m", "venv", "utils/venv"], shell=True)
-        #! TODO: Fix this
-        # python -m venv utils/venv
-        # cd utils &&  && cd .. && call utils/venv/Scripts/activate && pip install -r utils/requirements.txt
+        subprocess.check_call(["python", "-m", "venv", "utils/venv"], shell=True)
+        subprocess.check_call(
+            ["utils/venv/Scripts/pip", "install", "-r", "utils/requirements.txt"]
+        )
+        subprocess.check_call(["call", "utils/venv/Scripts/activate"], shell=True)
+
+        Rich.success("PLEASE RESTART YOUR TERMINAL TO APPLY VENV")
 
     @Rich.info(":rocket: Converting SVG files to React components...")
     def svg_convert():
@@ -30,10 +41,10 @@ class Automate:
 
     @Rich.info(":rocket: Importing Figma...")
     def import_figma():
-        # FigmaHelper.set_key()
-        # FigmaHelper.get_colors()
-        # FigmaHelper.get_svg()
-        # SVGConverter.convert()
+        FigmaHelper.set_key()
+        FigmaHelper.get_colors()
+        FigmaHelper.get_svg()
+        SVGConverter.convert()
         FigmaHelper.get_icons()
 
     @Rich.info(":rocket: Adding page...")
@@ -43,3 +54,7 @@ class Automate:
     @Rich.info(":rocket: Removing page...")
     def remove_page(name: str):
         PageHelper.remove_page(name)
+
+    @Rich.info(":rocket: Randomizing loading animation...")
+    def randomize_loading():
+        LoadingHelper.randomize()

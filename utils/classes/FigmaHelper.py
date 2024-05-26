@@ -1,3 +1,4 @@
+import os
 import re
 from typing import Callable, Dict, List, NamedTuple, Optional
 from classes.Constants import Constants
@@ -18,17 +19,14 @@ class FigmaColor(NamedTuple):
 
 class FigmaHelper:
     key = Constants.FIGMA_KEY
-    headers = {"X-Figma-Token": Constants.FIGMA_TOKEN}
+    headers = {"X-Figma-Token": os.getenv("FIGMA_TOKEN")}
 
     def clickable(name: str):
         return name.startswith("!")
 
-    def _get_rgba(key: str, token: str, ids: str) -> FigmaColor:
+    def _get_rgba(key: str, ids: str) -> FigmaColor:
         url = f"https://api.figma.com/v1/files/{key}/nodes?ids={ids}"
-        headers = {
-            "X-Figma-Token": token,
-        }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=FigmaHelper.headers)
         if response.status_code == 200:
             json_data = response.json()
             # print(json_data)
@@ -74,8 +72,7 @@ class FigmaHelper:
 
         #! GET NEW CUSTOM COLORS
         url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
-        headers = {"X-Figma-Token": Constants.FIGMA_TOKEN}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=FigmaHelper.headers)
         if response.status_code != 200:
             raise Exception(f"Error getting colors in figma: {response.status_code}")
 
@@ -86,9 +83,7 @@ class FigmaHelper:
         color_lines: List[str] = []
 
         for ids in styles.keys():
-            figma_color = FigmaHelper._get_rgba(
-                FigmaHelper.key, Constants.FIGMA_TOKEN, ids
-            )
+            figma_color = FigmaHelper._get_rgba(FigmaHelper.key, ids)
             name = figma_color.name
             color = FigmaHelper._rgb_to_hex_rgba(figma_color)
             print(f"{name}: {color}")
@@ -157,7 +152,7 @@ class FigmaHelper:
         dictionary = FigmaHelper._get_dictionary()
 
         svgs = FigmaHelper._find_component(
-            dictionary, lambda name: name.startswith("!")
+            dictionary, lambda name: name.startswith("~")
         )
 
         #! GET IDs

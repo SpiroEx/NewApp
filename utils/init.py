@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+
+load_dotenv()
 import click
 
 from classes.Automate import Automate
@@ -18,6 +21,12 @@ def cli(ctx: click.Context):
 def init():
     """Automate creation of website"""
     Automate.init()
+
+
+@cli.command()
+def start():
+    """Start the project"""
+    Automate.start()
 
 
 @cli.command()
@@ -56,6 +65,12 @@ def add_page(name):
 def remove_page(name):
     """Remove Website Page"""
     Automate.remove_page(name)
+
+
+@cli.command()
+def randomize_loading():
+    """Randomize Loading Animation"""
+    Automate.randomize_loading()
 
 
 if __name__ == "__main__":

@@ -2,9 +2,8 @@ from classes.FileHelper import FileHelper
 
 
 class Developer:
-    def __init__(self, name: str, figma_token: str):
+    def __init__(self, name: str):
         self.name = name
-        self.figma_token = figma_token
 
     def set_developer():
         developer = input("Who will develop this website [Tim/Job]? ")
@@ -16,12 +15,6 @@ class Developer:
             "utils/classes/Constants.py",
             r'DEVELOPER = developers\["([^"]+)"\]',
             f'DEVELOPER = developers["{developer}"]',
-        )
-
-        FileHelper.replace_substring(
-            "utils/classes/Constants.py",
-            r'FIGMA_TOKEN = "([^"]+)"',
-            f'FIGMA_TOKEN = "{developers[developer].figma_token}"',
         )
 
     def get_all():

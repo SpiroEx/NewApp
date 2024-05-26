@@ -28,6 +28,10 @@ module.exports = {
         text: "#FFFFFF",
 
         // custom - from Figma
+        bg_icon: '#F3F3EB',
+        black: '#000000',
+        white: '#FFFFFF',
+
       },
     },
     

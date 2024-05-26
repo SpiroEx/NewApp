@@ -1,8 +1,11 @@
 import re
-from typing import List, NamedTuple, Optional
+from typing import Dict, List, NamedTuple, Optional
 from classes.Constants import Constants
 from classes.FileHelper import FileHelper
 import requests
+
+from classes.ImageHelper import ImageHelper
+from classes.Rich import Rich
 
 
 class FigmaColor(NamedTuple):
@@ -14,6 +17,8 @@ class FigmaColor(NamedTuple):
 
 
 class FigmaHelper:
+    key = Constants.FIGMA_KEY
+
     def clickable(name: str):
         return name.startswith("!")
 
@@ -67,7 +72,7 @@ class FigmaHelper:
         )
 
         #! GET NEW CUSTOM COLORS
-        url = f"https://api.figma.com/v1/files/{Constants.FIGMA_KEY}"
+        url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
         headers = {"X-Figma-Token": Constants.FIGMA_TOKEN}
         response = requests.get(url, headers=headers)
         if response.status_code != 200:
@@ -81,7 +86,7 @@ class FigmaHelper:
 
         for ids in styles.keys():
             figma_color = FigmaHelper._get_rgba(
-                Constants.FIGMA_KEY, Constants.FIGMA_TOKEN, ids
+                FigmaHelper.key, Constants.FIGMA_TOKEN, ids
             )
             name = figma_color.name
             color = FigmaHelper._rgb_to_hex_rgba(figma_color)
@@ -93,10 +98,10 @@ class FigmaHelper:
         )
 
     def set_key():
-        url = input("Enter Figma URL: ")
+        url = Rich.ask("Enter Figma URL")
 
         #! Extract ID from Figma URL
-        pattern = r"https://www\.figma\.com/file/([a-zA-Z0-9_-]+)/.*"
+        pattern = r"https://www\.figma\.com/design/([a-zA-Z0-9_-]+)/.*"
 
         # Search for the pattern in the URL
         match = re.match(pattern, url)
@@ -110,7 +115,60 @@ class FigmaHelper:
         print(f"FIGMA KEY: {key}")
 
         FileHelper.replace_substring(
-            "utils/src/constants.py",
+            "utils/classes/Constants.py",
             r'FIGMA_KEY = "([^"]+)"',
             f'FIGMA_KEY = "{key}"',
         )
+        FigmaHelper.key = key
+
+    def _find_objects_with_tilde(dictionary) -> List[Dict]:
+        objects_with_tilde = []
+
+        if isinstance(dictionary, dict):
+            if "name" in dictionary and dictionary["name"].startswith("~"):
+                objects_with_tilde.append(dictionary)
+
+            if "children" in dictionary:
+                for child in dictionary["children"]:
+                    objects_with_tilde.extend(
+                        FigmaHelper._find_objects_with_tilde(child)
+                    )
+
+        return objects_with_tilde
+
+    def get_svg():
+        #! GET NODE SVGs
+        url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
+        headers = {
+            "X-Figma-Token": Constants.FIGMA_TOKEN,
+        }
+        response = requests.get(url, headers=headers)
+
+        if response.status_code != 200:
+            print(f"Error getting svgs in figma: {response.status_code}")
+            raise Exception(f"Error getting svgs in figma: {response.status_code}")
+
+        json_data = response.json()
+        svgs = FigmaHelper._find_objects_with_tilde(json_data["document"])
+
+        #! GET IDs
+        ids = [svg["id"] for svg in svgs]
+        id_name_mapping = {svg["id"]: svg["name"][1:] for svg in svgs}
+        print(id_name_mapping)
+
+        #! GET SVG IMAGES
+        url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={','.join(ids)}&format=svg&svg_outline_text=false"
+        response = requests.get(url, headers=headers)
+
+        if response.status_code != 200:
+            print(f"Error getting svg images in figma: {response.status_code}")
+            raise Exception(
+                f"Error getting svg images in figma: {response.status_code}"
+            )
+
+        json_data = response.json()
+        images = json_data["images"]
+
+        for id, url in images.items():
+            name = id_name_mapping[id]
+            ImageHelper.download(url, f"svg_temp/{name}.svg")

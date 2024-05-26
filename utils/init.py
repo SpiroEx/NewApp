@@ -38,5 +38,11 @@ def svg_convert():
     Automate.svg_convert()
 
 
+@cli.command()
+def figma():
+    """Automate Figma"""
+    Automate.import_figma()
+
+
 if __name__ == "__main__":
     cli()

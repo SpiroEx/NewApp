@@ -2,6 +2,7 @@ from rich.console import Console, JustifyMethod
 from rich.theme import Theme
 from dataclasses import dataclass
 from typing import Literal, Optional, Callable
+from rich.prompt import Prompt
 
 custom_theme = Theme(
     {
@@ -55,6 +56,9 @@ class Rich:
                 Rich.error(e)
 
         return wrapper
+
+    def ask(text: str):
+        return Prompt.ask(f"\n[chartreuse1]{text}[/chartreuse1]")
 
     def info(text: str):
         def decorator(func: Callable):

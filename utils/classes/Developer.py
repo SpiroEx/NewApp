@@ -13,13 +13,13 @@ class Developer:
             developer = input("Who will develop this website [Tim/Job]? ")
 
         FileHelper.replace_substring(
-            "utils/src/constants.py",
+            "utils/classes/Constants.py",
             r'DEVELOPER = developers\["([^"]+)"\]',
             f'DEVELOPER = developers["{developer}"]',
         )
 
         FileHelper.replace_substring(
-            "utils/src/constants.py",
+            "utils/classes/Constants.py",
             r'FIGMA_TOKEN = "([^"]+)"',
             f'FIGMA_TOKEN = "{developers[developer].figma_token}"',
         )

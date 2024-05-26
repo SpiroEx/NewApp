@@ -1,6 +1,7 @@
 import subprocess
 from dataclasses import dataclass
 
+from classes.FigmaHelper import FigmaHelper
 from classes.Rich import Rich
 from classes.SVGConverter import SVGConverter
 
@@ -24,4 +25,11 @@ class Automate:
 
     @Rich.info(":rocket: Converting SVG files to React components...")
     def svg_convert():
+        SVGConverter.convert()
+
+    @Rich.info(":rocket: Importing Figma...")
+    def import_figma():
+        FigmaHelper.set_key()
+        FigmaHelper.get_colors()
+        FigmaHelper.get_svg()
         SVGConverter.convert()

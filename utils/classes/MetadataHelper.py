@@ -3,9 +3,9 @@ from classes.Rich import Rich
 
 
 class MetadataHelper:
-    def set_title():
+    def set_title() -> str:
         #! Get Title
-        title = Rich.ask("Enter Title")
+        title: str = Rich.ask("Enter Title")
 
         #! Constants.py
         FileHelper.replace_substring(

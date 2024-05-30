@@ -64,7 +64,7 @@ class Rich:
         def decorator(func: Callable):
             def wrapper(*args, **kwargs):
                 Rich.print(text, style="info")
-                func(*args, **kwargs)
+                return func(*args, **kwargs)
 
             return wrapper
 

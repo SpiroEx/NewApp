@@ -17,16 +17,13 @@ class GithubHelper:
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
-    def create_repo():
-        if Constants.TITLE == "":
-            MetadataHelper.set_title()
-
-        repo_name = Constants.TITLE.lower().replace(" ", "-")
+    def create_repo(title: str):
+        repo_name = title.replace(" ", "-") + "-Website"
 
         data = {
             "name": repo_name,
             "description": "",
-            "homepage": "https://cielo.com",
+            "homepage": "",  # TODO: Add homepage from firebase url
             "private": True,
             "has_issues": True,
             "has_projects": True,
@@ -52,7 +49,7 @@ class GithubHelper:
         subprocess.run(["git", "commit", "-m", "Initial Commit"], shell=True)
         subprocess.run(["git", "push", "-u", "origin", "main"], shell=True)
 
-        Rich.success(f"Repo created: {repo_url}")
+        Rich.print(f"Repo created: {repo_url}", "success")
 
         #! Update README.md
         FileHelper.replace_substring(

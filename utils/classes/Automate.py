@@ -19,8 +19,8 @@ class Automate:
         Automate.npm_install()
         Automate.randomize_loading()
         Automate.import_figma()
-        Automate.set_title()
-        Automate.create_repo()
+        title = Automate.set_title()
+        Automate.create_repo(title)
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():
@@ -61,11 +61,12 @@ class Automate:
         LoadingHelper.randomize()
 
     @Rich.info(":rocket: Creating GitHub repo...")
-    def create_repo():
-        if Constants.TITLE == "":
-            Automate.set_title()
-        GithubHelper.create_repo()
+    def create_repo(title=""):
+        if title == "" and Constants.TITLE == "":
+            title = Automate.set_title()
+        GithubHelper.create_repo(title)
 
     @Rich.info(":rocket: Setting title...")
-    def set_title():
-        MetadataHelper.set_title()
+    def set_title() -> str:
+        title = MetadataHelper.set_title()
+        return title

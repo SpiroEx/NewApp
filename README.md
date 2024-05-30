@@ -1,7 +1,6 @@
 # TODO
 
 1. `automate init`
-2. `automate start`
 
 --
 

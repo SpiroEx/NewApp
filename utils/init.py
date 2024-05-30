@@ -24,12 +24,6 @@ def init():
 
 
 @cli.command()
-def start():
-    """Start the project"""
-    Automate.start()
-
-
-@cli.command()
 def npm_install():
     """Run npm install"""
     Automate.npm_install()

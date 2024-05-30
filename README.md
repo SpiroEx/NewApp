@@ -38,7 +38,7 @@
 
   - update Config::termsLink = true
 
-4. Update {{About}}, {{manifest_bg}}.
+4. Update {{About}}.
 
 5. Remove this part when done
 

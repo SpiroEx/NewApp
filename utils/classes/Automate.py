@@ -17,7 +17,7 @@ class Automate:
     @Rich.wrap
     def init():
         Automate.npm_install()
-        Automate.pip_install()
+        # Automate.pip_install() // moved to `RUN website`
 
     @Rich.wrap
     def start():

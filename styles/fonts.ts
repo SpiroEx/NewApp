@@ -4,6 +4,7 @@ import {
   Outfit,
   Lekton,
   Poppins,
+  Montserrat,
 } from "next/font/google";
 
 const juliusSansOneFont = Julius_Sans_One({
@@ -22,3 +23,6 @@ export const lektonFont = lektonFontClass.className;
 
 const poppinsFontClass = Poppins({ weight: "400", subsets: ["latin"] });
 export const poppinsFont = poppinsFontClass.className;
+
+const montserratFontClass = Montserrat({ weight: "400", subsets: ["latin"] });
+export const montserratFont = montserratFontClass.className;

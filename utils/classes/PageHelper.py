@@ -8,8 +8,10 @@ class PageHelper:
         name = Rich.ask("Enter page name")
 
         #! Create Page File
-        FileHelper.copy_file(rf"app\custom\MainPage.tsx", rf"app\custom\{name}Page.tsx")
-        FileHelper.replace_substring(rf"app\custom\{name}Page.tsx", "Main", name)
+        FileHelper.copy_file(
+            rf"app\templates\_PlainPage.tsx", rf"app\custom\{name}Page.tsx"
+        )
+        FileHelper.replace_substring(rf"app\custom\{name}Page.tsx", "Plain", name)
 
         #! Add Page to PageWrapper
         FileHelper.replace_substring(

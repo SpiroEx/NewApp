@@ -8,11 +8,11 @@
 
    - Create Firebase project
 
-   - Update firebase.ts
+   - Update `firebase.ts`
 
    - `firebase use {{projec_id}}`
 
-   - Update Constants::useFirebase = true
+   - Update `Constants::useFirebase = true`
 
    - Check if will use Hosting
 
@@ -20,22 +20,23 @@
 
      - Check if will use SignIn
 
-       - Update Constants::useSignIn = true
+       - Update `Constants::useSignIn = true`
 
      - Check if will use Register
 
-       - Update Constants::useRegister = true
+       - Update `Constants::useRegister = true`
 
      - Check if will use FCM
-       - Update Config::vapidKey
-       - Update Constants::useFCM = true
+       - Update `Config::vapidKey`
+       - Update `Constants::useFCM = true`
 
    - Check if will use Storage / Functions
-     - Update firebase.json
+     - Update `firebase.json`
+     - delete `functions` folder
 
 - Check if will use TermsAndConditions
 
-  - update Config::termsLink = true
+  - update `Config::termsLink = true`
 
 4. Update {{About}}.
 

@@ -1,11 +1,12 @@
 import PageContainer from "@/components/templates/PageContainer";
+import Txt from "@/components/templates/Txt";
 
 interface MainPageProps {}
 
 const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
     <PageContainer>
-      <p>MainPage</p>
+      <Txt.title>TITLE</Txt.title>
     </PageContainer>
   );
 };

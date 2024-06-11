@@ -12,7 +12,7 @@ const Footer: React.FC<FooterProps> = ({ pages, className }) => {
   return pages ? (
     <div
       className={twMerge(
-        "fixed bottom-0 w-screen h-16 shadow-lg flex justify-around",
+        "fixed bottom-0 w-screen h-16 shadow-lg flex justify-around bg-footer",
         className
       )}
     >

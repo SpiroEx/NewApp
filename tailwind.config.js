@@ -24,7 +24,6 @@ module.exports = {
         button: "#0dbc73",
         header_modal: "#0dbc73",
         link: "#92b8ff",
-        bg: "#3E3E3E",
         text: "#FFFFFF",
 
         // custom - from Figma

@@ -65,21 +65,6 @@ export default abstract class FHT<T extends { id: string }> {
     }
   }
 
-  //! GET ALL
-  async getAll(updateOption?: UpdateOption) {
-    const q = collection(db, this.collectionName);
-    const querySnapshot = await getDocs(q);
-    const data: T[] = [];
-    querySnapshot.forEach((doc) => {
-      data.push(doc.data() as T);
-    });
-    if (updateOption?.success)
-      notify(updateOption.success, { type: "success" });
-    if (updateOption?.onSuccess) updateOption.onSuccess();
-
-    return data;
-  }
-
   //! Watch
   watch(id: string | undefined, callback: (data: T | null) => void) {
     if (!id) {

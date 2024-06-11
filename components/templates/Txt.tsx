@@ -25,7 +25,7 @@ const section: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
 }) => {
   return (
     <p
-      className={twMerge("text-base tracking-wider font-bold", className)}
+      className={twMerge("text-sm tracking-widest font-bold", className)}
       {...props}
     >
       {children}
@@ -60,7 +60,7 @@ const number: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
 }) => {
   return (
     <p
-      className={twMerge("text-2xl tracking-wider font-normal", className)}
+      className={twMerge("text-2xl tracking-wider font-extralight", className)}
       {...props}
     >
       {children}

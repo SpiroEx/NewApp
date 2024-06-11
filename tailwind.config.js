@@ -30,6 +30,7 @@ module.exports = {
         black: '#000000',
         white: '#FFFFFF',
         bg_icon: '#F3F3EB',
+        bg: '#464646',
 
       },
     },

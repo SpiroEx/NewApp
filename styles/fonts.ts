@@ -18,11 +18,17 @@ export const interFont = interFontClass.className;
 const outfitFontClass = Outfit({ subsets: ["latin"] });
 export const outfitFont = outfitFontClass.className;
 
-const lektonFontClass = Lekton({ weight: "400", subsets: ["latin"] });
+const lektonFontClass = Lekton({ weight: ["400", "700"], subsets: ["latin"] });
 export const lektonFont = lektonFontClass.className;
 
-const poppinsFontClass = Poppins({ weight: "400", subsets: ["latin"] });
+const poppinsFontClass = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
 export const poppinsFont = poppinsFontClass.className;
 
-const montserratFontClass = Montserrat({ weight: "400", subsets: ["latin"] });
+const montserratFontClass = Montserrat({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
 export const montserratFont = montserratFontClass.className;

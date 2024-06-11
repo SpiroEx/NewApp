@@ -12,7 +12,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
   return (
     <div
       className={twMerge(
-        "w-full h-full min-h-screen overflow-scroll-y flex flex-col items-center pt-10 pb-20 gap-12",
+        "w-full h-full min-h-screen overflow-scroll-y flex flex-col items-center pt-10 pb-20 px-8 gap-12",
         className
       )}
     >

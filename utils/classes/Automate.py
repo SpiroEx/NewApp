@@ -16,6 +16,11 @@ from classes.SVGConverter import SVGConverter
 class Automate:
     @Rich.wrap
     def init():
+        #! INPUT
+        FigmaHelper.set_key()
+        Automate.generate_about()
+
+        #! INSTALL
         Automate.npm_install()
         Automate.randomize_loading()
         Automate.import_figma()
@@ -42,7 +47,7 @@ class Automate:
 
     @Rich.info(":rocket: Importing Figma...")
     def import_figma():
-        FigmaHelper.set_key()
+
         FigmaHelper.get_colors()
         FigmaHelper.get_svg()
         SVGConverter.convert()
@@ -70,3 +75,7 @@ class Automate:
     def set_title() -> str:
         title = MetadataHelper.set_title()
         return title
+
+    @Rich.info(":rocket: Generating about page...")
+    def generate_about():
+        prompt = Rich.ask("What is the web app about")

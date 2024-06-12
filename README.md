@@ -1,6 +1,7 @@
 # TODO
 
 1. `automate init`
+2. Update {{About}}.
 
 --
 
@@ -37,8 +38,6 @@
 - Check if will use TermsAndConditions
 
   - update `Config::termsLink = true`
-
-4. Update {{About}}.
 
 5. Remove this part when done
 

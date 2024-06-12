@@ -2,11 +2,14 @@ import os
 import re
 from typing import Callable, Dict, List, NamedTuple, Optional
 from classes.Constants import Constants
+from classes.ConstantsPy import ConstantsPy
 from classes.FileHelper import FileHelper
 import requests
 
 from classes.ImageHelper import ImageHelper
+from classes.ManifestJson import ManifestJson
 from classes.Rich import Rich
+from classes.TailwindConfig import TailwindConfig
 
 
 class FigmaColor(NamedTuple):
@@ -21,9 +24,11 @@ class FigmaHelper:
     key = Constants.FIGMA_KEY
     headers = {"X-Figma-Token": os.getenv("FIGMA_TOKEN")}
 
+    @staticmethod
     def clickable(name: str):
         return name.startswith("!")
 
+    @staticmethod
     def _get_rgba(key: str, ids: str) -> FigmaColor:
         url = f"https://api.figma.com/v1/files/{key}/nodes?ids={ids}"
         response = requests.get(url, headers=FigmaHelper.headers)
@@ -39,6 +44,7 @@ class FigmaHelper:
                 f"Error getting color {ids} in figma: {response.status_code}"
             )
 
+    @staticmethod
     def _rgb_to_hex_rgba(color: FigmaColor) -> str:
         # Check if all components are valid
         if not all(
@@ -62,13 +68,10 @@ class FigmaHelper:
         # Combine components and prefix with "#" to form the hex RGBA string
         return f"#{''.join(hex_components).upper()}"
 
+    @staticmethod
     def get_colors():
         #! DELETE OLD CUSTOM COLORS
-        FileHelper.replace_substring(
-            "tailwind.config.js",
-            r"        // custom - from Figma((?!\}).|\n)*},",
-            r"        // custom - from Figma\n\n      },",
-        )
+        TailwindConfig.remove_custom_colors()
 
         #! GET NEW CUSTOM COLORS
         url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
@@ -94,22 +97,13 @@ class FigmaHelper:
             if name == Constants.BG_ICON:
                 manifest_bg = color
 
-        FileHelper.append_in(
-            "tailwind.config.js", "        // custom - from Figma\n", color_lines
-        )
+        TailwindConfig.add_custom_colors(color_lines)
 
         #! manifest.json
-        FileHelper.replace_substring(
-            "public/manifest.json",
-            r'"theme_color": "(.*)"',
-            f'"theme_color": "{manifest_bg}"',
-        )
-        FileHelper.replace_substring(
-            "public/manifest.json",
-            r'"background_color": "(.*)"',
-            f'"background_color": "{manifest_bg}"',
-        )
+        ManifestJson.set_theme_color(manifest_bg)
+        ManifestJson.set_background_color(manifest_bg)
 
+    @staticmethod
     def set_key():
         url = Rich.ask("Enter Figma URL")
 
@@ -126,14 +120,10 @@ class FigmaHelper:
             raise Exception("Invalid Figma URL")
 
         print(f"FIGMA KEY: {key}")
-
-        FileHelper.replace_substring(
-            "utils/classes/Constants.py",
-            r'FIGMA_KEY = "([^"]+)"',
-            f'FIGMA_KEY = "{key}"',
-        )
+        ConstantsPy.set_figma_key(key)
         FigmaHelper.key = key
 
+    @staticmethod
     def _find_component(
         dictionary: Dict, condition: Callable[[str], bool]
     ) -> List[Dict]:
@@ -149,9 +139,11 @@ class FigmaHelper:
 
         return components
 
+    @staticmethod
     def _id_name_mapping(svgs: List[Dict]) -> Dict:
         return [svg["id"] for svg in svgs], {svg["id"]: svg["name"][1:] for svg in svgs}
 
+    @staticmethod
     def _get_dictionary():
         url = f"https://api.figma.com/v1/files/{FigmaHelper.key}"
 
@@ -164,6 +156,7 @@ class FigmaHelper:
         dictionary: Dict = json_data["document"]
         return dictionary
 
+    @staticmethod
     def get_svg():
         #! GET NODE SVGs
         dictionary = FigmaHelper._get_dictionary()
@@ -191,6 +184,7 @@ class FigmaHelper:
             name = id_name_mapping[id]
             ImageHelper.download(url, f"svg_temp/{name}.svg")
 
+    @staticmethod
     def get_icons():
         dictionary = FigmaHelper._get_dictionary()
 

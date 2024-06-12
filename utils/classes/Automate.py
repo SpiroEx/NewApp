@@ -8,8 +8,10 @@ from classes.GithubHelper import GithubHelper
 from classes.LoadingHelper import LoadingHelper
 from classes.MetadataHelper import MetadataHelper
 from classes.PageHelper import PageHelper
+from classes.ReadmeHelper import ReadmeHelper
 from classes.Rich import Rich
 from classes.SVGConverter import SVGConverter
+from classes.ChatGPT import ChatGPT
 
 
 @dataclass
@@ -18,28 +20,20 @@ class Automate:
     def init():
         #! INPUT
         FigmaHelper.set_key()
-        Automate.generate_about()
+        title = Rich.ask("Enter Title")
+        about_prompt = Rich.ask("What is the web app about")
 
         #! INSTALL
+        Automate.set_title(title)
+        Automate.about(about_prompt)
         Automate.npm_install()
         Automate.randomize_loading()
         Automate.import_figma()
-        title = Automate.set_title()
         Automate.create_repo(title)
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():
         subprocess.run(["npm", "install", "--no-audit", "--no-fund"], shell=True)
-
-    @Rich.info(":rocket: Installing pip requirements")
-    def pip_install():
-        subprocess.check_call(["python", "-m", "venv", "utils/venv"], shell=True)
-        subprocess.check_call(
-            ["utils/venv/Scripts/pip", "install", "-r", "utils/requirements.txt"]
-        )
-        subprocess.check_call(["call", "utils/venv/Scripts/activate"], shell=True)
-
-        Rich.success("PLEASE RESTART YOUR TERMINAL TO APPLY VENV")
 
     @Rich.info(":rocket: Converting SVG files to React components...")
     def svg_convert():
@@ -47,7 +41,6 @@ class Automate:
 
     @Rich.info(":rocket: Importing Figma...")
     def import_figma():
-
         FigmaHelper.get_colors()
         FigmaHelper.get_svg()
         SVGConverter.convert()
@@ -72,10 +65,9 @@ class Automate:
         GithubHelper.create_repo(title)
 
     @Rich.info(":rocket: Setting title...")
-    def set_title() -> str:
-        title = MetadataHelper.set_title()
-        return title
+    def set_title(title: str):
+        MetadataHelper.set_title(title)
 
     @Rich.info(":rocket: Generating about page...")
-    def generate_about():
-        prompt = Rich.ask("What is the web app about")
+    def about(prompt: str):
+        MetadataHelper.set_about(prompt)

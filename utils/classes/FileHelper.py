@@ -5,9 +5,11 @@ from typing import List
 
 
 class FileHelper:
+    @staticmethod
     def base_name(file_path: str) -> str:
         return os.path.splitext(os.path.basename(file_path))[0]
 
+    @staticmethod
     def replace_substring(
         file_path: str, old_substring_pattern: str, new_substring: str
     ) -> None:
@@ -28,6 +30,7 @@ class FileHelper:
             print(f"File '{file_path}' not found.")
             raise FileNotFoundError()
 
+    @staticmethod
     def append_in(
         filename: str,
         search_line: str,
@@ -52,8 +55,10 @@ class FileHelper:
         with open(filename, "w") as file:
             file.writelines(lines)
 
+    @staticmethod
     def copy_file(src: str, dest: str) -> None:
         shutil.copyfile(src, dest)
 
+    @staticmethod
     def remove_file(file_path: str) -> None:
         os.remove(file_path)

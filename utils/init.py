@@ -30,12 +30,6 @@ def npm_install():
 
 
 @cli.command()
-def pip_install():
-    """Run pip install"""
-    Automate.pip_install()
-
-
-@cli.command()
 def svg_convert():
     """Convert SVG files to React components"""
     Automate.svg_convert()
@@ -75,6 +69,13 @@ def create_repo():
 def set_title():
     """Set Website Title"""
     Automate.set_title()
+
+
+@cli.command()
+@click.argument("prompt")
+def about(prompt: str):
+    """Generate About Page"""
+    Automate.about(prompt)
 
 
 if __name__ == "__main__":

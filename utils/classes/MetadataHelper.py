@@ -1,62 +1,34 @@
+from classes.ChatGPT import ChatGPT
+from classes.ConstantsTs import ConstantsTs
+from classes.ConstantsPy import ConstantsPy
 from classes.FileHelper import FileHelper
+from classes.ManifestJson import ManifestJson
+from classes.ReadmeHelper import ReadmeHelper
 from classes.Rich import Rich
 
 
 class MetadataHelper:
-    def set_title() -> str:
-        #! Get Title
-        title: str = Rich.ask("Enter Title")
 
+    @staticmethod
+    def set_title(title: str) -> str:
         #! Constants.py
-        FileHelper.replace_substring(
-            "utils/classes/Constants.py",
-            r'TITLE = "([^"]*)"',
-            f'TITLE = "{title}"',
-        )
+        ConstantsPy.set_title(title)
 
         #! README.md
-        FileHelper.replace_substring(
-            "README.md",
-            r"# Title: (.*)\n",
-            f"# Title: {title}\n",
-        )
+        ReadmeHelper.set_title(title)
 
         #! Constants.ts
-        FileHelper.replace_substring(
-            "classes/Constants.ts",
-            r'ProjTitle: "(.*)",',
-            f'ProjTitle: "{title}",',
-        )
-
-        if " " in title:
-            title1 = title.split(" ")[0]
-            title2 = " ".join(title.split(" ")[1:])
-        else:
-            title1 = title
-            title2 = ""
-
-        FileHelper.replace_substring(
-            "classes/Constants.ts",
-            r'ProjTitle1: "(.*)",',
-            f'ProjTitle1: "{title1}",',
-        )
-
-        FileHelper.replace_substring(
-            "classes/Constants.ts",
-            r'ProjTitle2: "(.*)",',
-            f'ProjTitle2: "{title2}",',
-        )
+        ConstantsTs.set_title(title)
+        title1, title2 = ConstantsTs.get_title_parts(title)
+        ConstantsTs.set_title1(title1)
+        ConstantsTs.set_title2(title2)
 
         #! manifest.json
-        FileHelper.replace_substring(
-            "public/manifest.json",
-            r'"name": "(.*)",',
-            f'"name": "{title}",',
-        )
-        FileHelper.replace_substring(
-            "public/manifest.json",
-            r'"short_name": "(.*)",',
-            f'"short_name": "{title}",',
-        )
+        ManifestJson.set_name(title)
+        ManifestJson.set_short_name(title)
 
-        return title
+    def set_about(prompt: str):
+        about = ChatGPT.chat(f"Create a very very short About for my website. {prompt}")
+
+        #! README.md
+        ReadmeHelper.set_about(about)

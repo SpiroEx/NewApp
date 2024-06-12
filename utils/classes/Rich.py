@@ -18,6 +18,7 @@ console = Console(theme=custom_theme)
 
 @dataclass
 class Rich:
+    @staticmethod
     def print(
         text: str,
         style: Optional[Literal["info", "warning", "danger", "success"]] = None,
@@ -25,6 +26,7 @@ class Rich:
     ):
         console.print(text, style=style, justify=justify)
 
+    @staticmethod
     def welcome():
         Rich.print(
             "---   Website Automation   ---",
@@ -32,6 +34,7 @@ class Rich:
             justify="center",
         )
 
+    @staticmethod
     def success():
         Rich.print(
             "---   ⭐ Success!   ---",
@@ -39,6 +42,7 @@ class Rich:
             justify="center",
         )
 
+    @staticmethod
     def error(e: Exception):
         Rich.print(
             f"---   Error: {e}   ---",
@@ -46,6 +50,7 @@ class Rich:
             justify="center",
         )
 
+    @staticmethod
     def wrap(func: Callable):
         def wrapper(*args, **kwargs):
             try:
@@ -57,9 +62,11 @@ class Rich:
 
         return wrapper
 
+    @staticmethod
     def ask(text: str):
         return Prompt.ask(f"\n[chartreuse1]{text}[/chartreuse1]")
 
+    @staticmethod
     def info(text: str):
         def decorator(func: Callable):
             def wrapper(*args, **kwargs):

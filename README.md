@@ -4,7 +4,7 @@
 
 --
 
-3. Check if will use Firebase
+2. Check if will use Firebase
 
    - Create Firebase project
 
@@ -12,7 +12,7 @@
 
    - `firebase use {{projec_id}}`
 
-   - Update `Constants::useFirebase = true`
+   - Update `Config.useFirebase: true`
 
    - Check if will use Hosting
 
@@ -20,25 +20,25 @@
 
      - Check if will use SignIn
 
-       - Update `Constants::useSignIn = true`
+       - Update `Config.useSignIn: true`
 
      - Check if will use Register
 
-       - Update `Constants::useRegister = true`
+       - Update `Config.useRegister: true`
 
      - Check if will use FCM
-       - Update `Config::vapidKey`
-       - Update `Constants::useFCM = true`
+       - Update `Config.vapidKey`
+       - Update `Config.useFCM: true`
 
    - Check if will use Storage / Functions
      - Update `firebase.json`
-     - delete `functions` folder
 
-- Check if will use TermsAndConditions
+3. Check if will use TermsAndConditions
 
-  - update `Config::termsLink = true`
+   - update `Config.useTermsAndConditions: true`
+   - update `Config.termsLink: "{{https://www.termsandconditionsgenerator.com}}"`
 
-5. Remove this part when done
+4. Remove this part when done
 
 # Title: Title
 

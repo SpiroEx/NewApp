@@ -10,11 +10,11 @@ export const Constants = {
 
 export const Config = {
   useFirebase: false,
-  useFCM: false,
   useSignIn: false,
   useRegister: false,
+  useFCM: false,
+  vapidKey: "",
   useTermsAndConditions: false,
   termsLink: "{{https://www.termsandconditionsgenerator.com}}",
-  vapidKey: "",
   // vapidKey: "BHFEtmzNp2xZv1NCgS0ku187NKGWbrR_5FseNeYyn04ogXULW4dbiiGNfBLmfpilKnfns3kem1w26Sjt8cigG08",
 };

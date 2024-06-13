@@ -2,7 +2,7 @@ import json
 import os
 import subprocess
 from dataclasses import dataclass
-
+from rich import print
 from classes.Constants import Constants
 from classes.FigmaHelper import FigmaHelper
 from classes.FileHelper import FileHelper
@@ -25,9 +25,20 @@ class Automate:
         # title = Rich.ask("Enter Title")
         # about_prompt = Rich.ask("What is the web app about")
         constants = json.loads(FileHelper.read("utils/constants_temp.txt"))
-        figma_url = constants["figma_url"]
-        title = constants["title"]
-        about_prompt = constants["about"]
+        figma_url: str = constants["figma_url"]
+        title: str = constants["title"]
+        about_prompt: str = constants["about"]
+        use_firebase: bool = constants["use_firebase"]
+        firebase_config: str = constants["firebase_config"]
+        use_hosting: bool = constants["use_hosting"]
+        use_signin: bool = constants["use_signin"]
+        use_register: bool = constants["use_register"]
+        use_fcm: bool = constants["use_fcm"]
+        vapid_key: str = constants["vapid_key"]
+        use_functions: bool = constants["use_functions"]
+        use_storage: bool = constants["use_storage"]
+        use_t_and_c: bool = constants["use_t_and_c"]
+        t_and_c: str = constants["t_and_c"]
 
         #! INSTALL
         FigmaHelper.set_key(figma_url)
@@ -37,6 +48,8 @@ class Automate:
         Automate.randomize_loading()
         Automate.import_figma()
         Automate.create_repo(title)
+
+        # TODO: replace rope_name in README.md
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():

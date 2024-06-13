@@ -29,7 +29,7 @@ class Rich:
     @staticmethod
     def welcome():
         Rich.print(
-            "---   Website Automation   ---",
+            "---   Website Automation II  ---",
             style="warning",
             justify="center",
         )

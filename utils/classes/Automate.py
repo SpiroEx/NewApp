@@ -4,6 +4,7 @@ import subprocess
 from dataclasses import dataclass
 from rich import print
 from classes.Constants import Constants
+from classes.EnvLocalHelper import EnvLocalHelper
 from classes.FigmaHelper import FigmaHelper
 from classes.FileHelper import FileHelper
 from classes.GithubHelper import GithubHelper
@@ -41,13 +42,17 @@ class Automate:
         t_and_c: str = constants["t_and_c"]
 
         #! INSTALL
-        FigmaHelper.set_key(figma_url)
-        Automate.set_title(title)
-        Automate.about(about_prompt)
-        Automate.npm_install()
-        Automate.randomize_loading()
-        Automate.import_figma()
-        Automate.create_repo(title)
+        # FigmaHelper.set_key(figma_url)
+        # Automate.set_title(title)
+        # Automate.about(about_prompt)
+
+        if use_firebase:
+            EnvLocalHelper.set_firebase_config(firebase_config)
+
+        # Automate.npm_install()
+        # Automate.randomize_loading()
+        # Automate.import_figma()
+        # Automate.create_repo(title)
 
         # TODO: replace rope_name in README.md
 

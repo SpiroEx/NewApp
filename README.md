@@ -8,35 +8,35 @@
 
    - Create Firebase project
 
-   - Update `firebase.ts`
+   - Update `firebase.ts` 1
 
-   - `firebase use {{projec_id}}`
+   - `firebase use {{projec_id}}` 2
 
-   - Update `Config.useFirebase: true`
+   - Update `Config.useFirebase: true` 3
 
    - Check if will use Hosting
 
-     - Update README.md: "The application is currently deployed at [{link}]({link})"
+     - Update README.md: "The application is currently deployed at [{link}]({link})" 4
 
      - Check if will use SignIn
 
-       - Update `Config.useSignIn: true`
+       - Update `Config.useSignIn: true` 5
 
      - Check if will use Register
 
-       - Update `Config.useRegister: true`
+       - Update `Config.useRegister: true` 6
 
      - Check if will use FCM
-       - Update `Config.vapidKey`
-       - Update `Config.useFCM: true`
+       - Update `Config.vapidKey` 7
+       - Update `Config.useFCM: true` 8
 
    - Check if will use Storage / Functions
-     - Update `firebase.json`
+     - Update `firebase.json` 9 10
 
 3. Check if will use TermsAndConditions
 
-   - update `Config.useTermsAndConditions: true`
-   - update `Config.termsLink: "{{https://www.termsandconditionsgenerator.com}}"`
+   - update `Config.useTermsAndConditions: true` 11
+   - update `Config.termsLink: "{{https://www.termsandconditionsgenerator.com}}"` 12
 
 4. Remove this part when done
 

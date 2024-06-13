@@ -1,4 +1,4 @@
-from utils.classes.FileHelper import FileHelper
+from classes.FileHelper import FileHelper
 
 
 class ReadmeHelper:

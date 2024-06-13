@@ -1,9 +1,11 @@
+import json
 import os
 import subprocess
 from dataclasses import dataclass
 
 from classes.Constants import Constants
 from classes.FigmaHelper import FigmaHelper
+from classes.FileHelper import FileHelper
 from classes.GithubHelper import GithubHelper
 from classes.LoadingHelper import LoadingHelper
 from classes.MetadataHelper import MetadataHelper
@@ -18,12 +20,17 @@ from classes.ChatGPT import ChatGPT
 class Automate:
     @Rich.wrap
     def init():
-        #! INPUT
-        FigmaHelper.set_key()
-        title = Rich.ask("Enter Title")
-        about_prompt = Rich.ask("What is the web app about")
+        #! GET INPUT
+        # figma_url = Rich.ask("Enter Figma URL")
+        # title = Rich.ask("Enter Title")
+        # about_prompt = Rich.ask("What is the web app about")
+        constants = json.loads(FileHelper.read("utils/constants_temp.txt"))
+        figma_url = constants["figma_url"]
+        title = constants["title"]
+        about_prompt = constants["about_prompt"]
 
         #! INSTALL
+        FigmaHelper.set_key(figma_url)
         Automate.set_title(title)
         Automate.about(about_prompt)
         Automate.npm_install()
@@ -68,6 +75,6 @@ class Automate:
     def set_title(title: str):
         MetadataHelper.set_title(title)
 
-    @Rich.info(":rocket: Generating about page...")
+    @Rich.info(":rocket: Generating about...")
     def about(prompt: str):
         MetadataHelper.set_about(prompt)

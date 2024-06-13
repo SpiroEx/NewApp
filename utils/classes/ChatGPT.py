@@ -13,4 +13,13 @@ class ChatGPT:
                 {"role": "user", "content": prompt},
             ],
         )
-        return completion.choices[0].message.content
+        reply = completion.choices[0].message.content
+
+        if reply is None:
+            reply = ""
+
+        # remove quotes at the start and end
+        if reply.startswith('"') and reply.endswith('"'):
+            reply = reply[1:-1]
+
+        return reply

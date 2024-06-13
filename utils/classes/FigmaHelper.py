@@ -104,8 +104,7 @@ class FigmaHelper:
         ManifestJson.set_background_color(manifest_bg)
 
     @staticmethod
-    def set_key():
-        url = Rich.ask("Enter Figma URL")
+    def set_key(url: str):
 
         #! Extract ID from Figma URL
         pattern = r"https://www\.figma\.com/design/([a-zA-Z0-9_-]+)/.*"

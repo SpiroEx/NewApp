@@ -62,3 +62,46 @@ class FileHelper:
     @staticmethod
     def remove_file(file_path: str) -> None:
         os.remove(file_path)
+
+    @staticmethod
+    def get_absolute_path(relative_path: str) -> str:
+        return os.getcwd() + relative_path
+
+    @staticmethod
+    def get_relative_path():
+        return os.getcwd()
+
+    @staticmethod
+    def create_file(file_path: str):
+        open(file_path, "w").close()
+
+    @staticmethod
+    def rename(src: str, dest: str):
+        os.rename(src, dest)
+
+    @staticmethod
+    def move(src: str, dest: str):
+        shutil.move(src, dest)
+
+    @staticmethod
+    def copy(src: str, dest: str):
+        shutil.copy(src, dest)
+
+    @staticmethod
+    def read(file_path: str) -> str:
+        with open(file_path, "r") as file:
+            return file.read()
+
+    @staticmethod
+    def write(file_path: str, content: str):
+        with open(file_path, "w") as file:
+            file.write(content)
+
+    @staticmethod
+    def delete(file_path: str):
+        os.remove(file_path)
+
+    @staticmethod
+    def update(file_path: str, content: str):
+        with open(file_path, "w") as file:
+            file.write(content)

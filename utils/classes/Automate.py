@@ -27,7 +27,7 @@ class Automate:
         constants = json.loads(FileHelper.read("utils/constants_temp.txt"))
         figma_url = constants["figma_url"]
         title = constants["title"]
-        about_prompt = constants["about_prompt"]
+        about_prompt = constants["about"]
 
         #! INSTALL
         FigmaHelper.set_key(figma_url)

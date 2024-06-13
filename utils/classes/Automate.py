@@ -43,9 +43,9 @@ class Automate:
         t_and_c: str = constants["t_and_c"]
 
         #! INSTALL
-        # FigmaHelper.set_key(figma_url)
-        # Automate.set_title(title)
-        # Automate.about(about_prompt)
+        FigmaHelper.set_key(figma_url)
+        Automate.set_title(title)
+        Automate.about(about_prompt)
 
         if use_firebase:
             Automate.firebase_config(firebase_config)

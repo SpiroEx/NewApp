@@ -37,3 +37,10 @@ class ManifestJson:
             r'"background_color": "(.*)"',
             f'"background_color": "{color}"',
         )
+
+    @staticmethod
+    def set_description(description: str):
+        ManifestJson._replace(
+            r'"description": "(.*)",',
+            f'"description": "{description}",',
+        )

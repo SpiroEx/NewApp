@@ -32,3 +32,9 @@ class MetadataHelper:
 
         #! README.md
         ReadmeHelper.set_about(about)
+
+        #! Constants.ts
+        ConstantsTs.set_about(about)
+
+        #! manifest.json
+        ManifestJson.set_description(about)

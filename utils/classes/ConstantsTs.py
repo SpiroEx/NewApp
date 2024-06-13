@@ -41,3 +41,10 @@ class ConstantsTs:
             r'ProjTitle2: "(.*)",',
             f'ProjTitle2: "{title2}",',
         )
+
+    @staticmethod
+    def set_about(about: str):
+        ConstantsTs._replace(
+            r'About: "(.*)",',
+            f'About: "{about}",',
+        )

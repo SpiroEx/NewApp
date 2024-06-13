@@ -1,4 +1,5 @@
 import re
+import subprocess
 from classes.FileHelper import FileHelper
 
 
@@ -36,8 +37,16 @@ class EnvLocalHelper:
         env_vars_str = "\n".join(env_vars)
 
         # Print the result
-        print(env_vars_str)
         EnvLocalHelper._replace(
             r"NEXT_PUBLIC_FIREBASE_API_KEY=([\s\S]*)NEXT_PUBLIC_FIREBASE_APP_ID=(.*)",
             f"{env_vars_str}",
+        )
+
+    @staticmethod
+    def set_firebase_id(firebase_config: str):
+        pattern = r'"projectId": "(.*)"'
+        matches = re.findall(pattern, firebase_config)
+        firebase_id = matches[0]
+        subprocess.check_call(
+            f"firebase use {firebase_id}", shell=True, stdout=subprocess.PIPE
         )

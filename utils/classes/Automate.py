@@ -4,6 +4,7 @@ import subprocess
 from dataclasses import dataclass
 from rich import print
 from classes.Constants import Constants
+from classes.ConstantsTs import ConstantsTs
 from classes.EnvLocalHelper import EnvLocalHelper
 from classes.FigmaHelper import FigmaHelper
 from classes.FileHelper import FileHelper
@@ -47,12 +48,17 @@ class Automate:
         # Automate.about(about_prompt)
 
         if use_firebase:
-            EnvLocalHelper.set_firebase_config(firebase_config)
+            Automate.firebase_config(firebase_config)
+            Automate.firebase_id(firebase_config)
+            Automate.set_use_firebase(use_firebase)
 
-        # Automate.npm_install()
-        # Automate.randomize_loading()
-        # Automate.import_figma()
-        # Automate.create_repo(title)
+            # if use_hosting:
+            #     Automate.set_use_hosting(use_hosting)
+
+        Automate.npm_install()
+        Automate.randomize_loading()
+        Automate.import_figma()
+        Automate.create_repo(title)
 
         # TODO: replace rope_name in README.md
 
@@ -96,3 +102,20 @@ class Automate:
     @Rich.info(":rocket: Generating about...")
     def about(prompt: str):
         MetadataHelper.set_about(prompt)
+
+    @Rich.info(":rocket: Setting Firebase config...")
+    def firebase_config(firebase_config: str):
+        EnvLocalHelper.set_firebase_config(firebase_config)
+
+    @Rich.info(":rocket: Setting Firebase ID...")
+    def firebase_id(firebase_config: str):
+        EnvLocalHelper.set_firebase_id(firebase_config)
+
+    @Rich.info(":rocket: Setting useFirebase...")
+    def set_use_firebase(use_firebase: bool):
+        ConstantsTs.set_use_firebase(use_firebase)
+
+    @Rich.info(":rocket: Setting useHosting...")
+    def set_use_hosting(use_hosting: bool):
+
+        ConstantsTs.set_use_hosting(use_hosting)

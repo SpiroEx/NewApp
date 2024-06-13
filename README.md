@@ -8,15 +8,16 @@
 
    - Create Firebase project
 
-   - Update `firebase.ts` 1
+   - Update `firebase.ts` 1-
 
-   - `firebase use {{projec_id}}` 2
+   - `firebase use {{projec_id}}` 2-
 
-   - Update `Config.useFirebase: true` 3
+   - Update `Config.useFirebase: true` 3-
 
    - Check if will use Hosting
 
-     - Update README.md: "The application is currently deployed at [{link}]({link})" 4
+     - Update README.md: "The application is currently deployed at [{link}]({link})" 4.1
+     - also if not 4.2
 
      - Check if will use SignIn
 

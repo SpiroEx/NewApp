@@ -17,3 +17,11 @@ class ReadmeHelper:
     @staticmethod
     def set_about(about: str):
         ReadmeHelper._replace(r"{{About}}", about)
+
+    @staticmethod
+    def set_link(link: str):
+        ReadmeHelper._replace(r"{link}", link)
+
+    @staticmethod
+    def delete_link():
+        ReadmeHelper._replace(r"The application is currently deployed at(.*)\n", "")

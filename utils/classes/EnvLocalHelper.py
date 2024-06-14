@@ -44,7 +44,7 @@ class EnvLocalHelper:
 
     @staticmethod
     def set_firebase_id(firebase_config: str):
-        pattern = r'"projectId": "(.*)"'
+        pattern = r'projectId: "(.*)"'
         matches = re.findall(pattern, firebase_config)
         firebase_id = matches[0]
         subprocess.check_call(

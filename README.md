@@ -16,23 +16,23 @@
 
    - Check if will use Hosting
 
-     - Update README.md: "The application is currently deployed at [{link}]({link})" 4.1
-     - also if not 4.2
+     - Update README.md: "The application is currently deployed at [{link}]({link})" 4.1-
+     - also if not 4.2-
 
      - Check if will use SignIn
 
-       - Update `Config.useSignIn: true` 5
+       - Update `Config.useSignIn: true` 5-
 
      - Check if will use Register
 
-       - Update `Config.useRegister: true` 6
+       - Update `Config.useRegister: true` 6-
 
      - Check if will use FCM
-       - Update `Config.vapidKey` 7
-       - Update `Config.useFCM: true` 8
+       - Update `Config.vapidKey` 7-
+       - Update `Config.useFCM: true` 8-
 
    - Check if will use Storage / Functions
-     - Update `firebase.json` 9 10
+     - Update `firebase.json` 9- 10-
 
 3. Check if will use TermsAndConditions
 

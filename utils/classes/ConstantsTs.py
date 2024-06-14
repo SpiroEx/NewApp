@@ -92,7 +92,7 @@ class ConstantsTs:
         )
 
     @staticmethod
-    def set_terms_and_conditions(t_and_c: str):
+    def set_t_and_c(t_and_c: str):
         ConstantsTs._replace(
             r'termsLink: "(.*)",',
             f'termsLink: "{t_and_c}",',

@@ -42,7 +42,7 @@ const _p: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   return (
     <p
       className={twMerge(
-        "text-base font-light tracking-wide opacity-50",
+        "text-sm font-light tracking-wider opacity-50",
         className
       )}
       {...props}

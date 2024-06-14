@@ -52,29 +52,29 @@ class ConstantsTs:
     @staticmethod
     def set_use_firebase(use_firebase: bool):
         ConstantsTs._replace(
-            r"useFirebase: (.*)",
-            f"useFirebase: {str(use_firebase).lower()}",
+            r"useFirebase: (.*),",
+            f"useFirebase: {str(use_firebase).lower()},",
         )
 
     @staticmethod
     def set_use_sign_in(use_sign_in: bool):
         ConstantsTs._replace(
-            r"useSignIn: (.*)",
-            f"useSignIn: {str(use_sign_in).lower()}",
+            r"useSignIn: (.*),",
+            f"useSignIn: {str(use_sign_in).lower()},",
         )
 
     @staticmethod
     def set_use_register(use_register: bool):
         ConstantsTs._replace(
-            r"useRegister: (.*)",
-            f"useRegister: {str(use_register).lower()}",
+            r"useRegister: (.*),",
+            f"useRegister: {str(use_register).lower()},",
         )
 
     @staticmethod
     def set_use_fcm(use_fcm: bool):
         ConstantsTs._replace(
-            r"useFCM: (.*)",
-            f"useFCM: {str(use_fcm).lower()}",
+            r"useFCM: (.*),",
+            f"useFCM: {str(use_fcm).lower()},",
         )
 
     @staticmethod
@@ -87,8 +87,8 @@ class ConstantsTs:
     @staticmethod
     def set_use_t_and_c(use_t_and_c: bool):
         ConstantsTs._replace(
-            r"useTermsAndConditions: (.*)",
-            f"useTermsAndConditions: {str(use_t_and_c).lower()}",
+            r"useTermsAndConditions: (.*),",
+            f"useTermsAndConditions: {str(use_t_and_c).lower()},",
         )
 
     @staticmethod

@@ -6,6 +6,12 @@ export const Constants = {
   ProjTitle2: "",
   About: "{{About}}",
   NodeMCUIP: "http://192.168.4.1",
+  DefaulMapZoom: 13,
+};
+
+export const LocalStorage = {
+  mapCenter: "mapCenter",
+  mapZoom: "mapZoom",
 };
 
 export const Config = {

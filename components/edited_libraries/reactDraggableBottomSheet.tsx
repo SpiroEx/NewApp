@@ -100,6 +100,7 @@ var DragIndicator = function (_a) {
 var DragIndicator$1 = memo(DragIndicator);
 
 var useIsDesktop = function (desktopBreakpoint) {
+  if (typeof window === "undefined") return false;
   return window.innerWidth >= desktopBreakpoint;
 };
 

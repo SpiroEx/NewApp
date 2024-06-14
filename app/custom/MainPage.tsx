@@ -1,3 +1,4 @@
+import Maps from "@/components/templates/Maps";
 import PageContainer from "@/components/templates/PageContainer";
 import Txt from "@/components/templates/Txt";
 

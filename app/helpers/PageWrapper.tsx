@@ -45,7 +45,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
       }}
     >
       <Footer
-        className="bg-black"
+        className=""
         // pages={{
         //   [Pages.Main]: <DashboardIcon />,
         //   [Pages.History]: <PaperIcon />,

@@ -6,6 +6,7 @@ interface DirectionArrowsProps {
   onDown: () => void;
   onLeft: () => void;
   onRight: () => void;
+  onTouchEnd?: () => void;
   gap?: number;
 }
 
@@ -15,16 +16,18 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
   onDown,
   onLeft,
   onRight,
-  gap = 3,
+  onTouchEnd,
+  gap = 1,
 }) => {
   return (
     <div
-      className={twMerge("w-full flex flex-col items-center")}
+      className={twMerge("flex flex-col items-center")}
       style={{
         gap: `${gap}rem`,
       }}
+      onContextMenu={(e) => e.preventDefault()}
     >
-      <div className="" onClick={onUp}>
+      <div className="" onTouchStart={onUp} onTouchEnd={onTouchEnd}>
         {icon}
       </div>
       <div
@@ -33,15 +36,23 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
           gap: `${gap}rem`,
         }}
       >
-        <div className="-rotate-90" onClick={onLeft}>
+        <div
+          className="-rotate-90"
+          onTouchStart={onLeft}
+          onTouchEnd={onTouchEnd}
+        >
           {icon}
         </div>
         <div className="opacity-0 select-none">{icon}</div>
-        <div className="rotate-90" onClick={onRight}>
+        <div
+          className="rotate-90"
+          onTouchStart={onRight}
+          onTouchEnd={onTouchEnd}
+        >
           {icon}
         </div>
       </div>
-      <div className="rotate-180" onClick={onDown}>
+      <div className="rotate-180" onTouchStart={onDown} onTouchEnd={onTouchEnd}>
         {icon}
       </div>
     </div>

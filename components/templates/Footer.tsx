@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ pages, className }) => {
   return pages && Object.keys(pages).includes(String(currentPage)) ? (
     <div
       className={twMerge(
-        "fixed bottom-0 w-screen h-16 shadow-lg flex justify-around bg-footer",
+        "fixed z-20 bottom-0 w-screen h-16 shadow-lg flex justify-around bg-footer",
         className
       )}
       onContextMenu={(e) => e.preventDefault()}

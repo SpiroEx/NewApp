@@ -166,6 +166,8 @@ class Automate:
     @Rich.info(":rocket: Setting useFunctions...")
     def set_use_functions(use_functions: bool):
         FirebaseJson.set_functions(use_functions)
+        if not use_functions:
+            FileHelper.delete_folder("functions")
 
     @Rich.info(":rocket: Setting useStorage...")
     def set_use_storage(use_storage: bool):

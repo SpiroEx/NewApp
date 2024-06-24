@@ -102,6 +102,10 @@ class FileHelper:
         os.remove(file_path)
 
     @staticmethod
+    def delete_folder(folder_path: str):
+        shutil.rmtree(folder_path)
+
+    @staticmethod
     def update(file_path: str, content: str):
         with open(file_path, "w") as file:
             file.write(content)

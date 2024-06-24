@@ -3,7 +3,7 @@ from classes.Developer import Developer
 
 class Constants:
     DEVELOPER = Developer.get("Tim")
-    FIGMA_KEY = "fW4DoJuSg3qiY6ttPZZ8jz"
+    FIGMA_KEY = "jlXiOtMnrJDZAYpnp017QU"
     TITLE = "Title"
 
     SVG_TEMP_DIR = "svg_temp/"

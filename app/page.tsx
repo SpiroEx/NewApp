@@ -7,7 +7,9 @@ import Tailwind_Wrapper from "./templates/Tailwind_Wrapper";
 
 export default function Home() {
   return (
-    <div className={twMerge("w-full h-full bg-bg text-text", montserratFont)}>
+    <div
+      className={twMerge("w-full min-h-full bg-bg text-text", montserratFont)}
+    >
       <Tailwind_Wrapper />
     </div>
   );

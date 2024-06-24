@@ -80,5 +80,11 @@ def about(prompt: str):
     Automate.about(prompt)
 
 
+@cli.command()
+def test():
+    """For testing only"""
+    Automate.test()
+
+
 if __name__ == "__main__":
     cli()

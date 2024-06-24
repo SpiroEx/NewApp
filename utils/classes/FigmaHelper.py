@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Callable, Dict, List, NamedTuple, Optional
+from typing import Callable, Dict, List, NamedTuple, Optional, Tuple
 from classes.Constants import Constants
 from classes.ConstantsPy import ConstantsPy
 from classes.FileHelper import FileHelper
@@ -82,12 +82,18 @@ class FigmaHelper:
         json_data = response.json()
         styles = json_data["styles"]
 
+        # Rich.print(styles)
+        # return
+
         #! APPEND NEW CUSTOM COLORS
         color_lines: List[str] = []
 
         manifest_bg = "#ffffff"
 
         for ids in styles.keys():
+            if styles[ids]["styleType"] != "FILL":
+                continue
+
             figma_color = FigmaHelper._get_rgba(FigmaHelper.key, ids)
             name = figma_color.name
             color = FigmaHelper._rgb_to_hex_rgba(figma_color)
@@ -139,7 +145,7 @@ class FigmaHelper:
         return components
 
     @staticmethod
-    def _id_name_mapping(svgs: List[Dict]) -> Dict:
+    def _id_name_mapping(svgs: List[Dict]) -> Tuple[List[str], Dict[str, str]]:
         return [svg["id"] for svg in svgs], {svg["id"]: svg["name"][1:] for svg in svgs}
 
     @staticmethod
@@ -164,8 +170,12 @@ class FigmaHelper:
             dictionary, lambda name: name.startswith("~")
         )
 
+        # Rich.print(svgs)
+        # return
+
         #! GET IDs
         ids, id_name_mapping = FigmaHelper._id_name_mapping(svgs)
+        ids = list(set(ids))
 
         #! GET SVG IMAGES
         url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={','.join(ids)}&format=svg&svg_outline_text=false"

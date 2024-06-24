@@ -180,3 +180,8 @@ class Automate:
     @Rich.info(":rocket: Setting T&C...")
     def set_t_and_c(t_and_c: str):
         ConstantsTs.set_t_and_c(t_and_c)
+
+    @Rich.info(":rocket: Testing...")
+    def test():
+        #! PUT TESTS HERE
+        FigmaHelper.get_colors()

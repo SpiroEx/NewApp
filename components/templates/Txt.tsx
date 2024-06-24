@@ -25,7 +25,7 @@ const section: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
 }) => {
   return (
     <p
-      className={twMerge("text-sm tracking-widest font-bold", className)}
+      className={twMerge("text-base tracking-widest font-bold", className)}
       {...props}
     >
       {children}
@@ -68,11 +68,31 @@ const number: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   );
 };
 
+//! EXPONENT
+const exponent: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
+  children,
+  className,
+  ...props
+}) => {
+  return (
+    <p
+      className={twMerge(
+        "text-xs tracking-wider font-extralight opacity-75",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </p>
+  );
+};
+
 const Txt = {
   title,
   section,
   p: _p,
   number,
+  exponent,
 };
 
 export default Txt;

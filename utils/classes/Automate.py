@@ -41,6 +41,8 @@ class Automate:
         use_t_and_c: bool = constants["use_t_and_c"]
         t_and_c: str = constants["t_and_c"]
 
+        Rich.print("---")
+        Rich.print(figma_url)
         #! FIGMA KEY / TITLE / ABOUT
         FigmaHelper.set_key(figma_url)
         Automate.set_title(title)

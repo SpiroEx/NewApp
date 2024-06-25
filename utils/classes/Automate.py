@@ -3,6 +3,7 @@ import os
 import subprocess
 from dataclasses import dataclass
 from rich import print
+from classes.Checkpoint import Checkpoint
 from classes.Constants import Constants
 from classes.ConstantsTs import ConstantsTs
 from classes.EnvLocalHelper import EnvLocalHelper
@@ -41,51 +42,93 @@ class Automate:
         use_t_and_c: bool = constants["use_t_and_c"]
         t_and_c: str = constants["t_and_c"]
 
+        #! Get Checkpoint
+        checkpoint = Checkpoint.read()
+
         Rich.print("---")
         Rich.print(figma_url)
-        #! FIGMA KEY / TITLE / ABOUT
-        FigmaHelper.set_key(figma_url)
-        Automate.set_title(title)
-        Automate.about(about_prompt)
+
+        #! SET FIGMA KEY
+        if checkpoint < 6:
+            FigmaHelper.set_key(figma_url)
+            Checkpoint.write(6)
+
+        #! SET TITLE
+        if checkpoint < 7:
+            Automate.set_title(title)
+            Checkpoint.write(7)
+
+        #! SET ABOUT
+        if checkpoint < 8:
+            Automate.about(about_prompt)
+            Checkpoint.write(8)
 
         #! USE FIREBASE
-        Automate.set_use_firebase(use_firebase)
-        if use_firebase:
-            Automate.firebase_config(firebase_config)
-            Automate.firebase_id(firebase_config)
+        if checkpoint < 9:
+            Automate.set_use_firebase(use_firebase)
+            if use_firebase:
+                Automate.firebase_config(firebase_config)
+                Automate.firebase_id(firebase_config)
+            Checkpoint.write(9)
 
-        #! USE HOSTING / SIGN IN / REGISTER
-        Automate.set_use_hosting(use_hosting)
-        Automate.set_use_sign_in(use_signin)
-        Automate.set_use_register(use_register)
+        #! USE HOSTING
+        if checkpoint < 10:
+            Automate.set_use_hosting(use_hosting)
+            Checkpoint.write(10)
+
+        #! USE SIGNIN
+        if checkpoint < 11:
+            Automate.set_use_sign_in(use_signin)
+            Checkpoint.write(11)
+
+        #! USE REGISTER
+        if checkpoint < 12:
+            Automate.set_use_register(use_register)
+            Checkpoint.write(12)
 
         #! USE FCM
-        Automate.set_use_fcm(use_fcm)
-        if use_fcm:
-            Automate.set_vapid_key(vapid_key)
+        if checkpoint < 13:
+            Automate.set_use_fcm(use_fcm)
+            if use_fcm:
+                Automate.set_vapid_key(vapid_key)
+            Checkpoint.write(13)
 
-        #! USE FUNCTIONS / STORAGE
-        Automate.set_use_functions(use_functions)
-        Automate.set_use_storage(use_storage)
+        #! USE FUNCTIONS
+        if checkpoint < 14:
+            Automate.set_use_functions(use_functions)
+            Checkpoint.write(14)
+
+        #! USE STORAGE
+        if checkpoint < 15:
+            Automate.set_use_storage(use_storage)
+            Checkpoint.write(15)
 
         #! USE T&C
-        Automate.set_use_t_and_c(use_t_and_c)
-        if use_t_and_c:
-            Automate.set_t_and_c(t_and_c)
+        if checkpoint < 16:
+            Automate.set_use_t_and_c(use_t_and_c)
+            if use_t_and_c:
+                Automate.set_t_and_c(t_and_c)
+            Checkpoint.write(16)
 
         #! INSTALL DEPENDENCIES
-        Automate.npm_install()
+        if checkpoint < 17:
+            Automate.npm_install()
+            Checkpoint.write(17)
 
         #! RANDOMIZE LOADING
-        Automate.randomize_loading()
+        if checkpoint < 18:
+            Automate.randomize_loading()
+            Checkpoint.write(18)
 
         #! IMPORT FIGMA
-        Automate.import_figma()
+        if checkpoint < 19:
+            Automate.import_figma()
+            Checkpoint.write(19)
 
         #! CREATE GITHUB REPO
-        Automate.create_repo(title)
-
-        # TODO: replace repo_name in README.md
+        if checkpoint < 20:
+            Automate.create_repo(title)
+            Checkpoint.write(20)
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():

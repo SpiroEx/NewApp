@@ -175,7 +175,17 @@ class FigmaHelper:
 
         #! GET IDs
         ids, id_name_mapping = FigmaHelper._id_name_mapping(svgs)
-        ids = list(set(ids))
+
+        #! FILTER UNIQUE IDS
+        _unique_ids = []
+        _inputted_names = []
+        for id in ids:
+            name = id_name_mapping[id]
+            if name not in _inputted_names:
+                _unique_ids.append(id)
+                _inputted_names.append(name)
+
+        ids = _unique_ids
 
         #! GET SVG IMAGES
         url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={','.join(ids)}&format=svg&svg_outline_text=false"

@@ -46,6 +46,8 @@ class Automate:
         checkpoint = Checkpoint.read()
 
         Rich.print("---")
+        Rich.print(constants)
+        Rich.print("---")
         Rich.print(figma_url)
 
         #! SET FIGMA KEY

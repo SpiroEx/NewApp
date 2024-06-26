@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import VisibilityIcon from "@/components/svg/icon_animated/visibility/VisibilityIcon";
 import Logo from "@/components/templates/Logo";
 import MyButton from "@/components/templates/MyButton";
@@ -25,11 +26,14 @@ const SignInPage: React.FC = () => {
   return (
     <div>
       <div
-        className={`flex flex-col items-ceter justify-center space-y-8 px-10`}
+        className={`flex flex-col items-ceter justify-center space-y-8 px-10 pb-12`}
       >
+        {/*//! HEADER */}
         <div className="mt-8" />
         <Logo />
         <Title />
+
+        {/*//! FORM */}
         <form
           className="flex flex-col w-full justify-center items-center space-y-10"
           onSubmit={type === SignInType.signUp ? signup : login}
@@ -63,6 +67,7 @@ const SignInPage: React.FC = () => {
           />
         </form>
 
+        {/*//! FORGOT PASSWORD */}
         <div className="h-8 flex items-end">
           {type == SignInType.logIn && (
             <p
@@ -73,6 +78,8 @@ const SignInPage: React.FC = () => {
             </p>
           )}
         </div>
+
+        {/*//! DONT HAVE AN ACCOUNT */}
         <div className="flex flex-row items-center justify-center">
           <p
             className={`${montserratFont} text-text_gray fit-content m-0 text-xs`}

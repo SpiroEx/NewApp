@@ -46,10 +46,10 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
     >
       <Footer
         className=""
-        // pages={[
-        //   [Pages.Main, <ControlsIcon />],
-        //   [Pages.Settings, <SettingsIcon />],
-        // ]}
+        // pages={{
+        //   [Pages.Main]: <ControlsIcon />,
+        //   [Pages.Settings]: <SettingsIcon />,
+        // }}
       />
 
       <div className="w-full h-full overflow-y-auto">

@@ -3,8 +3,10 @@ import isValidEmail from "@/myfunctions/is_valid_email";
 import notify from "@/myfunctions/notify";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import {
   FormEventHandler,
@@ -127,6 +129,31 @@ function useSignInPage() {
       });
   };
 
+  const googleSignIn: MouseEventHandler<HTMLDivElement> = async (e) => {
+    e.preventDefault();
+    setIsSigningIn(true);
+    try {
+      // Sign in using a popup.
+      const provider = new GoogleAuthProvider();
+      provider.addScope("profile");
+      provider.addScope("email");
+      const result = await signInWithPopup(auth, provider);
+
+      // The signed-in user info.
+      const user = result.user;
+      updateSignedInBefore(true);
+
+      // This gives you a Google Access Token.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+    } catch (error) {
+      console.log(error);
+      notify("An error occured while signing in with Google");
+    }
+
+    setIsSigningIn(false);
+  };
+
   const forgotPassword: MouseEventHandler<HTMLParagraphElement> = (e) => {
     e.preventDefault();
 
@@ -156,6 +183,7 @@ function useSignInPage() {
     emailInput,
     passwordInput,
     isSigningIn,
+    googleSignIn,
   };
 }
 

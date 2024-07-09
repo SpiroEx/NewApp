@@ -8,6 +8,8 @@ import Title from "@/components/templates/Title";
 import useSignInPage, { SignInType } from "@/hooks/useSignIn";
 import { montserratFont } from "@/styles/fonts";
 import { useState } from "react";
+import Txt from "@/components/templates/Txt";
+import GoogleLogo from "@/components/svg/icon/GoogleLogo";
 
 const SignInPage: React.FC = () => {
   const {
@@ -19,6 +21,7 @@ const SignInPage: React.FC = () => {
     emailInput,
     passwordInput,
     isSigningIn,
+    googleSignIn,
   } = useSignInPage();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -96,6 +99,19 @@ const SignInPage: React.FC = () => {
             {type == SignInType.logIn ? "CREATE ONE" : "LOGIN"}
           </p>
         </div>
+
+        {/*//! GMAIL */}
+        <div className="flex items-center justify-center w-full">
+          <Txt.p>or</Txt.p>
+        </div>
+        <motion.div
+          className="w-min m-auto flex items-center gap-2 rounded-full bg-light_dark px-4 py-2"
+          whileTap={{ scale: 0.85 }}
+          onClick={googleSignIn}
+        >
+          <GoogleLogo />
+          <Txt.p className="whitespace-nowrap">Sign in with Google</Txt.p>
+        </motion.div>
       </div>
     </div>
   );

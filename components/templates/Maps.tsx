@@ -2,14 +2,16 @@ import { Constants, LocalStorage } from "@/classes/Constants";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import GoogleMapReact from "google-map-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import LocationBottomSheet from "../templates/LocationBottomSheet";
+import LocationBottomSheet from "./LocationBottomSheet";
+import MyBottomSheet from "./MyBottomSheet";
 
 export interface MapMarker {
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
   icon: string;
   name: string;
   color: string;
+  bottom_sheet?: React.ReactNode;
 }
 
 interface MapsProps {
@@ -23,6 +25,7 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
   const [markers, setMarkers] = useState<any>();
   const [openLocationBS, setOpenLocationBS] = useState(false);
   const [selectedMarker, setSelectedMarker] = useState<any>();
+  const [selectedMapMarker, setSelectedMapMarker] = useState<MapMarker>();
 
   //! ZOOM / SET ZOOM
   const [zoom, setZoom] = useLocalStorage(
@@ -37,11 +40,12 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
 
   //! TOGGLE LOCATION BOTTOM SHEET
   const toggleOpenLocation = useCallback(
-    (marker: any) => {
+    (marker: any, mapMarker: MapMarker) => {
       setSelectedMarker(marker);
+      setSelectedMapMarker(mapMarker);
       setOpenLocationBS((open) => !open);
     },
-    [setOpenLocationBS]
+    [setSelectedMarker, setSelectedMapMarker, setOpenLocationBS]
   );
 
   //! MAP TYPE ID
@@ -65,8 +69,8 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
     () =>
       getCenter(
         mapMarkers.map((marker) => ({
-          lat: marker.latitude,
-          lng: marker.longitude,
+          lat: marker.latitude ?? 14.5995,
+          lng: marker.longitude ?? 120.9842,
         }))
       ),
     [mapMarkers]
@@ -99,7 +103,7 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
     `;
   }, []);
 
-  console.log(mapMarkers.map((marker) => generateKeyFrames(marker)).join("\n"));
+  // console.log(mapMarkers.map((marker) => generateKeyFrames(marker)).join("\n"));
 
   return (
     <div
@@ -122,6 +126,7 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
         style={{
           width: "100%",
           height: "100%",
+          minHeight: "16rem",
           position: "relative",
           zIndex: 1,
         }}
@@ -132,13 +137,13 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
 
           const _markers = [];
 
-          for (const marker of mapMarkers) {
+          for (const mapMarker of mapMarkers) {
             const _marker = new maps.Marker({
-              position: { lat: marker.latitude, lng: marker.longitude },
+              position: { lat: mapMarker.latitude, lng: mapMarker.longitude },
               map,
-              title: marker.name,
+              title: mapMarker.name,
               icon: {
-                url: marker.icon, // url
+                url: mapMarker.icon, // url
                 scaledSize: new maps.Size(50, 50), // scaled size
                 origin: new maps.Point(0, 0), // origin
                 anchor: new maps.Point(25, 25), // anchor
@@ -148,13 +153,11 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
 
             //! MARKER CLICK
             maps.event.addDomListener(_marker, "click", () =>
-              toggleOpenLocation(_marker)
+              toggleOpenLocation(_marker, mapMarker)
             );
-            maps.event.addDomListener(
-              _marker,
-              "touchstart",
-              toggleOpenLocation
-            );
+            maps.event.addDomListener(_marker, "touchstart", () => {
+              toggleOpenLocation(_marker, mapMarker);
+            });
             _markers.push(_marker);
           }
 
@@ -168,12 +171,23 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
           fullscreenControl: false,
         }}
       ></GoogleMapReact>
-      <LocationBottomSheet
-        open={openLocationBS}
-        lat={selectedMarker?.position.lat() ?? defaultCenter.lat}
-        lng={selectedMarker?.position.lng() ?? defaultCenter.lng}
-        onClose={() => setOpenLocationBS(false)}
-      />
+
+      {/*//! LOCATION BOTTOM SHEET */}
+      {selectedMapMarker?.bottom_sheet === undefined ? (
+        <LocationBottomSheet
+          open={openLocationBS}
+          lat={selectedMarker?.position.lat() ?? defaultCenter.lat}
+          lng={selectedMarker?.position.lng() ?? defaultCenter.lng}
+          onClose={() => setOpenLocationBS(false)}
+        />
+      ) : (
+        <MyBottomSheet
+          open={openLocationBS}
+          onClose={() => setOpenLocationBS(false)}
+        >
+          {selectedMapMarker.bottom_sheet}
+        </MyBottomSheet>
+      )}
     </div>
   );
 };

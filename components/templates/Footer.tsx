@@ -4,13 +4,16 @@ import { Pages, PageWrapperContext } from "@/app/helpers/PageWrapper";
 import { twMerge } from "tailwind-merge";
 
 interface FooterProps {
-  pages?: { [key in Pages]?: React.ReactNode };
+  pages?: [Pages, React.ReactNode][];
   className?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({ pages, className }) => {
   const { page: currentPage } = useContext(PageWrapperContext);
-  return pages && Object.keys(pages).includes(String(currentPage)) ? (
+
+  const footerPages = pages?.map(([page, icon]) => page);
+
+  return pages && footerPages && footerPages.includes(currentPage) ? (
     <div
       className={twMerge(
         "fixed z-20 bottom-0 w-screen h-16 shadow-lg flex justify-around bg-footer",
@@ -18,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({ pages, className }) => {
       )}
       onContextMenu={(e) => e.preventDefault()}
     >
-      {Object.entries(pages).map(([page, icon]) => (
+      {pages.map(([page, icon]) => (
         <FooterIcon key={page} page={Number(page)} icon={icon} />
       ))}
     </div>

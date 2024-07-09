@@ -17,6 +17,7 @@ class GithubHelper:
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
+    @staticmethod
     def create_repo(title: str):
         repo_name = title.replace(" ", "-") + "-Website"
 

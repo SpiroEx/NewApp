@@ -43,94 +43,24 @@ class Automate:
         t_and_c: str = constants["t_and_c"]
 
         #! Get Checkpoint
-        checkpoint = Checkpoint.read()
+        checkpoint = Checkpoint("utils/data.txt")
+        print(f"Checkpoint: {checkpoint}")
 
-        Rich.print("---")
-        Rich.print(constants)
-        Rich.print("---")
-        Rich.print(figma_url)
-
-        #! SET FIGMA KEY
-        if checkpoint < 6:
-            FigmaHelper.set_key(figma_url)
-            Checkpoint.write(6)
-
-        #! SET TITLE
-        if checkpoint < 7:
-            Automate.set_title(title)
-            Checkpoint.write(7)
-
-        #! SET ABOUT
-        if checkpoint < 8:
-            Automate.about(about_prompt)
-            Checkpoint.write(8)
-
-        #! USE FIREBASE
-        if checkpoint < 9:
-            Automate.set_use_firebase(use_firebase)
-            if use_firebase:
-                Automate.firebase_config(firebase_config)
-                Automate.firebase_id(firebase_config)
-            Checkpoint.write(9)
-
-        #! USE HOSTING
-        if checkpoint < 10:
-            Automate.set_use_hosting(use_hosting)
-            Checkpoint.write(10)
-
-        #! USE SIGNIN
-        if checkpoint < 11:
-            Automate.set_use_sign_in(use_signin)
-            Checkpoint.write(11)
-
-        #! USE REGISTER
-        if checkpoint < 12:
-            Automate.set_use_register(use_register)
-            Checkpoint.write(12)
-
-        #! USE FCM
-        if checkpoint < 13:
-            Automate.set_use_fcm(use_fcm)
-            if use_fcm:
-                Automate.set_vapid_key(vapid_key)
-            Checkpoint.write(13)
-
-        #! USE FUNCTIONS
-        if checkpoint < 14:
-            Automate.set_use_functions(use_functions)
-            Checkpoint.write(14)
-
-        #! USE STORAGE
-        if checkpoint < 15:
-            Automate.set_use_storage(use_storage)
-            Checkpoint.write(15)
-
-        #! USE T&C
-        if checkpoint < 16:
-            Automate.set_use_t_and_c(use_t_and_c)
-            if use_t_and_c:
-                Automate.set_t_and_c(t_and_c)
-            Checkpoint.write(16)
-
-        #! INSTALL DEPENDENCIES
-        if checkpoint < 17:
-            Automate.npm_install()
-            Checkpoint.write(17)
-
-        #! RANDOMIZE LOADING
-        if checkpoint < 18:
-            Automate.randomize_loading()
-            Checkpoint.write(18)
-
-        #! IMPORT FIGMA
-        if checkpoint < 19:
-            Automate.import_figma()
-            Checkpoint.write(19)
-
-        #! CREATE GITHUB REPO
-        if checkpoint < 20:
-            Automate.create_repo(title)
-            Checkpoint.write(20)
+        checkpoint.step(6, FigmaHelper.set_key, figma_url)
+        checkpoint.step(7, Automate.set_title, title)
+        checkpoint.step(8, Automate.about, about_prompt)
+        checkpoint.step(9, Automate.use_firebase, use_firebase, firebase_config)
+        checkpoint.step(10, Automate.set_use_hosting, use_hosting)
+        checkpoint.step(11, Automate.set_use_sign_in, use_signin)
+        checkpoint.step(12, Automate.set_use_register, use_register)
+        checkpoint.step(13, Automate.use_fcm, use_fcm, vapid_key)
+        checkpoint.step(14, Automate.set_use_functions, use_functions)
+        checkpoint.step(15, Automate.set_use_storage, use_storage)
+        checkpoint.step(16, Automate.use_t_and_c, use_t_and_c, t_and_c)
+        checkpoint.step(17, Automate.npm_install)
+        checkpoint.step(18, Automate.randomize_loading)
+        checkpoint.step(19, Automate.import_figma)
+        checkpoint.step(20, Automate.create_repo, title)
 
     @Rich.info(":rocket: Installing npm dependencies...")
     def npm_install():
@@ -173,17 +103,18 @@ class Automate:
     def about(prompt: str):
         MetadataHelper.set_about(prompt)
 
-    @Rich.info(":rocket: Setting Firebase config...")
-    def firebase_config(firebase_config: str):
-        EnvLocalHelper.set_firebase_config(firebase_config)
-
-    @Rich.info(":rocket: Setting Firebase ID...")
-    def firebase_id(firebase_config: str):
-        EnvLocalHelper.set_firebase_id(firebase_config)
-
     @Rich.info(":rocket: Setting useFirebase...")
-    def set_use_firebase(use_firebase: bool):
+    def use_firebase(use_firebase: bool, firebase_config: str):
         ConstantsTs.set_use_firebase(use_firebase)
+        if use_firebase:
+            EnvLocalHelper.set_firebase_config(firebase_config)
+            EnvLocalHelper.set_firebase_id(firebase_config)
+
+    @Rich.info(":rocket: Setting useFCM...")
+    def use_fcm(use_fcm: bool, vapid_key: str):
+        ConstantsTs.set_use_fcm(use_fcm)
+        if use_fcm:
+            ConstantsTs.set_vapid_key(vapid_key)
 
     @Rich.info(":rocket: Setting useHosting...")
     def set_use_hosting(use_hosting: bool):
@@ -202,14 +133,6 @@ class Automate:
     def set_use_register(use_register: bool):
         ConstantsTs.set_use_register(use_register)
 
-    @Rich.info(":rocket: Setting useFCM...")
-    def set_use_fcm(use_fcm: bool):
-        ConstantsTs.set_use_fcm(use_fcm)
-
-    @Rich.info(":rocket: Setting VAPID key...")
-    def set_vapid_key(vapid_key: str):
-        ConstantsTs.set_vapid_key(vapid_key)
-
     @Rich.info(":rocket: Setting useFunctions...")
     def set_use_functions(use_functions: bool):
         FirebaseJson.set_functions(use_functions)
@@ -221,12 +144,10 @@ class Automate:
         FirebaseJson.set_storage(use_storage)
 
     @Rich.info(":rocket: Setting useT&C...")
-    def set_use_t_and_c(use_t_and_c: bool):
+    def use_t_and_c(use_t_and_c: bool, t_and_c: str):
         ConstantsTs.set_use_t_and_c(use_t_and_c)
-
-    @Rich.info(":rocket: Setting T&C...")
-    def set_t_and_c(t_and_c: str):
-        ConstantsTs.set_t_and_c(t_and_c)
+        if use_t_and_c:
+            ConstantsTs.set_t_and_c(t_and_c)
 
     @Rich.info(":rocket: Testing...")
     def test():

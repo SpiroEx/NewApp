@@ -1,22 +1,35 @@
 import json
 import os
+from typing import Callable
 
 
 class Checkpoint:
-    @staticmethod
-    def read() -> int:
+
+    def __init__(self, filepath: str) -> None:
+        self.filepath = filepath
+        self.value = self.read()
+
+    def read(self) -> int:
         try:
-            with open("utils/data.txt", "r") as file:
+            with open(self.filepath, "r") as file:
                 return json.loads(file.read())["checkpoint"]
 
         except FileNotFoundError:
             return 0
 
-    @staticmethod
-    def write(checkpoint: int):
-        with open("utils/data.txt", "r") as file:
-            data = json.loads(file.read())
-            data["checkpoint"] = checkpoint
+    def write(self, value: int):
+        try:
+            with open(self.filepath, "r") as file:
+                data = json.loads(file.read())
+                data["checkpoint"] = value
 
-        with open("website/utils/data.txt", "w") as file:
+        except FileNotFoundError:
+            data = {"checkpoint": value}
+
+        with open(self.filepath, "w") as file:
             file.write(json.dumps(data))
+
+    def step(self, x: int, func: Callable, *args, **kwargs):
+        if self.value < x:
+            func(*args, **kwargs)
+            self.write(x)

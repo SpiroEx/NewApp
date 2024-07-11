@@ -44,7 +44,7 @@ class Automate:
 
         #! Get Checkpoint
         checkpoint = Checkpoint("utils/data.txt")
-        print(f"Checkpoint: {checkpoint}")
+        print(f"Checkpoint: {checkpoint.value}")
 
         checkpoint.step(6, FigmaHelper.set_key, figma_url)
         checkpoint.step(7, Automate.set_title, title)

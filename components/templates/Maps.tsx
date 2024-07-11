@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import LocationBottomSheet from "./LocationBottomSheet";
 import MyBottomSheet from "./MyBottomSheet";
+import { twMerge } from "tailwind-merge";
 
 export interface MapMarker {
   latitude?: number;
@@ -17,9 +18,14 @@ export interface MapMarker {
 interface MapsProps {
   mapMarkers: MapMarker[];
   type?: "ROADMAP" | "SATELLITE" | "HYBRID" | "TERRAIN";
+  roundedCorner?: boolean;
 }
 
-const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
+const Maps: React.FC<MapsProps> = ({
+  mapMarkers,
+  type = "ROADMAP",
+  roundedCorner = false,
+}) => {
   const [maps, setMaps] = useState<any>();
   const [map, setMap] = useState<any>();
   const [markers, setMarkers] = useState<any>();
@@ -77,7 +83,7 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
   );
 
   useEffect(() => {
-    if (!map || !maps || !mapMarkers) return;
+    if (!map || !maps || !mapMarkers || mapMarkers.length < 2) return;
     var bounds = new maps.LatLngBounds();
     for (const marker of mapMarkers) {
       bounds.extend({ lat: marker.latitude, lng: marker.longitude });
@@ -107,7 +113,10 @@ const Maps: React.FC<MapsProps> = ({ mapMarkers, type = "ROADMAP" }) => {
 
   return (
     <div
-      className="relative overflow-hidden"
+      className={twMerge(
+        "relative overflow-hidden select-none",
+        roundedCorner && "w-full h-64 rounded-3xl border-2"
+      )}
       style={{
         minHeight: "16rem",
         width: "100%",

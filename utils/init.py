@@ -22,7 +22,7 @@ def cli(ctx: click.Context):
 # @click.option("--name", prompt="Your name", help="The person to greet.")
 def init():
     """Automate creation of website"""
-    Automate()
+    Automate.init()
 
 
 @cli.command()

@@ -51,7 +51,7 @@ const SignInPage: React.FC = () => {
           <div className="relative w-full max-w-sm">
             <MyInput
               placeholder="Password"
-              className="bg-transparent"
+              className="bg-transparent pr-12"
               type={showPassword ? "text" : "password"}
               inputField={passwordInput}
             />

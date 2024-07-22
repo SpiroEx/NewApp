@@ -6,7 +6,6 @@ import MyInput from "@/components/templates/MyInput";
 import SizedBox from "@/components/templates/SizedBox";
 import Title from "@/components/templates/Title";
 import useSignInPage, { SignInType } from "@/hooks/useSignIn";
-import { montserratFont } from "@/styles/fonts";
 import { useState } from "react";
 import Txt from "@/components/templates/Txt";
 import GoogleLogo from "@/components/svg/icon/GoogleLogo";
@@ -74,7 +73,7 @@ const SignInPage: React.FC = () => {
         <div className="h-8 flex items-end">
           {type == SignInType.logIn && (
             <p
-              className={`${montserratFont} text-xs text-link fit-content m-auto select-none cursor-pointer`}
+              className={`text-xs text-link fit-content m-auto select-none cursor-pointer`}
               onClick={forgotPassword}
             >
               FORGOT PASSWORD&#63;
@@ -84,9 +83,7 @@ const SignInPage: React.FC = () => {
 
         {/*//! DONT HAVE AN ACCOUNT */}
         <div className="flex flex-row items-center justify-center">
-          <p
-            className={`${montserratFont} text-text_gray fit-content m-0 text-xs`}
-          >
+          <p className={`text-text_gray fit-content m-0 text-xs`}>
             {type == SignInType.logIn
               ? "DON'T HAVE AN ACOUNT?"
               : "ALREADY HAVE AN ACCOUNT?"}
@@ -94,7 +91,7 @@ const SignInPage: React.FC = () => {
           <SizedBox width={10} />
           <p
             onClick={toggleType}
-            className={`${montserratFont} text-link fit-content m-0 text-xs`}
+            className={`text-link fit-content m-0 text-xs`}
           >
             {type == SignInType.logIn ? "CREATE ONE" : "LOGIN"}
           </p>

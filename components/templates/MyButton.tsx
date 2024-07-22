@@ -1,4 +1,3 @@
-import { montserratFont } from "@/styles/fonts";
 import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
@@ -55,8 +54,7 @@ const MyButton: React.FC<MyButtonProps> = ({
           className={twMerge(
             "text-white font-light w-max m-auto",
             outlined && "text-black",
-            classNameText,
-            montserratFont
+            classNameText
           )}
           style={{ padding: `${pY}rem ${pX}rem` }}
         >

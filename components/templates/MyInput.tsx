@@ -1,5 +1,4 @@
 import { InputField } from "@/hooks/useInputField";
-import { montserratFont } from "@/styles/fonts";
 import { ChangeEventHandler, RefObject } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -50,7 +49,6 @@ const MyInput: React.FC<MyInputProps> = ({
           maxLength={maxLength}
           className={twMerge(
             "w-full max-w-sm rounded-lg border p-4",
-            montserratFont,
             inputField.error ? "border-red-500" : "border-input_border",
             className
           )}

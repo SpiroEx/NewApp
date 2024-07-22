@@ -191,7 +191,10 @@ class FigmaHelper:
         url = f"https://api.figma.com/v1/images/{FigmaHelper.key}?ids={','.join(ids)}&format=svg&svg_outline_text=false"
         response = requests.get(url, headers=FigmaHelper.headers)
 
-        if response.status_code != 200:
+        if response.status_code == 400:
+            return
+
+        elif response.status_code != 200:
             raise Exception(
                 f"Error getting svg images in figma: {response.status_code}"
             )

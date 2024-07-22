@@ -21,7 +21,7 @@ import { Config } from "@/classes/Constants";
 function useSignInPage() {
   const [type, setType] = useState(SignInType.signUp);
   const emailInput = useInputField((email) => [
-    [!email, "Please Enter your full name"],
+    [!email, "Please Enter your Email"],
     [!isValidEmail(email!), "Invalid Email"],
   ]);
 

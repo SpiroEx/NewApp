@@ -7,8 +7,8 @@ import MyBottomSheet from "./MyBottomSheet";
 import { twMerge } from "tailwind-merge";
 
 export interface MapMarker {
-  latitude?: number;
-  longitude?: number;
+  latitude?: number | null;
+  longitude?: number | null;
   icon: string;
   name: string;
   color: string;
@@ -94,11 +94,14 @@ const Maps: React.FC<MapsProps> = ({
   const generateKeyFrames = useCallback((mapMarker: MapMarker) => {
     return `
       div:has(> img[src='${mapMarker.icon}']) {
-        animation: pulse-animation-${mapMarker.name} 2s infinite;
+        animation: pulse-animation-${mapMarker.name.replace(
+          " ",
+          "_"
+        )} 2s infinite;
         border-radius: 50%;
       }
 
-      @keyframes pulse-animation-${mapMarker.name} {
+      @keyframes pulse-animation-${mapMarker.name.replace(" ", "_")} {
         0% {
           box-shadow: 0 0 0 0px ${mapMarker.color};
         }

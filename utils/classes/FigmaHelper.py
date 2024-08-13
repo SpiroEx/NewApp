@@ -34,9 +34,15 @@ class FigmaHelper:
         response = requests.get(url, headers=FigmaHelper.headers)
         if response.status_code == 200:
             json_data = response.json()
-            # print(json_data)
+            # print(json_data["nodes"][ids]["document"])
             name = json_data["nodes"][ids]["document"]["name"]
-            color = json_data["nodes"][ids]["document"]["fills"][0]["color"]
+            fill = json_data["nodes"][ids]["document"]["fills"][0]
+
+            if "color" not in fill:
+                print(f"Note: {name} has no color")
+                return FigmaColor(name=name, r=0, g=0, b=0, a=0)
+            
+            color = fill["color"]
             return FigmaColor(**color, name=name)
         else:
             print(f"Error getting color {ids} in figma: {response.status_code}")
@@ -102,6 +108,7 @@ class FigmaHelper:
 
             if name == Constants.BG_ICON:
                 manifest_bg = color
+
 
         TailwindConfig.add_custom_colors(color_lines)
 

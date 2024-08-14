@@ -19,12 +19,14 @@ interface MapsProps {
   mapMarkers: MapMarker[];
   type?: "ROADMAP" | "SATELLITE" | "HYBRID" | "TERRAIN";
   roundedCorner?: boolean;
+  height?: string;
 }
 
 const Maps: React.FC<MapsProps> = ({
   mapMarkers,
   type = "ROADMAP",
   roundedCorner = false,
+  height = "16rem",
 }) => {
   const [maps, setMaps] = useState<any>();
   const [map, setMap] = useState<any>();
@@ -121,9 +123,9 @@ const Maps: React.FC<MapsProps> = ({
         roundedCorner && "w-full h-64 rounded-3xl border-2"
       )}
       style={{
-        minHeight: "16rem",
+        minHeight: height,
         width: "100%",
-        height: "100%",
+        height: height,
       }}
     >
       <style>

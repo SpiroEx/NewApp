@@ -3,12 +3,10 @@ import re
 from typing import Callable, Dict, List, NamedTuple, Optional, Tuple
 from classes.Constants import Constants
 from classes.ConstantsPy import ConstantsPy
-from classes.FileHelper import FileHelper
 import requests
 
 from classes.ImageHelper import ImageHelper
 from classes.ManifestJson import ManifestJson
-from classes.Rich import Rich
 from classes.TailwindConfig import TailwindConfig
 
 

@@ -14,6 +14,11 @@ html {
   overscroll-behavior: none;
 }
 
+.bg-aspect-ratio {
+  /* background-image: url('/images/bg.png'); */
+}
+
+
 body {
   overscroll-behavior: contain;
   padding: 0;

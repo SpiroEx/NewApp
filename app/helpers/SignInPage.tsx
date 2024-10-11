@@ -28,7 +28,11 @@ const SignInPage: React.FC = () => {
   return (
     <div>
       <div
-        className={`flex flex-col items-ceter justify-center space-y-8 px-10 pb-12`}
+        className={`flex flex-col items-ceter justify-center space-y-8 px-10 pb-12 bg-aspect-ratio`}
+        style={{
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
       >
         {/*//! HEADER */}
         <div className="mt-8" />

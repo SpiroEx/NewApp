@@ -1,4 +1,5 @@
 import FHT from "@/classes/templates/FHT";
+import { FirebaseError } from "firebase/app";
 import {
   QueryCompositeFilterConstraint,
   QueryConstraint,
@@ -20,15 +21,27 @@ export const useFHWatchQuery = <T extends { id: string }>(
 
   useEffect(() => {
     setLoading(true);
-    return fht.watchQuery(
-      (obj) => {
-        setObj(obj);
-        setLoading(false);
-      },
-      // compoundQuery,
-      undefined,
-      ...query
-    );
+    try {
+      const unsubscribe = fht.watchQuery(
+        (obj) => {
+          setObj(obj);
+          setLoading(false);
+        },
+        // compoundQuery,
+        undefined,
+        ...query
+      );
+      return () => {
+        unsubscribe();
+      };
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        console.log(`${error.code} - ${error.message}`);
+      } else {
+        console.log(error);
+      }
+      setLoading(false);
+    }
   }, [...dependency]);
 
   return [obj, loading, setLoading];

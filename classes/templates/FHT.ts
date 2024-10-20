@@ -65,6 +65,19 @@ export default abstract class FHT<T extends { id: string }> {
     }
   }
 
+  //! Get Multiple Objects by IDs
+  async getIds(ids: string[]) {
+    const data: T[] = [];
+    for (const id of ids) {
+      const docRef = doc(db, this.collectionName, id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        data.push(docSnap.data() as T);
+      }
+    }
+    return data;
+  }
+
   //! GET ALL
   async getAll(updateOption?: UpdateOption) {
     const q = collection(db, this.collectionName);

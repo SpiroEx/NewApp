@@ -181,13 +181,14 @@ export default abstract class FHT<T extends { id: string }> {
 
   //! Update
   async update(
-    obj: T | null,
+    obj: T | string | null | undefined,
     new_fields: FHType<T>,
     updateOption?: UpdateOption
   ) {
     if (!obj) return;
+    const obj_id = typeof obj === "string" ? obj : obj.id;
     try {
-      const docRef = doc(db, this.collectionName, obj.id);
+      const docRef = doc(db, this.collectionName, obj_id);
       if (updateOption?.batch) {
         updateOption?.batch.update(docRef, { ...new_fields } as DocumentData);
         return;
@@ -230,9 +231,15 @@ export default abstract class FHT<T extends { id: string }> {
   }
 
   //! Delete
-  async delete(obj: T, updateOption?: UpdateOption) {
+  async delete(
+    obj: T | string | null | undefined,
+    updateOption?: UpdateOption
+  ) {
+    if (!obj) return;
+    const obj_id = typeof obj === "string" ? obj : obj.id;
+
     try {
-      const docRef = doc(db, this.collectionName, obj.id);
+      const docRef = doc(db, this.collectionName, obj_id);
       if (updateOption?.batch) {
         updateOption?.batch.delete(docRef);
       } else if (updateOption?.transaction) {

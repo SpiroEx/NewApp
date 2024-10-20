@@ -19,6 +19,8 @@ export const Config = {
   useSignIn: false,
   useRegister: false,
   useFCM: false,
+  useEmailVerification: false,
+  hostingWebsite: "{{https://agrismart-ai.web.app}}",
   vapidKey: "",
   useTermsAndConditions: false,
   termsLink: "{{https://www.termsandconditionsgenerator.com}}",

@@ -11,6 +11,7 @@ import PageWrapper from "../helpers/PageWrapper";
 import RegisterPage from "../helpers/RegisterPage";
 import SignInPage from "../helpers/SignInPage";
 import { UserContext } from "./User_Wrapper";
+import EmailVerificationPage from "./EmailVerificationPage";
 
 //? ----------------------
 //? FIRESTORE DATA OBJECTS
@@ -53,6 +54,11 @@ const FHWrapper: React.FC<FHWrapperProps> = () => {
   if (adminSettings?.quasar) return <QuasarPage />;
   if (Config.useSignIn) {
     if (user === null) return <SignInPage />;
+
+    if (Config.useEmailVerification && !user.emailVerified) {
+      return <EmailVerificationPage user={user} />;
+    }
+
     if (Config.useRegister) {
       if (myUser === null) return <RegisterPage user={user} />;
     }

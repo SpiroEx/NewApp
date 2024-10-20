@@ -4,6 +4,7 @@ import notify from "@/myfunctions/notify";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -107,6 +108,9 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
         updateSignedInBefore(true);
+        if (Config.useEmailVerification) {
+          sendEmailVerification(user, { url: Config.hostingWebsite });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;

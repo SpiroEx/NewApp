@@ -45,12 +45,13 @@ const EditableAvatar: React.FC<EditableAvatarProps> = ({
         id="avatar-file-input"
         style={{ visibility: "hidden", height: 0, width: 0 }}
         type="file"
+        accept=".png,.jpg,.jpeg"
         name="avatarImage"
         onChange={(event) => {
           if (!event.target.files) return;
           if (event.target.files.length === 0) return;
-          if (onChooseImage) onChooseImage();
           setSelectedImage(event.target.files[0]);
+          if (onChooseImage) onChooseImage();
         }}
       />
     </div>

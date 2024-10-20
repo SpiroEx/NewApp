@@ -1,12 +1,19 @@
-import Select, { StylesConfig } from "react-select";
+import { outfitFont } from "@/styles/fonts";
+import Select, { CSSObjectWithLabel, StylesConfig } from "react-select";
+import { twMerge } from "tailwind-merge";
 
 interface MyDropDownPickerProps {
   value: string | undefined;
   setValue: (value: string | undefined) => void;
   options: { value: string; label: string }[];
   error?: boolean;
-  onChange: () => void;
+  onChange?: () => void;
   placeholder?: string;
+  darkMode?: boolean;
+  width?: string;
+  className?: string;
+  label?: string;
+  divClassname?: string;
 }
 
 const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
@@ -16,38 +23,72 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
   error,
   onChange,
   placeholder,
+  darkMode = false,
+  width,
+  className,
+  label,
+  divClassname,
 }) => {
   return (
-    <Select
-      value={options.find((option) => option.value === value)}
-      options={options}
-      isSearchable={false}
-      onChange={(newValue) => {
-        onChange();
-        setValue(newValue?.value);
-      }}
-      placeholder={placeholder}
-      styles={{
-        control: (baseStyles, state) => ({
-          ...baseStyles,
-          borderColor: error ? "red" : "black",
-          backgroundColor: "transparent",
-        }),
-        placeholder: (baseStyles, state) => ({
-          ...baseStyles,
-          color: "black",
-          fontFamily: "cursive",
-          fontSize: "1.5rem",
-        }),
+    <div className={twMerge("w-full", divClassname)}>
+      {label && (
+        <p className="text-sm opacity-50 font-light translate-x-3 -translate-y-1">
+          {label}
+        </p>
+      )}
+      <Select
+        value={options.find((option) => option.value === value)}
+        options={options}
+        isSearchable={false}
+        className={twMerge(className, outfitFont)}
+        onChange={(newValue) => {
+          onChange?.();
+          setValue(newValue?.value);
+        }}
+        placeholder={placeholder}
+        styles={{
+          container: (baseStyles, state) =>
+            ({
+              ...baseStyles,
+              width: width,
+            } as CSSObjectWithLabel),
+          control: (baseStyles, state) =>
+            ({
+              ...baseStyles,
+              borderColor: error ? "red" : "#6CE841",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+              userSelect: "none",
+            } as CSSObjectWithLabel),
+          placeholder: (baseStyles, state) =>
+            ({
+              ...baseStyles,
+              color: darkMode ? "#8D8E8F" : "black",
+              fontSize: "1.5rem",
+              cursor: "pointer",
+              userSelect: "none",
+            } as CSSObjectWithLabel),
 
-        singleValue: (baseStyles, state) => ({
-          ...baseStyles,
-          color: "black",
-          fontFamily: "cursive",
-          fontSize: "1.5rem",
-        }),
-      }}
-    />
+          singleValue: (baseStyles, state) =>
+            ({
+              ...baseStyles,
+              color: darkMode ? "#FFF" : "black",
+              fontSize: "1.2rem",
+              padding: "0.4rem",
+              cursor: "pointer",
+              userSelect: "none",
+            } as CSSObjectWithLabel),
+          menuList: (baseStyles, state) =>
+            ({
+              ...baseStyles,
+              cursor: "pointer",
+              userSelect: "none",
+              color: darkMode ? "#8D8E8F" : "black",
+              backgroundColor: "#2B2F31",
+            } as CSSObjectWithLabel),
+        }}
+      />
+    </div>
   );
 };
 

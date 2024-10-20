@@ -10,18 +10,14 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ src, size = 75, onClick }) => {
   return (
     <div
-      className={twMerge("w-28 h-28 rounded-full overflow-hidden")}
+      className={twMerge("rounded-full overflow-hidden")}
       style={{
         width: size,
         height: size,
       }}
       onClick={onClick}
     >
-      {src ? (
-        <img alt="not found" width={"250px"} src={src} />
-      ) : (
-        <AvatarGirl size={size} />
-      )}
+      {src ? <img alt="not found" src={src} /> : <AvatarGirl size={size} />}
     </div>
   );
 };

@@ -28,6 +28,7 @@ import {
 import {
   deleteObject,
   getDownloadURL,
+  getMetadata,
   listAll,
   ref,
   uploadBytes,
@@ -345,6 +346,89 @@ export class FHPictures {
     } catch (e) {
       console.log(`Error getting pictures: ${e}`);
       notify("Error getting pictures");
+    }
+  }
+}
+
+export class FHFile {
+  private idToURL: (id: string) => string;
+
+  constructor(idToURL: (id: string) => string) {
+    this.idToURL = idToURL;
+  }
+
+  //! Create
+  async create(id: string, file: File, onSuccess?: () => void) {
+    const storageRef = ref(storage, this.idToURL(id));
+
+    try {
+      await uploadBytes(storageRef, file);
+      onSuccess?.();
+    } catch (e) {
+      console.log(`Error uploading file: ${e}`);
+      notify("Error uploading file");
+    }
+  }
+
+  //! Get
+  async get(id: string) {
+    const storageRef = ref(storage, this.idToURL(id));
+    try {
+      const url = await getDownloadURL(storageRef);
+      return url;
+    } catch (e) {
+      console.log(`Error getting file: ${e}`);
+      notify("Error getting file");
+    }
+  }
+
+  //! Get Metadata
+  async getMetadata(id: string) {
+    const storageRef = ref(storage, this.idToURL(id));
+    try {
+      const metadata = await getMetadata(storageRef);
+      return metadata;
+    } catch (e) {
+      console.log(`Error getting file metadata: ${e}`);
+      notify("Error getting file metadata");
+    }
+  }
+
+  //! Delete
+  async delete(id: string, onSuccess?: () => void) {
+    const storageRef = ref(storage, this.idToURL(id));
+    try {
+      await deleteObject(storageRef);
+      onSuccess?.();
+    } catch (e) {
+      console.log(`Error deleting file: ${e}`);
+      notify("Error deleting file");
+    }
+  }
+}
+
+export class FHFiles {
+  private idToURL: (id: string) => string;
+
+  constructor(idToURL: (id: string) => string) {
+    this.idToURL = idToURL;
+  }
+
+  //! Get
+  async get(id: string): Promise<[string, string][] | undefined> {
+    const listRef = ref(storage, this.idToURL(id));
+    try {
+      const listResult = await listAll(listRef);
+      const listItems = listResult.items;
+
+      const files: [string, string][] = [];
+      for (const item of listItems) {
+        files.push([item.name.split(".")[0], await getDownloadURL(item)]);
+      }
+      return files;
+    } catch (e) {
+      console.log(`Error getting files: ${e}`);
+      notify("Error getting files");
     }
   }
 }

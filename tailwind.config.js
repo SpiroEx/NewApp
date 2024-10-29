@@ -27,6 +27,7 @@ module.exports = {
         text: "#FFFFFF",
 
         // custom - from Figma
+        bg: "#1f1f1f",
 
       },
     },

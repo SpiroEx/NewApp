@@ -36,7 +36,8 @@ export const useFHWatchQuery = <T extends { id: string }>(
       };
     } catch (error) {
       if (error instanceof FirebaseError) {
-        console.log(`${error.code} - ${error.message}`);
+        if (error.code !== "invalid-argument")
+          console.log(`${error.code} - ${error.message}`);
       } else {
         console.log(error);
       }

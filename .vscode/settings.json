@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "Command Prompt (with venv)": {
+            "path": "C:\\Windows\\System32\\cmd.exe",
+            "args": ["/k", "${workspaceFolder}\\utils\\venv\\Scripts\\activate.bat"]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt (with venv)"
+}

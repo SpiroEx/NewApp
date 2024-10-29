@@ -12,6 +12,9 @@ interface DropdownButtonProps {
   icon?: React.ReactNode;
   children?: React.ReactNode;
   gap?: number;
+  className?: string;
+  isExpanded?: boolean;
+  setIsExpanded?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DropdownButton: React.FC<DropdownButtonProps> = ({
@@ -19,11 +22,14 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   icon,
   children,
   gap = 3,
+  className,
+  isExpanded,
+  setIsExpanded,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   const iconDivRef = useRef<HTMLDivElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
+
+  const [defaultIsExpanded, setDefaultIsExpanded] = useState(false);
 
   //! POSITION THE DROPDOWN
   useEffect(() => {
@@ -63,24 +69,33 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   }, [divRef.current?.clientHeight, divRef.current?.clientWidth, isExpanded]);
 
   return (
-    <div className="relative">
-      <div onClick={() => setIsExpanded((prev) => !prev)} ref={iconDivRef}>
+    <div className={twMerge("relative")}>
+      <div
+        onClick={() => {
+          if (setIsExpanded) setIsExpanded((prev) => !prev);
+          else setDefaultIsExpanded((prev) => !prev);
+        }}
+        ref={iconDivRef}
+      >
         {icon}
       </div>
-      {isExpanded && (
-        <div
-          ref={divRef}
-          className={twMerge(
-            "absolute bg-white shadow-lg drop-shadow-lg px-2 py-2 rounded-lg",
-            expandDirection === "bottom-right" && "rounded-tl-none",
-            expandDirection === "bottom-left" && "rounded-tr-none",
-            expandDirection === "top-right" && "rounded-bl-none",
-            expandDirection === "top-left" && "rounded-br-none"
+      {isExpanded === undefined
+        ? defaultIsExpanded
+        : isExpanded && (
+            <div
+              ref={divRef}
+              className={twMerge(
+                "absolute shadow-lg drop-shadow-lg px-2 py-2 rounded-lg z-20",
+                expandDirection === "bottom-right" && "rounded-tl-none",
+                expandDirection === "bottom-left" && "rounded-tr-none",
+                expandDirection === "top-right" && "rounded-bl-none",
+                expandDirection === "top-left" && "rounded-br-none",
+                className
+              )}
+            >
+              {children}
+            </div>
           )}
-        >
-          {children}
-        </div>
-      )}
     </div>
   );
 };

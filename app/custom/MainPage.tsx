@@ -1,4 +1,4 @@
-import Maps from "@/components/templates/Maps";
+import WebsiteVersion from "@/components/custom/WebsiteVersion";
 import PageContainer from "@/components/templates/PageContainer";
 import Txt from "@/components/templates/Txt";
 
@@ -8,6 +8,7 @@ const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
     <PageContainer>
       <Txt.title>TITLE</Txt.title>
+      <WebsiteVersion />
     </PageContainer>
   );
 };

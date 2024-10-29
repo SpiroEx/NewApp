@@ -7,6 +7,7 @@ export const Constants = {
   About: "{{About}}",
   NodeMCUIP: "http://192.168.4.1",
   DefaulMapZoom: 13,
+  WebsiteVersion: "1.0.35",
 };
 
 export const LocalStorage = {

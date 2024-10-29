@@ -43,6 +43,6 @@
   "start_url": "/",
   "description": "{{About}}",
   "display": "standalone",
-  "theme_color": "{{manifest_bg}}",
-  "background_color": "{{manifest_bg}}"
+  "theme_color": "#1F1F1F",
+  "background_color": "#1F1F1F"
 }

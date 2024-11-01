@@ -11,6 +11,14 @@ const withNextPluginPreval = createNextPluginPreval();
 
 const optimizedImages = require("next-optimized-images");
 
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+    turbo: {},
+  },
+};
+
 module.exports = withPlugins([
   [
     optimizedImages,
@@ -25,4 +33,4 @@ module.exports = withPlugins([
   }),
 
   withNextPluginPreval(),
-]);
+],nextConfig);

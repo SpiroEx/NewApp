@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import React, { memo, useState, useEffect, useCallback, useMemo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Draggable from "@azabraao/react-draggable";
 import clsx from "clsx";
@@ -195,32 +195,26 @@ var BottomSheet = function (_a) {
     },
     [isOpen]
   );
-  var onDragging = useCallback(
-    function (event, data) {
-      onDrag(event, data);
-      if (ref === null || ref === void 0 ? void 0 : ref.current) {
-        ref.current.style.transition = "none";
-      }
-    },
-    [ref]
-  );
-  var handleStopDragging = useCallback(
-    function (_, _a) {
-      var _b;
-      var y = _a.y;
-      if (ref.current) {
-        ref.current.style.transition = "transform 0.3s ease-in-out";
-        var elementHeight =
-          ((_b = ref.current) === null || _b === void 0
-            ? void 0
-            : _b.offsetHeight) | 0;
-        var elementHeightHalf = elementHeight / 2;
-        var shouldClose = y > elementHeightHalf;
-        if (shouldClose) close();
-      }
-    },
-    [ref]
-  );
+  var onDragging = (event, data) => {
+    onDrag(event, data);
+    if (ref === null || ref === void 0 ? void 0 : ref.current) {
+      ref.current.style.transition = "none";
+    }
+  };
+  var handleStopDragging = (_, _a) => {
+    var _b;
+    var y = _a.y;
+    if (ref.current) {
+      ref.current.style.transition = "transform 0.3s ease-in-out";
+      var elementHeight =
+        ((_b = ref.current) === null || _b === void 0
+          ? void 0
+          : _b.offsetHeight) | 0;
+      var elementHeightHalf = elementHeight / 2;
+      var shouldClose = y > elementHeightHalf;
+      if (shouldClose) close();
+    }
+  };
   var position = useMemo(
     function () {
       return {

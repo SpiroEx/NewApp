@@ -1,7 +1,7 @@
 import { Constants, LocalStorage } from "@/classes/Constants";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import GoogleMapReact from "google-map-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import LocationBottomSheet from "./LocationBottomSheet";
 import MyBottomSheet from "./MyBottomSheet";
 import { twMerge } from "tailwind-merge";
@@ -47,19 +47,14 @@ const Maps: React.FC<MapsProps> = ({
   };
 
   //! TOGGLE LOCATION BOTTOM SHEET
-  const toggleOpenLocation = useCallback(
-    (marker: any, mapMarker: MapMarker) => {
-      setSelectedMarker(marker);
-      setSelectedMapMarker(mapMarker);
-      setOpenLocationBS((open) => !open);
-    },
-    [setSelectedMarker, setSelectedMapMarker, setOpenLocationBS]
-  );
+  const toggleOpenLocation = (marker: any, mapMarker: MapMarker) => {
+    setSelectedMarker(marker);
+    setSelectedMapMarker(mapMarker);
+    setOpenLocationBS((open) => !open);
+  };
 
   //! MAP TYPE ID
-  const mapTypeId = useMemo(() => {
-    if (maps) return maps.MapTypeId[type];
-  }, [maps]);
+  const mapTypeId = maps.MapTypeId[type];
 
   //! UPDATE WATCH MARKER POSITION
   useEffect(() => {
@@ -73,15 +68,11 @@ const Maps: React.FC<MapsProps> = ({
   }, [markers, mapMarkers]);
 
   //! GET CENTER
-  const defaultCenter = useMemo(
-    () =>
-      getCenter(
-        mapMarkers.map((marker) => ({
-          lat: marker.latitude ?? 14.5995,
-          lng: marker.longitude ?? 120.9842,
-        }))
-      ),
-    [mapMarkers]
+  const defaultCenter = getCenter(
+    mapMarkers.map((marker) => ({
+      lat: marker.latitude ?? 14.5995,
+      lng: marker.longitude ?? 120.9842,
+    }))
   );
 
   useEffect(() => {
@@ -93,7 +84,7 @@ const Maps: React.FC<MapsProps> = ({
     map.fitBounds(bounds);
   }, [map, maps, mapMarkers]);
 
-  const generateKeyFrames = useCallback((mapMarker: MapMarker) => {
+  const generateKeyFrames = (mapMarker: MapMarker) => {
     return `
       div:has(> img[src='${mapMarker.icon}']) {
         animation: pulse-animation-${mapMarker.name.replace(
@@ -112,7 +103,7 @@ const Maps: React.FC<MapsProps> = ({
         }
       }
     `;
-  }, []);
+  };
 
   // console.log(mapMarkers.map((marker) => generateKeyFrames(marker)).join("\n"));
 

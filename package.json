@@ -67,7 +67,9 @@
     "@types/google-map-react": "^2.1.8",
     "@types/react-datepicker": "^4.15.0",
     "@types/react-modal": "^3.16.0",
-    "encoding": "^0.1.13"
+    "babel-plugin-react-compiler": "^19.0.0-beta-6fc168f-20241025",
+    "encoding": "^0.1.13",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-6fc168f-20241025"
   },
   "overrides": {
     "@types/react": "npm:types-react@19.0.0-rc.1",

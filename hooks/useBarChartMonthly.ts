@@ -1,5 +1,5 @@
 import FHT from "@/classes/templates/FHT";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFHWatch } from "./useFHWatch";
 import DateHelper, { MonthAbbrev } from "@/classes/templates/DateHelper";
 
@@ -96,11 +96,7 @@ export function useBarChartMonthly<
   ]);
 
   //! MAX HEIGHT
-  const maxHeight = useMemo(() => {
-    const values = data.map((data) => data.value);
-    const max = Math.max(minHeight, ...values);
-    return max;
-  }, [data]);
+  const maxHeight = Math.max(minHeight, ...data.map((data) => data.value));
 
   //! PREV LAST SHOWN MONTH
   function prev() {

@@ -3,7 +3,7 @@ import { useInputField } from "@/hooks/useInputField";
 import MyInput from "./MyInput";
 import SearchIcon from "../svg/icon/SearchIcon";
 import { Pages } from "@/app/helpers/PageWrapper";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { MotionDiv } from "@/types/framer_motion_types";
 

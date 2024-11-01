@@ -9,21 +9,18 @@ export const TailwindContext = createContext({
 interface Tailwind_WrapperProps {}
 
 const Tailwind_Wrapper: React.FC<Tailwind_WrapperProps> = ({}) => {
-  const getColor = useCallback(
-    (color: string) => {
-      return tailwindTheme?.colors?.[color]?.toString();
-    },
-    [tailwindTheme]
-  );
+  const getColor = (color: string) => {
+    return tailwindTheme?.colors?.[color]?.toString();
+  };
 
   return (
-    <TailwindContext.Provider
+    <TailwindContext
       value={{
         getColor,
       }}
     >
       <ConstantsWrapper />
-    </TailwindContext.Provider>
+    </TailwindContext>
   );
 };
 

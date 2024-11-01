@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface GoogleLogoProps {
@@ -7,7 +7,7 @@ interface GoogleLogoProps {
 }
 
 const GoogleLogo: React.FC<GoogleLogoProps> = ({ onClick, size = 21 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="select-none"
     width={size}
@@ -46,7 +46,7 @@ const GoogleLogo: React.FC<GoogleLogoProps> = ({ onClick, size = 21 }) => (
         <rect width="21" height="21" fill="white" />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default GoogleLogo;

@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Pages, PageWrapperContext } from "@/app/helpers/PageWrapper";
 import { twMerge } from "tailwind-merge";
+import { MotionDiv } from "@/types/framer_motion_types";
 
 interface FooterProps {
   pages?: { [key in Pages]?: React.ReactNode };
@@ -34,14 +34,14 @@ interface FooterIconProps {
 const FooterIcon: React.FC<FooterIconProps> = ({ page, icon }) => {
   const { page: currentPage, setPage } = useContext(PageWrapperContext);
   return (
-    <motion.div
+    <MotionDiv
       className="w-full h-full flex items-center justify-center cursor-pointer"
       whileTap={{ scale: 0.8 }}
       style={{ opacity: currentPage === page ? 1 : 0.4 }}
       onClick={() => setPage(page)}
     >
       {icon}
-    </motion.div>
+    </MotionDiv>
   );
 };
 

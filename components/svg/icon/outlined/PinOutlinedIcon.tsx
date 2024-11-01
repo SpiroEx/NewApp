@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface PinOutlinedIconProps {
@@ -14,7 +14,7 @@ const PinOutlinedIcon: React.FC<PinOutlinedIconProps> = ({
 }) => {
   const color = selected ? "#EC1D37" : "#AAAAAA";
   return (
-    <motion.svg
+    <MotionSvg
       className="cursor-pointer"
       whileTap={{ scale: 0.8 }}
       width={size}
@@ -37,7 +37,7 @@ const PinOutlinedIcon: React.FC<PinOutlinedIconProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </motion.svg>
+    </MotionSvg>
   );
 };
 

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface AvatarGirlProps {
@@ -7,7 +7,7 @@ interface AvatarGirlProps {
 }
 
 const AvatarGirl: React.FC<AvatarGirlProps> = ({ size, onClick }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     width={size}
@@ -47,7 +47,7 @@ const AvatarGirl: React.FC<AvatarGirlProps> = ({ size, onClick }) => (
       d="M511.950028 833.881066m-15.231846 0a15.231846 15.231846 0 1 0 30.463692 0 15.231846 15.231846 0 1 0-30.463692 0Z"
       fill="#FF9F31"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default AvatarGirl;

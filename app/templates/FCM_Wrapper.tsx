@@ -4,6 +4,7 @@ import notify from "@/myfunctions/notify";
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "./User_Wrapper";
 import FHWrapper from "./FH_Wrapper";
+import { uc } from "@/hooks/useReactHooks";
 
 export const FCMTokenContext = createContext({
   notifToken: "",
@@ -12,7 +13,7 @@ export const FCMTokenContext = createContext({
 interface FCMWrapperProps {}
 
 const FCMWrapper: React.FC<FCMWrapperProps> = ({}) => {
-  const { user } = useContext(UserContext);
+  const { user } = uc(UserContext);
   const notifToken = useFCM(user, (payload) =>
     notify(`${payload.notification?.title}`, {
       type: "warning",
@@ -21,9 +22,9 @@ const FCMWrapper: React.FC<FCMWrapperProps> = ({}) => {
   );
 
   return (
-    <FCMTokenContext.Provider value={{ notifToken }}>
+    <FCMTokenContext value={{ notifToken }}>
       <FHWrapper />
-    </FCMTokenContext.Provider>
+    </FCMTokenContext>
   );
 };
 

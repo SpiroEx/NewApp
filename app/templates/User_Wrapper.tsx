@@ -17,9 +17,9 @@ const UserWrapper: React.FC<UserWrapperProps> = ({}) => {
   const [user, loadingUser] = useUser();
 
   return (
-    <UserContext.Provider value={{ user, loadingUser }}>
+    <UserContext value={{ user, loadingUser }}>
       {Config.useFCM ? <FCMWrapper /> : <FHWrapper />}
-    </UserContext.Provider>
+    </UserContext>
   );
 };
 

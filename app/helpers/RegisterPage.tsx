@@ -6,6 +6,7 @@ import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
 import Title from "@/components/templates/Title";
 import { useCheckboxField, useInputField } from "@/hooks/useInputField";
+import { us } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
 import { User } from "firebase/auth";
 import { FormEventHandler, useState } from "react";
@@ -16,8 +17,8 @@ interface RegisterPageProps {
 }
 
 const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [creatingMyUser, setCreatingMyUser] = useState(false);
+  const [selectedImage, setSelectedImage] = us<File | null>(null);
+  const [creatingMyUser, setCreatingMyUser] = us(false);
 
   const nameInput = useInputField((name) => [
     [!name, "Please Enter your full name"],

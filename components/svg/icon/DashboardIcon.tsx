@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface DashboardIconProps {
@@ -12,7 +12,7 @@ const DashboardIcon: React.FC<DashboardIconProps> = ({
   size = 25,
   opacity = 1,
 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="select-none"
     width={size}
@@ -57,7 +57,7 @@ const DashboardIcon: React.FC<DashboardIconProps> = ({
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default DashboardIcon;

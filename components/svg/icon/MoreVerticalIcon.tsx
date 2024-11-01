@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface MoreVerticalIconProps {
@@ -10,7 +10,7 @@ const MoreVerticalIcon: React.FC<MoreVerticalIconProps> = ({
   onClick,
   size = 5,
 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -43,7 +43,7 @@ const MoreVerticalIcon: React.FC<MoreVerticalIconProps> = ({
         />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default MoreVerticalIcon;

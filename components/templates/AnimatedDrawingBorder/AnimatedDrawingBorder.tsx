@@ -1,6 +1,6 @@
 import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import "./style.css";
-import { motion } from "framer-motion";
+import { MotionRect } from "@/types/framer_motion_types";
 
 interface AnimatedDrawingBorderProps {
   label: string;
@@ -48,7 +48,7 @@ const AnimatedDrawingBorder: React.FC<AnimatedDrawingBorderProps> = ({
         xmlns="http://www.w3.org/2000/svg"
         style={{ border: `${isSelected ? "1.5px solid black" : "none"}` }}
       >
-        <motion.rect
+        <MotionRect
           key={`${rectStartingWidth} ${_rectStartingStrokeWidth} ${isSelected}`}
           className="anim-border-shape"
           height={svgHeight}
@@ -72,7 +72,7 @@ const AnimatedDrawingBorder: React.FC<AnimatedDrawingBorderProps> = ({
             ease: "easeOut",
             type: "tween",
           }}
-        ></motion.rect>
+        ></MotionRect>
       </svg>
       <div ref={labelRef} className="anim-border-text">
         {label}

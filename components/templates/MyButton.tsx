@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionDiv } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -30,7 +30,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   dashed = false,
 }) => {
   return (
-    <motion.div
+    <MotionDiv
       className={twMerge(
         "text-center w-full max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none",
         outlined && "bg-transparent border border-zinc-600",
@@ -61,7 +61,7 @@ const MyButton: React.FC<MyButtonProps> = ({
           {label}
         </p>
       </button>
-    </motion.div>
+    </MotionDiv>
   );
 };
 

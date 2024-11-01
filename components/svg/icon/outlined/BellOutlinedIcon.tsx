@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface BellOutlinedIconProps {
@@ -6,7 +6,7 @@ interface BellOutlinedIconProps {
 }
 
 const BellOutlinedIcon: React.FC<BellOutlinedIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -27,7 +27,7 @@ const BellOutlinedIcon: React.FC<BellOutlinedIconProps> = ({ onClick }) => (
       stroke="#AAAAAA"
       strokeWidth="2"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default BellOutlinedIcon;

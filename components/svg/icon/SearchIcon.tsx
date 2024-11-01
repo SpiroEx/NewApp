@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface SearchIconProps {
@@ -7,7 +7,7 @@ interface SearchIconProps {
 }
 
 const SearchIcon: React.FC<SearchIconProps> = ({ onClick, size = 22 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     width={size}
@@ -26,7 +26,7 @@ const SearchIcon: React.FC<SearchIconProps> = ({ onClick, size = 22 }) => (
       d="M88.3525 92.6127C89.4201 93.6798 91.1508 93.6798 92.2184 92.6127C93.2855 91.5451 93.2855 89.8144 92.2184 88.7468L88.3525 92.6127ZM92.2184 88.7468L64.8857 61.4141L61.0198 65.28L88.3525 92.6127L92.2184 88.7468Z"
       fill="black"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default SearchIcon;

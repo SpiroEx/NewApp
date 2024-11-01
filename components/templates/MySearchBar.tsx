@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useInputField } from "@/hooks/useInputField";
 import MyInput from "./MyInput";
 import SearchIcon from "../svg/icon/SearchIcon";
 import { Pages } from "@/app/helpers/PageWrapper";
 import { useMemo, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { MotionDiv } from "@/types/framer_motion_types";
 
 type MySearchBarField = {
   name: string;
@@ -64,7 +65,7 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
         </div>
         <AnimatePresence>
           {showResults && (
-            <motion.div
+            <MotionDiv
               initial={{ height: "0", opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: "0", opacity: 0 }}
@@ -82,13 +83,13 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
                   </p>
                 );
               })}
-            </motion.div>
+            </MotionDiv>
           )}
         </AnimatePresence>
       </div>
       <AnimatePresence>
         {showResults && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.1 }}
             exit={{ opacity: 0 }}

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface BackIconProps {
@@ -6,7 +6,7 @@ interface BackIconProps {
 }
 
 const BackIcon: React.FC<BackIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     width="17"
     height="29"
     viewBox="0 0 17 29"
@@ -22,7 +22,7 @@ const BackIcon: React.FC<BackIconProps> = ({ onClick }) => (
         // fill="#C52222"
       />
     </g>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default BackIcon;

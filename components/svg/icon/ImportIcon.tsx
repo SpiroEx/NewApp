@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface ImportIconProps {
@@ -6,7 +6,7 @@ interface ImportIconProps {
 }
 
 const ImportIcon: React.FC<ImportIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     width="41"
     height="41"
@@ -27,7 +27,7 @@ const ImportIcon: React.FC<ImportIconProps> = ({ onClick }) => (
       strokeWidth="2"
       strokeLinecap="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default ImportIcon;

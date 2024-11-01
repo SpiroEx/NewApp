@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface EditIconProps {
@@ -6,7 +6,7 @@ interface EditIconProps {
 }
 
 const EditIcon: React.FC<EditIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     width="20"
     height="20"
     viewBox="0 0 20 20"
@@ -38,7 +38,7 @@ const EditIcon: React.FC<EditIconProps> = ({ onClick }) => (
         <rect width="20" height="20" fill="white" />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default EditIcon;

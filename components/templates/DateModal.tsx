@@ -1,12 +1,12 @@
 import { FHContext } from "@/app/templates/FH_Wrapper";
 import useModal from "@/hooks/useModal";
-import { motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import ChevronRight from "../svg/icon/ChevronRight";
 import ChevronLeft from "../svg/icon/ChevronLeft";
 import MyModal from "../templates/MyModal";
 import RightTriangle from "../templates/RightTriangle";
+import { MotionDiv } from "@/types/framer_motion_types";
 
 interface DateModalProps {
   dateModal: ReturnType<typeof useModal>;
@@ -147,7 +147,7 @@ const Day: React.FC<DayProps> = ({
   setSelectedDate,
 }) => {
   return (
-    <motion.div
+    <MotionDiv
       className={twMerge(
         "flex justify-center items-center rounded select-none cursor-pointer",
         day === selectedDate.getDate() &&
@@ -166,7 +166,7 @@ const Day: React.FC<DayProps> = ({
       }}
     >
       <p className="m-0">{day}</p>
-    </motion.div>
+    </MotionDiv>
   );
 };
 
@@ -178,7 +178,7 @@ interface MyChevronProps {
 
 const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
   return (
-    <motion.div
+    <MotionDiv
       className="rounded-full bg-gray w-7 h-7 flex justify-center items-center border border-darker_primary cursor-pointer select-none"
       whileTap={{ scale: 0.8 }}
       onClick={onClick}
@@ -188,7 +188,7 @@ const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
       ) : (
         <ChevronRight size={7} />
       )}
-    </motion.div>
+    </MotionDiv>
   );
 };
 
@@ -206,7 +206,7 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <motion.div
+    <MotionDiv
       className="relative flex items-end justify-center gap-1 bg-gray px-2 rounded border border-darker_primary select-none cursor-pointer h-min"
       whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
       onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -244,7 +244,7 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
           ))}
         </div>
       )}
-    </motion.div>
+    </MotionDiv>
   );
 };
 

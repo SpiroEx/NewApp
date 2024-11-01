@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface ExitIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
 }
 const ExitIcon: React.FC<ExitIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     width="40"
     height="41"
     viewBox="0 0 40 41"
@@ -28,7 +28,7 @@ const ExitIcon: React.FC<ExitIconProps> = ({ onClick }) => (
       strokeWidth="2"
       strokeLinecap="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default ExitIcon;

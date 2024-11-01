@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 import ChevronLeft from "../svg/icon/ChevronLeft";
 import ChevronRight from "../svg/icon/ChevronRight";
 import DropdownButton from "../templates/DropdownButton";
 import DateHelper from "@/classes/templates/DateHelper";
 import { twMerge } from "tailwind-merge";
+import { MotionDiv } from "@/types/framer_motion_types";
 
 interface MonthPickerProps {
   onChange?: (month: number, year: number) => void;
@@ -71,7 +71,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
                 index > new Date().getMonth());
 
             return (
-              <motion.div
+              <MotionDiv
                 key={index}
                 onClick={() => {
                   if (isAfterCurrentMonth) return;
@@ -92,7 +92,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
                 >
                   {month}
                 </p>
-              </motion.div>
+              </MotionDiv>
             );
           })}
         </div>

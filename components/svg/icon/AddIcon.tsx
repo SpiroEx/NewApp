@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface AddIconProps {
@@ -7,7 +7,7 @@ interface AddIconProps {
 }
 
 const AddIcon: React.FC<AddIconProps> = ({ onClick, size = 35 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -31,7 +31,7 @@ const AddIcon: React.FC<AddIconProps> = ({ onClick, size = 35 }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default AddIcon;

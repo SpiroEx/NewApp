@@ -1,6 +1,6 @@
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
+import { MotionSvg } from "@/types/framer_motion_types";
 
 interface ExitIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
@@ -9,7 +9,7 @@ interface ExitIconProps {
 
 const ExitIcon: React.FC<ExitIconProps> = ({ onClick, tooltip }) => (
   <div data-tooltip-id={`tooltip-${tooltip}`}>
-    <motion.svg
+    <MotionSvg
       width="33"
       className="cursor-pointer"
       height="27"
@@ -33,7 +33,7 @@ const ExitIcon: React.FC<ExitIconProps> = ({ onClick, tooltip }) => (
           strokeLinejoin="round"
         />
       </g>
-    </motion.svg>
+    </MotionSvg>
     {tooltip && (
       <ReactTooltip
         id={`tooltip-${tooltip}`}

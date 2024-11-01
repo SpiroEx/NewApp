@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface AboutIconProps {
@@ -6,7 +6,7 @@ interface AboutIconProps {
 }
 
 const AboutIcon: React.FC<AboutIconProps> = ({ onClick }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -40,7 +40,7 @@ const AboutIcon: React.FC<AboutIconProps> = ({ onClick }) => (
         />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default AboutIcon;

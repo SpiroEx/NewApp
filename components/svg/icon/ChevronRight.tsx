@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -15,7 +15,7 @@ const ChevronRight: React.FC<ChevronRightProps> = ({
   color = "black",
   className,
 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className={twMerge("cursor-pointer", className)}
     whileTap={{ scale: 0.8 }}
@@ -31,7 +31,7 @@ const ChevronRight: React.FC<ChevronRightProps> = ({
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default ChevronRight;

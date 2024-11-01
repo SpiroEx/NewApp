@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface EmailLogoProps {
@@ -7,7 +7,7 @@ interface EmailLogoProps {
 }
 
 const EmailLogo: React.FC<EmailLogoProps> = ({ onClick, size = 109 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="select-none"
     width={size}
@@ -28,7 +28,7 @@ const EmailLogo: React.FC<EmailLogoProps> = ({ onClick, size = 109 }) => (
         <rect width="109" height="109" fill="white" />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default EmailLogo;

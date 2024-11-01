@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface ClockOutlinedIconProps {
@@ -14,7 +14,7 @@ const ClockOutlinedIcon: React.FC<ClockOutlinedIconProps> = ({
 }) => {
   const color = selected ? "#EC1D37" : "#AAAAAA";
   return (
-    <motion.svg
+    <MotionSvg
       onClick={onClick}
       className="cursor-pointer"
       whileTap={{ scale: 0.8 }}
@@ -45,7 +45,7 @@ const ClockOutlinedIcon: React.FC<ClockOutlinedIconProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </motion.svg>
+    </MotionSvg>
   );
 };
 

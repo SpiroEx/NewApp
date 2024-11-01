@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface BackAndroidIconProps {
@@ -14,7 +14,7 @@ const BackAndroidIcon: React.FC<BackAndroidIconProps> = ({
   hidden = false,
   color = "black",
 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -40,7 +40,7 @@ const BackAndroidIcon: React.FC<BackAndroidIconProps> = ({
         <rect width="83.3786" height="72.5067" fill="white" />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default BackAndroidIcon;

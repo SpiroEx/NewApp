@@ -12,6 +12,7 @@ import RegisterPage from "../helpers/RegisterPage";
 import SignInPage from "../helpers/SignInPage";
 import { UserContext } from "./User_Wrapper";
 import EmailVerificationPage from "./EmailVerificationPage";
+import { uc } from "@/hooks/useReactHooks";
 
 //? ----------------------
 //? FIRESTORE DATA OBJECTS
@@ -26,7 +27,7 @@ export const FHContext = createContext({
 interface FHWrapperProps {}
 
 const FHWrapper: React.FC<FHWrapperProps> = () => {
-  const { user, loadingUser } = useContext(UserContext);
+  const { user, loadingUser } = uc(UserContext);
 
   //! QUASAR
   const [adminSettings, loadingAdminSettings] = useFHWatch(
@@ -65,9 +66,9 @@ const FHWrapper: React.FC<FHWrapperProps> = () => {
   }
 
   return (
-    <FHContext.Provider value={{ adminSettings, myUser, device }}>
+    <FHContext value={{ adminSettings, myUser, device }}>
       <PageWrapper />
-    </FHContext.Provider>
+    </FHContext>
   );
 };
 

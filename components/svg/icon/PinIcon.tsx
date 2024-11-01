@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface PinIconProps {
@@ -7,7 +7,7 @@ interface PinIconProps {
 }
 
 const PinIcon: React.FC<PinIconProps> = ({ onClick, size = 29 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="select-none"
     width={size}
@@ -31,7 +31,7 @@ const PinIcon: React.FC<PinIconProps> = ({ onClick, size = 29 }) => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default PinIcon;

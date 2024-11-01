@@ -1,5 +1,5 @@
+import { MotionDiv } from "@/types/framer_motion_types";
 import React from "react";
-import { motion } from "framer-motion";
 
 const variants = {
   hidden: { opacity: 0, y: 50 },
@@ -16,7 +16,7 @@ const FadeInUpwardDiv: React.FC<FadeInUpwardDivProps> = ({
   className,
 }) => {
   return (
-    <motion.div
+    <MotionDiv
       initial="hidden"
       animate="visible"
       className={className}
@@ -24,7 +24,7 @@ const FadeInUpwardDiv: React.FC<FadeInUpwardDivProps> = ({
       transition={{ duration: 0.6 }}
     >
       {children}
-    </motion.div>
+    </MotionDiv>
   );
 };
 

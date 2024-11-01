@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface RadarOutlinedIconProps {
@@ -15,7 +15,7 @@ const RadarOutlinedIcon: React.FC<RadarOutlinedIconProps> = ({
   const color = selected ? "#EC1D37" : "#AAAAAA";
 
   return (
-    <motion.svg
+    <MotionSvg
       onClick={onClick}
       className="cursor-pointer"
       whileTap={{ scale: 0.8 }}
@@ -60,7 +60,7 @@ const RadarOutlinedIcon: React.FC<RadarOutlinedIconProps> = ({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </motion.svg>
+    </MotionSvg>
   );
 };
 

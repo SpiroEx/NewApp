@@ -9,6 +9,7 @@ import MainPage from "../custom/MainPage";
 //! /* Add Pages Here */
 import Overlay from "@/components/templates/Overlay";
 import Footer from "@/components/templates/Footer";
+import { us } from "@/hooks/useReactHooks";
 
 //? ----------------------
 //? PAGES
@@ -30,13 +31,13 @@ interface PageWrapperProps {}
 
 const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
   //! OVERLAY
-  const [overlay, setOverlay] = useState<ReactNode | null>(null);
+  const [overlay, setOverlay] = us<ReactNode | null>(null);
 
   //! Page
-  const [page, setPage] = useState<Pages>(Pages.Main);
+  const [page, setPage] = us<Pages>(Pages.Main);
 
   return (
-    <PageWrapperContext.Provider
+    <PageWrapperContext
       value={{
         page,
         setPage,
@@ -57,7 +58,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         {/*//! Add Page Mapping Here */}
       </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
-    </PageWrapperContext.Provider>
+    </PageWrapperContext>
   );
 };
 

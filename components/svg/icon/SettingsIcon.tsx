@@ -1,6 +1,6 @@
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import { motion } from "framer-motion";
 import { MouseEventHandler } from "react";
+import { MotionSvg } from "@/types/framer_motion_types";
 
 interface SettingsIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
@@ -9,7 +9,7 @@ interface SettingsIconProps {
 
 const SettingsIcon: React.FC<SettingsIconProps> = ({ onClick, tooltip }) => (
   <div data-tooltip-id={`tooltip-${tooltip}`}>
-    <motion.svg
+    <MotionSvg
       width="24"
       height="26"
       viewBox="0 0 24 26"
@@ -33,7 +33,7 @@ const SettingsIcon: React.FC<SettingsIconProps> = ({ onClick, tooltip }) => (
           fill="#C52222"
         />
       </g>
-    </motion.svg>
+    </MotionSvg>
 
     {tooltip && (
       <ReactTooltip

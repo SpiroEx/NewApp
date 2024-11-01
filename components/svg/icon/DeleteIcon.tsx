@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 
 interface DeleteIconProps {
@@ -7,7 +7,7 @@ interface DeleteIconProps {
 }
 
 const DeleteIcon: React.FC<DeleteIconProps> = ({ onClick, size = 20 }) => (
-  <motion.svg
+  <MotionSvg
     onClick={onClick}
     className="cursor-pointer"
     whileTap={{ scale: 0.8 }}
@@ -32,7 +32,7 @@ const DeleteIcon: React.FC<DeleteIconProps> = ({ onClick, size = 20 }) => (
         />
       </clipPath>
     </defs>
-  </motion.svg>
+  </MotionSvg>
 );
 
 export default DeleteIcon;

@@ -41,7 +41,7 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
       >
         <div
           className={twMerge(
-            "rounded-xl border border-zinc-300 flex gap-3 items-center px-3",
+            "rsc-3 rounded-xl border border-zinc-300 px-3",
             showResults &&
               "bg-white border-opacity-0 rounded-b-none rounded-t-xl"
           )}
@@ -50,8 +50,8 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
           <MyInput
             inputField={inputField}
             placeholder="Search for a setting..."
-            className="bg-transparent w-full max-w-sm border-none py-3 px-0"
-            divClassName="w-full"
+            className="bg-transparent wf max-w-sm border-none py-3 px-0"
+            divClassName="wf"
             onChange={updateFilteredFields}
             onFocus={() => {
               //scroll to top
@@ -70,7 +70,7 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: "0", opacity: 0 }}
               transition={{ duration: 0.1 }}
-              className="absolute top-full bg-white w-full z-30 rounded-t-none rounded-b-xl pl-10 py-3 flex flex-col gap-5 overflow-hidden"
+              className="css-5 absolute top-full bg-white wf z-30 rounded-t-none rounded-b-xl pl-10 py-3 overflow-hidden"
             >
               {filteredFields.map((field) => {
                 return (
@@ -93,7 +93,7 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.1 }}
             exit={{ opacity: 0 }}
-            className="absolute w-screen h-screen bg-black top-0 left-0"
+            className="absolute ws hs bg-black top-0 left-0"
             onClick={() => setShowResults(false)}
           />
         )}

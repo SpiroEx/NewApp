@@ -19,15 +19,15 @@ const HorizontalDataBox: React.FC<HorizontalDataBoxProps> = ({
   return (
     <div
       className={twMerge(
-        "flex justify-between items-center rounded-2xl py-4 pl-3 pr-4 bg-bg bg-opacity-75 shadow drop-shadow-lg",
-        full ? "w-full" : "w-40"
+        "rbc rounded-2xl py-4 pl-3 pr-4 bg-bg bg-opacity-75 shadow drop-shadow-lg",
+        full ? "wf" : "w-40"
       )}
     >
-      <div className="flex w-full flex-col gap-2">
+      <div className="css-2 wf">
         <Txt.section>{title}</Txt.section>
-        <div className="flex w-full justify-between">
-          <div className="flex">
-            <div className="flex items-center gap-2">
+        <div className="rbs wf">
+          <div className="rss">
+            <div className="rsc-2">
               <div className="w-3 h-3 border rounded-full"></div>
               <Txt.number>{maxDecimal(data)}</Txt.number>
             </div>

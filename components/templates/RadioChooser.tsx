@@ -12,10 +12,10 @@ const RadioChooser = <T extends "single" | "multiple">({
   options,
 }: RadioChooserProps<T>) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="css-3">
       {options.map((option) => (
-        <div className="flex flex-col gap-3" key={option}>
-          <div className="flex items-center gap-3">
+        <div className="css-3" key={option}>
+          <div className="csc-3">
             <div className="w-4 h-4 rounded-full bg-green"></div>
             <p className="text-base font-light">{option}</p>
           </div>

@@ -21,7 +21,7 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
 }) => {
   return (
     <div
-      className={twMerge("flex flex-col items-center")}
+      className={twMerge("csc")}
       style={{
         gap: `${gap}rem`,
       }}
@@ -31,7 +31,7 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
         {icon}
       </div>
       <div
-        className="w-full flex justify-center"
+        className="wf rcs"
         style={{
           gap: `${gap}rem`,
         }}

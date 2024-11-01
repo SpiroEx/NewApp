@@ -28,7 +28,7 @@ const SignInPage: React.FC = () => {
   return (
     <div>
       <div
-        className={`flex flex-col items-ceter justify-center space-y-8 px-10 pb-12 bg-aspect-ratio`}
+        className="ccc-8 px-10 pb-12 bg-aspect-ratio"
         style={{
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -41,17 +41,17 @@ const SignInPage: React.FC = () => {
 
         {/*//! FORM */}
         <form
-          className="flex flex-col w-full justify-center items-center space-y-10"
+          className="ccc-10 wf"
           onSubmit={type === SignInType.signUp ? signup : login}
         >
-          <div className="w-full">
+          <div className="wf">
             <MyInput
               placeholder="Email"
               inputField={emailInput}
               className="bg-transparent"
             />
           </div>
-          <div className="relative w-full max-w-sm">
+          <div className="relative wf max-w-sm">
             <MyInput
               placeholder="Password"
               className="bg-transparent pr-12"
@@ -74,7 +74,7 @@ const SignInPage: React.FC = () => {
         </form>
 
         {/*//! FORGOT PASSWORD */}
-        <div className="h-8 flex items-end">
+        <div className="h-8 rse">
           {type == SignInType.logIn && (
             <p
               className={`text-xs text-link fit-content m-auto select-none cursor-pointer`}
@@ -86,7 +86,7 @@ const SignInPage: React.FC = () => {
         </div>
 
         {/*//! DONT HAVE AN ACCOUNT */}
-        <div className="flex flex-row items-center justify-center">
+        <div className="rcc">
           <p className={`text-text_gray fit-content m-0 text-xs`}>
             {type == SignInType.logIn
               ? "DON'T HAVE AN ACOUNT?"
@@ -102,11 +102,11 @@ const SignInPage: React.FC = () => {
         </div>
 
         {/*//! GMAIL */}
-        <div className="flex items-center justify-center w-full">
+        <div className="rcc wf">
           <Txt.p>or</Txt.p>
         </div>
         <MotionDiv
-          className="w-min m-auto flex items-center gap-2 rounded-full bg-light_dark px-4 py-2"
+          className="w-min m-auto rsc-2 rounded-full bg-light_dark px-4 py-2"
           whileTap={{ scale: 0.85 }}
           onClick={googleSignIn}
         >

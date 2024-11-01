@@ -21,8 +21,8 @@ const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
 
   return (
     <MyBottomSheet open={open} onClose={onClose}>
-      <div className="flex justify-between items-center px-5 pb-5">
-        <div className="flex flex-col gap-1">
+      <div className="rbc px-5 pb-5">
+        <div className="css-1">
           <p className="text-sm text-zinc-700 font-semibold">{title}</p>
           <p className="text-xs text-zinc-500">{address}</p>
         </div>

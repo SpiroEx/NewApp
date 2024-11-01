@@ -15,17 +15,14 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
   barChartMonthly,
 }) => {
   return (
-    <div className="mx-10 text-justify px-10 py-4 flex flex-col gap-3 items-center rounded-xl border border-white">
+    <div className="csc-3 mx-10 text-justify px-10 py-4 rounded-xl border border-white">
       {/*//! TITLE */}
       <p className="font-semibold text-lg">{title}</p>
 
       {/*//! DATA */}
-      <div className="flex gap-4 items-end h-28">
+      <div className="rse-4 h-28">
         {barChartMonthly.data.map((data) => (
-          <div
-            className="flex flex-col items-center"
-            key={`${data.year}-${data.month}`}
-          >
+          <div className="csc" key={`${data.year}-${data.month}`}>
             <p className="font-extralight text-xs">{data.value}</p>
             <div
               className="w-7 bg-white"
@@ -50,7 +47,7 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
       </div>
 
       {/*//! YEAR CONTROL */}
-      <div className="flex gap-8 items-center mt-3">
+      <div className="fsc-8 mt-3">
         <ChevronLeft onClick={barChartMonthly.prev} size={7} />
         <p className="font-light text-base">{barChartMonthly.lastShownYear}</p>
         <ChevronRight onClick={barChartMonthly.next} size={7} />

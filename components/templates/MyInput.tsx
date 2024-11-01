@@ -35,19 +35,13 @@ const MyInput: React.FC<MyInputProps> = ({
   disabled = false,
 }) => {
   return (
-    <div
-      className={twMerge(
-        "flex flex-col",
-        disabled && "opacity-50",
-        divClassName
-      )}
-    >
+    <div className={twMerge("css", disabled && "opacity-50", divClassName)}>
       {label && (
         <p className="text-sm opacity-50 font-light translate-x-3 -translate-y-1">
           {label}
         </p>
       )}
-      <div className="flex justify-center">
+      <div className="rcs">
         {!numLines && (
           <input
             ref={inputField.ref as RefObject<HTMLInputElement>}
@@ -55,7 +49,7 @@ const MyInput: React.FC<MyInputProps> = ({
             disabled={disabled}
             maxLength={maxLength}
             className={twMerge(
-              "w-full max-w-sm rounded-lg border p-3",
+              "wf max-w-sm rounded-lg border p-3",
               inputField.error ? "border-red-500" : "border-input_border",
               className
             )}
@@ -77,7 +71,7 @@ const MyInput: React.FC<MyInputProps> = ({
           <textarea
             ref={inputField.ref as RefObject<HTMLTextAreaElement>}
             className={twMerge(
-              "w-full rounded-lg border p-3",
+              "wf rounded-lg border p-3",
               inputField.error ? "border-red-500" : "border-input_border",
               className
             )}

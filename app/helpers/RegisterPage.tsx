@@ -84,10 +84,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         setSelectedImage={setSelectedImage}
         size={120}
       />
-      <form
-        className="flex flex-col justify-center space-y-10 mb-10"
-        onSubmit={register}
-      >
+      <form className="ccs-10 mb-10" onSubmit={register}>
         {/* //! FULL NAME */}
         <MyInput
           placeholder="Full name"
@@ -120,7 +117,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
   termsInput,
 }) => {
   return (
-    <div className="flex items-center gap-3 text-sm justify-center">
+    <div className="rcc-3 text-sm ">
       <input ref={termsInput.ref} type="checkbox" name="terms" />
       <p className="text-slate-500">
         I agree to the{" "}

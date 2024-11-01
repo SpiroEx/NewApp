@@ -32,7 +32,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   return (
     <MotionDiv
       className={twMerge(
-        "text-center w-full max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none",
+        "text-center wf max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none",
         outlined && "bg-transparent border border-zinc-600",
         dashed && "border-dashed",
         disabled && "cursor-default opacity-50",
@@ -45,7 +45,7 @@ const MyButton: React.FC<MyButtonProps> = ({
         type={type}
         disabled={disabled}
         className={twMerge(
-          "m-auto min-w-full min-h-full rounded-lg",
+          "m-auto min-wf min-hf rounded-lg",
           classNameBtn,
           disabled ? "cursor-default" : "cursor-pointer"
         )}

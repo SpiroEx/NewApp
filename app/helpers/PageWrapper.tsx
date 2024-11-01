@@ -53,7 +53,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         // }}
       />
 
-      <div className="w-full h-full overflow-y-auto">
+      <div className="wf hf overflow-y-auto">
         {page === Pages.Main && <MainPage />}
         {/*//! Add Page Mapping Here */}
       </div>

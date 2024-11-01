@@ -55,11 +55,11 @@ const DateModal: React.FC<DateModalProps> = ({
       title="Choose Date"
       classNameContent="top-20 translate-y-0"
     >
-      <div className="flex flex-col gap-4">
+      <div className="css-4">
         {/*//! HEADER */}
-        <div className="flex justify-between items-center">
+        <div className="rbc">
           <MyChevron direction="left" onClick={setPrevMonth} />
-          <div className="flex gap-1">
+          <div className="rss-1">
             <MonthYearPicker
               text={selectedMonth}
               list={months}
@@ -75,7 +75,7 @@ const DateModal: React.FC<DateModalProps> = ({
         </div>
 
         {/*//! WEEK DAYS */}
-        <div className="flex justify-around font-medium text-sm">
+        <div className="ras font-medium text-sm">
           <p>Su</p>
           <p>Mo</p>
           <p>Tu</p>
@@ -149,7 +149,7 @@ const Day: React.FC<DayProps> = ({
   return (
     <MotionDiv
       className={twMerge(
-        "flex justify-center items-center rounded select-none cursor-pointer",
+        "rcc rounded select-none cursor-pointer",
         day === selectedDate.getDate() &&
           !gray &&
           "bg-darker_primary text-white",
@@ -179,7 +179,7 @@ interface MyChevronProps {
 const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
   return (
     <MotionDiv
-      className="rounded-full bg-gray w-7 h-7 flex justify-center items-center border border-darker_primary cursor-pointer select-none"
+      className="rcc rounded-full bg-gray w-7 h-7 border border-darker_primary cursor-pointer select-none"
       whileTap={{ scale: 0.8 }}
       onClick={onClick}
     >
@@ -207,7 +207,7 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <MotionDiv
-      className="relative flex items-end justify-center gap-1 bg-gray px-2 rounded border border-darker_primary select-none cursor-pointer h-min"
+      className="rce-1 relative bg-gray px-2 rounded border border-darker_primary select-none cursor-pointer h-min"
       whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
       onClick={() => setDropdownOpen(!dropdownOpen)}
     >

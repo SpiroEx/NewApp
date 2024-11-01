@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ pages, className }) => {
   return pages && Object.keys(pages).includes(String(currentPage)) ? (
     <div
       className={twMerge(
-        "fixed z-20 bottom-0 w-screen h-16 shadow-lg flex justify-around bg-footer",
+        "ras fixed z-20 bottom-0 ws h-16 shadow-lg bg-footer",
         className
       )}
       onContextMenu={(e) => e.preventDefault()}
@@ -35,7 +35,7 @@ const FooterIcon: React.FC<FooterIconProps> = ({ page, icon }) => {
   const { page: currentPage, setPage } = useContext(PageWrapperContext);
   return (
     <MotionDiv
-      className="w-full h-full flex items-center justify-center cursor-pointer"
+      className="rcc wf hf cursor-pointer"
       whileTap={{ scale: 0.8 }}
       style={{ opacity: currentPage === page ? 1 : 0.4 }}
       onClick={() => setPage(page)}

@@ -28,7 +28,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
       isExpanded={isExpanded}
       setIsExpanded={setIsExpanded}
       icon={
-        <div className="flex items-end gap-2">
+        <div className="rse-2">
           <p className="text-base font-semibold">
             {DateHelper.monthAbbrev[selectedMonth]},
           </p>
@@ -38,9 +38,9 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
       expandDirection="bottom-right"
       className="bg-gray border-zinc-400 border"
     >
-      <div className="flex flex-col gap-2 items-center">
+      <div className="csc-2">
         {/*//! YEAR */}
-        <div className="w-full flex justify-between items-center py-2 px-4">
+        <div className="rbc wf py-2 px-4">
           <ChevronLeft
             color="white"
             onClick={() => setShownYear((y) => y - 1)}
@@ -51,9 +51,9 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
             onClick={() => setShownYear((y) => y + 1)}
           />
         </div>
-        <hr className="w-full opacity-30" />
+        <hr className="wf opacity-30" />
         {/*//! MONTH */}
-        <div className="flex flex-wrap justify-center w-48">
+        <div className="wcs w-48">
           {DateHelper.monthAbbrev.map((month, index) => {
             //? Selected Month
             const isSelectedMonth =

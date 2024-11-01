@@ -22,8 +22,8 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
   // }, [user.emailVerified]);
 
   return (
-    <div className="bg-gray-900 w-screen h-screen text-white flex flex-col items-center gap-8 pt-20">
-      <div className="flex flex-col items-center gap-2 opacity-50">
+    <div className="csc-8 bg-gray-900 ws hs text-white pt-20">
+      <div className="csc-2 opacity-50">
         <EmailLogo size={109} />
         <p className="font-light text-sm">{user.email}</p>
       </div>

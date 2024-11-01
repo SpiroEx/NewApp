@@ -8,7 +8,7 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({ onClick, size = 200 }) => (
-  <div className="flex justify-center items-center text-center gap-3">
+  <div className="rcc-3 text-center">
     <p className="text-3xl text-blue_light font-semibold">
       {Constants.ProjTitle1}
     </p>

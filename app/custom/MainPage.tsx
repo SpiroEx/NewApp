@@ -8,6 +8,7 @@ const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
     <PageContainer>
       <Txt.title>TITLE</Txt.title>
+      <Txt.title>TITLE</Txt.title>
       <WebsiteVersion />
     </PageContainer>
   );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface DeviceDimensions {
   screenWidth: number;
@@ -18,7 +18,8 @@ const useDeviceDimensions = (): DeviceDimensions => {
       setDimensions({
         screenWidth: window.innerWidth,
         screenHeight: window.innerHeight,
-        aspectRatio: window.innerHeight == 0 ? 1 : window.innerWidth / window.innerHeight,
+        aspectRatio:
+          window.innerHeight == 0 ? 1 : window.innerWidth / window.innerHeight,
       });
     };
 
@@ -26,11 +27,11 @@ const useDeviceDimensions = (): DeviceDimensions => {
     updateDimensions();
 
     // Event listener to update dimensions on resize
-    window.addEventListener('resize', updateDimensions);
+    window.addEventListener("resize", updateDimensions);
 
     // Cleanup the event listener on unmount
     return () => {
-      window.removeEventListener('resize', updateDimensions);
+      window.removeEventListener("resize", updateDimensions);
     };
   }, []);
 

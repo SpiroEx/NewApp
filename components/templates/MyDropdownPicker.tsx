@@ -30,7 +30,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
   divClassname,
 }) => {
   return (
-    <div className={twMerge("w-full", divClassname)}>
+    <div className={twMerge("wf", divClassname)}>
       {label && (
         <p className="text-sm opacity-50 font-light translate-x-3 -translate-y-1">
           {label}

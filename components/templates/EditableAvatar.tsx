@@ -25,8 +25,7 @@ const EditableAvatar: React.FC<EditableAvatarProps> = ({
   return (
     <div
       className={twMerge(
-        withBackground &&
-          "bg-white rounded-full p-1 flex items-center justify-center",
+        withBackground && "bg-white rounded-full p-1 rcc",
         withBackground && bgClassName
       )}
     >

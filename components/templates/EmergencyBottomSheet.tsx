@@ -29,17 +29,17 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
 
   return (
     <MyBottomSheet open={open} onClose={onClose}>
-      <div className="flex flex-col items-center px-5">
+      <div className="csc px-5">
         {/*//! Child Info Card  */}
-        <div className="bg-zinc-200 rounded-xl px-3 py-3 w-full flex items-center gap-4">
+        <div className="rsc-4 bg-zinc-200 rounded-xl px-3 py-3 wf">
           <WarningIcon />
-          <div className="flex flex-col gap-1">
+          <div className="css-1">
             <p className="text-xl">Emergency!</p>
           </div>
         </div>
 
         {/*//! Need Help */}
-        <div className="flex flex-col items-center gap-3 mt-8 text-center mb-10">
+        <div className="csc-3 mt-8 text-center mb-10">
           <p className="text-red font-semibold">Need Help</p>
           <p className="text-zinc-700 text-sm font-semibold">{address}</p>
           <p className="text-zinc-400 text-xs">
@@ -48,10 +48,10 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
         </div>
 
         {/*//! Call Police */}
-        {/* <div className="flex justify-between w-full mt-10 mb-8">
-          <div className="flex flex-col gap-1">
+        {/* <div className="rbs wf mt-10 mb-8">
+          <div className="css-1">
             <p className="text-xs text-zinc-400">Phone Number</p>
-            <div className="flex items-center gap-1">
+            <div className="rsc-1">
               <PhoneIcon size={12} />
               <p className="text-xs text-zinc-400">09999</p>
             </div>

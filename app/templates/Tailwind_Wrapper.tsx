@@ -3,14 +3,16 @@ import { createContext } from "react";
 import ConstantsWrapper from "./Constants_Wrapper";
 
 export const TailwindContext = createContext({
-  getColor: {} as (color: string) => string | undefined,
+  getColor: {} as (
+    color: keyof typeof tailwindTheme.extend.colors
+  ) => string | undefined,
 });
 
 interface Tailwind_WrapperProps {}
 
 const Tailwind_Wrapper: React.FC<Tailwind_WrapperProps> = ({}) => {
-  const getColor = (color: string) => {
-    return tailwindTheme?.colors?.[color]?.toString();
+  const getColor = (color: keyof typeof tailwindTheme.extend.colors) => {
+    return tailwindTheme?.extend?.colors?.[color]?.toString();
   };
 
   return (

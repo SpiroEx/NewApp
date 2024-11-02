@@ -2,13 +2,13 @@ import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
 
-interface CheckCircleIconProps {
+interface EmailIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
   nonBouncing?: boolean;
 }
 
-const CheckCircleIcon: React.FC<CheckCircleIconProps> = ({
+const EmailIcon: React.FC<EmailIconProps> = ({
   onClick,
   size = 50,
   nonBouncing = false,
@@ -18,7 +18,7 @@ const CheckCircleIcon: React.FC<CheckCircleIconProps> = ({
       onClick={onClick}
       className={twMerge(
         "select-none",
-        !nonBouncing && onClick && "cursor-pointer"
+        !nonBouncing && onClick && "cursor-pointer",
       )}
       whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
       width={size}
@@ -27,19 +27,20 @@ const CheckCircleIcon: React.FC<CheckCircleIconProps> = ({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M25 45.8334C36.5059 45.8334 45.8333 36.506 45.8333 25C45.8333 13.4941 36.5059 4.16669 25 4.16669C13.4941 4.16669 4.16666 13.4941 4.16666 25C4.16666 36.506 13.4941 45.8334 25 45.8334Z"
-        stroke="#3EC04B"
-        strokeWidth="3"
-      />
-      <path
-        d="M17.7083 26.0417L21.875 30.2084L32.2917 19.7917"
-        stroke="#3EC04B"
+        d="M8.33331 14.5834L21.25 24.2708C23.4723 25.9375 26.5277 25.9375 28.75 24.2708L41.6666 14.5833"
+        stroke="#E8413B"
         strokeWidth="3"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+      <path
+        d="M39.5833 10.4167H10.4167C8.11548 10.4167 6.25 12.2822 6.25 14.5834V35.4167C6.25 37.7179 8.11548 39.5834 10.4167 39.5834H39.5833C41.8845 39.5834 43.75 37.7179 43.75 35.4167V14.5834C43.75 12.2822 41.8845 10.4167 39.5833 10.4167Z"
+        stroke="#EA4335"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
     </MotionSvg>
   );
 };
 
-export default CheckCircleIcon;
+export default EmailIcon;

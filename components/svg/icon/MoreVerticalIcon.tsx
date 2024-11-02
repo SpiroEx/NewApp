@@ -1,19 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface MoreVerticalIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
 const MoreVerticalIcon: React.FC<MoreVerticalIconProps> = ({
   onClick,
   size = 5,
+  nonBouncing = false,
 }) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
-    whileTap={{ scale: 0.8 }}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 29 137"
     fill="none"

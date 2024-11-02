@@ -1,15 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface AvatarGirlProps {
-  size?: number;
   onClick?: MouseEventHandler<SVGSVGElement>;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const AvatarGirl: React.FC<AvatarGirlProps> = ({ size, onClick }) => (
+const AvatarGirl: React.FC<AvatarGirlProps> = ({
+  onClick,
+  size,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 1024 1024"
     version="1.1"

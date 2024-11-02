@@ -7,6 +7,7 @@ interface ChevronRightProps {
   size?: number;
   color?: string;
   className?: string;
+  nonBouncing?: boolean;
 }
 
 const ChevronRight: React.FC<ChevronRightProps> = ({
@@ -14,11 +15,16 @@ const ChevronRight: React.FC<ChevronRightProps> = ({
   size = 11,
   color = "black",
   className,
+  nonBouncing = false,
 }) => (
   <MotionSvg
     onClick={onClick}
-    className={twMerge("cursor-pointer", className)}
-    whileTap={{ scale: 0.8 }}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer",
+      className
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 53 99"
     fill="none"

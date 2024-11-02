@@ -1,22 +1,27 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface PinOutlinedIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
-  selected?: boolean;
+  nonBouncing?: boolean;
+  color?: string;
 }
 
 const PinOutlinedIcon: React.FC<PinOutlinedIconProps> = ({
   onClick,
   size = 36,
-  selected = false,
+  nonBouncing = false,
+  color = "#AAAAAA",
 }) => {
-  const color = selected ? "#EC1D37" : "#AAAAAA";
   return (
     <MotionSvg
-      className="cursor-pointer"
-      whileTap={{ scale: 0.8 }}
+      className={twMerge(
+        "select-none",
+        !nonBouncing && onClick && "cursor-pointer"
+      )}
+      whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
       width={size}
       height={size}
       viewBox="0 0 36 36"

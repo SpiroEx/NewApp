@@ -1,15 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface PinIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
-const PinIcon: React.FC<PinIconProps> = ({ onClick, size = 29 }) => (
+const PinIcon: React.FC<PinIconProps> = ({
+  onClick,
+  size = 29,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="select-none"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 29 36"
     fill="none"

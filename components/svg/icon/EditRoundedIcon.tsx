@@ -1,21 +1,26 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface EditRoundedIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
 const EditRoundedIcon: React.FC<EditRoundedIconProps> = ({
   onClick,
   size = 32,
+  nonBouncing = false,
 }) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
-    whileTap={{ scale: 0.8 }}
-    width={`${size}px`}
-    height={`${size}px`}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     viewBox="0 0 204 204"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

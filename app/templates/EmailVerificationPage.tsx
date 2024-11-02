@@ -1,5 +1,5 @@
 import { Config } from "@/classes/Constants";
-import EmailLogo from "@/components/svg/EmailLogo";
+import EmailIcon from "@/components/svg/icon/EmailIcon";
 import MyButton from "@/components/templates/MyButton";
 import { us } from "@/hooks/useReactHooks";
 import signOutClick from "@/myfunctions/signOutClick";
@@ -24,7 +24,7 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
   return (
     <div className="csc-8 bg-gray-900 ws hs text-white pt-20">
       <div className="csc-2 opacity-50">
-        <EmailLogo size={109} />
+        <EmailIcon size={109} />
         <p className="font-light text-sm">{user.email}</p>
       </div>
 

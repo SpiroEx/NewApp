@@ -1,15 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface SearchIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
-const SearchIcon: React.FC<SearchIconProps> = ({ onClick, size = 22 }) => (
+const SearchIcon: React.FC<SearchIconProps> = ({
+  onClick,
+  size = 22,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     height={size}
     viewBox="0 0 94 94"

@@ -1,20 +1,27 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface DashboardIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
   opacity?: number;
+  nonBouncing?: boolean;
 }
 
 const DashboardIcon: React.FC<DashboardIconProps> = ({
   onClick,
   size = 25,
   opacity = 1,
+  nonBouncing = false,
 }) => (
   <MotionSvg
     onClick={onClick}
-    className="select-none"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     opacity={opacity}
     viewBox="0 0 34 36"

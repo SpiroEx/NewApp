@@ -1,3 +1,4 @@
+import { us } from "@/hooks/useReactHooks";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -28,6 +29,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
 }) => {
   const iconDivRef = useRef<HTMLDivElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
+  us;
 
   const [defaultIsExpanded, setDefaultIsExpanded] = useState(false);
 

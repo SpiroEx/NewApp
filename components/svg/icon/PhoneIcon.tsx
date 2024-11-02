@@ -1,15 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface PhoneIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
-const PhoneIcon: React.FC<PhoneIconProps> = ({ onClick, size = 23 }) => (
+const PhoneIcon: React.FC<PhoneIconProps> = ({
+  onClick,
+  size = 23,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     height={size}
     viewBox="0 0 23 24"

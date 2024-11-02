@@ -1,15 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface GoogleLogoProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
+  nonBouncing?: boolean;
 }
 
-const GoogleLogo: React.FC<GoogleLogoProps> = ({ onClick, size = 21 }) => (
+const GoogleLogo: React.FC<GoogleLogoProps> = ({
+  onClick,
+  size = 21,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="select-none"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 21 21"
     fill="none"

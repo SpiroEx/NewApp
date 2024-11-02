@@ -1,16 +1,26 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface AboutIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const AboutIcon: React.FC<AboutIconProps> = ({ onClick }) => (
+const AboutIcon: React.FC<AboutIconProps> = ({
+  onClick,
+  size = 30,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
-    whileTap={{ scale: 0.8 }}
-    width="30"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     height="31"
     viewBox="0 0 30 31"
     fill="none"

@@ -1,11 +1,13 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface BackAndroidIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
   hidden?: boolean;
   color?: string;
+  nonBouncing?: boolean;
 }
 
 const BackAndroidIcon: React.FC<BackAndroidIconProps> = ({
@@ -13,11 +15,15 @@ const BackAndroidIcon: React.FC<BackAndroidIconProps> = ({
   size = 84,
   hidden = false,
   color = "black",
+  nonBouncing = false,
 }) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
-    whileTap={{ scale: 0.8 }}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     style={{ visibility: hidden ? "hidden" : "visible" }}
     height="73"

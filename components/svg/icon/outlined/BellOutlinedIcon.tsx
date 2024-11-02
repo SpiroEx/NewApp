@@ -1,16 +1,26 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface BellOutlinedIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const BellOutlinedIcon: React.FC<BellOutlinedIconProps> = ({ onClick }) => (
+const BellOutlinedIcon: React.FC<BellOutlinedIconProps> = ({
+  onClick,
+  size = 27,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer"
-    whileTap={{ scale: 0.8 }}
-    width="27"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     height="31"
     viewBox="0 0 27 31"
     fill="none"

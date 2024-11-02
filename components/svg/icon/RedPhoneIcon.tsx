@@ -1,17 +1,26 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface RedPhoneIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const RedPhoneIcon: React.FC<RedPhoneIconProps> = ({ onClick }) => (
+const RedPhoneIcon: React.FC<RedPhoneIconProps> = ({
+  onClick,
+  size = 59,
+  nonBouncing = false,
+}) => (
   <MotionSvg
     onClick={onClick}
-    className="cursor-pointer "
-    whileTap={{ scale: 0.8 }}
-    width="59"
-    height="59"
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     viewBox="0 0 59 59"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ import PhoneIcon from "../svg/icon/PhoneIcon";
 import MyBottomSheet from "../templates/MyBottomSheet";
 import { FHContext } from "@/app/templates/FH_Wrapper";
 import { useAddress } from "@/hooks/useAddress";
-import WarningIcon from "../svg/WarningIcon";
+import WarningIcon from "../svg/icon/WarningIcon";
 
 interface EmergencyBottomSheetProps {
   open: boolean;

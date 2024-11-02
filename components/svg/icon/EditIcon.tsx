@@ -1,19 +1,30 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface EditIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const EditIcon: React.FC<EditIconProps> = ({ onClick }) => (
+const EditIcon: React.FC<EditIconProps> = ({
+  onClick,
+  size = 20,
+  nonBouncing = false,
+}) => (
   <MotionSvg
-    width="20"
+    onClick={onClick}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     height="20"
     viewBox="0 0 20 20"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    whileTap={{ scale: 0.8 }}
-    onClick={onClick}
   >
     <g clipPath="url(#clip0_8_35)">
       <path

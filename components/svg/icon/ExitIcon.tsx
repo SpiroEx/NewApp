@@ -1,23 +1,34 @@
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import { MouseEventHandler } from "react";
 import { MotionSvg } from "@/types/framer_motion_types";
+import { twMerge } from "tailwind-merge";
 
 interface ExitIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   tooltip?: string;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const ExitIcon: React.FC<ExitIconProps> = ({ onClick, tooltip }) => (
+const ExitIcon: React.FC<ExitIconProps> = ({
+  onClick,
+  tooltip,
+  size = 33,
+  nonBouncing = false,
+}) => (
   <div data-tooltip-id={`tooltip-${tooltip}`}>
     <MotionSvg
-      width="33"
-      className="cursor-pointer"
+      onClick={onClick}
+      className={twMerge(
+        "select-none",
+        !nonBouncing && onClick && "cursor-pointer"
+      )}
+      whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+      width={size}
       height="27"
       viewBox="0 0 33 27"
       fill="none"
       style={{ scale: 0.9 }}
-      whileTap={{ scale: 0.8 }}
-      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
     >
       <g opacity="0.9">

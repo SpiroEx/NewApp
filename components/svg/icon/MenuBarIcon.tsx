@@ -1,16 +1,25 @@
 import { MotionSvg } from "@/types/framer_motion_types";
+import { twMerge } from "tailwind-merge";
 
 interface MenuBarIconProps {
-  size?: number;
   onClick?: () => void;
+  size?: number;
+  nonBouncing?: boolean;
 }
 
-const MenuBarIcon: React.FC<MenuBarIconProps> = ({ size = 25, onClick }) => (
+const MenuBarIcon: React.FC<MenuBarIconProps> = ({
+  onClick,
+  size = 25,
+  nonBouncing = false,
+}) => (
   <MotionSvg
-    width={`${size}px`}
-    height={`${size}px`}
-    whileTap={{ scale: 0.8 }}
     onClick={onClick}
+    className={twMerge(
+      "select-none",
+      !nonBouncing && onClick && "cursor-pointer"
+    )}
+    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    width={size}
     viewBox="0 0 33 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

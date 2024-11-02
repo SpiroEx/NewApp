@@ -1,24 +1,28 @@
 import { MotionSvg } from "@/types/framer_motion_types";
 import { MouseEventHandler } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface RadarOutlinedIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;
   size?: number;
-  selected?: boolean;
+  nonBouncing?: boolean;
+  color?: string;
 }
 
 const RadarOutlinedIcon: React.FC<RadarOutlinedIconProps> = ({
   onClick,
   size = 36,
-  selected = false,
+  nonBouncing = false,
+  color = "#AAAAAA",
 }) => {
-  const color = selected ? "#EC1D37" : "#AAAAAA";
-
   return (
     <MotionSvg
       onClick={onClick}
-      className="cursor-pointer"
-      whileTap={{ scale: 0.8 }}
+      className={twMerge(
+        "select-none",
+        !nonBouncing && onClick && "cursor-pointer"
+      )}
+      whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
       width={size}
       height={size}
       viewBox="0 0 36 36"

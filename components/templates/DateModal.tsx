@@ -149,7 +149,7 @@ const Day: React.FC<DayProps> = ({
   return (
     <MotionDiv
       className={twMerge(
-        "rcc rounded select-none cursor-pointer",
+        "rcc rounded cp",
         day === selectedDate.getDate() && !gray && "bg-darker_primary t-white",
         gray && "opacity-50"
       )}
@@ -177,7 +177,7 @@ interface MyChevronProps {
 const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
   return (
     <MotionDiv
-      className="rcc rounded-full bg-gray w-7 h-7 border border-darker_primary cursor-pointer select-none"
+      className="rcc rounded-full bg-gray w-7 h-7 border border-darker_primary cp"
       whileTap={{ scale: 0.8 }}
       onClick={onClick}
     >
@@ -205,7 +205,7 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <MotionDiv
-      className="rce-1 relative bg-gray px-2 rounded border border-darker_primary select-none cursor-pointer h-min"
+      className="rce-1 relative bg-gray px-2 rounded border border-darker_primary cp h-min"
       whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
       onClick={() => setDropdownOpen(!dropdownOpen)}
     >

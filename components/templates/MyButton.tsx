@@ -47,7 +47,7 @@ const MyButton: React.FC<MyButtonProps> = ({
         className={twMerge(
           "m-auto min-wf min-hf rounded-lg",
           classNameBtn,
-          disabled ? "cursor-default" : "cursor-pointer"
+          disabled ? "cursor-default" : "cp"
         )}
       >
         <p

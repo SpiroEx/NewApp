@@ -35,7 +35,7 @@ const FooterIcon: React.FC<FooterIconProps> = ({ page, icon }) => {
   const { page: currentPage, setPage } = useContext(PageWrapperContext);
   return (
     <MotionDiv
-      className="rcc wf hf cursor-pointer"
+      className="rcc wf hf cp"
       whileTap={{ scale: 0.8 }}
       style={{ opacity: currentPage === page ? 1 : 0.4 }}
       onClick={() => setPage(page)}

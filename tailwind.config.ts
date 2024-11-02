@@ -41,12 +41,26 @@ export default {
       generateFlex(newUtilities)
       generateWidthHeight(newUtilities)
       generateText(newUtilities, theme, matchUtilities)
+      generateExtras(newUtilities)
 
       addUtilities(newUtilities as CSSRuleObject);
     }
   ],
 } satisfies Config;
 
+
+function generateExtras(newUtilities: Record<string, CSSProperties>) {
+  //! CURSOR POINTER
+  newUtilities['.cp'] = {
+    cursor: 'pointer',
+    userSelect: 'none',
+  };
+
+  //! SELECT NONE
+  newUtilities['.sn'] = {
+    userSelect: 'none',
+  };
+}
 
 //! TEXT
 function generateText(

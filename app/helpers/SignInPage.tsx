@@ -77,7 +77,7 @@ const SignInPage: React.FC = () => {
         <div className="h-8 rse">
           {type == SignInType.logIn && (
             <p
-              className={`t2 t-link fit-content m-auto select-none cursor-pointer`}
+              className={`t2 t-link fit-content m-auto cp`}
               onClick={forgotPassword}
             >
               FORGOT PASSWORD&#63;

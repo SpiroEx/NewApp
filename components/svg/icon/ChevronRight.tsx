@@ -19,11 +19,7 @@ const ChevronRight: React.FC<ChevronRightProps> = ({
 }) => (
   <MotionSvg
     onClick={onClick}
-    className={twMerge(
-      "select-none",
-      !nonBouncing && onClick && "cursor-pointer",
-      className
-    )}
+    className={twMerge("sn", !nonBouncing && onClick && "cp", className)}
     whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 53 99"

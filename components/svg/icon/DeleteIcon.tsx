@@ -15,10 +15,7 @@ const DeleteIcon: React.FC<DeleteIconProps> = ({
 }) => (
   <MotionSvg
     onClick={onClick}
-    className={twMerge(
-      "select-none",
-      !nonBouncing && onClick && "cursor-pointer"
-    )}
+    className={twMerge("sn", !nonBouncing && onClick && "cp")}
     whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 219 219"

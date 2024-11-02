@@ -21,7 +21,7 @@ const VisibilityIcon: React.FC<VisibilityIconProps> = ({
       <span className="icon-eye js-transition">
         <svg
           onClick={onClick}
-          className="cursor-pointer"
+          className="cp"
           viewBox="-20 -200 320 400"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"

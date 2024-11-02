@@ -41,7 +41,7 @@ export default {
       generateFlex(newUtilities)
       generateWidthHeight(newUtilities)
       generateText(newUtilities, theme, matchUtilities)
-      generateExtras(newUtilities)
+      generateExtras(newUtilities, theme, matchUtilities)
 
       addUtilities(newUtilities as CSSRuleObject);
     }
@@ -49,7 +49,9 @@ export default {
 } satisfies Config;
 
 
-function generateExtras(newUtilities: Record<string, CSSProperties>) {
+function generateExtras(newUtilities: Record<string, CSSProperties>,
+  theme: PluginAPI["theme"],
+  matchUtilities: PluginAPI["matchUtilities"]) {
   //! CURSOR POINTER
   newUtilities['.cp'] = {
     cursor: 'pointer',
@@ -60,6 +62,106 @@ function generateExtras(newUtilities: Record<string, CSSProperties>) {
   newUtilities['.sn'] = {
     userSelect: 'none',
   };
+
+  //! OPACITY
+  matchUtilities(
+    {
+      'o': (value) => ({
+        opacity: value,
+      }),
+    },
+    { values: theme('opacity'), type: 'any' }
+  );
+
+  //! BORDER WIDTH
+  matchUtilities(
+    {
+      'b': (value) => ({
+        borderWidth: value,
+      }),
+      'b-t': (value) => ({
+        borderTopWidth: value,
+      }),
+      'b-r': (value) => ({
+        borderRightWidth: value,
+      }),
+      'b-b': (value) => ({
+        borderBottomWidth: value,
+      }),
+      'b-l': (value) => ({
+        borderLeftWidth: value,
+      }),
+      'b-x': (value) => ({
+        borderLeftWidth: value,
+        borderRightWidth: value,
+      }),
+      'b-y': (value) => ({
+        borderTopWidth: value,
+        borderBottomWidth: value,
+      }),
+    },
+    { values: theme('borderWidth'), type: 'any' }
+  );
+
+  //! BORDER COLOR
+  matchUtilities(
+    {
+      'b': (value) => ({
+        borderColor: value,
+      }),
+      'b-t': (value) => ({
+        borderTopColor: value,
+      }),
+      'b-r': (value) => ({
+        borderRightColor: value,
+      }),
+      'b-b': (value) => ({
+        borderBottomColor: value,
+      }),
+      'b-l': (value) => ({
+        borderLeftColor: value,
+      }),
+      'b-x': (value) => ({
+        borderLeftColor: value,
+        borderRightColor: value,
+      }),
+      'b-y': (value) => ({
+        borderTopColor: value,
+        borderBottomColor: value,
+      }),
+    },
+    { values: flattenColorPalette(theme('colors')), type: 'color' }
+  );
+
+  //! BORDER OPACITY
+  matchUtilities(
+    {
+      'bo': (value) => ({
+        borderOpacity: value,
+      }),
+    },
+    { values: theme('opacity'), type: 'any' }
+  );
+
+  //! BORDER STYLE
+  matchUtilities(
+    {
+      'b': (value) => ({
+        borderStyle: value,
+      }),
+    },
+    {
+      values: {
+        solid: 'solid',
+        dashed: 'dashed',
+        dotted: 'dotted',
+        double: 'double',
+        none: 'none',
+      },
+      type: 'any'
+    }
+  );
+
 }
 
 //! TEXT

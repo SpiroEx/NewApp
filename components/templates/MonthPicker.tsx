@@ -30,11 +30,11 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
       icon={
         <div className="rse-2">
           <p className="t46">{DateHelper.monthAbbrev[selectedMonth]},</p>
-          <p className=" t43 opacity-50">{shownYear}</p>
+          <p className=" t43 o-50">{shownYear}</p>
         </div>
       }
       expandDirection="bottom-right"
-      className="bg-gray border-zinc-400 border"
+      className="bg-gray b-zinc-400 b"
     >
       <div className="csc-2">
         {/*//! YEAR */}
@@ -49,7 +49,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
             onClick={() => setShownYear((y) => y + 1)}
           />
         </div>
-        <hr className="wf opacity-30" />
+        <hr className="wf o-30" />
         {/*//! MONTH */}
         <div className="wcs w-48">
           {DateHelper.monthAbbrev.map((month, index) => {
@@ -83,9 +83,9 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
               >
                 <p
                   className={twMerge(
-                    "tc font-extralight rounded-md",
+                    "tc tf2 rounded-md",
                     isSelectedMonth && "bg-slate-600",
-                    isAfterCurrentMonth && "opacity-50"
+                    isAfterCurrentMonth && "o-50"
                   )}
                 >
                   {month}

@@ -14,7 +14,7 @@ const MyDatePicker: React.FC<MyDatePickerProps> = ({ date, setDate }) => {
     { value: string; onClick: MouseEventHandler<HTMLButtonElement> }
   >(({ value, onClick }, ref) => (
     <button
-      className="px-4 py-2 t-white bg-transparent border-2 border-white"
+      className="px-4 py-2 t-white bg-transparent b-2 b-white"
       onClick={onClick}
       ref={ref}
     >

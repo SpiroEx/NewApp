@@ -34,10 +34,7 @@ const _p: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p
-      className={twMerge("t33 tracking-wider opacity-50", className)}
-      {...props}
-    >
+    <p className={twMerge("t33 tracking-wider o-50", className)} {...props}>
       {children}
     </p>
   );
@@ -63,10 +60,7 @@ const exponent: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p
-      className={twMerge("t22 tracking-wider opacity-75", className)}
-      {...props}
-    >
+    <p className={twMerge("t22 tracking-wider o-75", className)} {...props}>
       {children}
     </p>
   );

@@ -23,7 +23,7 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
 
   return (
     <div className="csc-8 bg-gray-900 ws hs t-white pt-20">
-      <div className="csc-2 opacity-50">
+      <div className="csc-2 o-50">
         <EmailIcon size={109} />
         <p className="t33">{user.email}</p>
       </div>

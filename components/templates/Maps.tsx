@@ -111,7 +111,7 @@ const Maps: React.FC<MapsProps> = ({
     <div
       className={twMerge(
         "relative overflow-hidden select-none",
-        roundedCorner && "wf h-64 rounded-3xl border-2"
+        roundedCorner && "wf h-64 rounded-3xl b-2"
       )}
       style={{
         minHeight: height,

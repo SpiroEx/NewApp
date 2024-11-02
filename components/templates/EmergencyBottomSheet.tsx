@@ -40,7 +40,7 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
 
         {/*//! Need Help */}
         <div className="csc-3 mt-8 tc mb-10">
-          <p className="t-red-500 font-semibold">Need Help</p>
+          <p className="t-red-500 tf6">Need Help</p>
           <p className="t-zinc-700 t36">{address}</p>
           <p className="t-zinc-400 t2">
             {device && dateFormatter(emergencyTimestamp)}

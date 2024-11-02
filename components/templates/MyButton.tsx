@@ -33,9 +33,9 @@ const MyButton: React.FC<MyButtonProps> = ({
     <MotionDiv
       className={twMerge(
         "tc wf max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none",
-        outlined && "bg-transparent border border-zinc-600",
-        dashed && "border-dashed",
-        disabled && "cursor-default opacity-50",
+        outlined && "bg-transparent b b-zinc-600",
+        dashed && "b-dashed",
+        disabled && "cursor-default o-50",
         className
       )}
       onClick={onClick}
@@ -52,7 +52,7 @@ const MyButton: React.FC<MyButtonProps> = ({
       >
         <p
           className={twMerge(
-            "t-white font-light w-max m-auto",
+            "t-white tf3 w-max m-auto",
             outlined && "t-black",
             classNameText
           )}

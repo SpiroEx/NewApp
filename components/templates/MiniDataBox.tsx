@@ -28,7 +28,7 @@ const MiniDataBox: React.FC<MiniDataBoxProps> = ({
         <div className="rbs wf">
           <div className="rss">
             <div className="rsc-2">
-              <div className="w-3 h-3 border rounded-full"></div>
+              <div className="w-3 h-3 b rounded-full"></div>
               <Txt.number>{maxDecimal(data)}</Txt.number>
             </div>
             <Txt.exponent>{unit}</Txt.exponent>

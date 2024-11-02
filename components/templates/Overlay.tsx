@@ -24,7 +24,7 @@ const Overlay: React.FC<OverlayProps> = ({ children, setOverlay }) => {
     <div className="rss fixed z-20 top-0 left-0 hs ws m-auto px-10">
       <div className="m-auto">{children}</div>
       <div
-        className="fixed -z-10 top-0 left-0 hs ws bg-black opacity-50"
+        className="fixed -z-10 top-0 left-0 hs ws bg-black o-50"
         onClick={() => {
           if (!clickable) return;
           console.log("overlay clidked");

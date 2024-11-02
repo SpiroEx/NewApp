@@ -43,7 +43,7 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
         >
           {icon}
         </div>
-        <div className="opacity-0 select-none">{icon}</div>
+        <div className="o-0 select-none">{icon}</div>
         <div
           className="rotate-90"
           onTouchStart={onRight}

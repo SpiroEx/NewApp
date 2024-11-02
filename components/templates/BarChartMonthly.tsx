@@ -15,7 +15,7 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
   barChartMonthly,
 }) => {
   return (
-    <div className="csc-3 mx-10 tj px-10 py-4 rounded-xl border border-white">
+    <div className="csc-3 mx-10 tj px-10 py-4 rounded-xl b b-white">
       {/*//! TITLE */}
       <p className="t56">{title}</p>
 
@@ -37,7 +37,7 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
             <p
               className={twMerge(
                 "t33",
-                data.year < barChartMonthly.lastShownYear && "opacity-50"
+                data.year < barChartMonthly.lastShownYear && "o-50"
               )}
             >
               {data.month}

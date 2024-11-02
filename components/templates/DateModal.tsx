@@ -151,7 +151,7 @@ const Day: React.FC<DayProps> = ({
       className={twMerge(
         "rcc rounded cp",
         day === selectedDate.getDate() && !gray && "bg-darker_primary t-white",
-        gray && "opacity-50"
+        gray && "o-50"
       )}
       whileTap={{ scale: 0.9 }}
       onClick={() => {
@@ -177,7 +177,7 @@ interface MyChevronProps {
 const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
   return (
     <MotionDiv
-      className="rcc rounded-full bg-gray w-7 h-7 border border-darker_primary cp"
+      className="rcc rounded-full bg-gray w-7 h-7 b b-gray-700 cp"
       whileTap={{ scale: 0.8 }}
       onClick={onClick}
     >
@@ -205,12 +205,12 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <MotionDiv
-      className="rce-1 relative bg-gray px-2 rounded border border-darker_primary cp h-min"
+      className="rce-1 relative bg-gray px-2 rounded b b-gray-700 cp h-min"
       whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
       onClick={() => setDropdownOpen(!dropdownOpen)}
     >
       {/*//! BOX BUTTON */}
-      <p className="m-0 font-bold">{text}</p>
+      <p className="m-0 tf7">{text}</p>
       <div
         style={{
           transform: "translateY(-5px)",
@@ -235,7 +235,7 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
           {list.map((item, index) => (
             <p
               key={index}
-              className={twMerge("bg-white p-2", item === text && "font-bold")}
+              className={twMerge("bg-white p-2", item === text && "tf7")}
             >
               {item}
             </p>

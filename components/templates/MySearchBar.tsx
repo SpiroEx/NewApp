@@ -41,16 +41,15 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
       >
         <div
           className={twMerge(
-            "rsc-3 rounded-xl border border-zinc-300 px-3",
-            showResults &&
-              "bg-white border-opacity-0 rounded-b-none rounded-t-xl"
+            "rsc-3 rounded-xl b b-zinc-300 px-3",
+            showResults && "bg-white bo-0 rounded-b-none rounded-t-xl"
           )}
         >
           <SearchIcon />
           <MyInput
             inputField={inputField}
             placeholder="Search for a setting..."
-            className="bg-transparent wf max-w-sm border-none py-3 px-0"
+            className="bg-transparent wf max-w-sm b-none py-3 px-0"
             divClassName="wf"
             onChange={updateFilteredFields}
             onFocus={() => {

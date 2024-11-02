@@ -32,7 +32,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
   return (
     <div className={twMerge("wf", divClassname)}>
       {label && (
-        <p className="t33 opacity-50 translate-x-3 -translate-y-1">{label}</p>
+        <p className="t33 o-50 translate-x-3 -translate-y-1">{label}</p>
       )}
       <Select
         value={options.find((option) => option.value === value)}

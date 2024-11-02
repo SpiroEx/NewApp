@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+
+import DateHelper from "@/classes/templates/DateHelper";
+import { MotionDiv } from "@/types/framer_motion_types";
+
 import ChevronLeft from "../svg/icon/ChevronLeft";
 import ChevronRight from "../svg/icon/ChevronRight";
-import DropdownButton from "../templates/DropdownButton";
-import DateHelper from "@/classes/templates/DateHelper";
-import { twMerge } from "tailwind-merge";
-import { MotionDiv } from "@/types/framer_motion_types";
+import DropdownButton from "./DropdownButton";
 
 interface MonthPickerProps {
   onChange?: (month: number, year: number) => void;
@@ -30,15 +32,15 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
       icon={
         <div className="rse-2">
           <p className="t46">{DateHelper.monthAbbrev[selectedMonth]},</p>
-          <p className=" t43 o-50">{shownYear}</p>
+          <p className=" o-50 t43">{shownYear}</p>
         </div>
       }
       expandDirection="bottom-right"
-      className="bg-gray b-zinc-400 b"
+      className="bg-gray b b-zinc-400"
     >
       <div className="csc-2">
-        {/*//! YEAR */}
-        <div className="rbc wf py-2 px-4">
+        {/* //! YEAR */}
+        <div className="px-4 py-2 rbc wf">
           <ChevronLeft
             color="white"
             onClick={() => setShownYear((y) => y - 1)}
@@ -49,20 +51,20 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
             onClick={() => setShownYear((y) => y + 1)}
           />
         </div>
-        <hr className="wf o-30" />
-        {/*//! MONTH */}
-        <div className="wcs w-48">
+        <hr className="o-30 wf" />
+        {/* //! MONTH */}
+        <div className="w-48 wcs">
           {DateHelper.monthAbbrev.map((month, index) => {
-            //? Selected Month
+            // ? Selected Month
             const isSelectedMonth =
               selectedMonth === index && selectedYear === shownYear;
 
-            //? Current Month
+            // ? Current Month
             const isCurrentMonth =
               new Date().getMonth() === index &&
               selectedYear === new Date().getFullYear();
 
-            //? After current month
+            // ? After current month
             const isAfterCurrentMonth =
               shownYear > new Date().getFullYear() ||
               (shownYear === new Date().getFullYear() &&
@@ -78,7 +80,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
                   onChange?.(index, selectedYear);
                   setIsExpanded(false);
                 }}
-                className="p-2 w-16"
+                className="w-16 p-2"
                 whileTap={{ scale: 0.9 }}
               >
                 <p

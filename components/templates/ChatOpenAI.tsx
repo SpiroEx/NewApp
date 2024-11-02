@@ -1,5 +1,6 @@
-import usePost from "@/hooks/usePost";
 import { useEffect } from "react";
+
+import usePost from "@/hooks/usePost";
 
 interface ChatOpenAIProps {
   prompt: string;

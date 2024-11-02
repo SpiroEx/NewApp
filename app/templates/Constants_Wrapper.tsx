@@ -1,15 +1,18 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
 import { ToastContainer } from "react-toastify";
-import LoadingPage from "./LoadingPage";
-import UserWrapper from "./User_Wrapper";
+
 import { Config } from "@/classes/Constants";
-import PageWrapper from "../helpers/PageWrapper";
 import { us } from "@/hooks/useReactHooks";
 
-//? ----------------------
-//? LOADING PAGE
-//? TOAST
-//? ----------------------
+import PageWrapper from "../helpers/PageWrapper";
+import LoadingPage from "./LoadingPage";
+import UserWrapper from "./User_Wrapper";
+
+// ? ----------------------
+// ? LOADING PAGE
+// ? TOAST
+// ? ----------------------
 
 export const LoadingContext = createContext({
   loading: false,
@@ -25,7 +28,7 @@ const ConstantsWrapper: React.FC<ConstantsWrapperProps> = ({}) => {
     <>
       {/* //! FH WRAPPER PAGE */}
       <LoadingContext value={{ loading, setLoading }}>
-        {Config.useFirebase ? <UserWrapper /> : <PageWrapper />}
+        {Config.hasFirebase ? <UserWrapper /> : <PageWrapper />}
       </LoadingContext>
 
       {/* //! LOADING PAGE */}

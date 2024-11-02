@@ -1,4 +1,4 @@
-import tailwindConfig from "@/tailwind.config";
+import tailwindConfig from "../tailwind.config";
 import preval from "next-plugin-preval";
 import resolveConfig from "tailwindcss/resolveConfig";
 
@@ -8,4 +8,6 @@ async function getData() {
   return fullConfig?.theme;
 }
 
-export default preval(getData());
+const tailwindTheme = preval(getData());
+
+export default tailwindTheme;

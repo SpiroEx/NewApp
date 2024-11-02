@@ -1,12 +1,13 @@
-import { FHContext } from "@/app/templates/FH_Wrapper";
-import useModal from "@/hooks/useModal";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import ChevronRight from "../svg/icon/ChevronRight";
-import ChevronLeft from "../svg/icon/ChevronLeft";
-import MyModal from "../templates/MyModal";
-import RightTriangle from "../templates/RightTriangle";
+
+import type useModal from "@/hooks/useModal";
 import { MotionDiv } from "@/types/framer_motion_types";
+
+import ChevronLeft from "../svg/icon/ChevronLeft";
+import ChevronRight from "../svg/icon/ChevronRight";
+import MyModal from "./MyModal";
+import RightTriangle from "./RightTriangle";
 
 interface DateModalProps {
   dateModal: ReturnType<typeof useModal>;
@@ -56,7 +57,7 @@ const DateModal: React.FC<DateModalProps> = ({
       classNameContent="top-20 translate-y-0"
     >
       <div className="css-4">
-        {/*//! HEADER */}
+        {/* //! HEADER */}
         <div className="rbc">
           <MyChevron direction="left" onClick={setPrevMonth} />
           <div className="rss-1">
@@ -74,7 +75,7 @@ const DateModal: React.FC<DateModalProps> = ({
           <MyChevron direction="right" onClick={setNextMonth} />
         </div>
 
-        {/*//! WEEK DAYS */}
+        {/* //! WEEK DAYS */}
         <div className="ras t35">
           <p>Su</p>
           <p>Mo</p>
@@ -85,7 +86,7 @@ const DateModal: React.FC<DateModalProps> = ({
           <p>Sa</p>
         </div>
 
-        {/*//! DAYS */}
+        {/* //! DAYS */}
         <div className="grid grid-cols-7 gap-2">
           {generatePrevMonthDays(selectedDate).map((day, index) => (
             <Day
@@ -177,7 +178,7 @@ interface MyChevronProps {
 const MyChevron: React.FC<MyChevronProps> = ({ direction, onClick }) => {
   return (
     <MotionDiv
-      className="rcc rounded-full bg-gray w-7 h-7 b b-gray-700 cp"
+      className="bg-gray h-7 w-7 rounded-full b b-gray-700 rcc cp"
       whileTap={{ scale: 0.8 }}
       onClick={onClick}
     >
@@ -205,11 +206,11 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <MotionDiv
-      className="rce-1 relative bg-gray px-2 rounded b b-gray-700 cp h-min"
+      className="bg-gray relative h-min rounded px-2 b b-gray-700 rce-1 cp"
       whileTap={{ scale: dropdownOpen ? 1 : 0.9 }}
       onClick={() => setDropdownOpen(!dropdownOpen)}
     >
-      {/*//! BOX BUTTON */}
+      {/* //! BOX BUTTON */}
       <p className="m-0 tf7">{text}</p>
       <div
         style={{
@@ -219,10 +220,10 @@ const MonthYearPicker: React.FC<MonthYearPickerProps> = ({
         <RightTriangle size={7} />
       </div>
 
-      {/*//! DROPDOWN  */}
+      {/* //! DROPDOWN  */}
       {dropdownOpen && (
         <div
-          className="absolute top-full left-full max-h-72 overflow-y-auto shadow-lg drop-shadow-lg z-10"
+          className="absolute left-full top-full z-10 max-h-72 overflow-y-auto shadow-lg drop-shadow-lg"
           onClick={(e) => {
             e.preventDefault();
             const targetElement = e.target as HTMLInputElement;

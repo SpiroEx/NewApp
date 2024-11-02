@@ -1,6 +1,6 @@
-import { ChatGPT } from "@/classes/templates/ChatGPT";
-import usePost from "@/hooks/usePost";
 import { useEffect, useState } from "react";
+
+import usePost from "@/hooks/usePost";
 
 interface TTSOpenAIProps {
   text: string;

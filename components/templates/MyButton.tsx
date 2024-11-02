@@ -1,6 +1,7 @@
-import { MotionDiv } from "@/types/framer_motion_types";
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { MotionDiv } from "@/types/framer_motion_types";
 
 interface MyButtonProps {
   onClick?: MouseEventHandler;

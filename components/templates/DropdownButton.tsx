@@ -1,6 +1,7 @@
-import { us } from "@/hooks/useReactHooks";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { us } from "@/hooks/useReactHooks";
 
 export type ExpandDirection =
   | "bottom-right"
@@ -68,7 +69,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
       default:
         break;
     }
-  }, [divRef.current?.clientHeight, divRef.current?.clientWidth, isExpanded]);
+  }, [divRef?.current?.clientHeight, divRef?.current?.clientWidth, isExpanded]);
 
   return (
     <div className={twMerge("relative")}>

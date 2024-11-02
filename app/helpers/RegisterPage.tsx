@@ -1,6 +1,9 @@
+import type { User } from "firebase/auth";
+import type { FormEventHandler } from "react";
+
 import { Config } from "@/classes/Constants";
 import FH from "@/classes/FH";
-import { MyUser } from "@/classes/MyUser";
+import type { MyUser } from "@/classes/MyUser";
 import EditableAvatar from "@/components/templates/EditableAvatar";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
@@ -8,9 +11,6 @@ import Title from "@/components/templates/Title";
 import { useCheckboxField, useInputField } from "@/hooks/useInputField";
 import { us } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
-import { User } from "firebase/auth";
-import { FormEventHandler, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 interface RegisterPageProps {
   user: User;
@@ -33,7 +33,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
     e.preventDefault();
 
     if (!nameInput.verify()) return;
-    if (Config.useTermsAndConditions && !termsInput.verify()) return;
+    if (Config.hasTermsAndConditions && !termsInput.verify()) return;
 
     setCreatingMyUser(true);
     try {
@@ -55,7 +55,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
       const myUser: MyUser = {
         id: user.uid,
         name: nameInput.getValue()!,
-        photoURL: photoURL,
+        photoURL,
         email: user.email!,
         device_id: "",
       };
@@ -75,7 +75,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
       {/* //! TITLE */}
       <div className="h-28" />
       <Title />
-      <h1 className={`tc mt-2 mb-10`}>Tell us about you..</h1>
+      <h1 className="mb-10 mt-2 tc">Tell us about you..</h1>
       {/* <SizedBox height={80} /> */}
 
       {/* //! AVATAR */}
@@ -84,7 +84,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         setSelectedImage={setSelectedImage}
         size={120}
       />
-      <form className="ccs-10 mb-10" onSubmit={register}>
+      <form className="mb-10 ccs-10" onSubmit={register}>
         {/* //! FULL NAME */}
         <MyInput
           placeholder="Full name"
@@ -92,7 +92,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
           inputField={nameInput}
         />
         {/* //! TERMS AND CONDITIONS */}
-        {Config.useTermsAndConditions && (
+        {Config.hasTermsAndConditions && (
           <TermsAndConditions termsInput={termsInput} />
         )}
 

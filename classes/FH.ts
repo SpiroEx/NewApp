@@ -79,10 +79,10 @@ export default abstract class FH {
 
 export type FHType<T> = {
   [K in keyof T]?: T[K] extends any[]
-    ? FieldValue | T[K]
-    : T[K] extends number
-    ? FieldValue | number
-    : T[K];
+  ? FieldValue | T[K]
+  : T[K] extends number
+  ? FieldValue | number
+  : T[K];
 };
 
 export type FHOptions = {

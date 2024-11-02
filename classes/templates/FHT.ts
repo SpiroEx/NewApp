@@ -98,7 +98,7 @@ export default abstract class FHT<T extends { id: string }> {
   watch(id: string | undefined, callback: (data: T | null) => void) {
     if (!id) {
       callback(null);
-      return () => {};
+      return () => { };
     }
 
     const docRef = doc(db, this.collectionName, id);
@@ -274,7 +274,7 @@ export default abstract class FHT<T extends { id: string }> {
   async transaction(
     id: string,
     callback: (data: T | null) => Promise<Partial<T>>
-  ) {}
+  ) { }
 }
 
 export class FHPicture {

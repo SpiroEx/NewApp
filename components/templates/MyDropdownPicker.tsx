@@ -1,6 +1,8 @@
-import { outfitFont } from "@/styles/fonts";
-import Select, { CSSObjectWithLabel, StylesConfig } from "react-select";
+import type { CSSObjectWithLabel } from "react-select";
+import Select from "react-select";
 import { twMerge } from "tailwind-merge";
+
+import { outfitFont } from "@/styles/fonts";
 
 interface MyDropDownPickerProps {
   value: string | undefined;
@@ -32,7 +34,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
   return (
     <div className={twMerge("wf", divClassname)}>
       {label && (
-        <p className="t33 o-50 translate-x-3 -translate-y-1">{label}</p>
+        <p className="-translate-y-1 translate-x-3 o-50 t33">{label}</p>
       )}
       <Select
         value={options.find((option) => option.value === value)}
@@ -48,7 +50,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
           container: (baseStyles: any, state: any) =>
             ({
               ...baseStyles,
-              width: width,
+              width,
             } as CSSObjectWithLabel),
           control: (baseStyles: any, state: any) =>
             ({

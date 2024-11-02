@@ -1,5 +1,7 @@
-import tailwindTheme from "../../preval/tailwind.preval";
 import { createContext } from "react";
+
+import tailwindTheme from "@/preval/tailwind.preval";
+
 import ConstantsWrapper from "./Constants_Wrapper";
 
 export const TailwindContext = createContext({

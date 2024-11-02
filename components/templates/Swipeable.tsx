@@ -76,7 +76,15 @@ const Swipeable: React.FC<SwipeableProps> = ({
       element.removeEventListener("pointerdown", handlePointerDown);
       element.removeEventListener("pointermove", handlePointerMove);
     };
-  }, [divRef.current, startX, swiped]);
+  }, [
+    divRef?.current,
+    startX,
+    swiped,
+    onSwipeLeft,
+    onSwipeRight,
+    onSwipeUp,
+    onSwipeDown,
+  ]);
 
   return (
     <div ref={divRef} className="select-none">

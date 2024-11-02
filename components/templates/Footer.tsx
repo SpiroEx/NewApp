@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { Pages, PageWrapperContext } from "@/app/helpers/PageWrapper";
 import { twMerge } from "tailwind-merge";
+
+import type { Pages } from "@/app/helpers/PageWrapper";
+import { PageWrapperContext } from "@/app/helpers/PageWrapper";
 import { MotionDiv } from "@/types/framer_motion_types";
 
 interface FooterProps {
@@ -23,7 +25,7 @@ const Footer: React.FC<FooterProps> = ({ pages, className }) => {
       ))}
     </div>
   ) : (
-    <div></div>
+    <div />
   );
 };
 

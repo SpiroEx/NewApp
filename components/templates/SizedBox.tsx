@@ -9,7 +9,7 @@ const SizedBox: React.FC<SizedBoxProps> = ({ width, height }) => {
     height: height || "auto",
   };
 
-  return <div style={style}></div>;
+  return <div style={style} />;
 };
 
 export default SizedBox;

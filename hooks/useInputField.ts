@@ -2,7 +2,7 @@ import notify from "@/myfunctions/notify";
 import { useRef, useState } from "react";
 
 export type InputField = {
-  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement>;
+  ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
   error: boolean;
   setError: React.Dispatch<React.SetStateAction<boolean>>;
   verify: () => boolean;

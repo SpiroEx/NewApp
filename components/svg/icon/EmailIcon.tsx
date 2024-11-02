@@ -1,11 +1,12 @@
-import { MotionSvg } from "@/types/framer_motion_types";
-import { MouseEventHandler } from "react";
-import { twMerge } from "tailwind-merge";
+import type { MouseEventHandler } from "react"
+import { twMerge } from "tailwind-merge"
+
+import { MotionSvg } from "@/types/framer_motion_types"
 
 interface EmailIconProps {
-  onClick?: MouseEventHandler<SVGSVGElement>;
-  size?: number;
-  nonBouncing?: boolean;
+  onClick?: MouseEventHandler<SVGSVGElement>
+  size?: number
+  nonBouncing?: boolean
 }
 
 const EmailIcon: React.FC<EmailIconProps> = ({
@@ -37,7 +38,7 @@ const EmailIcon: React.FC<EmailIconProps> = ({
         strokeLinecap="round"
       />
     </MotionSvg>
-  );
-};
+  )
+}
 
-export default EmailIcon;
+export default EmailIcon

@@ -43,7 +43,7 @@ const onMessageListenerForeground = async (
 
 const requestForToken = async (callback: (token: string) => any) => {
   try {
-    if (!Config.useFCM) return;
+    if (!Config.hasFCM) return;
     const messagingResolve = await messaging;
     if (!messagingResolve) return;
 

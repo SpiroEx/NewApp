@@ -21,10 +21,10 @@ const Overlay: React.FC<OverlayProps> = ({ children, setOverlay }) => {
     };
   }, []);
   return (
-    <div className="rss fixed z-20 top-0 left-0 hs ws m-auto px-10">
+    <div className="fixed left-0 top-0 z-20 m-auto px-10 rss ws hs">
       <div className="m-auto">{children}</div>
       <div
-        className="fixed -z-10 top-0 left-0 hs ws bg-black o-50"
+        className="fixed left-0 top-0 -z-10 bg-black o-50 ws hs"
         onClick={() => {
           if (!clickable) return;
           console.log("overlay clidked");

@@ -1,6 +1,7 @@
-import { MotionSvg } from "@/types/framer_motion_types";
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { MotionSvg } from "@/types/framer_motion_types";
 
 interface ProfileOutlinedIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;

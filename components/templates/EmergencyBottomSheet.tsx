@@ -1,12 +1,11 @@
 import { useContext } from "react";
-import Avatar from "../templates/Avatar";
-import MyButton from "../templates/MyButton";
-import { dateFormatter } from "@/myfunctions/dateFormatter";
-import PhoneIcon from "../svg/icon/PhoneIcon";
-import MyBottomSheet from "../templates/MyBottomSheet";
+
 import { FHContext } from "@/app/templates/FH_Wrapper";
 import { useAddress } from "@/hooks/useAddress";
+import { dateFormatter } from "@/myfunctions/dateFormatter";
+
 import WarningIcon from "../svg/icon/WarningIcon";
+import MyBottomSheet from "./MyBottomSheet";
 
 interface EmergencyBottomSheetProps {
   open: boolean;
@@ -29,17 +28,17 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
 
   return (
     <MyBottomSheet open={open} onClose={onClose}>
-      <div className="csc px-5">
-        {/*//! Child Info Card  */}
-        <div className="rsc-4 bg-zinc-200 rounded-xl px-3 py-3 wf">
+      <div className="px-5 csc">
+        {/* //! Child Info Card  */}
+        <div className="rounded-xl bg-zinc-200 p-3 rsc-4 wf">
           <WarningIcon />
           <div className="css-1">
             <p className="t6">Emergency!</p>
           </div>
         </div>
 
-        {/*//! Need Help */}
-        <div className="csc-3 mt-8 tc mb-10">
+        {/* //! Need Help */}
+        <div className="mb-10 mt-8 csc-3 tc">
           <p className="t-red-500 tf6">Need Help</p>
           <p className="t-zinc-700 t36">{address}</p>
           <p className="t-zinc-400 t2">
@@ -47,7 +46,7 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
           </p>
         </div>
 
-        {/*//! Call Police */}
+        {/* //! Call Police */}
         {/* <div className="rbs wf mt-10 mb-8">
           <div className="css-1">
             <p className="t2 t-zinc-400">Phone Number</p>

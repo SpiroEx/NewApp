@@ -1,10 +1,12 @@
-import { Constants, LocalStorage } from "@/classes/Constants";
-import useLocalStorage from "@/hooks/useLocalStorage";
 import GoogleMapReact from "google-map-react";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
+
+import { Constants, LocalStorage } from "@/classes/Constants";
+import useLocalStorage from "@/hooks/useLocalStorage";
+
 import LocationBottomSheet from "./LocationBottomSheet";
 import MyBottomSheet from "./MyBottomSheet";
-import { twMerge } from "tailwind-merge";
 
 export interface MapMarker {
   latitude?: number | null;
@@ -77,7 +79,7 @@ const Maps: React.FC<MapsProps> = ({
 
   useEffect(() => {
     if (!map || !maps || !mapMarkers || mapMarkers.length < 2) return;
-    var bounds = new maps.LatLngBounds();
+    const bounds = new maps.LatLngBounds();
     for (const marker of mapMarkers) {
       bounds.extend({ lat: marker.latitude, lng: marker.longitude });
     }
@@ -116,7 +118,7 @@ const Maps: React.FC<MapsProps> = ({
       style={{
         minHeight: height,
         width: "100%",
-        height: height,
+        height,
       }}
     >
       <style>
@@ -169,15 +171,15 @@ const Maps: React.FC<MapsProps> = ({
           setMarkers(_markers);
         }}
         options={{
-          mapTypeId: mapTypeId,
+          mapTypeId,
           // zoomControl: !isScreenCapturing,
           // fullscreenControl: !isScreenCapturing,
           zoomControl: false,
           fullscreenControl: false,
         }}
-      ></GoogleMapReact>
+      />
 
-      {/*//! LOCATION BOTTOM SHEET */}
+      {/* //! LOCATION BOTTOM SHEET */}
       {selectedMapMarker?.bottom_sheet === undefined ? (
         <LocationBottomSheet
           open={openLocationBS}

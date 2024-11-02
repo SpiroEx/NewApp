@@ -1,20 +1,17 @@
-import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useState,
-} from "react";
-import MainPage from "../custom/MainPage";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
+import { createContext } from "react";
+
+import Footer from "@/components/templates/Footer";
 //! /* Add Pages Here */
 import Overlay from "@/components/templates/Overlay";
-import Footer from "@/components/templates/Footer";
 import { us } from "@/hooks/useReactHooks";
 
-//? ----------------------
-//? PAGES
-//? BOTTOM SHEETS
-//? ----------------------
+import MainPage from "../custom/MainPage";
+
+// ? ----------------------
+// ? PAGES
+// ? BOTTOM SHEETS
+// ? ----------------------
 
 export const enum Pages {
   Main,
@@ -53,9 +50,9 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         // }}
       />
 
-      <div className="wf hf overflow-y-auto">
+      <div className="overflow-y-auto wf hf">
         {page === Pages.Main && <MainPage />}
-        {/*//! Add Page Mapping Here */}
+        {/* //! Add Page Mapping Here */}
       </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext>

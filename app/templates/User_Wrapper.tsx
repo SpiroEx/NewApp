@@ -1,8 +1,10 @@
-import { useUser } from "@/hooks/useUser";
-import FCMWrapper from "./FCM_Wrapper";
+import type { User } from "firebase/auth";
 import { createContext } from "react";
-import { User } from "firebase/auth";
+
 import { Config } from "@/classes/Constants";
+import { useUser } from "@/hooks/useUser";
+
+import FCMWrapper from "./FCM_Wrapper";
 import FHWrapper from "./FH_Wrapper";
 
 export const UserContext = createContext({
@@ -18,7 +20,7 @@ const UserWrapper: React.FC<UserWrapperProps> = ({}) => {
 
   return (
     <UserContext value={{ user, loadingUser }}>
-      {Config.useFCM ? <FCMWrapper /> : <FHWrapper />}
+      {Config.hasFCM ? <FCMWrapper /> : <FHWrapper />}
     </UserContext>
   );
 };

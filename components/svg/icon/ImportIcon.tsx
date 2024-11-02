@@ -1,11 +1,12 @@
-import { MotionSvg } from "@/types/framer_motion_types";
-import { MouseEventHandler } from "react";
-import { twMerge } from "tailwind-merge";
+import type { MouseEventHandler } from "react"
+import { twMerge } from "tailwind-merge"
+
+import { MotionSvg } from "@/types/framer_motion_types"
 
 interface ImportIconProps {
-  onClick?: MouseEventHandler<SVGSVGElement>;
-  size?: number;
-  nonBouncing?: boolean;
+  onClick?: MouseEventHandler<SVGSVGElement>
+  size?: number
+  nonBouncing?: boolean
 }
 
 const ImportIcon: React.FC<ImportIconProps> = ({
@@ -36,6 +37,6 @@ const ImportIcon: React.FC<ImportIconProps> = ({
       strokeLinecap="round"
     />
   </MotionSvg>
-);
+)
 
-export default ImportIcon;
+export default ImportIcon

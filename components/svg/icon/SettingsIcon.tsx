@@ -1,7 +1,8 @@
+import type { MouseEventHandler } from "react";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import { MouseEventHandler } from "react";
-import { MotionSvg } from "@/types/framer_motion_types";
 import { twMerge } from "tailwind-merge";
+
+import { MotionSvg } from "@/types/framer_motion_types";
 
 interface SettingsIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;

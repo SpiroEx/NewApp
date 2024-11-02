@@ -108,7 +108,7 @@ function useSignInPage() {
         // Signed in
         const user = userCredential.user;
         updateSignedInBefore(true);
-        if (Config.useEmailVerification) {
+        if (Config.hasEmailVerification) {
           sendEmailVerification(user, { url: Config.hostingWebsite });
         }
       })

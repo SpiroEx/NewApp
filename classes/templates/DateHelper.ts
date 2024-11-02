@@ -79,8 +79,7 @@ export default abstract class DateHelper {
     const period = hour >= 12 ? "PM" : "AM";
     hour = hour % 12 || 12; // convert to 12-hour format
 
-    return `${month} ${day}, ${year} - ${hour}:${
-      minute < 10 ? "0" + minute : minute
-    } ${period}`;
+    return `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute
+      } ${period}`;
   }
 }

@@ -1,4 +1,5 @@
-import { MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
+
 import ChevronRight from "./ChevronRight";
 
 interface ChevronLeftProps {

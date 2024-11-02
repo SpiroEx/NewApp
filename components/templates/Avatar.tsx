@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import AvatarGirl from "../svg/icon/AvatarGirl";
 
 interface AvatarProps {

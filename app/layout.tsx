@@ -1,7 +1,9 @@
-import { Constants } from "@/classes/Constants";
 import "../styles/globals.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import { Constants } from "@/classes/Constants";
 
 const inter = Inter({ subsets: ["latin"] });
 

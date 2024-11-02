@@ -1,8 +1,7 @@
 import Modal from "react-modal";
-import MyButton from "./MyButton";
 import { twMerge } from "tailwind-merge";
-import CrossCircleIcon from "../svg/icon/CrossCircleIcon";
-import useModal from "@/hooks/useModal";
+
+import type useModal from "@/hooks/useModal";
 
 interface MyModalProps {
   useModal: ReturnType<typeof useModal>;
@@ -42,10 +41,10 @@ const MyModal: React.FC<MyModalProps> = ({
           classNameContent
         )}
       >
-        <div className="bg-header_modal rounded-t-xl py-2">
-          <p className="t77c t-white">{title}</p>
+        <div className="rounded-t-xl bg-header_modal py-2">
+          <p className="t-white t77c">{title}</p>
         </div>
-        <div className="py-5 px-3">{children}</div>
+        <div className="px-3 py-5">{children}</div>
       </div>
     </Modal>
   );

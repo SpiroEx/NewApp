@@ -1,9 +1,11 @@
+import type { User } from "firebase/auth";
+import { sendEmailVerification } from "firebase/auth";
+
 import { Config } from "@/classes/Constants";
 import EmailIcon from "@/components/svg/icon/EmailIcon";
 import MyButton from "@/components/templates/MyButton";
 import { us } from "@/hooks/useReactHooks";
 import signOutClick from "@/myfunctions/signOutClick";
-import { sendEmailVerification, User } from "firebase/auth";
 
 interface EmailVerificationPageProps {
   user: User;
@@ -22,20 +24,20 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
   // }, [user.emailVerified]);
 
   return (
-    <div className="csc-8 bg-gray-900 ws hs t-white pt-20">
-      <div className="csc-2 o-50">
+    <div className="bg-gray-900 pt-20 t-white csc-8 ws hs">
+      <div className="o-50 csc-2">
         <EmailIcon size={109} />
         <p className="t33">{user.email}</p>
       </div>
 
       <p className="t6">Please verify your email address to continue</p>
 
-      {/*//! RESEND VERIFICATION */}
+      {/* //! RESEND VERIFICATION */}
       {resent ? (
         <p>Email sent!</p>
       ) : (
         <MyButton
-          className="w-min bg-emerald-400 m-0"
+          className="m-0 w-min bg-emerald-400"
           label="Resend Verification Email"
           onClick={() => {
             sendEmailVerification(user, {
@@ -46,9 +48,9 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
         />
       )}
 
-      {/*//! SIGN OUT */}
+      {/* //! SIGN OUT */}
       <MyButton
-        className="w-min bg-red-400 m-0"
+        className="m-0 w-min bg-red-400"
         label="Sign Out"
         onClick={signOutClick}
       />

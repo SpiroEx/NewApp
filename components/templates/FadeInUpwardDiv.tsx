@@ -1,5 +1,6 @@
-import { MotionDiv } from "@/types/framer_motion_types";
 import React from "react";
+
+import { MotionDiv } from "@/types/framer_motion_types";
 
 const variants = {
   hidden: { opacity: 0, y: 50 },

@@ -1,10 +1,11 @@
-import { MotionSvg } from "@/types/framer_motion_types";
-import { twMerge } from "tailwind-merge";
+import { twMerge } from "tailwind-merge"
+
+import { MotionSvg } from "@/types/framer_motion_types"
 
 interface MenuBarIconProps {
-  onClick?: () => void;
-  size?: number;
-  nonBouncing?: boolean;
+  onClick?: () => void
+  size?: number
+  nonBouncing?: boolean
 }
 
 const MenuBarIcon: React.FC<MenuBarIconProps> = ({
@@ -29,6 +30,6 @@ const MenuBarIcon: React.FC<MenuBarIconProps> = ({
       strokeLinejoin="round"
     />
   </MotionSvg>
-);
+)
 
-export default MenuBarIcon;
+export default MenuBarIcon

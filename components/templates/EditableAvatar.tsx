@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import AvatarGirl from "../svg/icon/AvatarGirl";
+
 import EditRoundedIcon from "../svg/icon/EditRoundedIcon";
 import Avatar from "./Avatar";
 
@@ -29,7 +29,7 @@ const EditableAvatar: React.FC<EditableAvatarProps> = ({
         withBackground && bgClassName
       )}
     >
-      <div className="w-min m-auto relative">
+      <div className="relative m-auto w-min">
         <Avatar
           src={selectedImage ? URL.createObjectURL(selectedImage) : photoURL}
           size={size}

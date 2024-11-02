@@ -1,6 +1,7 @@
-import { InputField } from "@/hooks/useInputField";
-import { ChangeEventHandler, RefObject } from "react";
+import type { ChangeEventHandler, RefObject } from "react";
 import { twMerge } from "tailwind-merge";
+
+import type { InputField } from "@/hooks/useInputField";
 
 interface MyInputProps {
   type?: "text" | "number" | "email" | "password"; // Add more types as needed
@@ -37,7 +38,7 @@ const MyInput: React.FC<MyInputProps> = ({
   return (
     <div className={twMerge("css", disabled && "o-50", divClassName)}>
       {label && (
-        <p className="t33 o-50 translate-x-3 -translate-y-1">{label}</p>
+        <p className="-translate-y-1 translate-x-3 o-50 t33">{label}</p>
       )}
       <div className="rcs">
         {!numLines && (

@@ -1,22 +1,24 @@
+import { createContext } from "react";
+
 import { Config } from "@/classes/Constants";
-import { Device } from "@/classes/Device";
+import type { Device } from "@/classes/Device";
 import FH from "@/classes/FH";
-import { MyUser } from "@/classes/MyUser";
-import { AdminSettings } from "@/classes/templates/AdminSettings";
+import type { MyUser } from "@/classes/MyUser";
+import type { AdminSettings } from "@/classes/templates/AdminSettings";
 import QuasarPage from "@/components/templates/QuasarPage";
 import { useFHWatch } from "@/hooks/useFHWatch";
 import { useLoading as useInitialLoading } from "@/hooks/useLoading";
-import { createContext, useContext } from "react";
+import { uc } from "@/hooks/useReactHooks";
+
 import PageWrapper from "../helpers/PageWrapper";
 import RegisterPage from "../helpers/RegisterPage";
 import SignInPage from "../helpers/SignInPage";
-import { UserContext } from "./User_Wrapper";
 import EmailVerificationPage from "./EmailVerificationPage";
-import { uc } from "@/hooks/useReactHooks";
+import { UserContext } from "./User_Wrapper";
 
-//? ----------------------
-//? FIRESTORE DATA OBJECTS
-//? ----------------------
+// ? ----------------------
+// ? FIRESTORE DATA OBJECTS
+// ? ----------------------
 
 export const FHContext = createContext({
   adminSettings: {} as AdminSettings,
@@ -50,17 +52,17 @@ const FHWrapper: React.FC<FHWrapperProps> = () => {
   );
 
   //! PAGES
-  if (loading) return <div className="ws hs"></div>;
+  if (loading) return <div className="ws hs" />;
   if (adminSettings === null) return <QuasarPage />;
   if (adminSettings?.quasar) return <QuasarPage />;
-  if (Config.useSignIn) {
+  if (Config.hasSignIn) {
     if (user === null) return <SignInPage />;
 
-    if (Config.useEmailVerification && !user.emailVerified) {
+    if (Config.hasEmailVerification && !user.emailVerified) {
       return <EmailVerificationPage user={user} />;
     }
 
-    if (Config.useRegister) {
+    if (Config.hasRegister) {
       if (myUser === null) return <RegisterPage user={user} />;
     }
   }

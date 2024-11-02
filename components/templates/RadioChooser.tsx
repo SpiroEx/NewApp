@@ -16,7 +16,7 @@ const RadioChooser = <T extends "single" | "multiple">({
       {options.map((option) => (
         <div className="css-3" key={option}>
           <div className="csc-3">
-            <div className="w-4 h-4 rounded-full bg-green"></div>
+            <div className="bg-green h-4 w-4 rounded-full" />
             <p className="t43">{option}</p>
           </div>
         </div>

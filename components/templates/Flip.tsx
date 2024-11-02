@@ -5,7 +5,7 @@ interface FlipInterface {
 
 const Flip: React.FC<FlipInterface> = ({ type = "horizontal", children }) => {
   return (
-    <div className={type === "horizontal" ? "scale-x-[-1]" : "scale-y-[-1]"}>
+    <div className={type === "horizontal" ? "-scale-x-100" : "-scale-y-100"}>
       {children}
     </div>
   );

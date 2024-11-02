@@ -1,4 +1,4 @@
-export abstract class StorageNames {}
+export abstract class StorageNames { }
 
 export const Constants = {
   ProjTitle: "Title",
@@ -7,7 +7,7 @@ export const Constants = {
   About: "{{About}}",
   NodeMCUIP: "http://192.168.4.1",
   DefaulMapZoom: 13,
-  WebsiteVersion: "1.0.35",
+  WebsiteVersion: "1.0.38",
 };
 
 export const LocalStorage = {
@@ -16,14 +16,14 @@ export const LocalStorage = {
 };
 
 export const Config = {
-  useFirebase: false,
-  useSignIn: false,
-  useRegister: false,
-  useFCM: false,
-  useEmailVerification: false,
+  hasFirebase: false,
+  hasSignIn: false,
+  hasRegister: false,
+  hasFCM: false,
+  hasEmailVerification: false,
   hostingWebsite: "{{https://agrismart-ai.web.app}}",
   vapidKey: "",
-  useTermsAndConditions: false,
+  hasTermsAndConditions: false,
   termsLink: "{{https://www.termsandconditionsgenerator.com}}",
   // vapidKey: "BHFEtmzNp2xZv1NCgS0ku187NKGWbrR_5FseNeYyn04ogXULW4dbiiGNfBLmfpilKnfns3kem1w26Sjt8cigG08",
 };

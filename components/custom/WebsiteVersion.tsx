@@ -1,13 +1,14 @@
-import { Constants } from "@/classes/Constants";
 import { use } from "react";
+
+import { Constants } from "@/classes/Constants";
 
 interface WebsiteVersionProps {}
 
 const WebsiteVersion: React.FC<WebsiteVersionProps> = ({}) => {
   use;
   return (
-    <div className="rsc fixed left-0 bottom-0 wf tc py-2">
-      <p className="m-auto o-50 t2 tracking-widest">
+    <div className="fixed bottom-0 left-0 py-2 rsc wf tc">
+      <p className="m-auto tracking-widest o-50 t2">
         v {Constants.WebsiteVersion}
       </p>
     </div>

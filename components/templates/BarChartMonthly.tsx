@@ -1,7 +1,7 @@
-import { FHContext } from "@/app/templates/FH_Wrapper";
-import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
-import { UseBarChartMonthly } from "@/hooks/useBarChartMonthly";
+
+import type { UseBarChartMonthly } from "@/hooks/useBarChartMonthly";
+
 import ChevronLeft from "../svg/icon/ChevronLeft";
 import ChevronRight from "../svg/icon/ChevronRight";
 
@@ -15,12 +15,12 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
   barChartMonthly,
 }) => {
   return (
-    <div className="csc-3 mx-10 tj px-10 py-4 rounded-xl b b-white">
-      {/*//! TITLE */}
+    <div className="mx-10 rounded-xl px-10 py-4 b b-white csc-3 tj">
+      {/* //! TITLE */}
       <p className="t56">{title}</p>
 
-      {/*//! DATA */}
-      <div className="rse-4 h-28">
+      {/* //! DATA */}
+      <div className="h-28 rse-4">
         {barChartMonthly.data.map((data) => (
           <div className="csc" key={`${data.year}-${data.month}`}>
             <p className="t22">{data.value}</p>
@@ -33,7 +33,7 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
                 minHeight: "1px",
                 opacity: data.value === 0 ? 0.4 : 1,
               }}
-            ></div>
+            />
             <p
               className={twMerge(
                 "t33",
@@ -46,8 +46,8 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
         ))}
       </div>
 
-      {/*//! YEAR CONTROL */}
-      <div className="rsc-8 mt-3">
+      {/* //! YEAR CONTROL */}
+      <div className="mt-3 rsc-8">
         <ChevronLeft onClick={barChartMonthly.prev} size={7} />
         <p className="t43">{barChartMonthly.lastShownYear}</p>
         <ChevronRight onClick={barChartMonthly.next} size={7} />

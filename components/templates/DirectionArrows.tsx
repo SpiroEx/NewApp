@@ -31,7 +31,7 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
         {icon}
       </div>
       <div
-        className="wf rcs"
+        className="rcs wf"
         style={{
           gap: `${gap}rem`,
         }}
@@ -43,7 +43,7 @@ const DirectionArrows: React.FC<DirectionArrowsProps> = ({
         >
           {icon}
         </div>
-        <div className="o-0 select-none">{icon}</div>
+        <div className="select-none o-0">{icon}</div>
         <div
           className="rotate-90"
           onTouchStart={onRight}

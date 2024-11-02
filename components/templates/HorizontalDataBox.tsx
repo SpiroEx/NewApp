@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import Txt from "./Txt";
 
 interface HorizontalDataBoxProps {
@@ -28,7 +29,7 @@ const HorizontalDataBox: React.FC<HorizontalDataBoxProps> = ({
         <div className="rbs wf">
           <div className="rss">
             <div className="rsc-2">
-              <div className="w-3 h-3 b rounded-full"></div>
+              <div className="h-3 w-3 rounded-full b" />
               <Txt.number>{maxDecimal(data)}</Txt.number>
             </div>
             <Txt.exponent>{unit}</Txt.exponent>

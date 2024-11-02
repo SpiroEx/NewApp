@@ -1,5 +1,6 @@
+import type { MouseEventHandler } from "react";
+
 import { MotionSvg } from "@/types/framer_motion_types";
-import { MouseEventHandler } from "react";
 
 interface WarningIconProps {
   onClick?: MouseEventHandler<SVGSVGElement>;

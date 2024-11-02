@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./visibilityIcon.css";
+
 import { twMerge } from "tailwind-merge";
 
 interface VisibilityIconProps {

@@ -34,15 +34,15 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
         <div className="rsc-4 bg-zinc-200 rounded-xl px-3 py-3 wf">
           <WarningIcon />
           <div className="css-1">
-            <p className="text-xl">Emergency!</p>
+            <p className="t6">Emergency!</p>
           </div>
         </div>
 
         {/*//! Need Help */}
-        <div className="csc-3 mt-8 text-center mb-10">
-          <p className="text-red font-semibold">Need Help</p>
-          <p className="text-zinc-700 text-sm font-semibold">{address}</p>
-          <p className="text-zinc-400 text-xs">
+        <div className="csc-3 mt-8 tc mb-10">
+          <p className="t-red-500 font-semibold">Need Help</p>
+          <p className="t-zinc-700 t36">{address}</p>
+          <p className="t-zinc-400 t2">
             {device && dateFormatter(emergencyTimestamp)}
           </p>
         </div>
@@ -50,10 +50,10 @@ const EmergencyBottomSheet: React.FC<EmergencyBottomSheetProps> = ({
         {/*//! Call Police */}
         {/* <div className="rbs wf mt-10 mb-8">
           <div className="css-1">
-            <p className="text-xs text-zinc-400">Phone Number</p>
+            <p className="t2 t-zinc-400">Phone Number</p>
             <div className="rsc-1">
               <PhoneIcon size={12} />
-              <p className="text-xs text-zinc-400">09999</p>
+              <p className="t2 t-zinc-400">09999</p>
             </div>
           </div>
         </div> */}

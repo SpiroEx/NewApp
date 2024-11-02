@@ -17,7 +17,7 @@ const RadioChooser = <T extends "single" | "multiple">({
         <div className="css-3" key={option}>
           <div className="csc-3">
             <div className="w-4 h-4 rounded-full bg-green"></div>
-            <p className="text-base font-light">{option}</p>
+            <p className="t43">{option}</p>
           </div>
         </div>
       ))}

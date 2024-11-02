@@ -8,11 +8,9 @@ interface TitleProps {
 }
 
 const Title: React.FC<TitleProps> = ({ onClick, size = 200 }) => (
-  <div className="rcc-3 text-center">
-    <p className="text-3xl text-blue_light font-semibold">
-      {Constants.ProjTitle1}
-    </p>
-    <p className="text-3xl text-blue font-normal">{Constants.ProjTitle2}</p>
+  <div className="rcc-3 tc">
+    <p className="t86">{Constants.ProjTitle1}</p>
+    <p className="t84">{Constants.ProjTitle2}</p>
   </div>
 );
 

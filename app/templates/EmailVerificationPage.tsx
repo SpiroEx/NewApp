@@ -22,13 +22,13 @@ const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
   // }, [user.emailVerified]);
 
   return (
-    <div className="csc-8 bg-gray-900 ws hs text-white pt-20">
+    <div className="csc-8 bg-gray-900 ws hs t-white pt-20">
       <div className="csc-2 opacity-50">
         <EmailIcon size={109} />
-        <p className="font-light text-sm">{user.email}</p>
+        <p className="t33">{user.email}</p>
       </div>
 
-      <p className="text-xl">Please verify your email address to continue</p>
+      <p className="t6">Please verify your email address to continue</p>
 
       {/*//! RESEND VERIFICATION */}
       {resent ? (

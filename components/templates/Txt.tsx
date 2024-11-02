@@ -8,10 +8,7 @@ const title: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p
-      className={twMerge("text-3xl tracking-widest font-light", className)}
-      {...props}
-    >
+    <p className={twMerge("t83 tracking-widest", className)} {...props}>
       {children}
     </p>
   );
@@ -24,10 +21,7 @@ const section: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p
-      className={twMerge("text-base tracking-widest font-bold", className)}
-      {...props}
-    >
+    <p className={twMerge("t47 tracking-widest", className)} {...props}>
       {children}
     </p>
   );
@@ -41,10 +35,7 @@ const _p: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
 }) => {
   return (
     <p
-      className={twMerge(
-        "text-sm font-light tracking-wider opacity-50",
-        className
-      )}
+      className={twMerge("t33 tracking-wider opacity-50", className)}
       {...props}
     >
       {children}
@@ -59,10 +50,7 @@ const number: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p
-      className={twMerge("text-2xl tracking-wider font-extralight", className)}
-      {...props}
-    >
+    <p className={twMerge("t72 tracking-wider", className)} {...props}>
       {children}
     </p>
   );
@@ -76,10 +64,7 @@ const exponent: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
 }) => {
   return (
     <p
-      className={twMerge(
-        "text-xs tracking-wider font-extralight opacity-75",
-        className
-      )}
+      className={twMerge("t22 tracking-wider opacity-75", className)}
       {...props}
     >
       {children}

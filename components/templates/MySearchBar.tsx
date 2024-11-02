@@ -74,11 +74,7 @@ const MySearchBar: React.FC<MySearchBarProps> = ({ fields }) => {
             >
               {filteredFields.map((field) => {
                 return (
-                  <p
-                    key={field.name}
-                    onClick={field.onClick}
-                    className="text-sm"
-                  >
+                  <p key={field.name} onClick={field.onClick} className="t3">
                     {field.name}
                   </p>
                 );

@@ -75,7 +75,7 @@ const DateModal: React.FC<DateModalProps> = ({
         </div>
 
         {/*//! WEEK DAYS */}
-        <div className="ras font-medium text-sm">
+        <div className="ras t35">
           <p>Su</p>
           <p>Mo</p>
           <p>Tu</p>
@@ -150,9 +150,7 @@ const Day: React.FC<DayProps> = ({
     <MotionDiv
       className={twMerge(
         "rcc rounded select-none cursor-pointer",
-        day === selectedDate.getDate() &&
-          !gray &&
-          "bg-darker_primary text-white",
+        day === selectedDate.getDate() && !gray && "bg-darker_primary t-white",
         gray && "opacity-50"
       )}
       whileTap={{ scale: 0.9 }}

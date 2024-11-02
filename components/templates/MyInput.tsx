@@ -37,9 +37,7 @@ const MyInput: React.FC<MyInputProps> = ({
   return (
     <div className={twMerge("css", disabled && "opacity-50", divClassName)}>
       {label && (
-        <p className="text-sm opacity-50 font-light translate-x-3 -translate-y-1">
-          {label}
-        </p>
+        <p className="t33 opacity-50 translate-x-3 -translate-y-1">{label}</p>
       )}
       <div className="rcs">
         {!numLines && (

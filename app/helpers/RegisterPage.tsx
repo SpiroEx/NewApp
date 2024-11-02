@@ -75,7 +75,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
       {/* //! TITLE */}
       <div className="h-28" />
       <Title />
-      <h1 className={`text text-center mt-2 mb-10`}>Tell us about you..</h1>
+      <h1 className={`tc mt-2 mb-10`}>Tell us about you..</h1>
       {/* <SizedBox height={80} /> */}
 
       {/* //! AVATAR */}
@@ -117,11 +117,11 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
   termsInput,
 }) => {
   return (
-    <div className="rcc-3 text-sm ">
+    <div className="rcc-3 t3 ">
       <input ref={termsInput.ref} type="checkbox" name="terms" />
-      <p className="text-slate-500">
+      <p className="t-slate-500">
         I agree to the{" "}
-        <span className="text-black font-semibold">
+        <span className="t-black tf6">
           <a target="_blank" href={Config.termsLink}>
             Terms & Conditions
           </a>

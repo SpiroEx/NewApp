@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 import plugin, { Config } from "tailwindcss";
 import { CSSRuleObject, PluginAPI } from "tailwindcss/types/config";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 export default {
   content: [
@@ -35,11 +36,11 @@ export default {
     },
   },
   plugins: [
-    function ({ addUtilities, theme, e }: PluginAPI) {
+    function ({ addUtilities, matchUtilities, theme }: PluginAPI) {
       const newUtilities: Record<string, CSSProperties> = {};
       generateFlex(newUtilities)
       generateWidthHeight(newUtilities)
-      generateText(newUtilities, theme, e)
+      generateText(newUtilities, theme, matchUtilities)
 
       addUtilities(newUtilities as CSSRuleObject);
     }
@@ -48,20 +49,75 @@ export default {
 
 
 //! TEXT
-function generateText(newUtilities: Record<string, CSSProperties> = {},
-  theme: PluginAPI["theme"], e: PluginAPI["e"]) {
+function generateText(
+  newUtilities: Record<string, CSSProperties>,
+  theme: PluginAPI["theme"], matchUtilities: PluginAPI["matchUtilities"]) {
 
-  Object.entries(theme('textColor') || {}).forEach(([key, value]) => {
-    newUtilities[`.t-${key}`] = Array.isArray(value) ? { color: value[0], ...value[1] } : { color: value };
-  });
+  const textAligns: [string, CSSProperties["textAlign"]][] = [['', undefined], ['l', 'left'], ['c', 'center'], ['r', 'right'], ['j', 'justify']];
 
-  Object.entries(theme('fontSize') || {}).forEach(([key, value]) => {
-    newUtilities[`.t${key}`] = Array.isArray(value) ? { fontSize: value[0], ...value[1] } : { fontSize: value };
-  });
+  function fontSizeCompute(i: number) {
+    if (i === 7) return '1.5rem';
+    if (i === 8) return '1.875rem';
+    if (i === 9) return '2.25rem';
+    return `${0.500 + i * (0.125)}rem`;
+  }
 
-  Object.entries(theme('textAlign') || {}).forEach(([key, value]) => {
-    newUtilities[`.t-${key}`] = Array.isArray(value) ? { textAlign: value[0], ...value[1] } : { textAlign: value };
-  });
+  matchUtilities(
+    {
+      't': (value) => ({
+        color: value,
+      }),
+    },
+    { values: flattenColorPalette(theme('colors')), type: 'color' }
+  );
+
+
+  //? Text Align + Font Size + Font Weight
+  for (let i = 1; i <= 9; i++) {
+    for (let j = 1; j <= 9; j++) {
+      for (const ta of textAligns) {
+        newUtilities[`.t${i}${j}${ta[0]}`] = {
+          fontSize: fontSizeCompute(i),
+          fontWeight: `${j}00`,
+          textAlign: ta[1],
+        };
+      }
+    }
+  }
+
+  //? Text Align Only
+  for (const ta of textAligns) {
+    newUtilities[`.t${ta[0]}`] = {
+      textAlign: ta[1],
+    };
+  }
+
+  //? Text Size Only
+  for (let i = 1; i <= 9; i++) {
+    newUtilities[`.t${i}`] = {
+      fontSize: fontSizeCompute(i),
+    };
+  }
+
+  //? Font Weight Only
+  for (let j = 1; j <= 9; j++) {
+    newUtilities[`.tf${j}`] = {
+      fontWeight: `${j}00`,
+    };
+  }
+
+
+  // Object.entries(theme('textColor') || {}).forEach(([key, value]) => {
+  //   newUtilities[`.t-${key}`] = Array.isArray(value) ? { color: value[0], ...value[1] } : { color: value };
+  // });
+
+  // Object.entries(theme('fontSize') || {}).forEach(([key, value]) => {
+  //   newUtilities[`.t${key}`] = Array.isArray(value) ? { fontSize: value[0], ...value[1] } : { fontSize: value };
+  // });
+
+  // Object.entries(theme('textAlign') || {}).forEach(([key, value]) => {
+  //   newUtilities[`.t-${key}`] = Array.isArray(value) ? { textAlign: value[0], ...value[1] } : { textAlign: value };
+  // });
 }
 
 //! WIDTH / HEIGHT
@@ -121,7 +177,12 @@ function generateFlex(newUtilities: Record<string, CSSProperties>) {
         if (flexDirection[1] === 'wrap') newUtilities[key_name]['flexWrap'] = 'wrap';
         else newUtilities[key_name]['flexDirection'] = flexDirection[1];
 
-        for (let i = 1; i <= 96; i++) {
+        const gaps = [
+          ...Array.from({ length: 20 }, (_, i) => i + 1),
+          ...Array.from({ length: Math.floor((96 - 20) / 4) + 1 }, (_, i) => 20 + i * 4)
+        ];
+
+        for (const i of gaps) {
           newUtilities[`${key_name}-${i}`] = {
             ...newUtilities[key_name],
             gap: `${i * 0.25}rem`,

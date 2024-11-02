@@ -6,7 +6,7 @@ interface MainPageProps {}
 const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
     <PageContainer>
-      <Txt.title>TITLE</Txt.title>
+      <Txt.title className="">TITLE</Txt.title>
     </PageContainer>
   );
 };

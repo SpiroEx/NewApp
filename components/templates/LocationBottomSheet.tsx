@@ -23,8 +23,8 @@ const LocationBottomSheet: React.FC<LocationBottomSheetProps> = ({
     <MyBottomSheet open={open} onClose={onClose}>
       <div className="rbc px-5 pb-5">
         <div className="css-1">
-          <p className="text-sm text-zinc-700 font-semibold">{title}</p>
-          <p className="text-xs text-zinc-500">{address}</p>
+          <p className="t36 t-zinc-700">{title}</p>
+          <p className="t2 t-zinc-500">{address}</p>
         </div>
         <PinIcon />
       </div>

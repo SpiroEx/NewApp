@@ -15,15 +15,15 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
   barChartMonthly,
 }) => {
   return (
-    <div className="csc-3 mx-10 text-justify px-10 py-4 rounded-xl border border-white">
+    <div className="csc-3 mx-10 tj px-10 py-4 rounded-xl border border-white">
       {/*//! TITLE */}
-      <p className="font-semibold text-lg">{title}</p>
+      <p className="t56">{title}</p>
 
       {/*//! DATA */}
       <div className="rse-4 h-28">
         {barChartMonthly.data.map((data) => (
           <div className="csc" key={`${data.year}-${data.month}`}>
-            <p className="font-extralight text-xs">{data.value}</p>
+            <p className="t22">{data.value}</p>
             <div
               className="w-7 bg-white"
               style={{
@@ -36,7 +36,7 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
             ></div>
             <p
               className={twMerge(
-                "font-light text-sm",
+                "t33",
                 data.year < barChartMonthly.lastShownYear && "opacity-50"
               )}
             >
@@ -47,9 +47,9 @@ const BarChartMonthly: React.FC<BarChartMonthlyProps> = ({
       </div>
 
       {/*//! YEAR CONTROL */}
-      <div className="fsc-8 mt-3">
+      <div className="rsc-8 mt-3">
         <ChevronLeft onClick={barChartMonthly.prev} size={7} />
-        <p className="font-light text-base">{barChartMonthly.lastShownYear}</p>
+        <p className="t43">{barChartMonthly.lastShownYear}</p>
         <ChevronRight onClick={barChartMonthly.next} size={7} />
       </div>
     </div>

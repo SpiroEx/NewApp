@@ -77,7 +77,7 @@ const SignInPage: React.FC = () => {
         <div className="h-8 rse">
           {type == SignInType.logIn && (
             <p
-              className={`text-xs text-link fit-content m-auto select-none cursor-pointer`}
+              className={`t2 t-link fit-content m-auto select-none cursor-pointer`}
               onClick={forgotPassword}
             >
               FORGOT PASSWORD&#63;
@@ -87,16 +87,13 @@ const SignInPage: React.FC = () => {
 
         {/*//! DONT HAVE AN ACCOUNT */}
         <div className="rcc">
-          <p className={`text-text_gray fit-content m-0 text-xs`}>
+          <p className={`t-gray-400 fit-content m-0 t2`}>
             {type == SignInType.logIn
               ? "DON'T HAVE AN ACOUNT?"
               : "ALREADY HAVE AN ACCOUNT?"}
           </p>
           <SizedBox width={10} />
-          <p
-            onClick={toggleType}
-            className={`text-link fit-content m-0 text-xs`}
-          >
+          <p onClick={toggleType} className={`t-link fit-content m-0 t2`}>
             {type == SignInType.logIn ? "CREATE ONE" : "LOGIN"}
           </p>
         </div>

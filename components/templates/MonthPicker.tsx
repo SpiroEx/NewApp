@@ -29,10 +29,8 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
       setIsExpanded={setIsExpanded}
       icon={
         <div className="rse-2">
-          <p className="text-base font-semibold">
-            {DateHelper.monthAbbrev[selectedMonth]},
-          </p>
-          <p className="text-base font-light opacity-50">{shownYear}</p>
+          <p className="t46">{DateHelper.monthAbbrev[selectedMonth]},</p>
+          <p className=" t43 opacity-50">{shownYear}</p>
         </div>
       }
       expandDirection="bottom-right"
@@ -85,7 +83,7 @@ const MonthPicker: React.FC<MonthPickerProps> = ({ onChange }) => {
               >
                 <p
                   className={twMerge(
-                    "text-center font-extralight rounded-md",
+                    "tc font-extralight rounded-md",
                     isSelectedMonth && "bg-slate-600",
                     isAfterCurrentMonth && "opacity-50"
                   )}

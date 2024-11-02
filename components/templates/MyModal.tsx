@@ -31,7 +31,7 @@ const MyModal: React.FC<MyModalProps> = ({
     <Modal
       isOpen={useModal.isOpen}
       ariaHideApp={false}
-      className={twMerge(" inset-0 text-zinc-600", className)}
+      className={twMerge(" inset-0 t-zinc-600", className)}
       onRequestClose={useModal.close}
       // style={customStyles}
     >
@@ -43,9 +43,7 @@ const MyModal: React.FC<MyModalProps> = ({
         )}
       >
         <div className="bg-header_modal rounded-t-xl py-2">
-          <p className="text-2xl font-bold text-center text-white text-smooth_black">
-            {title}
-          </p>
+          <p className="t77c t-white">{title}</p>
         </div>
         <div className="py-5 px-3">{children}</div>
       </div>

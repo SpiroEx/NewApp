@@ -6,5 +6,5 @@ if "%1" == "" (
     goto :EOF
 )
 
-call utils\venv\Scripts\activate
-python %~dp0utils\init.py %*
+call "%~dp0utils\venv\Scripts\activate"
+python "%~dp0utils\init.py" %*

@@ -7,4 +7,4 @@ if "%1" == "" (
 )
 
 call utils\venv\Scripts\activate
-python utils\init.py %*
+python %~dp0utils\init.py %*

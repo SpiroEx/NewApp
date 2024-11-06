@@ -4,7 +4,7 @@ import { createContext } from "react";
 import Footer from "@/components/templates/Footer";
 //! /* Add Pages Here */
 import Overlay from "@/components/templates/Overlay";
-import { us } from "@/hooks/useReactHooks";
+import { useS } from "@/hooks/useReactHooks";
 
 import MainPage from "../custom/MainPage";
 
@@ -28,10 +28,10 @@ interface PageWrapperProps {}
 
 const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
   //! OVERLAY
-  const [overlay, setOverlay] = us<ReactNode | null>(null);
+  const [overlay, setOverlay] = useS<ReactNode | null>(null);
 
   //! Page
-  const [page, setPage] = us<Pages>(Pages.Main);
+  const [page, setPage] = useS<Pages>(Pages.Main);
 
   return (
     <PageWrapperContext
@@ -52,7 +52,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
 
       <div className="overflow-y-auto wf hf">
         {page === Pages.Main && <MainPage />}
-        {/* //! Add Page Mapping Here */}
+        {/*//! Add Page Mapping Here */}
       </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext>

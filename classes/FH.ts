@@ -11,6 +11,8 @@ import {
 } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import notify from "@/myfunctions/notify";
+import { SocialMediaPost } from "@/app/z/SocialMedia/SocialMediaPost";
+import { SocialMediaComment } from "@/app/z/SocialMedia/SocialMediaComment";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -25,10 +27,20 @@ class AdminSettingsFHT extends FHT<AdminSettings> {
   collectionName = "admin";
 }
 
+class SocialMediaPostFHT extends FHT<SocialMediaPost> {
+  collectionName = "post";
+}
+
+class SocialMediaCommentFHT extends FHT<SocialMediaComment> {
+  collectionName = "comment";
+}
+
 export default abstract class FH {
   static AdminSettings = new AdminSettingsFHT();
   static MyUser = new MyUserFHT();
   static Device = new DeviceFHT();
+  static SocialMediaPost = new SocialMediaPostFHT();
+  static SocialMediaComment = new SocialMediaCommentFHT();
 
   static async Batch(
     name: string,

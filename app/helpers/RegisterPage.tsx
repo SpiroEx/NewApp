@@ -9,7 +9,7 @@ import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
 import Title from "@/components/templates/Title";
 import { useCheckboxField, useInputField } from "@/hooks/useInputField";
-import { us } from "@/hooks/useReactHooks";
+import { useS } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
 
 interface RegisterPageProps {
@@ -17,8 +17,8 @@ interface RegisterPageProps {
 }
 
 const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
-  const [selectedImage, setSelectedImage] = us<File | null>(null);
-  const [creatingMyUser, setCreatingMyUser] = us(false);
+  const [selectedImage, setSelectedImage] = useS<File | null>(null);
+  const [creatingMyUser, setCreatingMyUser] = useS(false);
 
   const nameInput = useInputField((name) => [
     [!name, "Please Enter your full name"],
@@ -84,7 +84,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         setSelectedImage={setSelectedImage}
         size={120}
       />
-      <form className="mb-10 ccs-10" onSubmit={register}>
+      <form className="mb-10 csc-10" onSubmit={register}>
         {/* //! FULL NAME */}
         <MyInput
           placeholder="Full name"

@@ -5,5 +5,10 @@
             "args": ["/k", "${workspaceFolder}\\utils\\venv\\Scripts\\activate.bat"]
         }
     },
-    "terminal.integrated.defaultProfile.windows": "Command Prompt (with venv)"
+    "terminal.integrated.defaultProfile.windows": "Command Prompt (with venv)",
+    "tailwindCSS.experimental.classRegex": [
+        ["[cC]lassName[a-zA-Z0-9]*\\s*=\\s*\"([^\"]*)\""],
+        ["[cC]lassName[a-zA-Z0-9]*\\s*=\\s*'([^']*)'"],
+        ["[cC]lassName[a-zA-Z0-9]*\\s*=\\s*\\`([^\\`]*)\\`"],
+    ]
 }

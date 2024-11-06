@@ -8,7 +8,7 @@ import type { AdminSettings } from "@/classes/templates/AdminSettings";
 import QuasarPage from "@/components/templates/QuasarPage";
 import { useFHWatch } from "@/hooks/useFHWatch";
 import { useLoading as useInitialLoading } from "@/hooks/useLoading";
-import { uc } from "@/hooks/useReactHooks";
+import { useC } from "@/hooks/useReactHooks";
 
 import PageWrapper from "../helpers/PageWrapper";
 import RegisterPage from "../helpers/RegisterPage";
@@ -29,7 +29,7 @@ export const FHContext = createContext({
 interface FHWrapperProps {}
 
 const FHWrapper: React.FC<FHWrapperProps> = () => {
-  const { user, loadingUser } = uc(UserContext);
+  const { user, loadingUser } = useC(UserContext);
 
   //! QUASAR
   const [adminSettings, loadingAdminSettings] = useFHWatch(

@@ -7,7 +7,7 @@ export const Constants = {
   About: "{{About}}",
   NodeMCUIP: "http://192.168.4.1",
   DefaulMapZoom: 13,
-  WebsiteVersion: "1.0.38",
+  WebsiteVersion: "1.0.39",
 };
 
 export const LocalStorage = {
@@ -16,9 +16,9 @@ export const LocalStorage = {
 };
 
 export const Config = {
-  hasFirebase: false,
-  hasSignIn: false,
-  hasRegister: false,
+  hasFirebase: true,
+  hasSignIn: true,
+  hasRegister: true,
   hasFCM: false,
   hasEmailVerification: false,
   hostingWebsite: "{{https://agrismart-ai.web.app}}",

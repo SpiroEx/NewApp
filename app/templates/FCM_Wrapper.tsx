@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 import { useFCM } from "@/hooks/useFCM";
-import { uc } from "@/hooks/useReactHooks";
+import { useC } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
 
 import FHWrapper from "./FH_Wrapper";
@@ -14,7 +14,7 @@ export const FCMTokenContext = createContext({
 interface FCMWrapperProps {}
 
 const FCMWrapper: React.FC<FCMWrapperProps> = ({}) => {
-  const { user } = uc(UserContext);
+  const { user } = useC(UserContext);
   const notifToken = useFCM(user, (payload) =>
     notify(`${payload.notification?.title}`, {
       type: "warning",

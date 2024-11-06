@@ -26,10 +26,22 @@ export default {
         // template - change only the colors / recomplie to see changes
         input_border: "#b9b9b9",
         loading_icon: "#b9b9b9",
-        button: "#0dbc73",
-        header_modal: "#0dbc73",
         link: "#92b8ff",
         text: "#FFFFFF",
+
+        //? Button
+        button: "#0dbc73",
+        button_red: "#F04C2A",
+
+        //? Modal
+        header_modal: "#3C3D3E",
+        modal_bg: '#2B2D2E',
+
+        //? Social Media
+        social_media_bg: '#2B2D2E',
+        social_media_bg_lighter: '#3C3D3E',
+        social_media_icon: '#777777',
+
 
         // custom - from Figma
         bg: "#1f1f1f",

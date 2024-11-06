@@ -82,4 +82,25 @@ export default abstract class DateHelper {
     return `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute
       } ${period}`;
   }
+
+  // 10/23/2024 - 10:43 PM
+  static millisToDateStr(millis: number) {
+    const date = new Date(millis);
+
+    const month = this.monthAbbrev[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    let hour = date.getHours();
+    const minute = date.getMinutes();
+    const period = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12; // convert to 12-hour format
+
+    return `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute
+      } ${period}`;
+  }
+
+  static currentMillis() {
+    return Date.now();
+  }
 }

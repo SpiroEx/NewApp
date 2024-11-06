@@ -18,6 +18,7 @@ interface MyInputProps {
   label?: string;
   disabled?: boolean;
   numLines?: number;
+  classNameSubDiv?: string;
 }
 
 const MyInput: React.FC<MyInputProps> = ({
@@ -34,13 +35,14 @@ const MyInput: React.FC<MyInputProps> = ({
   label,
   numLines,
   disabled = false,
+  classNameSubDiv,
 }) => {
   return (
     <div className={twMerge("css", disabled && "o-50", divClassName)}>
       {label && (
         <p className="-translate-y-1 translate-x-3 o-50 t33">{label}</p>
       )}
-      <div className="rcs">
+      <div className={twMerge("rcs wf")}>
         {!numLines && (
           <input
             ref={inputField.ref as RefObject<HTMLInputElement>}

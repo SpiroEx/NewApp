@@ -1,5 +1,5 @@
 import { use, useEffect, useState } from "react";
 
-export const us = useState;
-export const ue = useEffect;
-export const uc = use;
+export const useS = useState;
+export const useF = useEffect;
+export const useC = use;

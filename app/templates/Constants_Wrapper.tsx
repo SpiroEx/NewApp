@@ -3,7 +3,7 @@ import { createContext } from "react";
 import { ToastContainer } from "react-toastify";
 
 import { Config } from "@/classes/Constants";
-import { us } from "@/hooks/useReactHooks";
+import { useS } from "@/hooks/useReactHooks";
 
 import PageWrapper from "../helpers/PageWrapper";
 import LoadingPage from "./LoadingPage";
@@ -22,7 +22,7 @@ export const LoadingContext = createContext({
 interface ConstantsWrapperProps {}
 
 const ConstantsWrapper: React.FC<ConstantsWrapperProps> = ({}) => {
-  const [loading, setLoading] = us(false);
+  const [loading, setLoading] = useS(false);
 
   return (
     <>
@@ -36,8 +36,9 @@ const ConstantsWrapper: React.FC<ConstantsWrapperProps> = ({}) => {
 
       {/* //! TOAST */}
       <ToastContainer
-        className="toast-custom"
-        theme="colored"
+        className="toast-custom csc-3"
+        toastClassName="wf"
+        theme="dark"
         autoClose={2000}
         closeButton={false}
       />

@@ -1,15 +1,15 @@
-import { useState } from "react"
+import { useState } from "react";
 
-import GoogleLogo from "@/components/svg/icon/GoogleLogo"
-import VisibilityIcon from "@/components/svg/icon_animated/visibility/VisibilityIcon"
-import Logo from "@/components/templates/Logo"
-import MyButton from "@/components/templates/MyButton"
-import MyInput from "@/components/templates/MyInput"
-import SizedBox from "@/components/templates/SizedBox"
-import Title from "@/components/templates/Title"
-import Txt from "@/components/templates/Txt"
-import useSignInPage, { SignInType } from "@/hooks/useSignIn"
-import { MotionDiv } from "@/types/framer_motion_types"
+import GoogleLogo from "@/components/svg/icon/GoogleLogo";
+import VisibilityIcon from "@/components/svg/icon_animated/visibility/VisibilityIcon";
+import Logo from "@/components/templates/Logo";
+import MyButton from "@/components/templates/MyButton";
+import MyInput from "@/components/templates/MyInput";
+import SizedBox from "@/components/templates/SizedBox";
+import Title from "@/components/templates/Title";
+import Txt from "@/components/templates/Txt";
+import useSignInPage, { SignInType } from "@/hooks/useSignIn";
+import { MotionDiv } from "@/types/framer_motion_types";
 
 const SignInPage: React.FC = () => {
   const {
@@ -22,14 +22,14 @@ const SignInPage: React.FC = () => {
     passwordInput,
     isSigningIn,
     googleSignIn,
-  } = useSignInPage()
+  } = useSignInPage();
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div>
+    <div className="wf">
       <div
-        className="bg-aspect-ratio px-10 pb-12 ccc-8"
+        className="wf bg-aspect-ratio px-10 pb-12 ccc-8"
         style={{
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -45,13 +45,17 @@ const SignInPage: React.FC = () => {
           className="ccc-10 wf"
           onSubmit={type === SignInType.signUp ? signup : login}
         >
+          {/* //! EMAIL */}
           <div className="wf">
             <MyInput
               placeholder="Email"
               inputField={emailInput}
               className="bg-transparent"
+              classNameSubDiv="wf"
             />
           </div>
+
+          {/* //! PASSWORD */}
           <div className="relative max-w-sm wf">
             <MyInput
               placeholder="Password"
@@ -67,6 +71,7 @@ const SignInPage: React.FC = () => {
             </div>
           </div>
 
+          {/* //! SUBMIT - BUTTON */}
           <MyButton
             type="submit"
             label={type === SignInType.signUp ? "SIGN UP" : "LOGIN"}
@@ -113,7 +118,7 @@ const SignInPage: React.FC = () => {
         </MotionDiv>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignInPage
+export default SignInPage;

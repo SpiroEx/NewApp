@@ -4,7 +4,7 @@ import { sendEmailVerification } from "firebase/auth";
 import { Config } from "@/classes/Constants";
 import EmailIcon from "@/components/svg/icon/EmailIcon";
 import MyButton from "@/components/templates/MyButton";
-import { us } from "@/hooks/useReactHooks";
+import { useS } from "@/hooks/useReactHooks";
 import signOutClick from "@/myfunctions/signOutClick";
 
 interface EmailVerificationPageProps {
@@ -14,7 +14,7 @@ interface EmailVerificationPageProps {
 const EmailVerificationPage: React.FC<EmailVerificationPageProps> = ({
   user,
 }) => {
-  const [resent, setResent] = us(false);
+  const [resent, setResent] = useS(false);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {

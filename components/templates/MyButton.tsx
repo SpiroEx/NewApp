@@ -21,8 +21,8 @@ const MyButton: React.FC<MyButtonProps> = ({
   onClick,
   label,
   type,
-  pX = 1.2,
-  pY = 0.8,
+  pX = 1.8,
+  pY = 0.4,
   disabled,
   className,
   classNameBtn,
@@ -33,14 +33,15 @@ const MyButton: React.FC<MyButtonProps> = ({
   return (
     <MotionDiv
       className={twMerge(
-        "tc wf max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none",
+        "tc max-w-sm rounded-full bg-button m-0 shadow-none outline-none select-none tf3",
         outlined && "bg-transparent b b-zinc-600",
         dashed && "b-dashed",
         disabled && "cursor-default o-50",
         className
       )}
+      onContextMenu={(e) => e.preventDefault()}
       onClick={onClick}
-      whileTap={{ scale: disabled ? 1.0 : 0.8 }}
+      whileTap={{ scale: disabled ? 1.0 : 0.9 }}
     >
       <button
         type={type}
@@ -53,8 +54,8 @@ const MyButton: React.FC<MyButtonProps> = ({
       >
         <p
           className={twMerge(
-            "t-white tf3 w-max m-auto",
-            outlined && "t-black",
+            "w-max m-auto t-inherit t33",
+            // outlined && "t-black",
             classNameText
           )}
           style={{ padding: `${pY}rem ${pX}rem` }}

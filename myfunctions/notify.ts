@@ -12,14 +12,13 @@ const notify = (
   toast(text, {
     position: "top-center",
     autoClose: options.duration,
-    hideProgressBar: true,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
-    icon: true,
     progress: undefined,
-    theme: "colored",
+    theme: "dark",
     type: options.type,
+
   });
 };
 

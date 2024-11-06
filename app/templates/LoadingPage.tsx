@@ -1,7 +1,7 @@
 import React from "react";
 import { ScaleLoader } from "react-spinners";
 
-import { uc } from "@/hooks/useReactHooks";
+import { useC } from "@/hooks/useReactHooks";
 
 import { TailwindContext } from "./Tailwind_Wrapper";
 
@@ -10,9 +10,9 @@ interface LoadingPageProps {
 }
 
 const LoadingPage: React.FC<LoadingPageProps> = ({ hideIcon = false }) => {
-  const { getColor } = uc(TailwindContext);
+  const { getColor } = useC(TailwindContext);
   return (
-    <div className="fcc fixed left-0 top-0 z-10 select-none ws hs">
+    <div className="ccc fixed left-0 top-0 z-10 select-none ws hs">
       {!hideIcon && (
         <ScaleLoader
           color={`${getColor("loading_icon")}`}

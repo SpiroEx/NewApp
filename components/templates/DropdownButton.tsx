@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { us } from "@/hooks/useReactHooks";
+import { useS } from "@/hooks/useReactHooks";
 
 export type ExpandDirection =
   | "bottom-right"
@@ -30,7 +30,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
 }) => {
   const iconDivRef = useRef<HTMLDivElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
-  us;
+  useS;
 
   const [defaultIsExpanded, setDefaultIsExpanded] = useState(false);
 
@@ -44,6 +44,8 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
     const iconDivWidth = iconDiv.clientWidth;
     const divHeight = div.clientHeight;
     const divWidth = div.clientWidth;
+
+    console.log(expandDirection);
 
     switch (expandDirection) {
       case "bottom-right":
@@ -69,7 +71,13 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
       default:
         break;
     }
-  }, [divRef?.current?.clientHeight, divRef?.current?.clientWidth, isExpanded]);
+  }, [
+    divRef?.current?.clientHeight,
+    divRef?.current?.clientWidth,
+    isExpanded,
+    defaultIsExpanded,
+    expandDirection,
+  ]);
 
   return (
     <div className={twMerge("relative")}>
@@ -82,23 +90,21 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
       >
         {icon}
       </div>
-      {isExpanded === undefined
-        ? defaultIsExpanded
-        : isExpanded && (
-            <div
-              ref={divRef}
-              className={twMerge(
-                "absolute shadow-lg drop-shadow-lg px-2 py-2 rounded-lg z-20",
-                expandDirection === "bottom-right" && "rounded-tl-none",
-                expandDirection === "bottom-left" && "rounded-tr-none",
-                expandDirection === "top-right" && "rounded-bl-none",
-                expandDirection === "top-left" && "rounded-br-none",
-                className
-              )}
-            >
-              {children}
-            </div>
+      {(isExpanded === undefined ? defaultIsExpanded : isExpanded) && (
+        <div
+          ref={divRef}
+          className={twMerge(
+            "absolute shadow-lg drop-shadow-lg px-2 py-2 rounded-lg z-20",
+            expandDirection === "bottom-right" && "rounded-tl-none",
+            expandDirection === "bottom-left" && "rounded-tr-none",
+            expandDirection === "top-right" && "rounded-bl-none",
+            expandDirection === "top-left" && "rounded-br-none",
+            className
           )}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 };

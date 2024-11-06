@@ -39,7 +39,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
 
   const hasUpdates = photoURLUpdated || nameUpdated;
 
-  //! INITIALIZE FIELDS
+  //!  INITIALIZE FIELDS
   useEffect(() => {
     if (!myUser) return;
     nameInput.setValue(myUser.name);

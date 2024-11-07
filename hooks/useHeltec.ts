@@ -26,7 +26,7 @@ function useHeltec(states: HeltecState[]) {
             setState(states[0]);
           }
         },
-        "",
+        {},
         () => {
           fetchData();
         }

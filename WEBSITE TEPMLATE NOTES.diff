@@ -21,15 +21,9 @@ gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 
 --- TODO  --------------------------------------------------------
 VERDETECH
-	* Add LogsTable.tsx
-	* Infinite Scrolling - Website Template
 	* Create my own useOptimistic? (PostDiv.tsx)
-	* Copy DateHelper.ts
-	* log_gray (tailwind)
-	* Add Log.ts in class, FH 
 
-* Always convert Pages back to Main by default in PageWrapper.tsx
-* Fixed myFetch
+* Fix myFetch
 
 AGRISMART
 	* Chart_Bar
@@ -38,7 +32,13 @@ AGRISMART
 	* resizeImageFile
 
 --- DONE --------------------------------------------------------
+* Always convert Pages back to Main by default in PageWrapper.tsx
 VERDETECH
+	* Infinite Scrolling - Website Template
+	* Copy DateHelper.ts
+	* Add LogDevice.ts in class, FH 
+	* log_gray (tailwind)
+	* Add LogsTable.tsx
 	* Update ChevronLeft/ChevronRight.tsx
 	* Add comments in ProfilePage.tsx 
 	* Update DropdownButton.tsx 

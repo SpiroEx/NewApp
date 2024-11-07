@@ -1,40 +1,66 @@
-export type ReturnType = "json" | "text";
-
-const myFetch = async <T>(
-  base_url: string,
-  url_path: string,
-  queryParams = "",
-  method = "GET",
-  body_data = {},
-  return_type: ReturnType = "json",
-
-  is_blob = false
-) => {
+export default async function myFetch<T>(
+  url: string,
+  method: "GET" | "POST" | "PUT" | "DELETE",
+  query: Record<string, any>,
+  body: Record<string, any> | string,
+  reqType: "json" | "text" | "urlencoded",
+  resType: "json" | "text" | "blob",
+) {
   try {
-    const url = `${base_url}/${url_path}?${queryParams}`;
+    const url_data = `${url}?${new URLSearchParams(query).toString()}`;
+
+    let content_type = "";
+    switch (reqType) {
+      case "json":
+        content_type = "application/json";
+        break;
+      case "text":
+        content_type = "text/plain";
+        break;
+      case "urlencoded":
+        content_type = "application/x-www-form-urlencoded";
+        break;
+    }
+
     const headers = {
-      "Content-Type":
-        return_type === "json" ? "application/json" : "text/plain",
+      "Content-Type": content_type,
     };
 
-    const res = await fetch(url, {
+    let body_data: string | undefined = undefined;
+
+    if (method !== "GET") {
+      switch (reqType) {
+        case "json":
+          body_data = JSON.stringify(body);
+          break;
+        case "text":
+          body_data = body.toString();
+          break;
+        case "urlencoded":
+          body_data = new URLSearchParams(body).toString();
+          break;
+      }
+    }
+
+    const res = await fetch(url_data, {
       method,
       headers,
-      body: method !== "GET" ? JSON.stringify(body_data) : undefined,
+      body: body_data,
     });
 
-    const data = (is_blob
-      ? await res.blob()
-      : return_type === "json"
-      ? await res.json()
-      : await res.text()) as T;
-    // console.log(`FETCHED ${base_url}: ${JSON.stringify(data)}`);
-    return data;
-  } catch (_e) {
-    console.log("ERROR FETCHING");
-    console.log(_e);
+    switch (resType) {
+      case "json":
+        return await res.json() as T;
+      case "text":
+        return await res.text() as T;
+      case "blob":
+        return await res.blob() as T;
+    }
+
+  }
+  catch (error) {
+    console.log(`Error fetching ${url} with error ${error}`);
     return null;
   }
-};
 
-export default myFetch;
+}

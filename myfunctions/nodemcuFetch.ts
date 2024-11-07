@@ -4,18 +4,18 @@ import myFetch from "./myFetch";
 export default async function nodemcuFetch(
   command: string,
   callback: (response: string) => void,
-  queryParam = "",
-  final: () => void = () => {}
+  query: Record<string, any> = {},
+  final: () => void = () => { }
 ) {
   try {
     // console.log("1");
     const res = await myFetch<string>(
-      Constants.NodeMCUIP,
-      command,
-      queryParam,
+      `${Constants.NodeMCUIP}/${command}`,
       "GET",
+      query,
       {},
-      "text"
+      "json",
+      "json",
     );
     // console.log("2");
 

@@ -1,12 +1,14 @@
 import { FHPagination } from "@/hooks/useFHPagination";
-import ChevronLeft from "../svg/icon/ChevronLeft";
-import ChevronRight from "../svg/icon/ChevronRight";
+import ChevronLeft from "../../../components/svg/icon/ChevronLeft";
+import ChevronRight from "../../../components/svg/icon/ChevronRight";
+import { twMerge } from "tailwind-merge";
 
 interface LogsTableProps<T extends { id: string }> {
   headers: string[];
   data: any[][];
   legends?: [string, string][];
   pagination: FHPagination<T>;
+  classNameHeader?: string;
 }
 
 const LogsTable: React.FC<LogsTableProps<any>> = ({
@@ -14,6 +16,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
   data,
   legends,
   pagination,
+  classNameHeader,
 }) => {
   const columns = headers.map((header, i) => [
     header,
@@ -21,11 +24,17 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
   ]);
 
   return (
-    <div className="csc-2 wf">
+    <div
+      className="csc-4 wf"
+      style={{
+        maxWidth: "80vw",
+        overflowX: "auto",
+      }}
+    >
       <p className="t76">Logs</p>
 
       {/*//! TABLE */}
-      <div className="csc-4 wf bg-log_gray rounded-2xl py-4 px-2">
+      <div className="csc-4 bg-log_gray rounded-2xl py-4 px-6">
         <div className="rcs-4 wf">
           {columns.map((data, i) => {
             const header = data[0];
@@ -33,7 +42,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
 
             return (
               <div key={i} className="csc-2">
-                <p className="t46">{header}</p>
+                <p className={twMerge(classNameHeader)}>{header}</p>
                 {restOfData.map((d, i) => (
                   <p key={i} className="t22 truncate whitespace-nowrap">
                     {d}
@@ -61,7 +70,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
       </div>
 
       {/*//! LEGEND */}
-      <div className="css-4">
+      <div className="css-4 mt-4">
         <p className="t46">Legend</p>
 
         <div className="grid grid-cols-2 gap-3 px-2">

@@ -13,6 +13,7 @@ import { db } from "@/app/firebase";
 import notify from "@/myfunctions/notify";
 import { SocialMediaPost } from "@/app/z/SocialMedia/SocialMediaPost";
 import { SocialMediaComment } from "@/app/z/SocialMedia/SocialMediaComment";
+import { LogDevice } from "./LogDevice";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -35,12 +36,17 @@ class SocialMediaCommentFHT extends FHT<SocialMediaComment> {
   collectionName = "comment";
 }
 
+class LogDeviceFHT extends FHT<LogDevice> {
+  collectionName = "log_device";
+}
+
 export default abstract class FH {
   static AdminSettings = new AdminSettingsFHT();
   static MyUser = new MyUserFHT();
   static Device = new DeviceFHT();
   static SocialMediaPost = new SocialMediaPostFHT();
   static SocialMediaComment = new SocialMediaCommentFHT();
+  static LogDevice = new LogDeviceFHT();
 
   static async Batch(
     name: string,

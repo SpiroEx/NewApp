@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Constants } from "@/classes/Constants";
+import { twMerge } from "tailwind-merge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +34,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/images/favicon.ico" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={twMerge("bg-bg t-text", inter.className)}>
+        {children}
+      </body>
     </html>
   );
 }

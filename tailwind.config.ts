@@ -37,6 +37,9 @@ export default {
         header_modal: "#3C3D3E",
         modal_bg: '#2B2D2E',
 
+        //? Logs Table
+        log_gray: "#2B2D2E",
+
         //? Social Media
         social_media_bg: '#2B2D2E',
         social_media_bg_lighter: '#3C3D3E',

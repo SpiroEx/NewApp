@@ -10,7 +10,7 @@ import Tailwind_Wrapper from "./templates/Tailwind_Wrapper";
 
 export default function Home() {
   return (
-    <div className={twMerge("wf min-hf bg-bg t-text", outfitFont)}>
+    <div className={twMerge("wf min-hf", outfitFont)}>
       <Tailwind_Wrapper />
     </div>
   );

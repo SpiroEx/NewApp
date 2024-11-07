@@ -1,7 +1,7 @@
 import FH from "@/classes/FH";
 import { MyUser } from "@/classes/MyUser";
 import WebsiteVersion from "@/components/custom/WebsiteVersion";
-import LogsTable from "@/components/templates/LogsTable";
+import LogsTable from "@/app/z/Logs/LogsTable";
 import PageContainer from "@/components/templates/PageContainer";
 import Txt from "@/components/templates/Txt";
 import { useFHPagination } from "@/hooks/useFHPagination";

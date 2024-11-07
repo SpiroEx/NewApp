@@ -8,6 +8,7 @@ interface ChevronLeftProps {
   color?: string;
   className?: string;
   nonBouncing?: boolean;
+  disabled?: boolean;
 }
 
 const ChevronLeft: React.FC<ChevronLeftProps> = ({
@@ -16,6 +17,7 @@ const ChevronLeft: React.FC<ChevronLeftProps> = ({
   color,
   className,
   nonBouncing = false,
+  disabled = false,
 }) => {
   return (
     <div
@@ -30,6 +32,7 @@ const ChevronLeft: React.FC<ChevronLeftProps> = ({
         className={className}
         onClick={onClick}
         nonBouncing={nonBouncing}
+        disabled={disabled}
       />
     </div>
   );

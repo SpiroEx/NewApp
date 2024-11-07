@@ -9,6 +9,7 @@ interface ChevronRightProps {
   color?: string;
   className?: string;
   nonBouncing?: boolean;
+  disabled?: boolean;
 }
 
 const ChevronRight: React.FC<ChevronRightProps> = ({
@@ -17,11 +18,17 @@ const ChevronRight: React.FC<ChevronRightProps> = ({
   color = "black",
   className,
   nonBouncing = false,
+  disabled = false,
 }) => (
   <MotionSvg
-    onClick={onClick}
-    className={twMerge("sn", !nonBouncing && onClick && "cp", className)}
-    whileTap={{ scale: !nonBouncing && onClick ? 0.85 : 1 }}
+    onClick={!disabled ? onClick : undefined}
+    className={twMerge(
+      "sn",
+      !nonBouncing && onClick && "cp",
+      disabled && "opacity-20 cursor-default",
+      className
+    )}
+    whileTap={{ scale: !disabled && !nonBouncing && onClick ? 0.85 : 1 }}
     width={size}
     viewBox="0 0 53 99"
     fill="none"

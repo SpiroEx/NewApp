@@ -18,6 +18,10 @@ export const enum Pages {
   Main,
 }
 
+//********************************* */
+const defaultPage = Pages.Main;
+//********************************* */
+
 export const PageWrapperContext = createContext({
   page: Pages.Main,
   setPage: {} as Dispatch<SetStateAction<Pages>>,
@@ -32,7 +36,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
   const [overlay, setOverlay] = useS<ReactNode | null>(null);
 
   //! Page
-  const [page, setPage] = useS<Pages>(Pages.Main);
+  const [page, setPage] = useS<Pages>(defaultPage);
 
   return (
     <PageWrapperContext

@@ -1,4 +1,5 @@
 import Resizer from "react-image-file-resizer"; // Import the library
+import { resizeImageFile } from "./resizeFileImage";
 
 
 export async function myFetchImgUrlencoded<T>(url: string, img: File) {
@@ -87,24 +88,7 @@ export default async function myFetch<T>(
 
 
 // Resize function
-const resizeImageFile = (file: File): Promise<File> => {
-  return new Promise((resolve) => {
-    Resizer.imageFileResizer(
-      file,
-      640, // width
-      480, // height
-      "JPEG", // format
-      100, // quality
-      0, // rotation
-      (resizedFile) => {
-        resolve(
-          new File([resizedFile as Blob], file.name, { type: file.type })
-        );
-      },
-      "blob" // output type
-    );
-  });
-};
+
 
 const encodeFileToBase64 = (file: File): Promise<string> => {
   return new Promise((resolve, reject) => {

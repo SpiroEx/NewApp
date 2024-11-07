@@ -4,6 +4,7 @@ interface DeviceDimensions {
   screenWidth: number;
   screenHeight: number;
   aspectRatio: number;
+  isMobile: boolean;
 }
 
 const useDeviceDimensions = (): DeviceDimensions => {
@@ -11,6 +12,7 @@ const useDeviceDimensions = (): DeviceDimensions => {
     screenWidth: 0,
     screenHeight: 0,
     aspectRatio: 1,
+    isMobile: false,
   });
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const useDeviceDimensions = (): DeviceDimensions => {
         screenHeight: window.innerHeight,
         aspectRatio:
           window.innerHeight == 0 ? 1 : window.innerWidth / window.innerHeight,
+        isMobile: window.innerWidth < 768,
       });
     };
 

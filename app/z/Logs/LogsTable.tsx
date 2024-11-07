@@ -8,7 +8,8 @@ interface LogsTableProps<T extends { id: string }> {
   data: any[][];
   legends?: [string, string][];
   pagination: FHPagination<T>;
-  classNameHeader?: string;
+  classNameHeader: string;
+  classNameBody: string;
 }
 
 const LogsTable: React.FC<LogsTableProps<any>> = ({
@@ -17,6 +18,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
   legends,
   pagination,
   classNameHeader,
+  classNameBody,
 }) => {
   const columns = headers.map((header, i) => [
     header,
@@ -24,18 +26,18 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
   ]);
 
   return (
-    <div
-      className="csc-4 wf"
-      style={{
-        maxWidth: "80vw",
-        overflowX: "auto",
-      }}
-    >
+    <div className="csc-4 wf">
       <p className="t76">Logs</p>
 
       {/*//! TABLE */}
       <div className="csc-4 bg-log_gray rounded-2xl py-4 px-6">
-        <div className="rcs-4 wf">
+        <div
+          className="rss-4 wf"
+          style={{
+            maxWidth: "90vw",
+            overflowX: "auto",
+          }}
+        >
           {columns.map((data, i) => {
             const header = data[0];
             const restOfData = data.slice(1);
@@ -44,7 +46,13 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
               <div key={i} className="csc-2">
                 <p className={twMerge(classNameHeader)}>{header}</p>
                 {restOfData.map((d, i) => (
-                  <p key={i} className="t22 truncate whitespace-nowrap">
+                  <p
+                    key={i}
+                    className={twMerge(
+                      "truncate whitespace-nowrap",
+                      classNameBody
+                    )}
+                  >
                     {d}
                   </p>
                 ))}

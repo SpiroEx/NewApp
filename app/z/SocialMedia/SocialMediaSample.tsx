@@ -4,7 +4,7 @@ import useSocialMedia from "./useSocialMedia";
 interface SocialMediaSampleProps {}
 
 const SocialMediaSample: React.FC<SocialMediaSampleProps> = ({}) => {
-  const socialMedia = useSocialMedia();
+  const socialMedia = useSocialMedia(10);
 
   return (
     <SocialMedia

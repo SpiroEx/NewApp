@@ -61,9 +61,10 @@ const SocialMedia: React.FC<SocialMediaProps> = ({
         extraWidgetsPost,
       }}
     >
-      <div className="css-12 wf">
+      <div className="csc-12 wf">
         <CreatePostDiv />
         <ListPostDiv socialMedia={socialMedia} />
+        <p className="t32 o-50 mb-6"> - Nothing Follows - </p>
       </div>
     </SocialMediaContext>
   );

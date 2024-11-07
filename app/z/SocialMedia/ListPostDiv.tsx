@@ -9,7 +9,7 @@ const ListPostDiv: React.FC<ListPostDivProps> = ({ socialMedia }) => {
   return (
     <div className="css-5 wf">
       {/*//? One Post Div */}
-      {socialMedia.pagination.data.map((post) => {
+      {socialMedia.posts.map((post) => {
         return <PostDiv key={post.id} post={post} />;
       })}
     </div>

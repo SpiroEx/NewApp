@@ -7,7 +7,7 @@ import Overlay from "@/components/templates/Overlay";
 import { useS } from "@/hooks/useReactHooks";
 
 import MainPage from "../custom/MainPage";
-import LogsPage from "../z/Logs/LogsPage";
+import Sample_LogsPage from "../z/Logs/Sample_LogsPage";
 
 // ? ----------------------
 // ? PAGES
@@ -52,7 +52,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
       />
 
       <div className="overflow-y-auto wf hf">
-        {page === Pages.Main && <LogsPage />}
+        {page === Pages.Main && <MainPage />}
         {/*//! Add Page Mapping Here */}
       </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}

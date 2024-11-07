@@ -45,6 +45,7 @@
     "react-draggable-bottom-sheet": "^1.14.0",
     "react-geocode": "^1.0.0-alpha.1",
     "react-google-charts": "^4.0.1",
+    "react-image-file-resizer": "^0.4.8",
     "react-modal": "^3.16.1",
     "react-select": "^5.7.4",
     "react-simple-dialogs": "^1.0.1",

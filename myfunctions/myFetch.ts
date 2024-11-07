@@ -1,3 +1,23 @@
+import Resizer from "react-image-file-resizer"; // Import the library
+
+
+export async function myFetchImgUrlencoded<T>(url: string, img: File) {
+  const resizedImage = await resizeImageFile(img);
+  const base64Image = await encodeFileToBase64(resizedImage);
+  const body = {}
+  return await myFetch(
+    url,
+    "POST",
+    {},
+    {
+      img: `${base64Image}`,
+    },
+    "urlencoded",
+    "json"
+  );
+
+}
+
 export default async function myFetch<T>(
   url: string,
   method: "GET" | "POST" | "PUT" | "DELETE",
@@ -64,3 +84,43 @@ export default async function myFetch<T>(
   }
 
 }
+
+
+// Resize function
+const resizeImageFile = (file: File): Promise<File> => {
+  return new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      640, // width
+      480, // height
+      "JPEG", // format
+      100, // quality
+      0, // rotation
+      (resizedFile) => {
+        resolve(
+          new File([resizedFile as Blob], file.name, { type: file.type })
+        );
+      },
+      "blob" // output type
+    );
+  });
+};
+
+const encodeFileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file); // This reads the file as a Data URL (base64 encoded)
+
+    reader.onload = () => {
+      if (reader.result) {
+        // Apply encodeURIComponent to the base64 data
+        const encoded = encodeURIComponent(reader.result.toString());
+        resolve(encoded);
+      } else {
+        reject("File could not be read");
+      }
+    };
+
+    reader.onerror = (error) => reject(error);
+  });
+};

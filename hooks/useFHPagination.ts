@@ -46,8 +46,10 @@ export const useFHPagination = <T extends { id: string }>(
   const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<T> | null>(null);
   useEffect(() => {
     // console.log("USE EFFECT - MAIN");
-    setLoading(true);
+    console.log(queries);
+    if (data.length < 1) setLoading(true);
     return fht.watchPagination(
+      pageNum,
       (objs, firstDoc, lastDoc, hasPrev, hasNext) => {
         setData(objs);
         setLoading(false);
@@ -81,6 +83,7 @@ export const useFHPagination = <T extends { id: string }>(
   useEffect(() => {
     if (willPrev) {
       setPageNum(pageNum - 1);
+      setData([]);
       setCustomQueries([endBefore(firstDoc), limitToLast(limit_per_page)]);
       setWillPrev(false);
     }
@@ -90,6 +93,7 @@ export const useFHPagination = <T extends { id: string }>(
   useEffect(() => {
     if (willNext) {
       setPageNum(pageNum + 1);
+      setData([]);
       setCustomQueries([startAfter(lastDoc), limit(limit_per_page)]);
       setWillNext(false);
     }

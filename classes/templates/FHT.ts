@@ -134,12 +134,13 @@ export default abstract class FHT<T extends { id: string }> {
 
   //! Watch Pagination
   watchPagination(
+    pageNum: number,
     callback: (
       data: T[],
       firstDoc: QueryDocumentSnapshot<T> | null,
       lastDoc: QueryDocumentSnapshot<T> | null,
       hasPrev: boolean,
-      hasNext: boolean
+      hasNext: boolean,
     ) => void,
     orderKey: keyof T,
     direction: "asc" | "desc",
@@ -168,31 +169,33 @@ export default abstract class FHT<T extends { id: string }> {
       ] as QueryDocumentSnapshot<T>;
 
       //! HAS PREV
-      const prevQ = firebaseQuery(
-        collection(db, this.collectionName),
-        orderBy(String(orderKey), direction),
-        endBefore(firstDoc),
-        limitToLast(1)
-      );
+      // const prevQ = firebaseQuery(
+      //   collection(db, this.collectionName),
+      //   orderBy(String(orderKey), direction),
+      //   endBefore(firstDoc),
+      //   limitToLast(1),
+      // );
 
-      const docSnapshot = await getDocs(prevQ);
-      const hasPrev = docSnapshot.docs.length > 0;
+      // const docSnapshot = await getDocs(prevQ);
+      // const hasPrev = docSnapshot.docs.length > 0;
+      const hasPrev = pageNum > 1;
 
       //! HAS NEXT
       const nextQ = firebaseQuery(
         collection(db, this.collectionName),
         orderBy(String(orderKey), direction),
+        ...queries,
         startAfter(lastDoc),
-        limit(1)
+        limit(1),
       );
 
       const docSnapshot2 = await getDocs(nextQ);
       const hasNext = docSnapshot2.docs.length > 0;
+      console.log(docSnapshot2.docs);
 
       callback(data, firstDoc, lastDoc, hasPrev, hasNext);
     });
   }
-
   //! Update
   async update(
     obj: T | string | null | undefined,

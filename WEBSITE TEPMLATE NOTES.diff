@@ -20,17 +20,23 @@ gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 
 
 --- TODO  --------------------------------------------------------
-VERDETECH
-	* Create my own useOptimistic? (PostDiv.tsx)
+
+AGRISMART
+	* Add InfoIcon.tsx to icons
+	* Add MyTooltip to templates
+	* Add SendEmailButton to templates
 
 
+PYTHON: update RouteHelper.py (agrismart)
+
+
+--- DONE --------------------------------------------------------
 AGRISMART
 	* Chart_Bar
 	* Chart_Pie
 	* Chart_Line
 	* resizeImageFile
-
---- DONE --------------------------------------------------------
+	
 * Fix myFetch
 * Always convert Pages back to Main by default in PageWrapper.tsx
 VERDETECH

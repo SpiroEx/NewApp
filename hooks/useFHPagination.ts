@@ -46,7 +46,7 @@ export const useFHPagination = <T extends { id: string }>(
   const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot<T> | null>(null);
   useEffect(() => {
     // console.log("USE EFFECT - MAIN");
-    console.log(queries);
+    // console.log(queries);
     if (data.length < 1) setLoading(true);
     return fht.watchPagination(
       pageNum,

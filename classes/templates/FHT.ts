@@ -191,7 +191,6 @@ export default abstract class FHT<T extends { id: string }> {
 
       const docSnapshot2 = await getDocs(nextQ);
       const hasNext = docSnapshot2.docs.length > 0;
-      console.log(docSnapshot2.docs);
 
       callback(data, firstDoc, lastDoc, hasPrev, hasNext);
     });

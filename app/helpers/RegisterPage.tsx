@@ -117,15 +117,20 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({
   termsInput,
 }) => {
   return (
-    <div className="rcc-3 t3 ">
+    <div className="flex items-center gap-2 text-sm justify-center">
       <input ref={termsInput.ref} type="checkbox" name="terms" />
-      <p className="t-slate-500">
+      <p
+        className="opacity-50 cp"
+        onClick={() => {
+          termsInput.ref.current?.click();
+        }}
+      >
         I agree to the{" "}
-        <span className="t-black tf6">
-          <a target="_blank" href={Config.termsLink}>
-            Terms & Conditions
-          </a>
-        </span>
+      </p>
+      <p className="font-semibold">
+        <a target="_blank" href={Config.termsLink}>
+          Terms & Conditions
+        </a>
       </p>
     </div>
   );

@@ -80,7 +80,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
   ]);
 
   return (
-    <div className={twMerge("relative")}>
+    <div className={twMerge("relative cp")}>
       <div
         onClick={() => {
           if (setIsExpanded) setIsExpanded((prev) => !prev);

@@ -23,8 +23,9 @@ gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 
 AGRISMART
 	* Add InfoIcon.tsx to icons
-	* Add MyTooltip to templates
-	* Add SendEmailButton to templates
+	* Add MyTooltip.tsx to templates
+	* Add SendEmailButton.tsx to templates
+	* Add QrScanner.tsx
 
 
 PYTHON: update RouteHelper.py (agrismart)

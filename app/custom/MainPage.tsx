@@ -12,7 +12,6 @@ const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
     <PageContainer>
       <Txt.title className="">TITLE</Txt.title>
-      <SocialMediaSample />
       <WebsiteVersion />
     </PageContainer>
   );

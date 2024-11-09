@@ -24,10 +24,14 @@ export default {
       },
       colors: {
         // template - change only the colors / recomplie to see changes
-        input_border: "#b9b9b9",
+        //? Loading Icon
         loading_icon: "#b9b9b9",
+
+        //? Link
         link: "#92b8ff",
-        text: "#FFFFFF",
+
+        //? Input
+        input_border: "#b9b9b9",
 
         //? Button
         button: "#0dbc73",

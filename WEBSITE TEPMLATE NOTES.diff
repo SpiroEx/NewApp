@@ -20,6 +20,16 @@ gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 
 
 --- TODO  --------------------------------------------------------
+QRSCANNER
+	* Update useInputField.ts (with initial input!)
+	* Update LogsTable.tsx
+	* Update Sample_LogsTable.tsx
+	* Update MyDatePicker.tsx
+	* Update WebsiteVersion.tsx
+	* Update MyModal.tsx
+	* Add countListItems.ts
+	* Add modal_t (tailwind)
+	* deployf init.py
 
 AGRISMART
 	* Add InfoIcon.tsx to icons
@@ -27,11 +37,32 @@ AGRISMART
 	* Add SendEmailButton.tsx to templates
 	* Add QrScanner.tsx
 
-
+Fix b b-black b-opacity-50
 PYTHON: update RouteHelper.py (agrismart)
 
 
 --- DONE --------------------------------------------------------
+run git . -> "run git"
+npm run dev -> "a"
+automate add-page -> "a add-page x"
+firebase deploy --only hosting -> "a deploy"
+firebase deploy --only functions -> "a deploy f"
+automate svg-convert -> "a svg"
+copy var:type && ctrl + alt + d -> useContext generate
+motion.p -> MotionP
+all .Providers removed
+removed useMemo, useCallback
+useState -> us, useEffect -> ue, use -> uc
+hidden imports
+fixed icons scale on click, became automated if onClick is specified
+Made ! functionality in figma obsolute
+convert to tailwind tsx
+Tailwind Shortcuts:
+	* fc fr3 is ie ij, js
+	* ws, hs, wf, hf
+	* text/font -> t44r-white
+	* cursor pointer & select-none -> cp/ (also python)
+	* opacity - o
 AGRISMART
 	* Chart_Bar
 	* Chart_Pie

@@ -3,19 +3,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import type { Dispatch, MouseEventHandler, SetStateAction } from "react";
 import { forwardRef } from "react";
 import DatePicker from "react-datepicker";
+import { twMerge } from "tailwind-merge";
 
 interface MyDatePickerProps {
   date: Date;
   setDate: Dispatch<SetStateAction<Date>>;
+  className?: string;
 }
 
-const MyDatePicker: React.FC<MyDatePickerProps> = ({ date, setDate }) => {
+const MyDatePicker: React.FC<MyDatePickerProps> = ({
+  date,
+  setDate,
+  className,
+}) => {
   const ExampleCustomInput = forwardRef<
     HTMLButtonElement,
     { value: string; onClick: MouseEventHandler<HTMLButtonElement> }
   >(({ value, onClick }, ref) => (
     <button
-      className="bg-transparent px-4 py-2 t-white b-2 b-white"
+      className={twMerge("bg-transparent px-4 py-2 b rounded-lg", className)}
       onClick={onClick}
       ref={ref}
     >

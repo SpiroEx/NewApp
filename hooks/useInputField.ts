@@ -1,5 +1,6 @@
 import notify from "@/myfunctions/notify";
 import { useRef, useState } from "react";
+import { useF } from "./useReactHooks";
 
 export type InputField = {
   ref: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
@@ -14,7 +15,8 @@ export type InputField = {
 };
 
 export const useInputField = (
-  verifier: (name: string | undefined) => [boolean, string][]
+  verifier: (name: string | undefined) => [boolean, string][],
+  initialVal?: string
 ): InputField => {
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
   const [error, setError] = useState(false);
@@ -51,6 +53,10 @@ export const useInputField = (
     if (inputRef.current == null) return;
     inputRef.current.blur();
   };
+
+  useF(() => {
+    setValue(initialVal);
+  }, []);
 
   return {
     ref: inputRef,

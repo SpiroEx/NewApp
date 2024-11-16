@@ -37,8 +37,8 @@ const MyModal: React.FC<MyModalProps> = ({
         )}
       >
         {title && (
-          <div className="rounded-t-xl bg-header_modal py-2">
-            <p className="t-white t77c">{title}</p>
+          <div className="rounded-t-xl bg-header_modal py-1">
+            <p className="t-modal_t t46c">{title}</p>
           </div>
         )}
         <div className={twMerge("px-3 py-5", classNameChildren)}>

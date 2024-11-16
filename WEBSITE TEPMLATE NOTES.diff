@@ -17,6 +17,11 @@ gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 -- TAILWIND KEYS
 	* r,c,t,b
 
+-- FUNCTIONS
+UNKNOWN TRIGGER
+1. Must not have node_modules and package-lock.json
+2. Install libraries in the website folder's package.json
+
 
 
 --- TODO  --------------------------------------------------------
@@ -29,7 +34,10 @@ QRSCANNER
 	* Update MyModal.tsx
 	* Add countListItems.ts
 	* Add modal_t (tailwind)
+	
 	* deployf init.py
+	* Add uploading to Firebase Storage a function in functions
+	* add useFullUrl.ts hook
 
 AGRISMART
 	* Add InfoIcon.tsx to icons
@@ -39,6 +47,10 @@ AGRISMART
 
 Fix b b-black b-opacity-50
 PYTHON: update RouteHelper.py (agrismart)
+
+--- Python-AI-Minicomputer  ---
+TRANSFORMER OIL
+	* 
 
 
 --- DONE --------------------------------------------------------

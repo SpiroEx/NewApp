@@ -5,20 +5,28 @@ import { twMerge } from "tailwind-merge";
 
 interface LogsTableProps<T extends { id: string }> {
   headers: string[];
+  title?: string;
   data: any[][];
   legends?: [string, string][];
-  pagination: FHPagination<T>;
+  pagination?: FHPagination<T>;
+  classNameTable?: string;
   classNameHeader: string;
-  classNameBody: string;
+  classNameBody?: string;
+  classNameBodyWrapper?: string;
+  lightMode?: boolean;
 }
 
 const LogsTable: React.FC<LogsTableProps<any>> = ({
   headers,
+  title,
   data,
   legends,
   pagination,
+  classNameTable,
   classNameHeader,
   classNameBody,
+  classNameBodyWrapper,
+  lightMode = false,
 }) => {
   const columns = headers.map((header, i) => [
     header,
@@ -26,13 +34,19 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
   ]);
 
   return (
-    <div className="csc-4 wf">
-      <p className="t76">Logs</p>
+    <div className={twMerge("csc-4 wf", lightMode ? "t-black" : "t-white")}>
+      {title && <p className="t76">{title}</p>}
 
       {/*//! TABLE */}
-      <div className="csc-4 bg-log_gray rounded-2xl py-4 px-6">
+      <div
+        className={twMerge(
+          "csc-4 rounded-2xl pb-4 px-6",
+          lightMode ? "bg-white b b-log_gray" : "bg-log_gray",
+          classNameTable
+        )}
+      >
         <div
-          className="rss-4 wf"
+          className="ras-4 wf"
           style={{
             maxWidth: "90vw",
             overflowX: "auto",
@@ -43,82 +57,70 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
             const restOfData = data.slice(1);
 
             return (
-              <div key={i} className="csc-2">
-                <p className={twMerge(classNameHeader)}>{header}</p>
-                {restOfData.map((d, i) => (
-                  <p
-                    key={i}
-                    className={twMerge(
-                      "truncate whitespace-nowrap",
-                      classNameBody
-                    )}
-                  >
-                    {d}
-                  </p>
-                ))}
+              <div key={i} className="csc-4 relative">
+                <p
+                  className={twMerge(
+                    "sticky top-0 wf pt-2",
+                    lightMode ? "bg-white" : "bg-log_gray",
+                    classNameHeader
+                  )}
+                >
+                  {header}
+                </p>
+                <div className={twMerge("csc-4", classNameBodyWrapper)}>
+                  {restOfData.map((d, i) => (
+                    <div
+                      key={i}
+                      className={twMerge(
+                        "truncate whitespace-nowrap",
+                        classNameBody
+                      )}
+                    >
+                      {d}
+                    </div>
+                  ))}
+                </div>
               </div>
             );
           })}
         </div>
 
         {/* //! < 1 > */}
-        <div className="flex gap-4 items-center mt-2 m-auto pb-2">
-          <ChevronLeft
-            color="#FFF"
-            onClick={pagination.prev}
-            disabled={!pagination.hasPrev || pagination.loading}
-          />
-          <p className="text-text_dark">{pagination.pageNum}</p>
-          <ChevronRight
-            color="#FFF"
-            onClick={pagination.next}
-            disabled={!pagination.hasNext || pagination.loading}
-          />
-        </div>
+        {pagination && (
+          <div className="flex gap-4 items-center mt-2 m-auto pb-2">
+            <ChevronLeft
+              color="#000"
+              onClick={pagination.prev}
+              disabled={!pagination.hasPrev || pagination.loading}
+            />
+            <p className="text-text_dark">{pagination.pageNum}</p>
+            <ChevronRight
+              color="#000"
+              onClick={pagination.next}
+              disabled={!pagination.hasNext || pagination.loading}
+            />
+          </div>
+        )}
       </div>
 
       {/*//! LEGEND */}
-      <div className="css-4 mt-4">
-        <p className="t46">Legend</p>
+      {legends && (
+        <div className="css-4 mt-4">
+          <p className="t46">Legend</p>
 
-        <div className="grid grid-cols-2 gap-3 px-2">
-          {legends?.map(([abbr, full], i) => (
-            <div key={i} className="flex gap-2 items-center">
-              <div className="w-3 h-3 bg-slate-700 rounded-full"></div>
-              <p className="t26">{abbr}:</p>
-              <p className="t22">{full}</p>
-            </div>
-          ))}
+          <div className="grid grid-cols-2 gap-3 px-2">
+            {legends?.map(([abbr, full], i) => (
+              <div key={i} className="flex gap-2 items-center">
+                <div className="w-3 h-3 bg-slate-700 rounded-full"></div>
+                <p className="t26">{abbr}:</p>
+                <p className="t22">{full}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
 export default LogsTable;
-
-//! SAMPLE ------------
-{
-  /* <LogsTable
-          headers={["Date", "N", "P", "K", "pH", "SM", "T", "EC"]}
-          data={logsPagination.data.map((log) => [
-            DateHelper.epochMsToLogDate(Number(log.id)),
-            log.n,
-            log.p,
-            log.k,
-            log.ph,
-            log.sm,
-            log.temp,
-            log.ec,
-          ])}
-          legends={[
-            ["N", "Nitrogen"],
-            ["P", "Phosphorus"],
-            ["K", "Potassium"],
-            ["SM", "Soil Moisture"],
-            ["T", "Temperature"],
-            ["EC", "Electrical Conductivity"],
-          ]}
-          pagination={logsPagination}
-        /> */
-}

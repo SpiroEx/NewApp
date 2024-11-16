@@ -17,6 +17,15 @@ export default {
         "3xs": ".5rem",
       },
 
+      maxHeight: {
+        "84": "21rem",
+        "88": "22rem",
+        "92": "23rem",
+        "96": "24rem",
+        "100": "25rem",
+      },
+
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -40,6 +49,7 @@ export default {
         //? Modal
         header_modal: "#3C3D3E",
         modal_bg: '#2B2D2E',
+        modal_t: '#2B2D2E',
 
         //? Logs Table
         log_gray: "#2B2D2E",
@@ -52,6 +62,7 @@ export default {
 
         // custom - from Figma
         bg: "#1f1f1f",
+        text: "#f0f0f0",
       },
     },
   },

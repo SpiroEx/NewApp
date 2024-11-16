@@ -22,8 +22,8 @@ const Sample_LogsPage: React.FC<Sample_LogsPageProps> = ({}) => {
         headers={["id"]}
         legends={[["id", "Identification"]]}
         pagination={myUserPagination}
-        classNameHeader="t46"
-        classNameBody="t22"
+        classNameHeader="t46c"
+        classNameBody="t22c"
       />
       <WebsiteVersion />
     </PageContainer>

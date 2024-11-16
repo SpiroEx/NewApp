@@ -26,6 +26,25 @@ UNKNOWN TRIGGER
 
 --- TODO  --------------------------------------------------------
 QRSCANNER
+	* Add uploading to Firebase Storage a function in functions
+
+
+
+
+--- Python-AI-Minicomputer  ---
+
+
+
+--- DONE --------------------------------------------------------
+Fix b b-black bo-50
+PYTHON: update RouteHelper.py (agrismart)
+AGRISMART
+	* Add MyTooltip.tsx to templates
+	* Add SendEmailButton.tsx to templates
+	* Add InfoIcon.tsx to icons
+	* Add QrScanner.tsx
+
+QRSCANNER
 	* Update useInputField.ts (with initial input!)
 	* Update LogsTable.tsx
 	* Update Sample_LogsTable.tsx
@@ -34,26 +53,9 @@ QRSCANNER
 	* Update MyModal.tsx
 	* Add countListItems.ts
 	* Add modal_t (tailwind)
-	
 	* deployf init.py
-	* Add uploading to Firebase Storage a function in functions
 	* add useFullUrl.ts hook
 
-AGRISMART
-	* Add InfoIcon.tsx to icons
-	* Add MyTooltip.tsx to templates
-	* Add SendEmailButton.tsx to templates
-	* Add QrScanner.tsx
-
-Fix b b-black b-opacity-50
-PYTHON: update RouteHelper.py (agrismart)
-
---- Python-AI-Minicomputer  ---
-TRANSFORMER OIL
-	* 
-
-
---- DONE --------------------------------------------------------
 run git . -> "run git"
 npm run dev -> "a"
 automate add-page -> "a add-page x"

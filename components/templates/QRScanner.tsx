@@ -6,9 +6,14 @@ import { useEffect, useState } from "react";
 interface QRScannerProps {
   children: React.ReactNode;
   onScan: (qr: string) => void;
+  title?: string;
 }
 
-const QRScanner: React.FC<QRScannerProps> = ({ children, onScan }) => {
+const QRScanner: React.FC<QRScannerProps> = ({
+  children,
+  onScan,
+  title = "Scan QR",
+}) => {
   const qrModal = useModal();
 
   return (
@@ -16,7 +21,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ children, onScan }) => {
       <div className="cp" onClick={qrModal.open}>
         {children}
       </div>
-      <MyModal useModal={qrModal} title="Scan Device QR">
+      <MyModal useModal={qrModal} title={title}>
         <QrScannerVideo
           onScan={(qr) => {
             onScan(qr);

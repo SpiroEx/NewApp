@@ -25,9 +25,10 @@ UNKNOWN TRIGGER
 
 
 --- TODO  --------------------------------------------------------
-QRSCANNER
-	* Add uploading to Firebase Storage a function in functions
+QR SCANNER
+	* update QRScanner.tsx
 
+Python-AI-Minicomputer: Add run git
 
 
 
@@ -45,6 +46,7 @@ AGRISMART
 	* Add QrScanner.tsx
 
 QRSCANNER
+	* Add uploading to Firebase Storage a function in functions
 	* Update useInputField.ts (with initial input!)
 	* Update LogsTable.tsx
 	* Update Sample_LogsTable.tsx

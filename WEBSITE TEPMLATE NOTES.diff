@@ -26,22 +26,7 @@ UNKNOWN TRIGGER
 
 --- TODO  --------------------------------------------------------
 --- Website ---
-* AUTOMATE CREATION OF NEW PROJECTS
-	* Ask for project name
-	* What arduinos (,)?
 
-	* Create folder
-	* Change folder color to green stripe
-	
-	* Create arduinos - copy template
-
-	* Copy bb.fzz (with battery/barrel and switch)
-	* Create notes.diff
-	* Create _init_rpi.bat
-	* Create _init_minicomputer.bat
-	* Create _init_website.bat
-
-	* run git-project
 
 
 * Automate add-comp add of import on top
@@ -65,10 +50,22 @@ Thermal Imager
 * lots of problems on ssh keygen
 	* suddenly requires passphrase
 * update useFUllUrl.ts hook
-* add getQueryParameters.ts myfunction
 
 
 --- DONE --------------------------------------------------------
+* add getQueryParameters.ts myfunction
+* AUTOMATE CREATION OF NEW PROJECTS
+	* Ask for project name
+	* What arduinos (,)?
+	* Create folder
+	* Change folder color to green stripe
+	* Create arduinos - copy template
+	* Copy bb.fzz (with battery/barrel and switch)
+	* Create notes.diff
+	* Create _init_rpi.bat
+	* Create _init_minicomputer.bat
+	* Create _init_website.bat
+	* run git-project
 * Med Rover: Update Arduino.py, Update STTVosk.py
 QR STORAGE
 	* update QRScanner.tsx

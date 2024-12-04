@@ -49,10 +49,10 @@ Thermal Imager
 * firebase functions for receiving query param 'ssh=dsad' and set adminSettings.last_ssh_key to 'dsad'
 * lots of problems on ssh keygen
 	* suddenly requires passphrase
-* update useFUllUrl.ts hook
 
 
 --- DONE --------------------------------------------------------
+* update useFUllUrl.ts hook
 * add getQueryParameters.ts myfunction
 * AUTOMATE CREATION OF NEW PROJECTS
 	* Ask for project name

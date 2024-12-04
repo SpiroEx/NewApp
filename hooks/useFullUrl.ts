@@ -1,6 +1,6 @@
 import { useF, useS } from "./useReactHooks";
 
-export const useGetUrl = () => {
+export const useFullUrl = () => {
     const [fullUrl, setFullUrl] = useS("");
 
     useF(() => {

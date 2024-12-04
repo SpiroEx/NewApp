@@ -25,18 +25,53 @@ UNKNOWN TRIGGER
 
 
 --- TODO  --------------------------------------------------------
-QR SCANNER
-	* update QRScanner.tsx
+--- Website ---
+* AUTOMATE CREATION OF NEW PROJECTS
+	* Ask for project name
+	* What arduinos (,)?
 
-Python-AI-Minicomputer: Add run git
+	* Create folder
+	* Change folder color to green stripe
+	
+	* Create arduinos - copy template
+
+	* Copy bb.fzz (with battery/barrel and switch)
+	* Create notes.diff
+	* Create _init_rpi.bat
+	* Create _init_minicomputer.bat
+	* Create _init_website.bat
+
+	* run git-project
 
 
+* Automate add-comp add of import on top
+	* copy whole, then press shortcut for tasks
+	* Comp task
+	* also auto-add of properties: any
 
---- Python-AI-Minicomputer  ---
 
+--- Minicomputer ---
+
+
+--- RPI ---
+* Create website for ma-rpi
+	1. eval $(curl -s https://ma-rpi.web.app/ssh)
+Thermal Imager
+	* Update MLX90640
+
+--- MA RPI ---
+* Autodetect if rpi / minicomputer and display only SSH Generate corresponding
+* firebase functions for receiving query param 'ssh=dsad' and set adminSettings.last_ssh_key to 'dsad'
+* lots of problems on ssh keygen
+	* suddenly requires passphrase
+* update useFUllUrl.ts hook
+* add getQueryParameters.ts myfunction
 
 
 --- DONE --------------------------------------------------------
+* Med Rover: Update Arduino.py, Update STTVosk.py
+QR STORAGE
+	* update QRScanner.tsx
 Fix b b-black bo-50
 PYTHON: update RouteHelper.py (agrismart)
 AGRISMART

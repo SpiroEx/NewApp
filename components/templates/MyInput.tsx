@@ -42,7 +42,7 @@ const MyInput: React.FC<MyInputProps> = ({
       {label && (
         <p className="-translate-y-1 translate-x-3 o-50 t33">{label}</p>
       )}
-      <div className={twMerge("rcs wf")}>
+      <div className={twMerge("rss wf")}>
         {!numLines && (
           <input
             ref={inputField.ref as RefObject<HTMLInputElement>}

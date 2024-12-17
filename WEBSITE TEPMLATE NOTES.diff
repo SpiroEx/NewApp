@@ -25,10 +25,8 @@ UNKNOWN TRIGGER
 
 
 --- TODO  --------------------------------------------------------
+* Update Project template's batch file icons to shortcut
 --- Website ---
-
-
-
 * Automate add-comp add of import on top
 	* copy whole, then press shortcut for tasks
 	* Comp task
@@ -52,6 +50,11 @@ Thermal Imager
 
 
 --- DONE --------------------------------------------------------
+* Clean Automation folders
+* Add Arduino Template in project
+* Add Arduino Template in run
+* Add Arduino Template in github
+* Create pins of nodemcus
 * update useFUllUrl.ts hook
 * add getQueryParameters.ts myfunction
 * AUTOMATE CREATION OF NEW PROJECTS

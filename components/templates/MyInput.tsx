@@ -50,7 +50,7 @@ const MyInput: React.FC<MyInputProps> = ({
             disabled={disabled}
             maxLength={maxLength}
             className={twMerge(
-              "wf max-w-sm rounded-lg b p-3",
+              "wf max-w-sm rounded-lg b p-3 bg-transparent",
               inputField.error ? "b-red-500" : "b-input_border",
               className
             )}

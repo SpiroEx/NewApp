@@ -1,26 +1,11 @@
-https://youtu.be/DYj40-cZ5vI?si=GB-NSBktHguftwwx - BELIEVER
-
 -- CONSOLE HIDE
 -[Fast -Chrome -data:applicatio
-
--- CORS
-gsutil cors set cors.json gs://website-template-ma.firebasestorage.app
 
 -- TODO FIGMA EXTENSION
 * auto export of svg on F1 click
 	** asks for project folder at the first time
 	** If no ~ yet, then ask the name
 	** If logo: 512x512 "icon", 180x180 "apple-touch-icon"
-
-* Auto svg-repo.com
-
--- TAILWIND KEYS
-	* r,c,t,b
-
--- FUNCTIONS
-UNKNOWN TRIGGER
-1. Must not have node_modules and package-lock.json
-2. Install libraries in the website folder's package.json
 
 
 

@@ -75,6 +75,9 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
                         "truncate whitespace-nowrap",
                         classNameBody
                       )}
+                      style={{
+                        minHeight: "18px",
+                      }}
                     >
                       {d}
                     </div>

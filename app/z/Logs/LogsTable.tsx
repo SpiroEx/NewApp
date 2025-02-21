@@ -92,13 +92,13 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
         {pagination && (
           <div className="flex gap-4 items-center mt-2 m-auto pb-2">
             <ChevronLeft
-              color="#000"
+              color={lightMode ? "#000" : "#fff"}
               onClick={pagination.prev}
               disabled={!pagination.hasPrev || pagination.loading}
             />
             <p className="text-text_dark">{pagination.pageNum}</p>
             <ChevronRight
-              color="#000"
+              color={lightMode ? "#000" : "#fff"}
               onClick={pagination.next}
               disabled={!pagination.hasNext || pagination.loading}
             />

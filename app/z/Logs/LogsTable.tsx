@@ -44,6 +44,9 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
           lightMode ? "bg-white b b-log_gray" : "bg-log_gray",
           classNameTable
         )}
+        style={{
+          maxWidth: "100%",
+        }}
       >
         <div
           className="ras-4 wf"

@@ -1,6 +1,6 @@
 {
-  "name": "Title",
-  "short_name": "Title",
+  "name": "Pulmo TIPQ",
+  "short_name": "Pulmo TIPQ",
   "icons": [
     {
       "src": "/images/icons/maskable_icon_x48.png",
@@ -41,8 +41,8 @@
   ],
   "scope": "/",
   "start_url": "/",
-  "description": "{{About}}",
+  "description": "Empowering better lung health with real-time data from our Arduino breathe pressure device.",
   "display": "standalone",
-  "theme_color": "#1F1F1F",
-  "background_color": "#1F1F1F"
+  "theme_color": "#1072BC",
+  "background_color": "#1072BC"
 }

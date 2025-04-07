@@ -61,8 +61,22 @@ export default {
 
 
         // custom - from Figma
-        bg: "#1f1f1f",
-        text: "#f0f0f0",
+        text: '#D4D4D2',
+        footer: '#2B2D2E',
+        white: '#FFFFFF',
+        light_gray: '#FEFEFE',
+        bg: '#1B1A1D',
+        bubble_gray: '#D9D9D9',
+        gray: '#2B2D2E',
+        text: '#D4D4D2',
+        green: '#23CC09',
+        purple: '#B500D2',
+        white: '#FFFFFF',
+        white: '#FFFFFF',
+        bg_icon: '#1072BC',
+        black: '#000000',
+        gray: '#282A2A',
+
       },
     },
   },

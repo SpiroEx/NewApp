@@ -1,5 +1,5 @@
 import React from "react";
-import { ScaleLoader } from "react-spinners";
+import { SkewLoader } from "react-spinners";
 
 import { useC } from "@/hooks/useReactHooks";
 
@@ -14,7 +14,7 @@ const LoadingPage: React.FC<LoadingPageProps> = ({ hideIcon = false }) => {
   return (
     <div className="ccc fixed left-0 top-0 z-10 select-none ws hs">
       {!hideIcon && (
-        <ScaleLoader
+        <SkewLoader
           color={`${getColor("loading_icon")}`}
           loading
           // size={150}

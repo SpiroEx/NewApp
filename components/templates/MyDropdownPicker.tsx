@@ -51,15 +51,15 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
             ({
               ...baseStyles,
               width,
-            } as CSSObjectWithLabel),
+            }) as CSSObjectWithLabel,
           control: (baseStyles: any, state: any) =>
             ({
               ...baseStyles,
-              borderColor: error ? "red" : "#6CE841",
+              borderColor: error ? "red" : "#C5C5C5FF",
               backgroundColor: "transparent",
               cursor: "pointer",
               userSelect: "none",
-            } as CSSObjectWithLabel),
+            }) as CSSObjectWithLabel,
           placeholder: (baseStyles: any, state: any) =>
             ({
               ...baseStyles,
@@ -67,7 +67,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
               fontSize: "1.5rem",
               cursor: "pointer",
               userSelect: "none",
-            } as CSSObjectWithLabel),
+            }) as CSSObjectWithLabel,
 
           singleValue: (baseStyles: any, state: any) =>
             ({
@@ -77,7 +77,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
               padding: "0.4rem",
               cursor: "pointer",
               userSelect: "none",
-            } as CSSObjectWithLabel),
+            }) as CSSObjectWithLabel,
           menuList: (baseStyles: any, state: any) =>
             ({
               ...baseStyles,
@@ -85,7 +85,7 @@ const MyDropDownPicker: React.FC<MyDropDownPickerProps> = ({
               userSelect: "none",
               color: darkMode ? "#8D8E8F" : "black",
               backgroundColor: "#2B2F31",
-            } as CSSObjectWithLabel),
+            }) as CSSObjectWithLabel,
         }}
       />
     </div>

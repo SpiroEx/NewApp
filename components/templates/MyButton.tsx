@@ -22,7 +22,7 @@ const MyButton: React.FC<MyButtonProps> = ({
   label,
   type,
   pX = 1.8,
-  pY = 0.4,
+  pY = 0.2,
   disabled,
   className,
   classNameBtn,
@@ -54,7 +54,7 @@ const MyButton: React.FC<MyButtonProps> = ({
       >
         <p
           className={twMerge(
-            "w-max m-auto t-inherit t33",
+            "w-max m-auto t-inherit t63",
             // outlined && "t-black",
             classNameText
           )}

@@ -3,11 +3,14 @@ import { createContext } from "react";
 
 import Footer from "@/components/templates/Footer";
 //! /* Add Pages Here */
+import LogPage from "../custom/LogPage";
+import MeasurePage from "../custom/MeasurePage";
 import Overlay from "@/components/templates/Overlay";
 import { useS } from "@/hooks/useReactHooks";
 
 import MainPage from "../custom/MainPage";
 import Sample_LogsPage from "../z/Logs/Sample_LogsPage";
+import ProfilePage from "./ProfilePage";
 
 // ? ----------------------
 // ? PAGES
@@ -16,6 +19,9 @@ import Sample_LogsPage from "../z/Logs/Sample_LogsPage";
 
 export const enum Pages {
   Main,
+  Log,
+  Profile,
+  Measure,
 }
 
 //********************************* */
@@ -37,6 +43,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
 
   //! Page
   const [page, setPage] = useS<Pages>(defaultPage);
+  console.log(page);
 
   return (
     <PageWrapperContext
@@ -57,7 +64,10 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
 
       <div className="overflow-y-auto wf hf">
         {page === Pages.Main && <MainPage />}
+        {page === Pages.Profile && <ProfilePage />}
         {/*//! Add Page Mapping Here */}
+        {page === Pages.Log && <LogPage />}
+        {page === Pages.Measure && <MeasurePage />}
       </div>
       {overlay && <Overlay setOverlay={setOverlay}>{overlay}</Overlay>}
     </PageWrapperContext>

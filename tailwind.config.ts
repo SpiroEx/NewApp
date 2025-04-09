@@ -43,13 +43,13 @@ export default {
         input_border: "#b9b9b9",
 
         //? Button
-        button: "#0dbc73",
+        button: "#23CC08",
         button_red: "#F04C2A",
 
         //? Modal
         header_modal: "#3C3D3E",
         modal_bg: '#2B2D2E',
-        modal_t: '#2B2D2E',
+        modal_t: '#B2B2B2FF',
 
         //? Logs Table
         log_gray: "#2B2D2E",
@@ -61,21 +61,17 @@ export default {
 
 
         // custom - from Figma
-        text: '#D4D4D2',
+        text: '#FFF',
         footer: '#2B2D2E',
         white: '#FFFFFF',
         light_gray: '#FEFEFE',
         bg: '#1B1A1D',
         bubble_gray: '#D9D9D9',
         gray: '#2B2D2E',
-        text: '#D4D4D2',
         green: '#23CC09',
         purple: '#B500D2',
-        white: '#FFFFFF',
-        white: '#FFFFFF',
         bg_icon: '#1072BC',
         black: '#000000',
-        gray: '#282A2A',
 
       },
     },

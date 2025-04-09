@@ -1,9 +1,9 @@
 import type { User } from "firebase/auth";
-import type { FormEventHandler } from "react";
+import type { FormEventHandler, MouseEventHandler } from "react";
 
 import { Config } from "@/classes/Constants";
 import FH from "@/classes/FH";
-import type { MyUser } from "@/classes/MyUser";
+import type { Gender, MyUser } from "@/classes/MyUser";
 import EditableAvatar from "@/components/templates/EditableAvatar";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
@@ -11,6 +11,9 @@ import Title from "@/components/templates/Title";
 import { useCheckboxField, useInputField } from "@/hooks/useInputField";
 import { useS } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
+import MyDatePicker from "@/components/templates/MyDatePicker";
+import MyDropDownPicker from "@/components/templates/MyDropdownPicker";
+import { Timestamp } from "firebase/firestore";
 
 interface RegisterPageProps {
   user: User;
@@ -24,15 +27,31 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
     [!name, "Please Enter your full name"],
   ]);
 
+  const [birthDate, setBirthDate] = useS<Date>(new Date(2003, 0, 1));
+  const [gender, setGender] = useS<Gender>("Male");
+
+  const heightInput = useInputField((height) => [
+    [!height, "Please Enter your height"],
+    [isNaN(Number(height)), "Please Enter a valid height"],
+    [Number(height) < 0 || Number(height) > 300, "Please Enter a valid height"],
+  ]);
+
   const termsInput = useCheckboxField(
     "Please agree to the terms and conditions"
   );
 
   //! REGISTER
-  const register: FormEventHandler<HTMLFormElement> = async (e) => {
+  const register: MouseEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    if (!nameInput.verify()) return;
+    console.log("REGISTERING");
+
+    if (!nameInput.verify() || !heightInput.verify()) return;
+    if (birthDate >= new Date()) {
+      notify("Please enter a valid birth date");
+      return;
+    }
+
     if (Config.hasTermsAndConditions && !termsInput.verify()) return;
 
     setCreatingMyUser(true);
@@ -57,7 +76,9 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         name: nameInput.getValue()!,
         photoURL,
         email: user.email!,
-        device_id: "",
+        birthdate: Timestamp.fromDate(birthDate),
+        gender,
+        height: Number(heightInput.getValue()!),
       };
 
       //! Create MyUser
@@ -84,13 +105,44 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         setSelectedImage={setSelectedImage}
         size={120}
       />
-      <form className="mb-10 csc-10" onSubmit={register}>
+      <form className="mb-10 csc-10" onSubmit={(e) => e.preventDefault()}>
         {/* //! FULL NAME */}
         <MyInput
           placeholder="Full name"
           className="bg-transparent"
           inputField={nameInput}
         />
+
+        {/* //! BIRTH DATE */}
+        <div className="css-1">
+          <p className="t33 o-50">Birth Date</p>
+          <MyDatePicker
+            className="!w-60"
+            date={birthDate}
+            setDate={setBirthDate}
+          />
+        </div>
+
+        {/* //! GENDER */}
+        <MyDropDownPicker
+          className="!w-60 m-auto"
+          darkMode
+          options={[
+            { label: "Male", value: "Male" },
+            { label: "Female", value: "Female" },
+          ]}
+          value={gender}
+          setValue={(v) => setGender((v as Gender) ?? "Male")}
+        />
+
+        {/* //! HEIGHT */}
+        <MyInput
+          placeholder="Height (cm)"
+          className="bg-transparent"
+          type="number"
+          inputField={heightInput}
+        />
+
         {/* //! TERMS AND CONDITIONS */}
         {Config.hasTermsAndConditions && (
           <TermsAndConditions termsInput={termsInput} />
@@ -98,9 +150,10 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
 
         {/* //! SUBMIT BUTTON */}
         <MyButton
-          type="submit"
+          type="button"
           label="Create Account"
           disabled={creatingMyUser}
+          onClick={register}
         />
       </form>
     </div>

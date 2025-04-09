@@ -14,6 +14,7 @@ import notify from "@/myfunctions/notify";
 import { SocialMediaPost } from "@/app/z/SocialMedia/SocialMediaPost";
 import { SocialMediaComment } from "@/app/z/SocialMedia/SocialMediaComment";
 import { LogDevice } from "./LogDevice";
+import { MyUserLog } from "./MyUserLog";
 
 class MyUserFHT extends FHT<MyUser> {
   collectionName = "user";
@@ -40,6 +41,15 @@ class LogDeviceFHT extends FHT<LogDevice> {
   collectionName = "log_device";
 }
 
+class MyUserLogFHT extends FHT<MyUserLog> {
+  collectionName: string;
+
+  constructor(userId: string) {
+    super();
+    this.collectionName = `user/${userId}/log`;
+  }
+}
+
 export default abstract class FH {
   static AdminSettings = new AdminSettingsFHT();
   static MyUser = new MyUserFHT();
@@ -47,6 +57,7 @@ export default abstract class FH {
   static SocialMediaPost = new SocialMediaPostFHT();
   static SocialMediaComment = new SocialMediaCommentFHT();
   static LogDevice = new LogDeviceFHT();
+  static MyUserLog = (userId: string) => new MyUserLogFHT(userId);
 
   static async Batch(
     name: string,

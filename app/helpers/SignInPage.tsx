@@ -46,7 +46,7 @@ const SignInPage: React.FC = () => {
           onSubmit={type === SignInType.signUp ? signup : login}
         >
           {/* //! EMAIL */}
-          <div className="wf">
+          <div className="!w-80">
             <MyInput
               placeholder="Email"
               inputField={emailInput}
@@ -56,7 +56,7 @@ const SignInPage: React.FC = () => {
           </div>
 
           {/* //! PASSWORD */}
-          <div className="relative max-w-sm wf">
+          <div className="relative max-w-sm !w-80">
             <MyInput
               placeholder="Password"
               className="bg-transparent pr-12"
@@ -109,7 +109,7 @@ const SignInPage: React.FC = () => {
           <Txt.p>or</Txt.p>
         </div>
         <MotionDiv
-          className="bg-light_dark m-auto w-min rounded-full px-4 py-2 rsc-2"
+          className="bg-slate-800 m-auto w-min rounded-full px-4 py-2 rsc-2 cp"
           whileTap={{ scale: 0.85 }}
           onClick={googleSignIn}
         >

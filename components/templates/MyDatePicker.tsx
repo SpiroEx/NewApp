@@ -21,7 +21,10 @@ const MyDatePicker: React.FC<MyDatePickerProps> = ({
     { value: string; onClick: MouseEventHandler<HTMLButtonElement> }
   >(({ value, onClick }, ref) => (
     <button
-      className={twMerge("bg-transparent px-4 py-2 b rounded-lg", className)}
+      className={twMerge(
+        "bg-transparent px-4 py-2 b b-[#C5C5C5FF] rounded-lg",
+        className
+      )}
       onClick={onClick}
       ref={ref}
     >

@@ -5,13 +5,39 @@ import PageContainer from "@/components/templates/PageContainer";
 import Txt from "@/components/templates/Txt";
 import { useFHPagination } from "@/hooks/useFHPagination";
 import SocialMediaSample from "../z/SocialMedia/SocialMediaSample";
+import ProfileDashboardIcon from "@/components/custom/ProfileDashboardIcon";
+import DashboardBox from "@/components/custom/DashboardBox";
+import { Pages } from "../helpers/PageWrapper";
+import MeasureIcon from "@/components/custom/MeasureIcon";
+import DailyLogIcon from "@/components/custom/DailyLogIcon";
 
 interface MainPageProps {}
 
 const MainPage: React.FC<MainPageProps> = ({}) => {
   return (
-    <PageContainer>
-      <Txt.title className="">TITLE</Txt.title>
+    <PageContainer noBackIcon>
+      <div className="wf csc-15 pt-20">
+        <div className="wf rcc-15">
+          <DashboardBox
+            label="Profile"
+            icon={<ProfileDashboardIcon />}
+            page={Pages.Profile}
+          />
+          <DashboardBox
+            label="Measure"
+            icon={<MeasureIcon />}
+            page={Pages.Measure}
+          />
+        </div>
+        <div className="wf rcc-15">
+          <DashboardBox
+            label="Daily Log"
+            icon={<DailyLogIcon />}
+            page={Pages.Log}
+          />
+        </div>
+      </div>
+
       <WebsiteVersion />
     </PageContainer>
   );

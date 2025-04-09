@@ -4,7 +4,7 @@ The application is currently deployed at [https://pulmo-tipq.web.app](https://pu
 
 ## Screenshot
 
-![alt text](https://github.com/Manila-Arduino/{{Repo_Name}}/blob/main/public/images/screenshot.png)
+![alt text](https://github.com/Manila-Arduino/Pulmo-TIPQ-Website/blob/main/public/images/screenshot.png)
 
 ## About
 

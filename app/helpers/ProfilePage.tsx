@@ -1,5 +1,5 @@
 import FH from "@/classes/FH";
-import { MyUser } from "@/classes/MyUser";
+import { Gender, MyUser } from "@/classes/MyUser";
 import WebsiteVersion from "@/components/custom/WebsiteVersion";
 import BackAndroidIcon from "@/components/svg/icon/BackAndroidIcon";
 import EditableAvatar from "@/components/templates/EditableAvatar";
@@ -11,11 +11,20 @@ import useModal from "@/hooks/useModal";
 import { useC, useS } from "@/hooks/useReactHooks";
 import notify from "@/myfunctions/notify";
 import { signOut } from "firebase/auth";
-import { FormEventHandler, useEffect, useState } from "react";
+import {
+  FormEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { auth } from "../firebase";
 import { Pages, PageWrapperContext } from "../helpers/PageWrapper";
 import { FHContext } from "../templates/FH_Wrapper";
 import { TailwindContext } from "../templates/Tailwind_Wrapper";
+import PageContainer from "@/components/templates/PageContainer";
+import MyDatePicker from "@/components/templates/MyDatePicker";
+import MyDropDownPicker from "@/components/templates/MyDropdownPicker";
+import { Timestamp } from "firebase/firestore";
 
 interface ProfilePageProps {}
 
@@ -31,25 +40,50 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
     [!name, "Please Enter your name"],
   ]);
 
+  const [birthDate, setBirthDate] = useS<Date>(new Date(2003, 0, 1));
+  const [gender, setGender] = useS<Gender>("Male");
+
+  const heightInput = useInputField((height) => [
+    [!height, "Please Enter your height"],
+    [isNaN(Number(height)), "Please Enter a valid height"],
+    [Number(height) < 0 || Number(height) > 300, "Please Enter a valid height"],
+  ]);
+
   const [photoURLUpdated, setPhotoURLUpdated] = useState(false);
   const [nameUpdated, setNameUpdated] = useState(false);
+  const [birthDateUpdated, setBirthDateUpdated] = useState(false);
+  const [genderUpdated, setGenderUpdated] = useState(false);
+  const [heightUpdated, setHeightUpdated] = useState(false);
   const [updatingMyUser, setUpdatingMyUser] = useState(false);
 
   const signOutModal = useModal();
 
-  const hasUpdates = photoURLUpdated || nameUpdated;
+  const hasUpdates =
+    photoURLUpdated ||
+    nameUpdated ||
+    heightUpdated ||
+    genderUpdated ||
+    birthDateUpdated;
 
   //! INITIALIZE FIELDS
   useEffect(() => {
     if (!myUser) return;
     nameInput.setValue(myUser.name);
+    setBirthDate(myUser.birthdate.toDate());
+    setGender(myUser.gender);
+    heightInput.setValue(myUser.height.toString());
   }, [myUser]);
 
   //! REGISTER
-  const updateMyUser: FormEventHandler<HTMLFormElement> = async (e) => {
+  const updateMyUser: MouseEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!myUser) return;
     if (!nameInput.verify()) return;
+    if (birthDate >= new Date()) {
+      notify("Please enter a valid birth date");
+      return;
+    }
+    if (!heightInput.verify()) return;
 
     setUpdatingMyUser(true);
     try {
@@ -70,10 +104,25 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
         myUserUpdates.name = nameInput.getValue()!;
       }
 
+      if (birthDateUpdated) {
+        myUserUpdates.birthdate = Timestamp.fromDate(birthDate);
+      }
+
+      if (genderUpdated) {
+        myUserUpdates.gender = gender;
+      }
+
+      if (heightUpdated) {
+        myUserUpdates.height = Number(heightInput.getValue()!);
+      }
+
       await FH.MyUser.update(myUser, myUserUpdates);
       notify("Profile updated", { type: "success" });
       setPhotoURLUpdated(false);
       setNameUpdated(false);
+      setBirthDateUpdated(false);
+      setGenderUpdated(false);
+      setHeightUpdated(false);
     } catch (error) {
       console.log(error);
       notify("An error occured while updating");
@@ -82,98 +131,134 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
   };
 
   return (
-    <div className="min-hs flex flex-col items-center bg-bg t-text">
-      {/*//! HEADER */}
-      <div className="wf h-52 bg-darker_primary pt-1 px-5">
-        <div className="flex justify-between items-center">
-          <BackAndroidIcon
-            color={getColor("text")}
-            size={25}
-            onClick={() => setPage(Pages.Main)}
-          />
-          <p className="font-semibold text-text">Edit Profile</p>
-          <BackAndroidIcon size={25} hidden />
-        </div>
-      </div>
-
-      {/*//! PROFILE PIC */}
-      <div className="-translate-y-1/2">
-        <EditableAvatar
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-          photoURL={myUser?.photoURL}
-          onChooseImage={() => setPhotoURLUpdated(true)}
-          size={120}
-          withBackground
-          bgClassName="bg-bg"
-        />
-      </div>
-      <form className="csc-10 wf px-10 mb-10" onSubmit={updateMyUser}>
-        {/*//! NAME */}
-        <div className="csc-1 wf">
-          <p className="text font-semibold">Name</p>
-          <MyInput
-            placeholder="Name"
-            className="bg-transparent wf"
-            divClassName="wf"
-            inputField={nameInput}
-            maxLength={30}
-            onChange={() => setNameUpdated(true)}
+    <PageContainer>
+      <div className="min-hs flex flex-col items-center t-text csc-15">
+        {/*//! PROFILE PIC */}
+        <div className="pt-5">
+          <EditableAvatar
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+            photoURL={myUser?.photoURL}
+            onChooseImage={() => setPhotoURLUpdated(true)}
+            size={120}
+            withBackground
+            bgClassName="bg-blue-300"
           />
         </div>
-
-        {/*//! SUBMIT - BUTTON */}
-        <MyButton
-          type="submit"
-          label="Update"
-          disabled={!hasUpdates || updatingMyUser}
-        />
-      </form>
-
-      {/*//! SIGN OUT - BUTTON */}
-      <div className="px-10 mt-20">
-        <MyButton
-          type="button"
-          label="Sign Out"
-          outlined
-          className="rounded-full bg-red"
-          classNameText=""
-          disabled={updatingMyUser}
-          onClick={signOutModal.open}
-        />
-      </div>
-
-      {/*//! SIGN OUT - MODAL */}
-      <MyModal
-        useModal={signOutModal}
-        title="Sign Out"
-        classNameContent="bg-gray"
-      >
-        <div className="csc-5 bg-gray t-white">
-          <p className="t42c o-70">Are you sure you want to sign out?</p>
-          <div className="flex gap-5">
-            <MyButton
-              type="button"
-              label="Cancel"
-              outlined
-              className="rounded-full"
-              pY={0.2}
-              onClick={signOutModal.close}
-            />
-            <MyButton
-              type="button"
-              label="Sign Out"
-              className="rounded-full bg-red"
-              classNameText="text-white"
-              pY={0.2}
-              onClick={() => signOut(auth)}
+        <form
+          className="csc-10 wf px-10 mb-10"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          {/*//! NAME */}
+          <div className="css-1 wf">
+            <p className="t43 o-50">Name</p>
+            <MyInput
+              placeholder="Name"
+              className="bg-transparent wf"
+              divClassName="wf"
+              inputField={nameInput}
+              maxLength={30}
+              onChange={() => setNameUpdated(true)}
             />
           </div>
-        </div>
-      </MyModal>
 
-      <WebsiteVersion />
-    </div>
+          {/* //! BIRTH DATE */}
+          <div className="css-1">
+            <p className="t43 o-50">Birth Date</p>
+            <MyDatePicker
+              className="!w-60"
+              date={birthDate}
+              setDate={(d) => {
+                setBirthDate(d);
+                setBirthDateUpdated(true);
+              }}
+            />
+          </div>
+
+          {/* //! GENDER */}
+          <div className="css-1">
+            <p className="t43 o-50">Gender</p>
+            <MyDropDownPicker
+              className="!w-60 m-auto"
+              darkMode
+              options={[
+                { label: "Male", value: "Male" },
+                { label: "Female", value: "Female" },
+              ]}
+              value={gender}
+              setValue={(v) => {
+                setGender((v as Gender) ?? "Male");
+                setGenderUpdated(true);
+              }}
+            />
+          </div>
+
+          {/* //! HEIGHT */}
+          <div className="css-1">
+            <p className="t43 o-50">Height (cm)</p>
+            <MyInput
+              placeholder="Height (cm)"
+              className="bg-transparent"
+              type="number"
+              inputField={heightInput}
+              onChange={() => setHeightUpdated(true)}
+            />
+          </div>
+
+          {/*//! SUBMIT - BUTTON */}
+          <MyButton
+            type="button"
+            label="Update"
+            onClick={updateMyUser}
+            disabled={!hasUpdates || updatingMyUser}
+          />
+        </form>
+
+        {/*//! SIGN OUT - BUTTON */}
+        <div className="px-10 mt-20">
+          <MyButton
+            type="button"
+            label="Sign Out"
+            outlined
+            className="rounded-full bg-red"
+            classNameText=""
+            disabled={updatingMyUser}
+            onClick={signOutModal.open}
+          />
+        </div>
+
+        {/*//! SIGN OUT - MODAL */}
+        <MyModal
+          useModal={signOutModal}
+          title="Sign Out"
+          classNameContent="bg-gray"
+        >
+          <div className="csc-5 bg-gray t-white">
+            <p className="t42c o-70">Are you sure you want to sign out?</p>
+            <div className="flex gap-5">
+              <MyButton
+                type="button"
+                label="Cancel"
+                outlined
+                className="rounded-full"
+                pY={0.2}
+                onClick={signOutModal.close}
+              />
+              <MyButton
+                type="button"
+                label="Sign Out"
+                className="rounded-full bg-red-600"
+                classNameText="text-white"
+                pY={0.2}
+                onClick={() => signOut(auth)}
+              />
+            </div>
+          </div>
+        </MyModal>
+
+        <WebsiteVersion />
+      </div>
+    </PageContainer>
   );
 };
 

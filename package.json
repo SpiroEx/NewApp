@@ -40,7 +40,7 @@
     "react-bluetooth": "^0.0.0",
     "react-chartjs-2": "^5.2.0",
     "react-csv-importer": "^0.8.1",
-    "react-datepicker": "^4.16.0",
+    "react-datepicker": "^8.2.1",
     "react-dom": "^19.0.0-rc-603e6108-20241029",
     "react-draggable-bottom-sheet": "^1.14.0",
     "react-geocode": "^1.0.0-alpha.1",

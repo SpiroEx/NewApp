@@ -8,7 +8,7 @@ const title: React.FC<HTMLAttributes<HTMLParagraphElement>> = ({
   ...props
 }) => {
   return (
-    <p className={twMerge("t83 tracking-widest", className)} {...props}>
+    <p className={twMerge("t94 tracking-widest", className)} {...props}>
       {children}
     </p>
   );

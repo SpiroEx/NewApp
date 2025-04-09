@@ -114,7 +114,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
         <div className="css-4 mt-4">
           <p className="t46">Legend</p>
 
-          <div className="grid grid-cols-2 gap-3 px-2">
+          <div className="grid grid-cols-1 gap-3 px-2">
             {legends?.map(([abbr, full], i) => (
               <div key={i} className="flex gap-2 items-center">
                 <div className="w-3 h-3 bg-slate-700 rounded-full"></div>

@@ -1,13 +1,13 @@
 export abstract class StorageNames { }
 
 export const Constants = {
-  ProjTitle: "Pulmo TIPQ",
-  ProjTitle1: "Pulmo",
-  ProjTitle2: "TIPQ",
+  ProjTitle: "SpiroEx",
+  ProjTitle1: "SpiroEx",
+  ProjTitle2: "",
   About: "Empowering better lung health with real-time data from our Arduino breathe pressure device.",
   NodeMCUIP: "http://192.168.4.1",
   DefaulMapZoom: 13,
-  WebsiteVersion: "1.0.2",
+  WebsiteVersion: "1.0.4",
 };
 
 export const LocalStorage = {

@@ -3,7 +3,7 @@ import type { FormEventHandler, MouseEventHandler } from "react";
 
 import { Config } from "@/classes/Constants";
 import FH from "@/classes/FH";
-import type { Gender, MyUser } from "@/classes/MyUser";
+import { Role, type Gender, type MyUser } from "@/classes/MyUser";
 import EditableAvatar from "@/components/templates/EditableAvatar";
 import MyButton from "@/components/templates/MyButton";
 import MyInput from "@/components/templates/MyInput";
@@ -29,6 +29,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
 
   const [birthDate, setBirthDate] = useS<Date>(new Date(2003, 0, 1));
   const [gender, setGender] = useS<Gender>("Male");
+  const [role, setRole] = useS<Role>("Patient");
 
   const heightInput = useInputField((height) => [
     [!height, "Please Enter your height"],
@@ -78,6 +79,7 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
         email: user.email!,
         birthdate: Timestamp.fromDate(birthDate),
         gender,
+        role,
         height: Number(heightInput.getValue()!),
       };
 
@@ -111,6 +113,18 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ user }) => {
           placeholder="Full name"
           className="bg-transparent"
           inputField={nameInput}
+        />
+
+        {/* //! ROLE */}
+        <MyDropDownPicker
+          className="!w-60 m-auto"
+          darkMode
+          options={[
+            { label: "Patient", value: "Patient" },
+            { label: "Doctor", value: "Doctor" },
+          ]}
+          value={role}
+          setValue={(v) => setRole((v as Role) ?? "Patient")}
         />
 
         {/* //! BIRTH DATE */}

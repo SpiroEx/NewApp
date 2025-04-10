@@ -29,7 +29,7 @@ const SignInPage: React.FC = () => {
   return (
     <div className="wf">
       <div
-        className="wf bg-aspect-ratio px-10 pb-12 ccc-8"
+        className="wf bg-aspect-ratio px-10 pb-12 ccc-8 min-h-screen"
         style={{
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",

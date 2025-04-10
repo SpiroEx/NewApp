@@ -11,6 +11,7 @@ interface PageContainerProps {
   className?: string;
   noBackIcon?: boolean;
   onBack?: () => void;
+  noBackMain?: boolean;
 }
 
 const PageContainer: React.FC<PageContainerProps> = ({
@@ -18,6 +19,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
   className,
   noBackIcon = false,
   onBack,
+  noBackMain = false,
 }) => {
   const { getColor } = useC(TailwindContext);
   const { setPage } = useC(PageWrapperContext);
@@ -40,7 +42,9 @@ const PageContainer: React.FC<PageContainerProps> = ({
           hidden={noBackIcon}
           onClick={() => {
             if (!noBackIcon) {
-              setPage(Pages.Main);
+              if (!noBackMain) {
+                setPage(Pages.Main);
+              }
               onBack?.();
             }
           }}

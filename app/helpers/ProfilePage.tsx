@@ -134,7 +134,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
     <PageContainer>
       <div className="min-hs flex flex-col items-center t-text csc-15">
         {/*//! PROFILE PIC */}
-        <div className="pt-5">
+        <div className="pt-5 csc-5">
           <EditableAvatar
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
@@ -144,7 +144,10 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
             withBackground
             bgClassName="bg-blue-300"
           />
+          {/*//! ROLE */}
+          <p className="t44 o-50">{myUser?.role}</p>
         </div>
+
         <form
           className="csc-10 wf px-10 mb-10"
           onSubmit={(e) => e.preventDefault()}
@@ -220,7 +223,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({}) => {
             type="button"
             label="Sign Out"
             outlined
-            className="rounded-full bg-red"
+            className="rounded-full bg-red-600"
             classNameText=""
             disabled={updatingMyUser}
             onClick={signOutModal.open}

@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 import Footer from "@/components/templates/Footer";
 //! /* Add Pages Here */
+import PatientPage from "../custom/PatientPage";
 import LogPage from "../custom/LogPage";
 import MeasurePage from "../custom/MeasurePage";
 import Overlay from "@/components/templates/Overlay";
@@ -19,6 +20,7 @@ import ProfilePage from "./ProfilePage";
 
 export const enum Pages {
   Main,
+  Patient,
   Log,
   Profile,
   Measure,
@@ -66,6 +68,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({}) => {
         {page === Pages.Main && <MainPage />}
         {page === Pages.Profile && <ProfilePage />}
         {/*//! Add Page Mapping Here */}
+        {page === Pages.Patient && <PatientPage />}
         {page === Pages.Log && <LogPage />}
         {page === Pages.Measure && <MeasurePage />}
       </div>

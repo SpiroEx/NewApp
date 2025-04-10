@@ -15,7 +15,7 @@ export const MeasurePageContext = createContext({});
 interface MeasurePageProps {}
 
 const MeasurePage: React.FC<MeasurePageProps> = ({}) => {
-  const { device, myUser } = useC(FHContext);
+  const { device, myUser, adminSettings } = useC(FHContext);
   const [savedData, setSavedData] = useS(false);
 
   const isMeasured =
@@ -38,10 +38,12 @@ const MeasurePage: React.FC<MeasurePageProps> = ({}) => {
       FH.MyUserLog(myUser.id).create({
         id: new Date().getTime().toString(),
         createdAt: Timestamp.now(),
-        pef: device.pef,
-        fev1: device.fev1,
-        fvc: device.fvc,
-        fev1Fvc: device.fev1Fvc,
+        pef: device.pef * adminSettings.pefMultiplier,
+        fev1: device.fev1 * adminSettings.fev1Multiplier,
+        fvc: device.fvc * adminSettings.fvcMultiplier,
+        fev1Fvc:
+          (device.fev1 * adminSettings.fev1Multiplier) /
+          (device.fvc * adminSettings.fvcMultiplier),
       });
       setSavedData(true);
     }

@@ -52,7 +52,7 @@ const ProfileDashboardIcon: React.FC<ProfileDashboardIconProps> = ({
           width="38.2361"
           height="38.4583"
           filterUnits="userSpaceOnUse"
-          color-interpolationFilters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix

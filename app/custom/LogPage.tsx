@@ -7,46 +7,125 @@ import { createContext } from "react";
 import LogsTable from "../z/Logs/LogsTable";
 import { MyUserLog } from "@/classes/MyUserLog";
 import { FHContext } from "../templates/FH_Wrapper";
-import { useC } from "@/hooks/useReactHooks";
+import { useC, useS } from "@/hooks/useReactHooks";
 import DateHelper from "@/classes/templates/DateHelper";
+import {
+  getIdealFev1,
+  getIdealPef,
+  getIdealFvc,
+  MyUser,
+} from "@/classes/MyUser";
+import IdealParam from "@/components/custom/IdealParam";
+import DownloadIcon from "@/components/custom/DownloadIcon";
+import downloadCsv from "@/myfunctions/downloadCsv";
 
 export const LogPageContext = createContext({});
 
-interface LogPageProps {}
+interface LogPageProps {
+  myUserSelected?: MyUser | null;
+  onBack?: () => void;
+  noBackMain?: boolean;
+}
 
-const LogPage: React.FC<LogPageProps> = ({}) => {
-  const { myUser } = useC(FHContext);
+const LogPage: React.FC<LogPageProps> = ({
+  myUserSelected,
+  onBack,
+  noBackMain,
+}) => {
+  const { myUser: myUserOriginal } = useC(FHContext);
+
+  const myUser = myUserSelected ?? myUserOriginal;
+
+  const [loading, setLoading] = useS(false);
   const myUserPagination = useFHPagination<MyUserLog>(
     FH.MyUserLog(myUser?.id ?? ""),
     "createdAt",
     "desc",
-    12,
+    5,
     [myUser?.id]
   );
 
+  const idealPef = getIdealPef(myUser);
+  const idealFev1 = getIdealFev1(myUser);
+  const idealFvc = getIdealFvc(myUser);
+
+  async function downloadData() {
+    if (loading || !myUser) return;
+    setLoading(true);
+    FH.MyUserLog(myUser.id)
+      .getAll()
+      .then((logs) => {
+        // Add data
+
+        let csv = logs
+          .map(
+            (log) =>
+              `${DateHelper.epochMsToLogDate(log.createdAt.toDate().getTime())},${log.pef},${log.fev1},${log.fvc},${log.fev1Fvc}`
+          )
+          .join("\n");
+
+        // Add headers
+        csv = `Date,PEF,FEV1,FVC,FEV1/FVC\n${csv}`;
+
+        // get date time for filename
+        let datenow = new Date().toISOString().replace(/:/g, "-").split(".")[0];
+
+        // Download
+        downloadCsv(csv, `${myUser.name}-${datenow}.csv`);
+      });
+    setLoading(false);
+  }
+
   return (
     <LogPageContext value={{}}>
-      <PageContainer className="!gap-5">
-        <p className="t73">Logs</p>
+      <PageContainer className="!gap-5" noBackMain={noBackMain} onBack={onBack}>
+        <div className="rcc-4">
+          <p className="t73">Logs</p>
+          <DownloadIcon onClick={downloadData} disabled={loading} />
+        </div>
         <LogsTable
           data={myUserPagination.data.map((u) => [
             DateHelper.epochMsToLogDate(u.createdAt.toDate().getTime()),
-            u.pef,
-            u.fev1,
-            u.fvc,
-            u.fev1Fvc,
+            <p className="" key={u.id}>
+              {u.pef.toFixed(2)}{" "}
+              {u.pef >= idealPef ? (
+                <span className="text-green">P</span>
+              ) : (
+                <span className="text-red-500">F</span>
+              )}
+            </p>,
+            <p className="" key={u.id}>
+              {u.fev1.toFixed(2)}{" "}
+              {u.fev1 >= idealFev1 ? (
+                <span className="text-green">P</span>
+              ) : (
+                <span className="text-red-500">F</span>
+              )}
+            </p>,
+            <p className="" key={u.id}>
+              {u.fvc.toFixed(2)}{" "}
+              {u.fvc >= idealFvc ? (
+                <span className="text-green">P</span>
+              ) : (
+                <span className="text-red-500">F</span>
+              )}
+            </p>,
+            `${Math.round(u.fev1Fvc * 100)} %`,
           ])}
           headers={["Date", "PEF", "FEV1", "FVC", "FEV1/FVC"]}
           legends={[
-            ["PEF", "Peak Expiratory Flow"],
-            ["FEV1", "Forced Expiratory Volume in 1 second"],
-            ["FVC", "Forced Vital Capacity"],
-            ["FEV1/FVC", "FEV1/FVC Ratio"],
+            ["PEF", "Peak Expiratory Flow (L/s)"],
+            ["FEV1", "Forced Expiratory Volume in 1 second (L)"],
+            ["FVC", "Forced Vital Capacity (L)"],
+            ["FEV1/FVC", "FEV1/FVC Ratio (%)"],
           ]} // Add legends for each column
           pagination={myUserPagination}
           classNameHeader="t46c"
           classNameBody="t22c"
         />
+
+        {/*//! IDEAL */}
+        <IdealParam />
       </PageContainer>
     </LogPageContext>
   );

@@ -12,7 +12,13 @@ interface LoadingPageProps {
 const LoadingPage: React.FC<LoadingPageProps> = ({ hideIcon = false }) => {
   const { getColor } = useC(TailwindContext);
   return (
-    <div className="ccc fixed left-0 top-0 z-10 select-none ws hs">
+    <div
+      className="ccc fixed left-0 top-0 z-10 select-none ws hs bg-aspect-ratio"
+      style={{
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {!hideIcon && (
         <SkewLoader
           color={`${getColor("loading_icon")}`}

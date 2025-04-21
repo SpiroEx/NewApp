@@ -12,7 +12,7 @@ const ProfileBar: React.FC<ProfileBarProps> = ({ myUser }) => {
   const height = myUser?.height;
 
   return (
-    <div className="wf css-4 py-2 px-2 b b-light_gray rounded-2xl">
+    <div className="css-4 py-2 px-2 b b-light_gray rounded-2xl">
       <div className="wf rss-4">
         <Avatar src={myUser?.photoURL} size={50} />
         <div className="css-1">

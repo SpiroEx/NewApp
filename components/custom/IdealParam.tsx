@@ -11,7 +11,7 @@ const IdealParam: React.FC<IdealParamProps> = ({}) => {
   const idealFvc = getIdealFvc(myUser);
 
   return (
-    <div className="css-4 mt-4">
+    <div className="css-4 mt-4 w-60">
       <p className="t46">Ideal Parameters</p>
 
       <div className="grid grid-cols-1 gap-3 px-2 w-80">

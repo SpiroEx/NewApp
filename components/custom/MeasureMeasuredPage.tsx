@@ -8,6 +8,7 @@ import MeasurementDataBox from "./MeasurementDataBox";
 import { Pages, PageWrapperContext } from "@/app/helpers/PageWrapper";
 import IdealParam from "./IdealParam";
 import { getIdealFev1, getIdealFvc, getIdealPef } from "@/classes/MyUser";
+import ProfileBar from "./ProfileBar";
 
 interface MeasureMeasuredPageProps {}
 
@@ -42,7 +43,9 @@ const MeasureMeasuredPage: React.FC<MeasureMeasuredPageProps> = ({}) => {
     <PageContainer onBack={goHome}>
       {/*//! INSTRUCTION */}
       <div className="csc-4">
-        <p className="t73">Measurement Data</p>
+        <p className="t73 mb-5">Measurement Data</p>
+
+        <ProfileBar myUser={myUser} />
 
         <div className="wf csc-15 pt-8">
           <div className="wf rcc-15">
@@ -84,8 +87,32 @@ const MeasureMeasuredPage: React.FC<MeasureMeasuredPageProps> = ({}) => {
         </div>
       </div>
 
-      {/*//! IDEAL PARAMS */}
-      <IdealParam />
+      <div className="w-min css-4">
+        {/*//! LEGENDS */}
+        <div className="css-4 mt-4 w-40">
+          <p className="t46">Legend</p>
+
+          <div className="grid grid-cols-1 gap-3 px-2 w-80">
+            {[
+              ["PEF", "Peak Expiratory Flow (L/s)"],
+              ["FEV1", "Forced Expiratory Volume in 1 second (L)"],
+              ["FVC", "Forced Vital Capacity (L)"],
+              ["FEV1/FVC", "FEV1/FVC Ratio (%)"],
+              ["P", "Pass"],
+              ["F", "Fail"],
+            ].map(([abbr, full], i) => (
+              <div key={i} className="flex gap-2 items-center">
+                <div className="w-3 h-3 bg-slate-700 rounded-full"></div>
+                <p className="t26">{abbr}:</p>
+                <p className="t22">{full}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/*//! IDEAL PARAMS */}
+        <IdealParam />
+      </div>
     </PageContainer>
   );
 };

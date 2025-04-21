@@ -18,6 +18,8 @@ import {
 import IdealParam from "@/components/custom/IdealParam";
 import DownloadIcon from "@/components/custom/DownloadIcon";
 import downloadCsv from "@/myfunctions/downloadCsv";
+import ProfileBar from "@/components/custom/ProfileBar";
+import getAge from "@/myfunctions/getAge";
 
 export const LogPageContext = createContext({});
 
@@ -52,6 +54,12 @@ const LogPage: React.FC<LogPageProps> = ({
   async function downloadData() {
     if (loading || !myUser) return;
     setLoading(true);
+    const name = myUser.name;
+    const age = getAge(myUser.birthdate.toDate());
+    const birthdate = myUser.birthdate.toDate();
+    const gender = myUser.gender;
+    const height = myUser.height;
+
     FH.MyUserLog(myUser.id)
       .getAll()
       .then((logs) => {
@@ -60,12 +68,12 @@ const LogPage: React.FC<LogPageProps> = ({
         let csv = logs
           .map(
             (log) =>
-              `${DateHelper.epochMsToLogDate(log.createdAt.toDate().getTime())},${log.pef},${log.fev1},${log.fvc},${log.fev1Fvc}`
+              `${DateHelper.epochMsToLogDate(log.createdAt.toDate().getTime())},${name},${age},${birthdate},${gender},${height},${log.pef},${log.fev1},${log.fvc},${log.fev1Fvc}`
           )
           .join("\n");
 
         // Add headers
-        csv = `Date,PEF,FEV1,FVC,FEV1/FVC\n${csv}`;
+        csv = `Date,Name,Age,Birthdate,Gender,Height,PEF,FEV1,FVC,FEV1/FVC\n${csv}`;
 
         // get date time for filename
         let datenow = new Date().toISOString().replace(/:/g, "-").split(".")[0];
@@ -83,6 +91,9 @@ const LogPage: React.FC<LogPageProps> = ({
           <p className="t73">Logs</p>
           <DownloadIcon onClick={downloadData} disabled={loading} />
         </div>
+
+        <ProfileBar myUser={myUser} />
+
         <LogsTable
           data={myUserPagination.data.map((u) => [
             DateHelper.epochMsToLogDate(u.createdAt.toDate().getTime()),
@@ -118,6 +129,8 @@ const LogPage: React.FC<LogPageProps> = ({
             ["FEV1", "Forced Expiratory Volume in 1 second (L)"],
             ["FVC", "Forced Vital Capacity (L)"],
             ["FEV1/FVC", "FEV1/FVC Ratio (%)"],
+            ["P", "Pass"],
+            ["F", "Fail"],
           ]} // Add legends for each column
           pagination={myUserPagination}
           classNameHeader="t46c"

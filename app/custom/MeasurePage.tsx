@@ -59,11 +59,12 @@ const MeasurePage: React.FC<MeasurePageProps> = ({}) => {
   return (
     <MeasurePageContext value={{}}>
       {/*//! NOT MEASURING */}
-      {notMeasuring && <MeasureInstructionPage />}
+      {/* {notMeasuring && <MeasureInstructionPage />} */}
       {/*//! MEASURING */}
-      {isMeasuring && <MeasureMeasuringPage />}
+      {/* {isMeasuring && <MeasureMeasuringPage />} */}
       {/*//! MEASURED */}
-      {isMeasured && <MeasureMeasuredPage />}
+      <MeasureMeasuredPage />
+      {/* {isMeasured && <MeasureMeasuredPage />} */}
     </MeasurePageContext>
   );
 };

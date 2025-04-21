@@ -111,7 +111,7 @@ const LogsTable: React.FC<LogsTableProps<any>> = ({
 
       {/*//! LEGEND */}
       {legends && (
-        <div className="css-4 mt-4">
+        <div className="css-4 mt-4 w-60">
           <p className="t46">Legend</p>
 
           <div className="grid grid-cols-1 gap-3 px-2 w-80">

@@ -1,7 +1,7 @@
 import { FHContext } from "@/app/templates/FH_Wrapper";
 import { SocialMediaPost } from "@/app/z/SocialMedia/SocialMediaPost";
 import FH from "@/classes/FH";
-import DateHelper from "@/classes/templates/DateHelper";
+import DateHelper from "@/classes/templates/DH";
 import CommentIcon from "@/components/svg/icon/CommentIcon";
 import HeartIcon from "@/components/svg/icon/HeartIcon";
 import { useFHWatch } from "@/hooks/useFHWatch";

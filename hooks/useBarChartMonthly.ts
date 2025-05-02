@@ -1,7 +1,7 @@
 import FHT from "@/classes/templates/FHT";
 import { useEffect, useState } from "react";
 import { useFHWatch } from "./useFHWatch";
-import DateHelper, { MonthAbbrev } from "@/classes/templates/DateHelper";
+import DateHelper, { MonthAbbrev } from "@/classes/templates/DH";
 
 export type UseBarChartMonthly = {
   data: {

@@ -27,7 +27,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
   return (
     <div
       className={twMerge(
-        "relative csc-12 wf hf min-hs overflow-scroll-y pt-10 pb-20 px-8 bg-aspect-ratio",
+        "relative z-0 csc-12 wf hf min-hs overflow-scroll-y pt-10 pb-20 px-8 bg-aspect-ratio",
         className
       )}
       style={{
@@ -54,7 +54,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
       </div>
       {children}
 
-      <div className="fixed bottom-12 right-8">
+      <div className="fixed -z-10 bottom-12 right-8">
         <LungsIcon />
       </div>
     </div>

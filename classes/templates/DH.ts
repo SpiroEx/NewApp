@@ -14,7 +14,7 @@ export type MonthAbbrev =
   | "Nov"
   | "Dec";
 
-export default abstract class DateHelper {
+export default abstract class DH {
   static monthAbbrev: MonthAbbrev[] = [
     "Jan",
     "Feb",
@@ -83,9 +83,32 @@ export default abstract class DateHelper {
       } ${period}`;
   }
 
+  static dateAlarmFromTime(hour: number, minute: number, meridian: "AM" | "PM") {
+    const date = new Date();
+    date.setHours(meridian === "PM" ? hour + 12 : hour, minute, 0, 0);
+
+    if (date < new Date()) {
+      date.setDate(date.getDate() + 1); // Set to next day if time is in the past
+    }
+
+    return date;
+  }
+
   // 10/23/2024 - 10:43 PM
-  static millisToDateStr(millis: number) {
-    const date = new Date(millis);
+  static format(inp?: number | string | Date | Timestamp): string {
+    let date: Date;
+
+    if (inp === undefined) {
+      date = new Date();
+    } else if (typeof inp === "number" || typeof inp === "string") {
+      date = new Date(inp);
+    } else if (inp instanceof Date) {
+      date = inp;
+    } else if ("toDate" in inp && typeof inp.toDate === "function") {
+      date = inp.toDate();
+    } else {
+      throw new Error("Invalid input type");
+    }
 
     const month = this.monthAbbrev[date.getMonth()];
     const day = date.getDate();
@@ -96,12 +119,19 @@ export default abstract class DateHelper {
     const period = hour >= 12 ? "PM" : "AM";
     hour = hour % 12 || 12; // convert to 12-hour format
 
-    return `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute
-      } ${period}`;
+    return `${month} ${day}, ${year} - ${hour}:${minute < 10 ? "0" + minute : minute} ${period}`;
   }
 
   static currentMillis() {
     return Date.now();
+  }
+
+  // 20:43
+  static militaryTime(date: Date) {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const seconds = date.getSeconds().toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
   }
 
   // 10/23/2024 - 20:43

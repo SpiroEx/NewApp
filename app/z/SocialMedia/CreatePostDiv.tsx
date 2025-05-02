@@ -6,7 +6,7 @@ import PostInputContent from "./PostInputContent";
 import { SocialMediaContext } from "./SocialMedia";
 import { twMerge } from "tailwind-merge";
 import notify from "@/myfunctions/notify";
-import DateHelper from "@/classes/templates/DateHelper";
+import DateHelper from "@/classes/templates/DH";
 import { Timestamp } from "firebase/firestore";
 import FH from "@/classes/FH";
 
@@ -14,9 +14,8 @@ interface CreatePostDivProps {}
 
 const CreatePostDiv: React.FC<CreatePostDivProps> = ({}) => {
   const { myUser } = useC(FHContext);
-  const { optionWidgetsCreatePost, postDataGenerator } = useC(
-    SocialMediaContext
-  );
+  const { optionWidgetsCreatePost, postDataGenerator } =
+    useC(SocialMediaContext);
   const [posting, setPosting] = useS(false); //!!!
   const postInput = useInputField((postStr) => []);
 

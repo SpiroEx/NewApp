@@ -7,7 +7,7 @@ export const Constants = {
   About: "Empowering better lung health with real-time data from our Arduino breathe pressure device.",
   NodeMCUIP: "http://192.168.4.1",
   DefaulMapZoom: 13,
-  WebsiteVersion: "1.0.6",
+  WebsiteVersion: "1.0.8",
 };
 
 export const LocalStorage = {

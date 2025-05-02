@@ -17,9 +17,17 @@ export interface Chart_LineProps {
     label: string;
     color?: string;
   }[];
+  reversedY?: boolean;
+  yRange?: [number, number];
+  yTicks?: number[];
 }
 
-const Chart_Line: React.FC<Chart_LineProps> = ({ lines }) => {
+const Chart_Line: React.FC<Chart_LineProps> = ({
+  lines,
+  reversedY = false,
+  yRange,
+  yTicks,
+}) => {
   const { isMobile } = useDeviceDimensions();
 
   const labels = lines.map(({ label, color }) => ({ name: label, color }));
@@ -38,7 +46,12 @@ const Chart_Line: React.FC<Chart_LineProps> = ({ lines }) => {
 
   return (
     <div className="csc wf hf">
-      <div className={twMerge(isMobile ? "w-80 h-48" : "w-144 h-72")}>
+      <div
+        className={twMerge(isMobile ? "h-48" : "h-72")}
+        style={{
+          width: isMobile ? "100% " : "100%",
+        }}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={500}
@@ -50,7 +63,12 @@ const Chart_Line: React.FC<Chart_LineProps> = ({ lines }) => {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" className="t25" />
-            <YAxis className="t25" />
+            <YAxis
+              className="t25"
+              reversed={reversedY}
+              domain={yRange}
+              ticks={yTicks}
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: "#1A1D1E",
@@ -65,7 +83,11 @@ const Chart_Line: React.FC<Chart_LineProps> = ({ lines }) => {
                 type="monotone"
                 dataKey={name}
                 stroke={color || "#82ca9d"}
-                activeDot={{ r: 8 }}
+                activeDot={{ r: 5 }}
+                dot={{
+                  fill: "#DADADA22",
+                  r: 1,
+                }}
               />
             ))}
           </LineChart>

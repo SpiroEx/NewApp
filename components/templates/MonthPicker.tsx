@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import DateHelper from "@/classes/templates/DateHelper";
+import DateHelper from "@/classes/templates/DH";
 import { MotionDiv } from "@/types/framer_motion_types";
 
 import ChevronLeft from "../svg/icon/ChevronLeft";

@@ -8,7 +8,7 @@ import LogsTable from "../z/Logs/LogsTable";
 import { MyUserLog } from "@/classes/MyUserLog";
 import { FHContext } from "../templates/FH_Wrapper";
 import { useC, useS } from "@/hooks/useReactHooks";
-import DateHelper from "@/classes/templates/DateHelper";
+import DateHelper from "@/classes/templates/DH";
 import {
   getIdealFev1,
   getIdealPef,
@@ -20,6 +20,7 @@ import DownloadIcon from "@/components/custom/DownloadIcon";
 import downloadCsv from "@/myfunctions/downloadCsv";
 import ProfileBar from "@/components/custom/ProfileBar";
 import getAge from "@/myfunctions/getAge";
+import MyGraph from "@/components/custom/MyGraph";
 
 export const LogPageContext = createContext({});
 
@@ -87,13 +88,17 @@ const LogPage: React.FC<LogPageProps> = ({
   return (
     <LogPageContext value={{}}>
       <PageContainer className="!gap-5" noBackMain={noBackMain} onBack={onBack}>
-        <div className="rcc-4">
+        <ProfileBar myUser={myUser} />
+
+        {/*//! GRAPH - STAGE */}
+        <p className="t65 mt-10">Graph</p>
+        {myUser?.role === "Patient" && <MyGraph myUser={myUser} />}
+
+        {/*//! LOGS TABLE */}
+        <div className="rcc-4 mt-10">
           <p className="t73">Logs</p>
           <DownloadIcon onClick={downloadData} disabled={loading} />
         </div>
-
-        <ProfileBar myUser={myUser} />
-
         <LogsTable
           data={myUserPagination.data.map((u) => [
             DateHelper.epochMsToLogDate(u.createdAt.toDate().getTime()),

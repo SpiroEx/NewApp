@@ -15,6 +15,9 @@ import RegisterPage from "../helpers/RegisterPage";
 import SignInPage from "../helpers/SignInPage";
 import EmailVerificationPage from "./EmailVerificationPage";
 import { UserContext } from "./User_Wrapper";
+import { useFHWatchQuery } from "@/hooks/useFHWatchQuery";
+import { MyUserLog } from "@/classes/MyUserLog";
+import { orderBy } from "firebase/firestore";
 
 // ? ----------------------
 // ? FIRESTORE DATA OBJECTS

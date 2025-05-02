@@ -12,6 +12,10 @@ import MeasureIcon from "@/components/custom/MeasureIcon";
 import DailyLogIcon from "@/components/custom/DailyLogIcon";
 import { useC } from "@/hooks/useReactHooks";
 import { FHContext } from "../templates/FH_Wrapper";
+import GraphData from "@/components/templates/GraphData";
+import Chart_Line, { Chart_LineProps } from "@/components/templates/Chart_Line";
+import DH from "@/classes/templates/DH";
+import MyGraph from "@/components/custom/MyGraph";
 
 interface MainPageProps {}
 
@@ -19,7 +23,7 @@ const MainPage: React.FC<MainPageProps> = ({}) => {
   const { myUser } = useC(FHContext);
 
   return (
-    <PageContainer noBackIcon>
+    <PageContainer noBackIcon className="pb-60">
       <div className="wf csc-15 pt-20">
         <div className="wf rcc-15">
           <DashboardBox
@@ -51,6 +55,8 @@ const MainPage: React.FC<MainPageProps> = ({}) => {
             />
           )}
         </div>
+        {/*//! GRAPH - STAGE */}
+        {myUser?.role === "Patient" && <MyGraph myUser={myUser} />}
       </div>
 
       <WebsiteVersion />

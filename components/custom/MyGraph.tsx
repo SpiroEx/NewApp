@@ -7,6 +7,7 @@ import { MyUser } from "@/classes/MyUser";
 import { orderBy } from "firebase/firestore";
 import FH from "@/classes/FH";
 import { useFHWatchQuery } from "@/hooks/useFHWatchQuery";
+import { useEffect, useState } from "react";
 
 interface MyGraphProps {
   myUser: MyUser | null;
@@ -73,6 +74,18 @@ const MyGraph: React.FC<MyGraphProps> = ({ myUser }) => {
   const isFvcIncreasing = computeSlope(fvcVals, times) > 0;
   const isFev1FvcIncreasing = computeSlope(ratioVals, times) > 0;
 
+  const [filtered, setFiltered] = useState<number | null>(null);
+  const [graphs, setGraphs] = useState<Chart_LineProps["lines"]>([pefLineData, fev1LineData, fvcLineData, fev1FvcLineData])
+
+  useEffect(()=>{
+    if (filtered === null) {
+      setGraphs([pefLineData, fev1LineData, fvcLineData, fev1FvcLineData])
+    } else {
+      const filteredGraphs = [pefLineData, fev1LineData, fvcLineData, fev1FvcLineData].filter((_, i) => i === filtered)
+      setGraphs(filteredGraphs)
+    }
+  },[filtered])
+
   return (
     <div className="wf csc-5">
       <GraphData
@@ -80,23 +93,24 @@ const MyGraph: React.FC<MyGraphProps> = ({ myUser }) => {
         tooltip="This graph shows the history of your logs. The data is collected from your device and displayed here for you to track your progress."
       >
         <Chart_Line
-          lines={[pefLineData, fev1LineData, fvcLineData, fev1FvcLineData]}
+          lines={graphs}
         />
       </GraphData>
 
       {/*//! IMPROVING / NOT */}
       <div className="css-4 w-60">
         <div className="grid grid-cols-1 gap-3 px-2 w-80">
+          <button className="r-20 b-2 border-color-white rounded-xl" onClick={()=>setFiltered(null)}>Clear Filters</button>
           {[
             `PEF is ${isPefIncreasing ? "improving. Keep it up!" : "decreasing. Keep on breathing!"}`,
             `FEV1 is ${isFev1Increasing ? "improving. Keep it up!" : "decreasing. Keep on breathing!"}`,
             `FVC is ${isFvcIncreasing ? "improving. Keep it up!" : "decreasing. Keep on breathing!"}`,
             `FEV1/FVC is ${isFev1FvcIncreasing ? "improving. Keep it up!" : "decreasing. Keep on breathing!"}`,
           ].map((text, i) => (
-            <div key={i} className="flex gap-2 items-center">
+            <span key={i} onClick={()=>setFiltered(i)} className="flex gap-2 items-center pointer">
               <div className="w-3 h-3 bg-slate-300 rounded-full"></div>
               <p className="t43 o-75">{text}</p>
-            </div>
+            </span>
           ))}
         </div>
       </div>
